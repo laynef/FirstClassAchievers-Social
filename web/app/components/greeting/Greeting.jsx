@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
+ 
+const Greeting = () => (
+    <div>
+        <h1>Hello World</h1>
+    </div>
+)
 
-export default class Greeting extends Component {
-
-    render() {
-        return (
-            <div>
-                <h1>Hello World</h1>
-            </div>
-        )
-    }
-}
+export default Greeting

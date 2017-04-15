@@ -38913,7 +38913,7 @@
 /* 652 */
 /***/ (function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	
 
 /***/ }),
 /* 653 */
@@ -50872,56 +50872,23 @@
 	    value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(299);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(325);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(326);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(330);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(377);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
 	var _react = __webpack_require__(385);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Greeting = function (_Component) {
-	    (0, _inherits3.default)(Greeting, _Component);
-
-	    function Greeting() {
-	        (0, _classCallCheck3.default)(this, Greeting);
-	        return (0, _possibleConstructorReturn3.default)(this, (Greeting.__proto__ || (0, _getPrototypeOf2.default)(Greeting)).apply(this, arguments));
-	    }
-
-	    (0, _createClass3.default)(Greeting, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Hello World'
-	                )
-	            );
-	        }
-	    }]);
-	    return Greeting;
-	}(_react.Component);
+	var Greeting = function Greeting() {
+	    return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Hello World'
+	        )
+	    );
+	};
 
 	exports.default = Greeting;
 

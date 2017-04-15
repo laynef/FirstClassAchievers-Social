@@ -38,7 +38,7 @@ module.exports = {
         attrs: ['img:src', 'link:href']
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss', '.css']
+      extensions: ['', '.js', '.jsx', '.sass', '.css']
     },
     plugins: [
         new ExtractTextPlugin('public/main.css', { allChunks: true })
