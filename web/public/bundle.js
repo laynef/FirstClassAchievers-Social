@@ -50823,10 +50823,6 @@
 
 	var _reduxForm = __webpack_require__(668);
 
-	var _Greeting = __webpack_require__(871);
-
-	var _Greeting2 = _interopRequireDefault(_Greeting);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var MainPage = function (_Component) {
@@ -50844,11 +50840,7 @@
 	    (0, _createClass3.default)(MainPage, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'mainPage' },
-	                _react2.default.createElement(_Greeting2.default, null)
-	            );
+	            return _react2.default.createElement('div', { id: 'mainPage' });
 	        }
 	    }]);
 	    return MainPage;
@@ -50861,36 +50853,6 @@
 	exports.default = (0, _reactRedux.connect)(function (state) {
 	    return {};
 	})(MainPage);
-
-/***/ }),
-/* 871 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(385);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Greeting = function Greeting() {
-	    return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Hello World'
-	        )
-	    );
-	};
-
-	exports.default = Greeting;
 
 /***/ })
 /******/ ]);

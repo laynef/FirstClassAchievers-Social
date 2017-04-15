@@ -41,13 +41,13 @@ app.get('*', (req, res) => {
     res.redirect('/')
 })
 
-// // Web socket on connection 
-// io.on('connection', (socket) => {
-//     setTimeout(() => {
-//         fs.watch(__dirname + '/../', {recursive: true}, (e, o) => {
-//             if (e === 'rename' || e === 'change') {
-//                 socket.emit('save')
-//             }
-//         })
-//     }, 1000)
-// })
+// Web socket on connection 
+io.on('connection', (socket) => {
+    setTimeout(() => {
+        fs.watch(__dirname + '/../', {recursive: true}, (e, o) => {
+            if (e === 'rename' || e === 'change') {
+                socket.emit('save')
+            }
+        })
+    }, 1000)
+})
