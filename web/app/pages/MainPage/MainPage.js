@@ -15,7 +15,7 @@ class MainPage extends Component {
     render() {
         return (
             <div id="mainPage">
-                <h1>FUCK</h1>
+                <h1>Hello World</h1>  
             </div>
         )
     }

@@ -51093,7 +51093,7 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'FUCK'
+	                    'Hello World'
 	                )
 	            );
 	        }
