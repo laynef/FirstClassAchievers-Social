@@ -3,27 +3,28 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 
-class MainPage extends Component {
+class Header extends Component {
 
     constructor(props, context) {
         super(props, context)
         this.state = {
-            
+
         }
     }
 
     render() {
         return (
-            <div id="mainPage">
-                <h1>Hello World</h1>  
+            <div id="HeaderComponent">
+                
             </div>
         )
     }
+
 }
 
-MainPage = reduxForm({
-    form: 'MainPage'
-})(MainPage)
+Header = reduxForm({
+    form: 'HeaderComponent'
+})(Header)
 
 export default connect(state => ({
-}))(MainPage)
+}))(Header)

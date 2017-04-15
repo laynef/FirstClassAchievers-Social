@@ -1,0 +1,20 @@
+machine:
+  timezone:
+    America/Los_Angeles
+  node:
+    version: 0.11.8
+  services:
+    - postgres
+  environment:
+    DATABASE_URL: postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt
+
+dependencies:
+  override:
+    - npm install
+
+general:
+  branches:
+    only:
+      - dev # list of branches to build
+      - test # list of branches to build
+      - /feat-.*/ # or regexes
