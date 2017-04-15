@@ -18,3 +18,7 @@ general:
       - dev # list of branches to build
       - test # list of branches to build
       - /feat-.*/ # or regexes
+
+test:
+  override:
+    - mocha ./tests/index.js
