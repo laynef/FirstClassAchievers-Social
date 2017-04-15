@@ -15,7 +15,7 @@ class Header extends Component {
     render() {
         return (
             <div id="HeaderComponent">
-                {/* Fill me in */}
+                
             </div>
         )
     }
