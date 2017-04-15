@@ -20,5 +20,5 @@ general:
       - /feat-.*/ # or regexes
 
 test:
-  post:
+  override:
     - mocha ./tests/index.js
