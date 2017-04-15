@@ -1,23 +1,14 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "url": "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+    "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "url": "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "url": "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+    "dialect": "postgres"
   }
 }
