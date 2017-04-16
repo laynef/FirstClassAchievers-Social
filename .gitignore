@@ -4,3 +4,5 @@ web/public/theme/pages
 
 api/config
 database/config
+
+node_modules
