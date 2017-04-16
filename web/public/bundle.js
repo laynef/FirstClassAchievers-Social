@@ -51154,7 +51154,7 @@
 	                    { className: 'pull-left p-r-10 p-t-10 fs-16 font-heading' },
 	                    _react2.default.createElement(
 	                      'div',
-	                      { className: 'dropdown pull-right open' },
+	                      { className: 'dropdown pull-right' },
 	                      _react2.default.createElement(
 	                        'button',
 	                        { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
@@ -51175,26 +51175,6 @@
 	                            { href: '#' },
 	                            _react2.default.createElement('i', { className: 'pg-settings_small' }),
 	                            ' Settings'
-	                          )
-	                        ),
-	                        _react2.default.createElement(
-	                          'li',
-	                          null,
-	                          _react2.default.createElement(
-	                            'a',
-	                            { href: '#' },
-	                            _react2.default.createElement('i', { className: 'pg-outdent' }),
-	                            ' Feedback'
-	                          )
-	                        ),
-	                        _react2.default.createElement(
-	                          'li',
-	                          null,
-	                          _react2.default.createElement(
-	                            'a',
-	                            { href: '#' },
-	                            _react2.default.createElement('i', { className: 'pg-signals' }),
-	                            ' Help'
 	                          )
 	                        ),
 	                        _react2.default.createElement(

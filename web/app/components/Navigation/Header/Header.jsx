@@ -41,7 +41,8 @@ class Header extends Component {
                               <div className=" pull-right">
                                 <div className="visible-lg visible-md m-t-10">
                                   <div className="pull-left p-r-10 p-t-10 fs-16 font-heading">
-                                    <div className="dropdown pull-right open">
+                                    <div className="dropdown pull-right">
+
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
                                             <img src="theme/assets/img/profiles/avatar.jpg" alt="" data-src="theme/assets/img/profiles/avatar.jpg" data-src-retina="theme/assets/img/profiles/avatar_small2x.jpg" width="32" height="32"/>
@@ -49,8 +50,6 @@ class Header extends Component {
                                       </button>
                                       <ul className="dropdown-menu profile-dropdown" role="menu">
                                         <li><a href="#"><i className="pg-settings_small"></i> Settings</a></li>
-                                        <li><a href="#"><i className="pg-outdent"></i> Feedback</a></li>
-                                        <li><a href="#"><i className="pg-signals"></i> Help</a></li>
                                         <li className="bg-master-lighter">
                                           <a href="#" className="clearfix">
                                             <span className="pull-left">Logout</span>
