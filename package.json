@@ -1,0 +1,27 @@
+{
+  "name": "FirstClassAchievers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha ./tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laynefaler/FirstClassAchievers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laynefaler/FirstClassAchievers/issues"
+  },
+  "homepage": "https://github.com/laynefaler/FirstClassAchievers#readme"
+}

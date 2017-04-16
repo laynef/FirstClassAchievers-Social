@@ -1,0 +1,39 @@
+machine:
+  timezone:
+    America/Los_Angeles
+  node:
+    version: 7.8.0
+  services:
+    - postgresql
+  environment:
+    DATABASE_URL: postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt
+
+dependencies:
+  pre:
+    - npm install
+
+general:
+  branches:
+    only:
+      - master
+      - dev # list of branches to build
+      - tests # list of branches to build
+      - /feat.*/ # or regexes
+
+test:
+  override:
+    - npm test
+
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: first-class-achievers
+  staging:
+    branch: dev
+    heroku:
+      appname: first-class-achievers-staging
+
+# Deployment URL:
+# http://www.first-class-achievers.herokuapp.com/
+# http://www.first-class-achievers-staging.herokuapp.com/
