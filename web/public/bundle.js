@@ -8254,6 +8254,8 @@
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
+	__webpack_require__(1);
+
 	var _react = __webpack_require__(385);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -51075,6 +51077,8 @@
 
 	var _reduxForm = __webpack_require__(663);
 
+	var _reactRouter = __webpack_require__(565);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Header = function (_Component) {
@@ -51131,9 +51135,13 @@
 	              'div',
 	              { className: 'header-inner' },
 	              _react2.default.createElement(
-	                'div',
-	                { className: 'brand inline' },
-	                _react2.default.createElement('img', { src: 'theme/assets/img/logo.png', alt: 'logo', 'data-src': 'theme/assets/img/logo.png', 'data-src-retina': 'theme/assets/img/logo_2x.png', width: '93', height: '25' })
+	                _reactRouter.Link,
+	                { to: '/' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'brand inline' },
+	                  _react2.default.createElement('img', { src: 'theme/assets/img/logo.png', alt: 'logo', 'data-src': 'theme/assets/img/logo.png', 'data-src-retina': 'theme/assets/img/logo_2x.png', width: '93', height: '25' })
+	                )
 	              ),
 	              _react2.default.createElement(
 	                'div',
@@ -51145,20 +51153,70 @@
 	                    'div',
 	                    { className: 'pull-left p-r-10 p-t-10 fs-16 font-heading' },
 	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'semi-bold' },
-	                      'David'
-	                    ),
-	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'text-master' },
-	                      'Nest'
+	                      'div',
+	                      { className: 'dropdown pull-right open' },
+	                      _react2.default.createElement(
+	                        'button',
+	                        { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
+	                        _react2.default.createElement(
+	                          'span',
+	                          { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
+	                          _react2.default.createElement('img', { src: 'theme/assets/img/profiles/avatar.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/avatar.jpg', 'data-src-retina': 'theme/assets/img/profiles/avatar_small2x.jpg', width: '32', height: '32' })
+	                        )
+	                      ),
+	                      _react2.default.createElement(
+	                        'ul',
+	                        { className: 'dropdown-menu profile-dropdown', role: 'menu' },
+	                        _react2.default.createElement(
+	                          'li',
+	                          null,
+	                          _react2.default.createElement(
+	                            'a',
+	                            { href: '#' },
+	                            _react2.default.createElement('i', { className: 'pg-settings_small' }),
+	                            ' Settings'
+	                          )
+	                        ),
+	                        _react2.default.createElement(
+	                          'li',
+	                          null,
+	                          _react2.default.createElement(
+	                            'a',
+	                            { href: '#' },
+	                            _react2.default.createElement('i', { className: 'pg-outdent' }),
+	                            ' Feedback'
+	                          )
+	                        ),
+	                        _react2.default.createElement(
+	                          'li',
+	                          null,
+	                          _react2.default.createElement(
+	                            'a',
+	                            { href: '#' },
+	                            _react2.default.createElement('i', { className: 'pg-signals' }),
+	                            ' Help'
+	                          )
+	                        ),
+	                        _react2.default.createElement(
+	                          'li',
+	                          { className: 'bg-master-lighter' },
+	                          _react2.default.createElement(
+	                            'a',
+	                            { href: '#', className: 'clearfix' },
+	                            _react2.default.createElement(
+	                              'span',
+	                              { className: 'pull-left' },
+	                              'Logout'
+	                            ),
+	                            _react2.default.createElement(
+	                              'span',
+	                              { className: 'pull-right' },
+	                              _react2.default.createElement('i', { className: 'pg-power' })
+	                            )
+	                          )
+	                        )
+	                      )
 	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-	                    _react2.default.createElement('img', { src: 'theme/assets/img/profiles/avatar.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/avatar.jpg', 'data-src-retina': 'theme/assets/img/profiles/avatar_small2x.jpg', width: '32', height: '32' })
 	                  )
 	                )
 	              )
