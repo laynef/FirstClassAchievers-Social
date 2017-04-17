@@ -26,6 +26,7 @@ class Root extends Component {
             </Provider>
         )
     }
+    
 }
 
 ReactDOM.render(<Root />, document.getElementById('app'))

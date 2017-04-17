@@ -8268,7 +8268,7 @@
 
 	var _reactRedux = __webpack_require__(625);
 
-	var _index = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./sass/index\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _index = __webpack_require__(647);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -38871,7 +38871,12 @@
 	}
 
 /***/ }),
-/* 647 */,
+/* 647 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 648 */
 /***/ (function(module, exports) {
 
@@ -50923,7 +50928,7 @@
 /* 873 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -50951,7 +50956,7 @@
 	    null,
 	    _react2.default.createElement(
 	        _reactRouter.Route,
-	        { path: "/", component: _MasterPage2.default },
+	        { path: '/', component: _MasterPage2.default },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainPage2.default })
 	    )
 	);
@@ -51137,58 +51142,58 @@
 	                  { className: 'brand inline' },
 	                  _react2.default.createElement('img', { src: 'theme/assets/img/logo.png', alt: 'logo', 'data-src': 'theme/assets/img/logo.png', 'data-src-retina': 'theme/assets/img/logo_2x.png', width: '93', height: '25' })
 	                )
-	              ),
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: ' pull-right rightSpacing' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'visible-lg visible-md' },
 	              _react2.default.createElement(
 	                'div',
-	                { className: ' pull-right' },
+	                { className: 'pull-left p-r-10 p-t-10 fs-16 font-heading' },
 	                _react2.default.createElement(
 	                  'div',
-	                  { className: 'visible-lg visible-md m-t-10' },
+	                  { className: 'dropdown pull-right rightSpacing' },
 	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'pull-left p-r-10 p-t-10 fs-16 font-heading' },
+	                    'button',
+	                    { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
 	                    _react2.default.createElement(
-	                      'div',
-	                      { className: 'dropdown pull-right' },
+	                      'span',
+	                      { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
+	                      _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/fine.jpg', 'data-src-retina': 'theme/assets/img/profiles/fine.jpg', width: '32', height: '32' })
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'ul',
+	                    { className: 'dropdown-menu profile-dropdown', role: 'menu' },
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
 	                      _react2.default.createElement(
-	                        'button',
-	                        { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
+	                        'a',
+	                        { href: '#' },
+	                        _react2.default.createElement('i', { className: 'pg-settings_small' }),
+	                        ' Settings'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      { className: 'bg-master-lighter' },
+	                      _react2.default.createElement(
+	                        'a',
+	                        { href: '#', className: 'clearfix' },
 	                        _react2.default.createElement(
 	                          'span',
-	                          { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-	                          _react2.default.createElement('img', { src: 'theme/assets/img/profiles/avatar.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/avatar.jpg', 'data-src-retina': 'theme/assets/img/profiles/avatar_small2x.jpg', width: '32', height: '32' })
-	                        )
-	                      ),
-	                      _react2.default.createElement(
-	                        'ul',
-	                        { className: 'dropdown-menu profile-dropdown', role: 'menu' },
-	                        _react2.default.createElement(
-	                          'li',
-	                          null,
-	                          _react2.default.createElement(
-	                            'a',
-	                            { href: '#' },
-	                            _react2.default.createElement('i', { className: 'pg-settings_small' }),
-	                            ' Settings'
-	                          )
+	                          { className: 'pull-left' },
+	                          'Logout'
 	                        ),
 	                        _react2.default.createElement(
-	                          'li',
-	                          { className: 'bg-master-lighter' },
-	                          _react2.default.createElement(
-	                            'a',
-	                            { href: '#', className: 'clearfix' },
-	                            _react2.default.createElement(
-	                              'span',
-	                              { className: 'pull-left' },
-	                              'Logout'
-	                            ),
-	                            _react2.default.createElement(
-	                              'span',
-	                              { className: 'pull-right' },
-	                              _react2.default.createElement('i', { className: 'pg-power' })
-	                            )
-	                          )
+	                          'span',
+	                          { className: 'pull-right' },
+	                          _react2.default.createElement('i', { className: 'pg-power' })
 	                        )
 	                      )
 	                    )
@@ -51261,7 +51266,15 @@
 	    (0, _createClass3.default)(MainPage, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement('div', { id: 'mainPage' });
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'mainPage' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'My Lady'
+	                )
+	            );
 	        }
 	    }]);
 	    return MainPage;
