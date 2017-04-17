@@ -8268,7 +8268,7 @@
 
 	var _reactRedux = __webpack_require__(625);
 
-	var _index = __webpack_require__(647);
+	var _index = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./sass/index\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -38871,12 +38871,7 @@
 	}
 
 /***/ }),
-/* 647 */
-/***/ (function(module, exports) {
-
-	
-
-/***/ }),
+/* 647 */,
 /* 648 */
 /***/ (function(module, exports) {
 

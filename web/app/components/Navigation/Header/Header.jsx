@@ -42,7 +42,6 @@ class Header extends Component {
                                 <div className="visible-lg visible-md m-t-10">
                                   <div className="pull-left p-r-10 p-t-10 fs-16 font-heading">
                                     <div className="dropdown pull-right">
-
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
                                             <img src="theme/assets/img/profiles/avatar.jpg" alt="" data-src="theme/assets/img/profiles/avatar.jpg" data-src-retina="theme/assets/img/profiles/avatar_small2x.jpg" width="32" height="32"/>
