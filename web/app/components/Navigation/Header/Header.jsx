@@ -24,13 +24,6 @@ class Header extends Component {
                             </a>
                           </div>
                         </div>
-                        <div className="pull-right full-height visible-sm visible-xs">
-                          <div className="sm-action-bar">
-                            <a href="#" className="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
-                              <span className="icon-set menu-hambuger-plus"></span>
-                            </a>
-                          </div>
-                        </div>
                         <div className=" pull-left sm-table">
                           <div className="header-inner">
                             <Link to="/">
@@ -50,7 +43,12 @@ class Header extends Component {
                                     </span>
                                   </button>
                                   <ul className="dropdown-menu profile-dropdown" role="menu">
-                                    <li><a href="#"><i className="pg-settings_small"></i> Settings</a></li>
+                                    <li>
+                                      <a href="#">
+                                        <i className="pg-settings_small"></i> 
+                                        Settings
+                                      </a>
+                                    </li>
                                     <li className="bg-master-lighter">
                                       <a href="#" className="clearfix">
                                         <span className="pull-left">Logout</span>
@@ -69,4 +67,5 @@ class Header extends Component {
 
 }
 
-export default connect()(Header)
+export default connect(state => ({
+}))(Header)

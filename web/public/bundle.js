@@ -51117,19 +51117,6 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'pull-right full-height visible-sm visible-xs' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'sm-action-bar' },
-	              _react2.default.createElement(
-	                'a',
-	                { href: '#', className: 'btn-link', 'data-toggle': 'quickview', 'data-toggle-element': '#quickview' },
-	                _react2.default.createElement('span', { className: 'icon-set menu-hambuger-plus' })
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
 	            { className: ' pull-left sm-table' },
 	            _react2.default.createElement(
 	              'div',
@@ -51176,7 +51163,7 @@
 	                        'a',
 	                        { href: '#' },
 	                        _react2.default.createElement('i', { className: 'pg-settings_small' }),
-	                        ' Settings'
+	                        'Settings'
 	                      )
 	                    ),
 	                    _react2.default.createElement(
@@ -51209,7 +51196,9 @@
 	  return Header;
 	}(_react.Component);
 
-	exports.default = (0, _reactRedux.connect)()(Header);
+	exports.default = (0, _reactRedux.connect)(function (state) {
+	  return {};
+	})(Header);
 
 /***/ }),
 /* 876 */
