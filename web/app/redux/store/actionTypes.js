@@ -1,5 +1,15 @@
 const actionTypes = {
 
+	// Login
+	LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+	LOGIN_PENDING: 'LOGIN_PENDING',
+	LOGIN_ERROR: 'LOGIN_ERROR',
+
+	// Logout
+	LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+	LOGOUT_PENDING: 'LOGOUT_PENDING',
+	LOGOUT_ERROR: 'LOGOUT_ERROR'
+
 }
 
 export default actionTypes
