@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
@@ -25,6 +26,7 @@ class Root extends Component {
             </Provider>
         )
     }
+    
 }
 
 ReactDOM.render(<Root />, document.getElementById('app'))

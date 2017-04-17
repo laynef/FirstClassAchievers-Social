@@ -1,5 +1,5 @@
-import React from "react"
-import { Route, IndexRoute, Redirect } from "react-router"
+import React from 'react'
+import { Route, IndexRoute, Redirect } from 'react-router'
 
 // Pages
 import MasterPage from './pages/MasterPage'
