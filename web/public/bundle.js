@@ -22294,7 +22294,7 @@ var SideMenu = function (_Component) {
         { id: 'SideMenuComponent' },
         _react2.default.createElement(
           'div',
-          { className: 'page-sidebar', 'data-pages': 'sidebar' },
+          { id: 'sideMenu', className: 'page-sidebar', 'data-pages': 'sidebar' },
           _react2.default.createElement('div', { id: 'appMenu', className: 'sidebar-overlay-slide from-top' }),
           _react2.default.createElement(
             'div',
@@ -22325,6 +22325,11 @@ var SideMenu = function (_Component) {
                 'li',
                 { className: 'm-t-30' },
                 _react2.default.createElement(
+                  'span',
+                  { className: 'icon-thumbnail ' },
+                  _react2.default.createElement('i', { className: 'pg-home' })
+                ),
+                _react2.default.createElement(
                   _reactRouter.Link,
                   { to: '/', className: 'detailed' },
                   _react2.default.createElement(
@@ -22337,11 +22342,6 @@ var SideMenu = function (_Component) {
                     { className: 'details' },
                     '234 notifications'
                   )
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'icon-thumbnail ' },
-                  _react2.default.createElement('i', { className: 'pg-home' })
                 )
               ),
               _react2.default.createElement(

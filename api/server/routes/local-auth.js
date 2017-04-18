@@ -1,9 +1,11 @@
+const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const jwt = require('jsonwebtoken')
+
 
 // local auth
 router.get('/local/user', (req, res, next) => {
@@ -19,7 +21,7 @@ router.get('/local/user', (req, res, next) => {
 
 router.post('/local/login', (req, res, next) => {
     User.findAll({
-        where: {email: req.body.email}
+        where: { email: req.body.email }
     }).then(response => {
         bcrypt.compare(req.body.password, response.password, (err, result) => {
             let token = jwt.sign(user, app.get('volume'), {

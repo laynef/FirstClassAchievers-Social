@@ -4,3 +4,6 @@
 
 #mainPage h1 {
   text-align: center; }
+
+#SideMenuComponent #sideMenu:hover {
+  transform: translate(210px, 0px); }
