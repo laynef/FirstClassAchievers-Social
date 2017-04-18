@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 
-class SideMenu extends Component {
+class Template extends Component {
 
     constructor(props, context) {
         super(props, context)
@@ -14,7 +14,7 @@ class SideMenu extends Component {
 
     render() {
         return (
-            <div id="SideMenuComponent">
+            <div id="TemplateComponent">
                 {/* Fill me in */}
             </div>
         )
@@ -22,9 +22,9 @@ class SideMenu extends Component {
 
 }
 
-SideMenu = reduxForm({
-    form: 'SideMenuComponent'
-})(SideMenu)
+Template = reduxForm({
+    form: 'TemplateComponent'
+})(Template)
 
 export default connect(state => ({
-}))(SideMenu)
+}))(Template)

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 
-class Template extends Component {
+class AboutUsPage extends Component {
 
     constructor(props, context) {
         super(props, context)
@@ -14,17 +14,17 @@ class Template extends Component {
 
     render() {
         return (
-            <div id="TemplateComponent">
-                {/* Fill me in */}
+            <div id="AboutUsPage">
+                <h1>Where you at?</h1>
             </div>
         )
     }
 
 }
 
-Template = reduxForm({
-    form: 'TemplateComponent'
-})(Template)
+AboutUsPage = reduxForm({
+    form: 'AboutUsPage'
+})(AboutUsPage)
 
 export default connect(state => ({
-}))(Template)
+}))(AboutUsPage)

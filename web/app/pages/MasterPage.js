@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import Header from '../components/Navigation/Header/Header'
+import SideMenu from '../components/Navigation/SideMenu/SideMenu'
 
 
 class MasterPage extends Component {
@@ -11,7 +12,8 @@ class MasterPage extends Component {
         const { children } = this.props;
         return (
             <div>
-            <Header />
+                <Header />
+                <SideMenu />
                 { children }
             </div>
         )
