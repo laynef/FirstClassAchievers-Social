@@ -21911,7 +21911,7 @@ var Header = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'dropdown pull-right rightSpacing' },
-                  localStorage['user'] && user.data.id ? _react2.default.createElement(
+                  localStorage['user'] || user.data.id ? _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(
