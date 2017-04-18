@@ -1,13 +1,10 @@
 {
-  "name": "FirstClassAchievers",
+  "name": "first-class-achievers",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
-  },
-  "devDependencies": {
     "mocha": "^3.2.0"
   },
   "scripts": {
@@ -19,7 +16,7 @@
     "url": "git+https://github.com/laynefaler/FirstClassAchievers.git"
   },
   "keywords": [],
-  "author": "Layne Faler",
+  "author": "Layne Faler <laynefaler>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/laynefaler/FirstClassAchievers/issues"

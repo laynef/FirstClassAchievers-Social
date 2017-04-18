@@ -13306,7 +13306,7 @@ exports.default = actionTypes;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.renderInput = undefined;
+exports.renderInput = exports.renderReqInput = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -13316,7 +13316,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var renderInput = exports.renderInput = function renderInput(_ref) {
+var renderReqInput = exports.renderReqInput = function renderReqInput(_ref) {
 	var input = _ref.input,
 	    label = _ref.label,
 	    _ref$help = _ref.help,
@@ -13325,6 +13325,32 @@ var renderInput = exports.renderInput = function renderInput(_ref) {
 	    _ref$meta = _ref.meta,
 	    touched = _ref$meta.touched,
 	    error = _ref$meta.error;
+	return _react2.default.createElement(
+		'div',
+		{ className: 'form-group' },
+		_react2.default.createElement(
+			'label',
+			null,
+			label
+		),
+		_react2.default.createElement(
+			'span',
+			{ className: 'help' },
+			help
+		),
+		_react2.default.createElement('input', _extends({}, input, { type: type, className: 'form-control', required: true }))
+	);
+};
+
+var renderInput = exports.renderInput = function renderInput(_ref2) {
+	var input = _ref2.input,
+	    label = _ref2.label,
+	    _ref2$help = _ref2.help,
+	    help = _ref2$help === undefined ? '' : _ref2$help,
+	    type = _ref2.type,
+	    _ref2$meta = _ref2.meta,
+	    touched = _ref2$meta.touched,
+	    error = _ref2$meta.error;
 	return _react2.default.createElement(
 		'div',
 		{ className: 'form-group' },
@@ -22086,8 +22112,8 @@ var LoginModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(LoginModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Email', type: 'email', name: 'email' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Password', type: 'password', name: 'password' }),
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
@@ -22224,9 +22250,9 @@ var SignUpModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(SignUpModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm Password', type: 'password', name: 'repassword' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Email', type: 'email', name: 'email' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Password', type: 'password', name: 'password' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Confirm Password', type: 'password', name: 'repassword' }),
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
@@ -22685,6 +22711,16 @@ var ProfilePage = function (_Component) {
                     'h1',
                     null,
                     'My Profile'
+                ),
+                _react2.default.createElement(
+                    'span',
+                    { id: 'profileImage', className: 'thumbnail-wrapper d32 circular inline m-t-5' },
+                    _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg',
+                        alt: '',
+                        'data-src': 'theme/assets/img/profiles/fine.jpg',
+                        'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
+                        width: '320',
+                        height: '320' })
                 )
             );
         }

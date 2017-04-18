@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { renderInput } from '../../../redux/utils/ReduxForms'
+import { renderReqInput } from '../../../redux/utils/ReduxForms'
 import { register } from '../../../redux/actions/auth'
 
 
@@ -34,9 +34,9 @@ class SignUpModal extends Component {
                                     <p className="p-b-10">Sign up to connect with other liked minds</p>
                                     <div className="modal-body">
                                         <Form onSubmit={handleSubmit(SignUpModal.formSubmit.bind(this))}>
-                                            <Field component={renderInput} label="Email" type="email" name="email"/>
-                                            <Field component={renderInput} label="Password" type="password" name="password"/>
-                                            <Field component={renderInput} label="Confirm Password" type="password" name="repassword"/>
+                                            <Field component={renderReqInput} label="Email" type="email" name="email"/>
+                                            <Field component={renderReqInput} label="Password" type="password" name="password"/>
+                                            <Field component={renderReqInput} label="Confirm Password" type="password" name="repassword"/>
                                             <div className="row">
                                                 <div className="col-sm-4 m-t-10 sm-m-t-10">
                                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Sign Up</button>

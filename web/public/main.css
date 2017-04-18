@@ -10,5 +10,16 @@
 #AboutUsPage h1 {
   text-align: center; }
 
+@media screen and (min-width: 992px) {
+  #ProfilePage {
+    margin-left: 80px; } }
+
 #ProfilePage h1 {
   text-align: center; }
+
+#ProfilePage #profileImage {
+  transform: scale(10); }
+  @media screen and (min-width: 992px) {
+    #ProfilePage #profileImage {
+      margin-left: 200px;
+      margin-top: 150px; } }
