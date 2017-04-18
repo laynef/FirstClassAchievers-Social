@@ -21,9 +21,11 @@ class SideMenu extends Component {
                   <div className="sidebar-header">
                     <img src="theme/assets/img/logo_white.png" alt="logo" className="brand" data-src="theme/assets/img/logo_white.png" data-src-retina="theme/assets/img/logo_white_2x.png" width="93" height="25"/>
                     <div className="sidebar-header-controls">
-                      <button data-pages-toggle="#appMenu" className="btn btn-xs sidebar-slide-toggle btn-link m-l-20" type="button"><i className="fa fa-angle-down fs-16"></i>
+                      <button data-pages-toggle="#appMenu" className="btn btn-xs sidebar-slide-toggle btn-link m-l-20" type="button">
+                        <i className="fa fa-angle-down fs-16"></i>
                       </button>
-                      <button data-toggle-pin="sidebar" className="btn btn-link visible-lg-inline" type="button"><i className="fa fs-12"></i>
+                      <button data-toggle-pin="sidebar" className="btn btn-link visible-lg-inline" type="button">
+                        <i className="fa fs-12"></i>
                       </button>
                     </div>
                   </div>
