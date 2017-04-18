@@ -5,12 +5,11 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const jwt = require('jsonwebtoken')
-const models = require('../../../database/models/index')
 
 
 // local auth
 router.get('/local/user', (req, res, next) => {
-    models.User.findById(req.body.id)
+    User.findById(req.body.id)
         .then(response => {
             res.status(200).send(response)
         })
@@ -21,7 +20,7 @@ router.get('/local/user', (req, res, next) => {
 })
 
 router.post('/local/login', (req, res, next) => {
-    models.User.findAll({
+    User.findAll({
         where: { email: req.body.email }
     }).then(response => {
         bcrypt.compare(req.body.password, response.password, (err, result) => {
@@ -47,10 +46,9 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
-    console.log(`HIT`)
     let salt = bcrypt.genSaltSync(10)
     bcrypt.hash(req.body.password, salt, null, (err, hash) => {
-        models.User.create({
+        User.create({
             email: req.body.email,
             password: hash
         })
@@ -71,14 +69,14 @@ router.get('/local/logout', (req, res, next) => {
 })
 
 router.patch('/local/change/password', (req, res, next) => {
-    models.User.findAll({
+    User.findAll({
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
         bcrypt.compare(req.body.password, response.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
-                    models.User.update({
+                    User.update({
                         password: hash
                     }, { 
                         where: { _id: response.id }
