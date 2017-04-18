@@ -27,12 +27,12 @@ class LoginModal extends Component {
                                         <Form onSubmit={this.formSubmit.bind(this)}>
                                             <Field component={renderInput} label="Email" type="email" name="email"/>
                                             <Field component={renderInput} label="Password" type="password" name="password"/>
-                                        </Form>
-                                        <div className="row">
-                                            <div className="col-sm-4 m-t-10 sm-m-t-10">
-                                                <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                            <div className="row">
+                                                <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Form>
                                     </div>
                                 </div>
                             </div>

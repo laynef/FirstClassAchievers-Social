@@ -22082,18 +22082,18 @@ var LoginModal = function (_Component) {
                                             _reduxForm.Form,
                                             { onSubmit: this.formSubmit.bind(this) },
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' })
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'row' },
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
                                             _react2.default.createElement(
                                                 'div',
-                                                { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                { className: 'row' },
                                                 _react2.default.createElement(
-                                                    'button',
-                                                    { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
-                                                    'Login'
+                                                    'div',
+                                                    { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
+                                                        'Login'
+                                                    )
                                                 )
                                             )
                                         )

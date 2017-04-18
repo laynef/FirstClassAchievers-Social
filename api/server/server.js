@@ -45,3 +45,4 @@ app.get('*', (req, res) => {
     res.redirect('/')
 })
 
+module.exports = app
