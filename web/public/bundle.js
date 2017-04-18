@@ -8557,7 +8557,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function login(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/login', data).then(function (response) {
+		_axios2.default.post('/auth/local/login', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response
@@ -8574,7 +8574,7 @@ function login(data) {
 function logout() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGOUT_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/logout').then(function (response) {
+		_axios2.default.get('/auth/local/logout').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGOUT_SUCCESS,
 				payload: response
@@ -8591,7 +8591,7 @@ function logout() {
 function register(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.REGISTER_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/register').then(function (response) {
+		_axios2.default.post('/auth/local/register').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_SUCCESS,
 				payload: response
@@ -8608,7 +8608,7 @@ function register(data) {
 function getUser(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/user').then(function (response) {
+		_axios2.default.get('/auth/local/user').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_USER_SUCCESS,
 				payload: response
@@ -22695,7 +22695,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var settings = {
-	API_ROOT: 'http://localhost:5432'
+	API_ROOT: 'http://localhost:3232'
 };
 
 exports.default = settings;
