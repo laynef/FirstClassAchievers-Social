@@ -8,13 +8,16 @@ import { register } from '../../../redux/actions/auth'
 class SignUpModal extends Component {
 
     static formSubmit(data) {
-        const { dispatch } = this.props
+        const { dispatch, reset } = this.props
         if (data.email && data.password === data.repassword) {
             dispatch(register(data))
+            $('#sign-up-modal').modal('hide')
+            dispatch(reset('SignUp Modal'))
         }
     }
 
     render() {
+        const { handleSubmit } = this.props
         return (
             <div id="SignUpModalComponent">
                 <div className="modal fade slide-up disable-scroll in" id="sign-up-modal">
@@ -22,11 +25,15 @@ class SignUpModal extends Component {
                         <div className="modal-content-wrapper">
                             <div className="modal-content">
                                 <div className="modal-header clearfix text-left">
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true"><i className="pg-close fs-14"></i></button>
-                                    <h5><span className="semi-bold">Sign up</span></h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+                                        <i className="pg-close fs-14"></i>
+                                    </button>
+                                    <h5>
+                                        <span className="semi-bold">Sign up</span>
+                                    </h5>
                                     <p className="p-b-10">Sign up to connect with other liked minds</p>
                                     <div className="modal-body">
-                                        <Form onSubmit={SignUpModal.formSubmit.bind(this)}>
+                                        <Form onSubmit={handleSubmit(SignUpModal.formSubmit.bind(this))}>
                                             <Field component={renderInput} label="Email" type="email" name="email"/>
                                             <Field component={renderInput} label="Password" type="password" name="password"/>
                                             <Field component={renderInput} label="Confirm Password" type="password" name="repassword"/>

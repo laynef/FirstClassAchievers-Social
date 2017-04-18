@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken')
 router.get('/local/user', (req, res, next) => {
     User.findById(req.body.id)
         .then(response => {
-            res.status(200).send(response)
+            res.status(200).send(response[0].dataValues)
         })
         .catch(error => {
             console.log(`Did not receive user data`, error)
@@ -23,17 +23,10 @@ router.post('/local/login', (req, res, next) => {
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
-            let token = jwt.sign(user, app.get('volume'), {
-                expiresInMinutes: 1440 // expires in 24 hours
-            })
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             if (result) {
-                req.cookies.user = response
-                res.sendStatus(201).json({
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
-                })
+                req.cookies.user = response[0].dataValues
+                res.status(201).send(response[0].dataValues)
             } else {
                 console.log(`Wrong password`, err)
                 res.sendStatus(401)
@@ -73,7 +66,7 @@ router.patch('/local/change/password', (req, res, next) => {
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({

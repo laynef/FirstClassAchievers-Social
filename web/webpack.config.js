@@ -13,7 +13,7 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader'
                 }]
-            }, 
+            },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
@@ -21,7 +21,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader']
                 })
-            }, 
+            },
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
@@ -36,7 +36,7 @@ module.exports = {
         filename: "public/bundle.js"
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.scss', '.css']
+      extensions: ['.js', '.jsx', '.scss', '.sass', '.css']
     },
     plugins: [
         new ExtractTextPlugin({ 
