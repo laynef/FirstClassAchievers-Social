@@ -7,7 +7,7 @@ import settings from '../config/settings'
 export function login(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGIN_PENDING})
-		axios.post(`${settings.API_ROOT}/auth/local/login`, data)
+		axios.post(`/auth/local/login`, data)
 			.then((resp) => {
 					dispatch({
 						type: actionTypes.LOGIN_SUCCESS,
@@ -26,7 +26,7 @@ export function login(data) {
 export function logout() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGOUT_PENDING})
-		axios.get(`${settings.API_ROOT}/auth/local/logout`)
+		axios.get(`/auth/local/logout`)
 			.then((resp) => {
 					dispatch({
 						type: actionTypes.LOGOUT_SUCCESS,
@@ -45,7 +45,7 @@ export function logout() {
 export function register(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.REGISTER_PENDING})
-		axios.post(`${settings.API_ROOT}/auth/local/register`)
+		axios.post(`/auth/local/register`)
 			.then((resp) => {
 					dispatch({
 						type: actionTypes.REGISTER_SUCCESS,
@@ -64,7 +64,7 @@ export function register(data) {
 export function getUser(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_USER_PENDING})
-		axios.get(`${settings.API_ROOT}/auth/local/user`)
+		axios.get(`/auth/local/user`)
 			.then((resp) => {
 					dispatch({
 						type: actionTypes.GET_USER_SUCCESS,

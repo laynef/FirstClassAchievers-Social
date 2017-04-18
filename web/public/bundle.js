@@ -8557,7 +8557,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function login(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/login', data).then(function (resp) {
+		_axios2.default.post('/auth/local/login', data).then(function (resp) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: resp
@@ -8574,7 +8574,7 @@ function login(data) {
 function logout() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGOUT_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/logout').then(function (resp) {
+		_axios2.default.get('/auth/local/logout').then(function (resp) {
 			dispatch({
 				type: _actionTypes2.default.LOGOUT_SUCCESS,
 				payload: resp
@@ -8591,7 +8591,7 @@ function logout() {
 function register(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.REGISTER_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/register').then(function (resp) {
+		_axios2.default.post('/auth/local/register').then(function (resp) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_SUCCESS,
 				payload: resp
@@ -8608,7 +8608,7 @@ function register(data) {
 function getUser(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/user').then(function (resp) {
+		_axios2.default.get('/auth/local/user').then(function (resp) {
 			dispatch({
 				type: _actionTypes2.default.GET_USER_SUCCESS,
 				payload: resp
@@ -13308,6 +13308,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderInput = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
@@ -13336,7 +13338,7 @@ var renderInput = exports.renderInput = function renderInput(_ref) {
 			{ className: 'help' },
 			help
 		),
-		_react2.default.createElement('input', { type: type, className: 'form-control', required: '' })
+		_react2.default.createElement('input', _extends({}, input, { type: type, className: 'form-control', required: '' }))
 	);
 };
 
@@ -22149,19 +22151,6 @@ var SignUpModal = function (_Component) {
     }
 
     _createClass(SignUpModal, [{
-        key: 'formSubmit',
-        value: function formSubmit(data) {
-            var dispatch = this.props.dispatch;
-
-            if (data.email && data.password === data.repassword) {
-                return dispatch((0, _auth.register)(data));
-            }
-            this.renderError();
-        }
-    }, {
-        key: 'renderError',
-        value: function renderError() {}
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -22206,21 +22195,21 @@ var SignUpModal = function (_Component) {
                                         { className: 'modal-body' },
                                         _react2.default.createElement(
                                             _reduxForm.Form,
-                                            { onSubmit: this.formSubmit.bind(this) },
+                                            { onSubmit: SignUpModal.formSubmit.bind(this) },
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm Password', type: 'password', name: 'repassword' })
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'row' },
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm Password', type: 'password', name: 'repassword' }),
                                             _react2.default.createElement(
                                                 'div',
-                                                { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                { className: 'row' },
                                                 _react2.default.createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-primary btn-block m-t-5' },
-                                                    'Sign Up'
+                                                    'div',
+                                                    { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
+                                                        'Sign Up'
+                                                    )
                                                 )
                                             )
                                         )
@@ -22231,6 +22220,15 @@ var SignUpModal = function (_Component) {
                     )
                 )
             );
+        }
+    }], [{
+        key: 'formSubmit',
+        value: function formSubmit(data) {
+            var dispatch = this.props.dispatch;
+
+            if (data.email && data.password === data.repassword) {
+                dispatch((0, _auth.register)(data));
+            }
         }
     }]);
 

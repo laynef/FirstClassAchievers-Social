@@ -7,16 +7,11 @@ import { register } from '../../../redux/actions/auth'
 
 class SignUpModal extends Component {
 
-    formSubmit(data) {
+    static formSubmit(data) {
         const { dispatch } = this.props
         if (data.email && data.password === data.repassword) {
-            return dispatch(register(data))
+            dispatch(register(data))
         }
-        this.renderError()
-    }
-
-    renderError() {
-
     }
 
     render() {
@@ -31,16 +26,16 @@ class SignUpModal extends Component {
                                     <h5><span className="semi-bold">Sign up</span></h5>
                                     <p className="p-b-10">Sign up to connect with other liked minds</p>
                                     <div className="modal-body">
-                                        <Form onSubmit={this.formSubmit.bind(this)}>
+                                        <Form onSubmit={SignUpModal.formSubmit.bind(this)}>
                                             <Field component={renderInput} label="Email" type="email" name="email"/>
                                             <Field component={renderInput} label="Password" type="password" name="password"/>
                                             <Field component={renderInput} label="Confirm Password" type="password" name="repassword"/>
-                                        </Form>
-                                        <div className="row">
-                                            <div className="col-sm-4 m-t-10 sm-m-t-10">
-                                                <button type="button" className="btn btn-primary btn-block m-t-5">Sign Up</button>
+                                            <div className="row">
+                                                <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-primary btn-block m-t-5">Sign Up</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Form>
                                     </div>
                                 </div>
                             </div>
