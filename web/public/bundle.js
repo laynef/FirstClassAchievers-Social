@@ -8560,7 +8560,7 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response
 			});
-			localStorage.setItem('user', response);
+			localStorage.setItem('user', response.data);
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -21848,7 +21848,9 @@ var Header = function (_Component) {
   _createClass(Header, [{
     key: 'render',
     value: function render() {
-      var dispatch = this.props.dispatch;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          user = _props.user;
 
       return _react2.default.createElement(
         'div',
@@ -21903,7 +21905,7 @@ var Header = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'dropdown pull-right rightSpacing' },
-                  localStorage['user'] ? _react2.default.createElement(
+                  user && user.data.id ? _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(
@@ -21983,7 +21985,9 @@ var Header = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-  return {};
+  return {
+    user: state.user.data
+  };
 })(Header);
 
 /***/ }),

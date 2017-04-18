@@ -26,7 +26,7 @@ router.post('/local/login', (req, res, next) => {
         bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             if (result) {
                 req.cookies.user = response[0].dataValues
-                res.sendStatus(201)
+                res.status(201).send(response[0].dataValues)
             } else {
                 console.log(`Wrong password`, err)
                 res.sendStatus(401)

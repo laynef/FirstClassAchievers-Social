@@ -12,7 +12,7 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response
 					})
-					localStorage.setItem('user', response)
+					localStorage.setItem('user', response.data)
 				})
 				.catch((err) => {
 					dispatch({
