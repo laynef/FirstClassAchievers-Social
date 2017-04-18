@@ -51377,6 +51377,10 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
+	var _SideMenu = __webpack_require__(895);
+
+	var _SideMenu2 = _interopRequireDefault(_SideMenu);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var MasterPage = function (_Component) {
@@ -51396,12 +51400,16 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(_Header2.default, null),
+	                _react2.default.createElement(_SideMenu2.default, null),
 	                children
 	            );
 	        }
 	    }]);
 	    return MasterPage;
 	}(_react.Component);
+	// import LoginModal from '../components/Navigation/Header/LoginModal'
+	// import SignUpModal from '../components/Navigation/Header/SignUpModal'
+
 
 	MasterPage = (0, _reduxForm.reduxForm)({
 	    form: 'MasterPage'
@@ -61517,6 +61525,221 @@
 	exports.default = (0, _reactRedux.connect)(function (state) {
 	    return {};
 	})(MainPage);
+
+/***/ }),
+/* 893 */,
+/* 894 */,
+/* 895 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(299);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(325);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(326);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(330);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(377);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(385);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(625);
+
+	var _reduxForm = __webpack_require__(669);
+
+	var _reactRouter = __webpack_require__(565);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SideMenu = function (_Component) {
+	  (0, _inherits3.default)(SideMenu, _Component);
+
+	  function SideMenu(props, context) {
+	    (0, _classCallCheck3.default)(this, SideMenu);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (SideMenu.__proto__ || (0, _getPrototypeOf2.default)(SideMenu)).call(this, props, context));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(SideMenu, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'SideMenuComponent' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'page-sidebar', 'data-pages': 'sidebar' },
+	          _react2.default.createElement('div', { id: 'appMenu', className: 'sidebar-overlay-slide from-top' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'sidebar-header' },
+	            _react2.default.createElement('img', { src: 'theme/assets/img/logo_white.png', alt: 'logo', className: 'brand', 'data-src': 'theme/assets/img/logo_white.png', 'data-src-retina': 'theme/assets/img/logo_white_2x.png', width: '93', height: '25' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'sidebar-header-controls' },
+	              _react2.default.createElement(
+	                'button',
+	                { 'data-pages-toggle': '#appMenu', className: 'btn btn-xs sidebar-slide-toggle btn-link m-l-20', type: 'button' },
+	                _react2.default.createElement('i', { className: 'fa fa-angle-down fs-16' })
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { 'data-toggle-pin': 'sidebar', className: 'btn btn-link visible-lg-inline', type: 'button' },
+	                _react2.default.createElement('i', { className: 'fa fs-12' })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'sidebar-menu' },
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'menu-items' },
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'm-t-30' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/', className: 'detailed' },
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    'Page 1'
+	                  ),
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'details' },
+	                    '234 notifications'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'icon-thumbnail ' },
+	                  _react2.default.createElement('i', { className: 'pg-home' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: '' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    'Page 2'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'icon-thumbnail ' },
+	                  _react2.default.createElement('i', { className: 'pg-social' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: '' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'javascript:;' },
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    'Page 3'
+	                  ),
+	                  _react2.default.createElement('span', { className: ' arrow' })
+	                ),
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'icon-thumbnail' },
+	                  _react2.default.createElement('i', { className: 'pg-grid' })
+	                ),
+	                _react2.default.createElement(
+	                  'ul',
+	                  { className: 'sub-menu' },
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: '' },
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'Sub Page 1'
+	                    ),
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'icon-thumbnail' },
+	                      'sp'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: '' },
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'Sub Page 2'
+	                    ),
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'icon-thumbnail' },
+	                      'sp'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: '' },
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'Sub Page 3'
+	                    ),
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'icon-thumbnail' },
+	                      'sp'
+	                    )
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement('div', { className: 'clearfix' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return SideMenu;
+	}(_react.Component);
+
+	SideMenu = (0, _reduxForm.reduxForm)({
+	  form: 'SideMenuComponent'
+	})(SideMenu);
+
+	exports.default = (0, _reactRedux.connect)(function (state) {
+	  return {};
+	})(SideMenu);
 
 /***/ })
 /******/ ]);

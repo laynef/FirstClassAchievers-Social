@@ -22,7 +22,7 @@ class SignUpModal extends Component {
     render() {
         return (
             <div id="SignUpModalComponent">
-                <div className="modal fade slide-up disable-scroll in" id="register-modal" tabindex="-1" role="dialog" aria-hidden="false" style={{display: 'block', paddingLeft: '0px'}}>
+                <div className="modal fade slide-up disable-scroll in" id="register-modal" tabIndex="-1" role="dialog" aria-hidden="false" style={{display: 'block', paddingLeft: '0px'}}>
                     <div className="modal-dialog">
                       <div className="modal-content-wrapper">
                         <div className="modal-content">
