@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken')
 router.get('/local/user', (req, res, next) => {
     User.findById(req.body.id)
         .then(response => {
-            res.status(200).send(response[0])
+            res.status(200).send(response[0].dataValues)
         })
         .catch(error => {
             console.log(`Did not receive user data`, error)
@@ -25,7 +25,7 @@ router.post('/local/login', (req, res, next) => {
     }).then(response => {
         bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             if (result) {
-                req.cookies.user = response.data
+                req.cookies.user = response[0].dataValues
                 res.sendStatus(201)
             } else {
                 console.log(`Wrong password`, err)
