@@ -21944,7 +21944,7 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'li',
                         { className: 'bg-master-lighter', onClick: function onClick() {
-                            return dispatch((0, _auth.logout)());
+                            return dispatch((0, _auth.logout)() && localStorage.removeItem('user'));
                           } },
                         _react2.default.createElement(
                           _reactRouter.Link,
