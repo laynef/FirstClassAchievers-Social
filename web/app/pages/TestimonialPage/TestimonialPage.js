@@ -15,7 +15,7 @@ class TestimonialPage extends Component {
     render() {
         return (
             <div id="TestimonialPage">
-                <h1>What's up baby girl</h1>
+                <h1>Real Testimonials</h1>
             </div>
         )
     }
