@@ -21960,9 +21960,7 @@ var Header = function (_Component) {
               )
             )
           )
-        ),
-        _react2.default.createElement(_LoginModal2.default, null),
-        _react2.default.createElement(_SignUpModal2.default, null)
+        )
       );
     }
   }]);
