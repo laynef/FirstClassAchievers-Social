@@ -28,7 +28,12 @@ class Header extends Component {
                           <div className="header-inner">
                             <Link to="/">
                                 <div className="brand inline">
-                                  <img src="theme/assets/img/logo.png" alt="logo" data-src="theme/assets/img/logo.png" data-src-retina="theme/assets/img/logo_2x.png" width="93" height="25"/>
+                                  <img src="theme/assets/img/logo.png" 
+                                            alt="logo" 
+                                            data-src="theme/assets/img/logo.png" 
+                                            data-src-retina="theme/assets/img/logo_2x.png" 
+                                            width="93" 
+                                            height="25"/>
                                 </div>
                             </Link>
                           </div>
@@ -39,7 +44,12 @@ class Header extends Component {
                                 <div className="dropdown pull-right rightSpacing">
                                   <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span className="thumbnail-wrapper d32 circular inline m-t-5">
-                                        <img src="theme/assets/img/profiles/fine.jpg" alt="" data-src="theme/assets/img/profiles/fine.jpg" data-src-retina="theme/assets/img/profiles/fine.jpg" width="32" height="32"/>
+                                        <img src="theme/assets/img/profiles/fine.jpg" 
+                                                  alt="" 
+                                                  data-src="theme/assets/img/profiles/fine.jpg" 
+                                                  data-src-retina="theme/assets/img/profiles/fine.jpg" 
+                                                  width="32" 
+                                                  height="32"/>
                                     </span>
                                   </button>
                                   <ul className="dropdown-menu profile-dropdown" role="menu">

@@ -38290,31 +38290,25 @@
 /* 634 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getPrototype = __webpack_require__(635),
-	    isHostObject = __webpack_require__(636),
+	var baseGetTag = __webpack_require__(877),
+	    getPrototype = __webpack_require__(635),
 	    isObjectLike = __webpack_require__(637);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
 
 	/** Used for built-in method references. */
-	var objectProto = Object.prototype;
+	var funcProto = Function.prototype,
+	    objectProto = Object.prototype;
 
 	/** Used to resolve the decompiled source of functions. */
-	var funcToString = Function.prototype.toString;
+	var funcToString = funcProto.toString;
 
 	/** Used to check objects for own properties. */
 	var hasOwnProperty = objectProto.hasOwnProperty;
 
 	/** Used to infer the `Object` constructor. */
 	var objectCtorString = funcToString.call(Object);
-
-	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objectToString = objectProto.toString;
 
 	/**
 	 * Checks if `value` is a plain object, that is, an object created by the
@@ -38325,8 +38319,7 @@
 	 * @since 0.8.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a plain object,
-	 *  else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
 	 * @example
 	 *
 	 * function Foo() {
@@ -38346,8 +38339,7 @@
 	 * // => true
 	 */
 	function isPlainObject(value) {
-	  if (!isObjectLike(value) ||
-	      objectToString.call(value) != objectTag || isHostObject(value)) {
+	  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
 	    return false;
 	  }
 	  var proto = getPrototype(value);
@@ -38355,8 +38347,8 @@
 	    return true;
 	  }
 	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
-	  return (typeof Ctor == 'function' &&
-	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
+	  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+	    funcToString.call(Ctor) == objectCtorString;
 	}
 
 	module.exports = isPlainObject;
@@ -38364,52 +38356,18 @@
 
 /***/ }),
 /* 635 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	/* Built-in method references for those with the same name as other `lodash` methods. */
-	var nativeGetPrototype = Object.getPrototypeOf;
+	var overArg = __webpack_require__(883);
 
-	/**
-	 * Gets the `[[Prototype]]` of `value`.
-	 *
-	 * @private
-	 * @param {*} value The value to query.
-	 * @returns {null|Object} Returns the `[[Prototype]]`.
-	 */
-	function getPrototype(value) {
-	  return nativeGetPrototype(Object(value));
-	}
+	/** Built-in value references. */
+	var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 	module.exports = getPrototype;
 
 
 /***/ }),
-/* 636 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Checks if `value` is a host object in IE < 9.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
-	 */
-	function isHostObject(value) {
-	  // Many host objects are `Object` objects that can coerce to strings
-	  // despite having improperly defined `toString` methods.
-	  var result = false;
-	  if (value != null && typeof value.toString != 'function') {
-	    try {
-	      result = !!(value + '');
-	    } catch (e) {}
-	  }
-	  return result;
-	}
-
-	module.exports = isHostObject;
-
-
-/***/ }),
+/* 636 */,
 /* 637 */
 /***/ (function(module, exports) {
 
@@ -38438,7 +38396,7 @@
 	 * // => false
 	 */
 	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
+	  return value != null && typeof value == 'object';
 	}
 
 	module.exports = isObjectLike;
@@ -40595,10 +40553,18 @@
 
 	var _reduxForm = __webpack_require__(663);
 
+	var _auth = __webpack_require__(884);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var reducers = (0, _redux.combineReducers)({
-	    form: _reduxForm.reducer
+	    form: _reduxForm.reducer,
+	    user: _auth2.default
 	});
 
+	// reducers
 	exports.default = reducers;
 
 /***/ }),
@@ -51127,7 +51093,12 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'brand inline' },
-	                  _react2.default.createElement('img', { src: 'theme/assets/img/logo.png', alt: 'logo', 'data-src': 'theme/assets/img/logo.png', 'data-src-retina': 'theme/assets/img/logo_2x.png', width: '93', height: '25' })
+	                  _react2.default.createElement('img', { src: 'theme/assets/img/logo.png',
+	                    alt: 'logo',
+	                    'data-src': 'theme/assets/img/logo.png',
+	                    'data-src-retina': 'theme/assets/img/logo_2x.png',
+	                    width: '93',
+	                    height: '25' })
 	                )
 	              )
 	            )
@@ -51150,7 +51121,12 @@
 	                    _react2.default.createElement(
 	                      'span',
 	                      { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-	                      _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/fine.jpg', 'data-src-retina': 'theme/assets/img/profiles/fine.jpg', width: '32', height: '32' })
+	                      _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg',
+	                        alt: '',
+	                        'data-src': 'theme/assets/img/profiles/fine.jpg',
+	                        'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
+	                        width: '32',
+	                        height: '32' })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
@@ -51276,6 +51252,413 @@
 	exports.default = (0, _reactRedux.connect)(function (state) {
 	    return {};
 	})(MainPage);
+
+/***/ }),
+/* 877 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var Symbol = __webpack_require__(878),
+	    getRawTag = __webpack_require__(881),
+	    objectToString = __webpack_require__(882);
+
+	/** `Object#toString` result references. */
+	var nullTag = '[object Null]',
+	    undefinedTag = '[object Undefined]';
+
+	/** Built-in value references. */
+	var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+	/**
+	 * The base implementation of `getTag` without fallbacks for buggy environments.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {string} Returns the `toStringTag`.
+	 */
+	function baseGetTag(value) {
+	  if (value == null) {
+	    return value === undefined ? undefinedTag : nullTag;
+	  }
+	  return (symToStringTag && symToStringTag in Object(value))
+	    ? getRawTag(value)
+	    : objectToString(value);
+	}
+
+	module.exports = baseGetTag;
+
+
+/***/ }),
+/* 878 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var root = __webpack_require__(879);
+
+	/** Built-in value references. */
+	var Symbol = root.Symbol;
+
+	module.exports = Symbol;
+
+
+/***/ }),
+/* 879 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var freeGlobal = __webpack_require__(880);
+
+	/** Detect free variable `self`. */
+	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+	/** Used as a reference to the global object. */
+	var root = freeGlobal || freeSelf || Function('return this')();
+
+	module.exports = root;
+
+
+/***/ }),
+/* 880 */
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+	var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+	module.exports = freeGlobal;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 881 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var Symbol = __webpack_require__(878);
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var nativeObjectToString = objectProto.toString;
+
+	/** Built-in value references. */
+	var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+	/**
+	 * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {string} Returns the raw `toStringTag`.
+	 */
+	function getRawTag(value) {
+	  var isOwn = hasOwnProperty.call(value, symToStringTag),
+	      tag = value[symToStringTag];
+
+	  try {
+	    value[symToStringTag] = undefined;
+	    var unmasked = true;
+	  } catch (e) {}
+
+	  var result = nativeObjectToString.call(value);
+	  if (unmasked) {
+	    if (isOwn) {
+	      value[symToStringTag] = tag;
+	    } else {
+	      delete value[symToStringTag];
+	    }
+	  }
+	  return result;
+	}
+
+	module.exports = getRawTag;
+
+
+/***/ }),
+/* 882 */
+/***/ (function(module, exports) {
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var nativeObjectToString = objectProto.toString;
+
+	/**
+	 * Converts `value` to a string using `Object.prototype.toString`.
+	 *
+	 * @private
+	 * @param {*} value The value to convert.
+	 * @returns {string} Returns the converted string.
+	 */
+	function objectToString(value) {
+	  return nativeObjectToString.call(value);
+	}
+
+	module.exports = objectToString;
+
+
+/***/ }),
+/* 883 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Creates a unary function that invokes `func` with its argument transformed.
+	 *
+	 * @private
+	 * @param {Function} func The function to wrap.
+	 * @param {Function} transform The argument transform.
+	 * @returns {Function} Returns the new function.
+	 */
+	function overArg(func, transform) {
+	  return function(arg) {
+	    return func(transform(arg));
+	  };
+	}
+
+	module.exports = overArg;
+
+
+/***/ }),
+/* 884 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _extends2 = __webpack_require__(885);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	exports.default = function () {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+		var action = arguments[1];
+
+		switch (action.type) {
+			case _actionTypes2.default.LOGIN_PENDING:
+				return (0, _extends3.default)({}, state, {
+					pending: true,
+					error: null
+				});
+
+			case _actionTypes2.default.LOGIN_SUCCESS:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: null,
+					data: action.payload
+				});
+
+			case _actionTypes2.default.LOGIN_ERROR:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: action.payload
+				});
+
+			case _actionTypes2.default.LOGOUT_PENDING:
+				return (0, _extends3.default)({}, state, {
+					pending: true,
+					error: null
+				});
+
+			case _actionTypes2.default.LOGOUT_SUCCESS:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: null,
+					data: action.payload
+				});
+
+			case _actionTypes2.default.LOGOUT_ERROR:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: action.payload
+				});
+
+			case _actionTypes2.default.REGISTER_PENDING:
+				return (0, _extends3.default)({}, state, {
+					pending: true,
+					error: null
+				});
+
+			case _actionTypes2.default.REGISTER_SUCCESS:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: null,
+					data: action.payload
+				});
+
+			case _actionTypes2.default.REGISTER_ERROR:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: action.payload
+				});
+
+			case _actionTypes2.default.GET_USER_PENDING:
+				return (0, _extends3.default)({}, state, {
+					pending: true,
+					error: null
+				});
+
+			case _actionTypes2.default.GET_USER_SUCCESS:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: null,
+					data: action.payload
+				});
+
+			case _actionTypes2.default.GET_USER_ERROR:
+				return (0, _extends3.default)({}, state, {
+					pending: null,
+					error: action.payload
+				});
+		}
+
+		return state;
+	};
+
+	var _actionTypes = __webpack_require__(890);
+
+	var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var INITIAL_STATE = {
+		pending: null,
+		error: null,
+		data: null
+	};
+
+/***/ }),
+/* 885 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _assign = __webpack_require__(886);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _assign2.default || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+
+	  return target;
+	};
+
+/***/ }),
+/* 886 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(887), __esModule: true };
+
+/***/ }),
+/* 887 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	__webpack_require__(888);
+	module.exports = __webpack_require__(312).Object.assign;
+
+/***/ }),
+/* 888 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $export = __webpack_require__(311);
+
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(889)});
+
+/***/ }),
+/* 889 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	// 19.1.2.1 Object.assign(target, source, ...)
+	var getKeys  = __webpack_require__(344)
+	  , gOPS     = __webpack_require__(368)
+	  , pIE      = __webpack_require__(369)
+	  , toObject = __webpack_require__(302)
+	  , IObject  = __webpack_require__(347)
+	  , $assign  = Object.assign;
+
+	// should work with symbols and should have deterministic property order (V8 bug)
+	module.exports = !$assign || __webpack_require__(321)(function(){
+	  var A = {}
+	    , B = {}
+	    , S = Symbol()
+	    , K = 'abcdefghijklmnopqrst';
+	  A[S] = 7;
+	  K.split('').forEach(function(k){ B[k] = k; });
+	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+	}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+	  var T     = toObject(target)
+	    , aLen  = arguments.length
+	    , index = 1
+	    , getSymbols = gOPS.f
+	    , isEnum     = pIE.f;
+	  while(aLen > index){
+	    var S      = IObject(arguments[index++])
+	      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+	      , length = keys.length
+	      , j      = 0
+	      , key;
+	    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+	  } return T;
+	} : $assign;
+
+/***/ }),
+/* 890 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var actionTypes = {
+
+		// Login
+		LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+		LOGIN_PENDING: 'LOGIN_PENDING',
+		LOGIN_ERROR: 'LOGIN_ERROR',
+
+		// Logout
+		LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+		LOGOUT_PENDING: 'LOGOUT_PENDING',
+		LOGOUT_ERROR: 'LOGOUT_ERROR',
+
+		// Register
+		REGISTER_SUCCESS: 'REGISTER_SUCCESS',
+		REGISTER_PENDING: 'REGISTER_PENDING',
+		REGISTER_ERROR: 'REGISTER_ERROR',
+
+		// Get User
+		GET_USER_SUCCESS: 'GET_USER_SUCCESS',
+		GET_USER_PENDING: 'GET_USER_PENDING',
+		GET_USER_ERROR: 'GET_USER_ERROR'
+
+	};
+
+	exports.default = actionTypes;
 
 /***/ })
 /******/ ]);
