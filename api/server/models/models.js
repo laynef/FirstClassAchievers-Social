@@ -2,7 +2,7 @@
 // const User = require('../database/db')
 
 module.exports = {
-    user: {
+    profile: {
         get: () => {
             /*
              Interact with database
@@ -13,6 +13,17 @@ module.exports = {
              Interact with database
              */
         }
+    },
+    testify: {
+        get: (req, res) => {
+            /*
+             Interact with database
+            */
+        },
+        post: (req, res) => {
+            /*
+             Interact with database
+            */
+        }
     }
-
 }

@@ -2,15 +2,24 @@
 const models = require('../models/models')
 
 module.exports = {
-    user: {
+    profile: {
         get: (req, res) => {
             /* can look something like this
-                models.user.get()*/ 
+                models.profile.get()*/ 
         },
         post: (req, res) => {
             /* can look something like this
-                models.user.post()*/ 
+                models.profile.post()*/ 
+        }
+    },
+    testify: {
+        get: (req, res) => {
+            /* can look something like this
+                models.testify.get()*/ 
+        },
+        post: (req, res) => {
+            /* can look something like this
+                models.testify.post()*/ 
         }
     }
-    
 }

@@ -3,9 +3,12 @@ const router = require('express').Router()
 const controllers = require('../controllers/controllers')
 
 
-// user
-router.get('/user', controllers.user.get)
-router.post('/user', controllers.user.post)
+// profile
+router.get('/profile', controllers.profile.get)
+router.post('/profile', controllers.profile.post)
+
+router.get('/testify', controllers.testify.get)
+router.post('/testify', controllers.testify.post)
 
 // export router for server.js
 module.exports = router
