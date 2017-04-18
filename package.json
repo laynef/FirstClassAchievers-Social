@@ -5,16 +5,14 @@
   "main": "index.js",
   "dependencies": {
     "chai": "^3.5.0",
-    "express-flash": "0.0.2",
-    "jquery": "^3.2.1",
-    "jsonwebtoken": "^7.3.0",
     "mocha": "^3.2.0"
   },
   "devDependencies": {
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "mocha ./tests/index.js"
+    "test": "mocha ./tests/index.js",
+    "start": "node ./api/server/server.js"
   },
   "repository": {
     "type": "git",

@@ -21944,7 +21944,7 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'li',
                         { className: 'bg-master-lighter', onClick: function onClick() {
-                            return dispatch((0, _auth.logout)());
+                            dispatch((0, _auth.logout)());localStorage.removeItem('user');window.location.reload();
                           } },
                         _react2.default.createElement(
                           _reactRouter.Link,
@@ -22476,7 +22476,7 @@ var AboutUsPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'Where you at?'
+                    'About Us'
                 )
             );
         }
@@ -22543,7 +22543,7 @@ var MainPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'My Lady'
+                    'Welcome to First Class'
                 )
             );
         }
@@ -22684,7 +22684,7 @@ var ProfilePage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'I like that'
+                    'My Profile'
                 )
             );
         }
@@ -22751,7 +22751,7 @@ var TestimonialPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'What\'s up baby girl'
+                    'Real Testimonials'
                 )
             );
         }

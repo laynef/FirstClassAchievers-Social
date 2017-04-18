@@ -15,7 +15,7 @@ class AboutUsPage extends Component {
     render() {
         return (
             <div id="AboutUsPage">
-                <h1>Where you at?</h1>
+                <h1>About Us</h1>
             </div>
         )
     }
