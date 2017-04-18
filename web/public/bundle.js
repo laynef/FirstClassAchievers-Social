@@ -21960,7 +21960,9 @@ var Header = function (_Component) {
               )
             )
           )
-        )
+        ),
+        _react2.default.createElement(_LoginModal2.default, null),
+        _react2.default.createElement(_SignUpModal2.default, null)
       );
     }
   }]);
@@ -22029,7 +22031,7 @@ var LoginModal = function (_Component) {
                 { id: 'LoginModalComponent' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'modal fade slide-up disable-scroll in', id: 'login-modal', tabIndex: '-1', role: 'dialog', 'aria-hidden': 'false' },
+                    { className: 'modal fade slide-up disable-scroll in', id: 'login-modal' },
                     _react2.default.createElement(
                         'div',
                         { className: 'modal-dialog' },
@@ -22167,7 +22169,7 @@ var SignUpModal = function (_Component) {
                 { id: 'SignUpModalComponent' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'modal fade slide-up disable-scroll in', id: 'sign-up-modal', tabIndex: '-1', role: 'dialog', 'aria-hidden': 'false', style: { display: 'block', paddingLeft: '0px' } },
+                    { className: 'modal fade slide-up disable-scroll in', id: 'sign-up-modal' },
                     _react2.default.createElement(
                         'div',
                         { className: 'modal-dialog' },

@@ -78,6 +78,8 @@ class Header extends Component {
                           </div>
                         </div>
                     </div>
+                    <LoginModal />
+                    <SignUpModal />
                 </div>
         )
     }
