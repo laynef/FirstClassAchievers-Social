@@ -3,6 +3,7 @@ const User = require('../../../database/models/index').User
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
+const jwt = require('jsonwebtoken')
 
 // local auth
 router.get('/local/user', (req, res, next) => {
@@ -21,9 +22,16 @@ router.post('/local/login', (req, res, next) => {
         where: {email: req.body.email}
     }).then(response => {
         bcrypt.compare(req.body.password, response.password, (err, result) => {
+            let token = jwt.sign(user, app.get('volume'), {
+                expiresInMinutes: 1440 // expires in 24 hours
+            })
             if (result) {
                 req.cookies.user = response
-                res.sendStatus(201)
+                res.sendStatus(201).json({
+                    success: true,
+                    message: 'Enjoy your token!',
+                    token: token
+                })
             } else {
                 console.log(`Wrong password`, err)
                 res.sendStatus(401)
@@ -60,7 +68,7 @@ router.get('/local/logout', (req, res, next) => {
 
 router.patch('/local/change/password', (req, res, next) => {
     User.findAll({
-        where: {email: req.body.email}
+        where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
         bcrypt.compare(req.body.password, response.password, (err, result) => {
@@ -69,7 +77,7 @@ router.patch('/local/change/password', (req, res, next) => {
                     User.update({
                         password: hash
                     }, { 
-                        where: {_id: response.id}
+                        where: { _id: response.id }
                     })
                         .then(resp => {
                             req.cookies.user = resp

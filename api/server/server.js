@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const favicon = require('express-favicon')
 const fs = require('fs')
+const config = require('../config/config')
 
 
 // port settings
@@ -23,6 +24,7 @@ server.listen(port, () => {
 
 // Middleware
 // Body Parser, Morgan, and Public Compiled folder
+app.set('volume', config.volume)
 app.use(favicon(__dirname + '/../../web/public/favicon.ico'))
 app.use(express.static(__dirname + '/../../web/public'))
 app.use(cors())
@@ -43,13 +45,3 @@ app.get('*', (req, res) => {
     res.redirect('/')
 })
 
-// Web socket on connection 
-io.on('connection', (socket) => {
-    setTimeout(() => {
-        fs.watch(__dirname + '/../', {recursive: true}, (e, o) => {
-            if (e === 'rename' || e === 'change') {
-                socket.emit('save')
-            }
-        })
-    }, 1000)
-})
