@@ -1,14 +1,17 @@
+const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
+const jwt = require('jsonwebtoken')
+
 
 // local auth
 router.get('/local/user', (req, res, next) => {
-    User.findByid(req.body.id)
+    User.findById(req.body.id)
         .then(response => {
-            res.status(200).send(response)
+            res.status(200).send(response[0].dataValues)
         })
         .catch(error => {
             console.log(`Did not receive user data`, error)
@@ -18,12 +21,12 @@ router.get('/local/user', (req, res, next) => {
 
 router.post('/local/login', (req, res, next) => {
     User.findAll({
-        where: {email: req.body.email}
+        where: { email: req.body.email }
     }).then(response => {
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             if (result) {
-                req.cookies.user = response
-                res.sendStatus(201)
+                req.cookies.user = response[0].dataValues
+                res.status(201).send(response[0].dataValues)
             } else {
                 console.log(`Wrong password`, err)
                 res.sendStatus(401)
@@ -60,16 +63,16 @@ router.get('/local/logout', (req, res, next) => {
 
 router.patch('/local/change/password', (req, res, next) => {
     User.findAll({
-        where: {email: req.body.email}
+        where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({
                         password: hash
                     }, { 
-                        where: {_id: response.id}
+                        where: { _id: response.id }
                     })
                         .then(resp => {
                             req.cookies.user = resp

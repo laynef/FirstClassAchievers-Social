@@ -1,0 +1,14 @@
+#mainPage h1 {
+  text-align: center; }
+
+#SideMenuComponent #sideMenu:hover {
+  transform: translate(210px, 0px); }
+
+#TestimonialPage h1 {
+  text-align: center; }
+
+#AboutUsPage h1 {
+  text-align: center; }
+
+#ProfilePage h1 {
+  text-align: center; }
