@@ -22031,7 +22031,7 @@ var LoginModal = function (_Component) {
                 { id: 'LoginModalComponent' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'modal fade slide-up disable-scroll in', id: 'login-modal', tabIndex: '-1', role: 'dialog', 'aria-hidden': 'false', style: { display: 'block', paddingLeft: '0px' } },
+                    { className: 'modal fade slide-up disable-scroll in', id: 'login-modal', tabIndex: '-1', role: 'dialog', 'aria-hidden': 'false' },
                     _react2.default.createElement(
                         'div',
                         { className: 'modal-dialog' },

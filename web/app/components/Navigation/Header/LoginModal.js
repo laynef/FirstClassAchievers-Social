@@ -15,7 +15,7 @@ class LoginModal extends Component {
     render() {
         return (
             <div id="LoginModalComponent">
-                <div className="modal fade slide-up disable-scroll in" id="login-modal" tabIndex="-1" role="dialog" aria-hidden="false" style={{display: 'block', paddingLeft: '0px'}}>
+                <div className="modal fade slide-up disable-scroll in" id="login-modal" tabIndex="-1" role="dialog" aria-hidden="false">
                     <div className="modal-dialog">
                         <div className="modal-content-wrapper">
                             <div className="modal-content">
