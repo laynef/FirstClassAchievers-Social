@@ -7,3 +7,17 @@
 
 #SideMenuComponent #sideMenu:hover {
   transform: translate(210px, 0px); }
+
+@media screen and (min-width: 992px) {
+  #TestimonialPage {
+    margin-left: 80px; } }
+
+#TestimonialPage h1 {
+  text-align: center; }
+
+@media screen and (min-width: 992px) {
+  #AboutUsPage {
+    margin-left: 80px; } }
+
+#AboutUsPage h1 {
+  text-align: center; }

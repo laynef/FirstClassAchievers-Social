@@ -32,36 +32,21 @@ class SideMenu extends Component {
                       <li className="m-t-30">
                         <span className="icon-thumbnail "><i className="pg-home"></i></span>
                         <Link to="/" className="detailed">
-                          <span className="title">Page 1</span>
-                          <span className="details">234 notifications</span>
+                          <span className="title">Home</span>
                         </Link>
                       </li>
                       <li className="">
-                        <a href="#">
-                          <span className="title">Page 2</span>
-                        </a>
+                        <Link to="/testimonials">
+                          <span className="title">Testimonials</span>
+                        </Link>
                         <span className="icon-thumbnail "><i className="pg-social"></i></span>
                       </li>
                       <li className="">
-                        <a href="javascript:;">
-                          <span className="title">Page 3</span>
-                          <span className=" arrow"></span>
-                        </a>
+                        <Link to="/about">
+                          <span className="title">About</span>
+                          <span className="details">Meet liked minds</span>
+                        </Link>
                         <span className="icon-thumbnail"><i className="pg-grid"></i></span>
-                        <ul className="sub-menu">
-                          <li className="">
-                            <a href="#">Sub Page 1</a>
-                            <span className="icon-thumbnail">sp</span>
-                          </li>
-                          <li className="">
-                            <a href="#">Sub Page 2</a>
-                            <span className="icon-thumbnail">sp</span>
-                          </li>
-                          <li className="">
-                            <a href="#">Sub Page 3</a>
-                            <span className="icon-thumbnail">sp</span>
-                          </li>
-                        </ul>
                       </li>
                     </ul>
                     <div className="clearfix"></div>

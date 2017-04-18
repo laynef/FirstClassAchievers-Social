@@ -20582,6 +20582,14 @@ var _MainPage = __webpack_require__(350);
 
 var _MainPage2 = _interopRequireDefault(_MainPage);
 
+var _TestimonialPage = __webpack_require__(833);
+
+var _TestimonialPage2 = _interopRequireDefault(_TestimonialPage);
+
+var _AboutUsPage = __webpack_require__(834);
+
+var _AboutUsPage2 = _interopRequireDefault(_AboutUsPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Pages
@@ -20591,7 +20599,9 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(
         _reactRouter.Route,
         { path: '/', component: _MasterPage2.default },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainPage2.default })
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainPage2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'testimonials', component: _TestimonialPage2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _AboutUsPage2.default })
     )
 );
 
@@ -22335,12 +22345,7 @@ var SideMenu = function (_Component) {
                   _react2.default.createElement(
                     'span',
                     { className: 'title' },
-                    'Page 1'
-                  ),
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'details' },
-                    '234 notifications'
+                    'Home'
                   )
                 )
               ),
@@ -22348,12 +22353,12 @@ var SideMenu = function (_Component) {
                 'li',
                 { className: '' },
                 _react2.default.createElement(
-                  'a',
-                  { href: '#' },
+                  _reactRouter.Link,
+                  { to: '/testimonials' },
                   _react2.default.createElement(
                     'span',
                     { className: 'title' },
-                    'Page 2'
+                    'Testimonials'
                   )
                 ),
                 _react2.default.createElement(
@@ -22366,65 +22371,23 @@ var SideMenu = function (_Component) {
                 'li',
                 { className: '' },
                 _react2.default.createElement(
-                  'a',
-                  { href: 'javascript:;' },
+                  _reactRouter.Link,
+                  { to: '/about' },
                   _react2.default.createElement(
                     'span',
                     { className: 'title' },
-                    'Page 3'
+                    'About'
                   ),
-                  _react2.default.createElement('span', { className: ' arrow' })
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'details' },
+                    'Meet liked minds'
+                  )
                 ),
                 _react2.default.createElement(
                   'span',
                   { className: 'icon-thumbnail' },
                   _react2.default.createElement('i', { className: 'pg-grid' })
-                ),
-                _react2.default.createElement(
-                  'ul',
-                  { className: 'sub-menu' },
-                  _react2.default.createElement(
-                    'li',
-                    { className: '' },
-                    _react2.default.createElement(
-                      'a',
-                      { href: '#' },
-                      'Sub Page 1'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'icon-thumbnail' },
-                      'sp'
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'li',
-                    { className: '' },
-                    _react2.default.createElement(
-                      'a',
-                      { href: '#' },
-                      'Sub Page 2'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'icon-thumbnail' },
-                      'sp'
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'li',
-                    { className: '' },
-                    _react2.default.createElement(
-                      'a',
-                      { href: '#' },
-                      'Sub Page 3'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'icon-thumbnail' },
-                      'sp'
-                    )
-                  )
                 )
               )
             ),
@@ -54439,6 +54402,140 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 833 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(27);
+
+var _reduxForm = __webpack_require__(72);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TestimonialPage = function (_Component) {
+    _inherits(TestimonialPage, _Component);
+
+    function TestimonialPage(props, context) {
+        _classCallCheck(this, TestimonialPage);
+
+        var _this = _possibleConstructorReturn(this, (TestimonialPage.__proto__ || Object.getPrototypeOf(TestimonialPage)).call(this, props, context));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(TestimonialPage, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'TestimonialPage' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'What\'s up baby girl'
+                )
+            );
+        }
+    }]);
+
+    return TestimonialPage;
+}(_react.Component);
+
+TestimonialPage = (0, _reduxForm.reduxForm)({
+    form: 'TestimonialPage'
+})(TestimonialPage);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {};
+})(TestimonialPage);
+
+/***/ }),
+/* 834 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(27);
+
+var _reduxForm = __webpack_require__(72);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AboutUsPage = function (_Component) {
+    _inherits(AboutUsPage, _Component);
+
+    function AboutUsPage(props, context) {
+        _classCallCheck(this, AboutUsPage);
+
+        var _this = _possibleConstructorReturn(this, (AboutUsPage.__proto__ || Object.getPrototypeOf(AboutUsPage)).call(this, props, context));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(AboutUsPage, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'AboutUsPage' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Where you at?'
+                )
+            );
+        }
+    }]);
+
+    return AboutUsPage;
+}(_react.Component);
+
+AboutUsPage = (0, _reduxForm.reduxForm)({
+    form: 'AboutUsPage'
+})(AboutUsPage);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {};
+})(AboutUsPage);
 
 /***/ })
 /******/ ]);
