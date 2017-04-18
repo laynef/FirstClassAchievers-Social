@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
   entry: [
       "babel-polyfill",
-      "./app/Root.jsx"
+      "./app/Root.js"
   ],
    output: {
         filename: "public/bundle.js"
@@ -18,8 +18,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
-                    presets: ['react', 'stage-3', 'es2015'],
-                    plugins: ['transform-runtime']
+                    presets: ['react', 'stage-3', 'es2015']
                 }
             },
             {

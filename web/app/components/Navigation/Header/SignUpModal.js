@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../../redux/utils/ReduxForms'
-import { register } from '../../../redux/actions/auth.js'
+import { register } from '../../../redux/actions/auth'
 
 
 class SignUpModal extends Component {
 
-    static formSubmit(data) {
+    formSubmit(data) {
         const { dispatch } = this.props
         if (data.email && data.password === data.repassword) {
             return dispatch(register(data))
@@ -22,7 +22,7 @@ class SignUpModal extends Component {
     render() {
         return (
             <div id="SignUpModalComponent">
-                <div className="modal fade slide-up disable-scroll in" id="register-modal" tabIndex="-1" role="dialog" aria-hidden="false" style={{display: 'block', paddingLeft: '0px'}}>
+                <div className="modal fade slide-up disable-scroll in" id="sign-up-modal" tabIndex="-1" role="dialog" aria-hidden="false" style={{display: 'block', paddingLeft: '0px'}}>
                     <div className="modal-dialog">
                       <div className="modal-content-wrapper">
                         <div className="modal-content">
@@ -31,7 +31,7 @@ class SignUpModal extends Component {
                             <h5><span className="semi-bold">Sign up</span></h5>
                             <p className="p-b-10">Sign up to connect with other liked minds</p>
                             <div className="modal-body">
-                                <Form onSubmit={SignUpModal.formSubmit.bind(this)}>
+                                <Form onSubmit={this.formSubmit.bind(this)}>
                                     <Field component={renderInput} label="Email" type="email" name="email"/>
                                     <Field component={renderInput} label="Password" type="password" name="password"/>
                                     <Field component={renderInput} label="Confirm Password" type="password" name="repassword"/>
@@ -52,7 +52,7 @@ class SignUpModal extends Component {
 }
 
 SignUpModal = reduxForm({
-    form: 'SignUpModalComponent'
+    form: 'SignUp Modal'
 })(SignUpModal)
 
 export default connect(state => ({
