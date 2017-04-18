@@ -15,7 +15,7 @@ class ProfilePage extends Component {
     render() {
         return (
             <div id="ProfilePage">
-                <h1>I like that</h1>
+                <h1>My Profile</h1>
             </div>
         )
     }

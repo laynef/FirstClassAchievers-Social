@@ -15,7 +15,7 @@ class MainPage extends Component {
     render() {
         return (
             <div id="mainPage">
-                <h1>My Lady</h1>
+                <h1>Welcome to First Class</h1>
             </div>
         )
     }
