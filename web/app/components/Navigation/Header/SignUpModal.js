@@ -22,8 +22,12 @@ class SignUpModal extends Component {
                         <div className="modal-content-wrapper">
                             <div className="modal-content">
                                 <div className="modal-header clearfix text-left">
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true"><i className="pg-close fs-14"></i></button>
-                                    <h5><span className="semi-bold">Sign up</span></h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+                                        <i className="pg-close fs-14"></i>
+                                    </button>
+                                    <h5>
+                                        <span className="semi-bold">Sign up</span>
+                                    </h5>
                                     <p className="p-b-10">Sign up to connect with other liked minds</p>
                                     <div className="modal-body">
                                         <Form onSubmit={SignUpModal.formSubmit.bind(this)}>

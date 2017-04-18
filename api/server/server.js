@@ -17,7 +17,7 @@ const config = require('../config/config')
 // port settings
 let port = process.env.PORT || 3232
 
-// web socket protocol on localhost on port 3333
+// web socket protocol on localhost on port 3232
 server.listen(port, () => {
     console.log(`Listen to http://localhost:${port}`)
 })

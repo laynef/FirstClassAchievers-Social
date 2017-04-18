@@ -8557,10 +8557,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function login(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
-		_axios2.default.post('/auth/local/login', data).then(function (resp) {
+		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/login', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_SUCCESS,
-				payload: resp
+				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
@@ -8574,10 +8574,10 @@ function login(data) {
 function logout() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGOUT_PENDING });
-		_axios2.default.get('/auth/local/logout').then(function (resp) {
+		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/logout').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGOUT_SUCCESS,
-				payload: resp
+				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
@@ -8591,10 +8591,10 @@ function logout() {
 function register(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.REGISTER_PENDING });
-		_axios2.default.post('/auth/local/register').then(function (resp) {
+		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/register').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_SUCCESS,
-				payload: resp
+				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
@@ -8608,10 +8608,10 @@ function register(data) {
 function getUser(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
-		_axios2.default.get('/auth/local/user').then(function (resp) {
+		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/user').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_USER_SUCCESS,
-				payload: resp
+				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
@@ -22561,7 +22561,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var settings = {
-	API_ROOT: 'http://localhost:3232'
+	API_ROOT: 'http://localhost:5432'
 };
 
 exports.default = settings;
