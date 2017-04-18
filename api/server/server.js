@@ -5,6 +5,7 @@ const io = require('socket.io')(server)
 const parser = require('body-parser')
 const morgan = require('morgan')
 const routes = require('./routes/routes')
+const local = require('./routes/local-auth')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
@@ -31,6 +32,7 @@ app.use(parser.json())
 app.use(cookieParser())
 
 app.use('/api', routes) // when you add api routes in routes.js
+app.use('/auth', local) // when you add api routes in routes.js
 
 // Render the index.html
 app.get('/', (req, res) => { 

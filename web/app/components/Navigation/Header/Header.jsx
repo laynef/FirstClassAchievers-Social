@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { logout } from '../../../redux/actions/auth'
 
 
 class Header extends Component {
@@ -14,6 +15,7 @@ class Header extends Component {
     }
 
     render() {
+        const { dispatch } = this.props
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
@@ -59,11 +61,11 @@ class Header extends Component {
                                         Settings
                                       </a>
                                     </li>
-                                    <li className="bg-master-lighter">
-                                      <a href="#" className="clearfix">
+                                    <li className="bg-master-lighter" onClick={() => dispatch(logout())}>
+                                      <Link to="/" className="clearfix">
                                         <span className="pull-left">Logout</span>
                                         <span className="pull-right"><i className="pg-power"></i></span>
-                                      </a>
+                                      </Link>
                                     </li>
                                   </ul>
                                 </div>

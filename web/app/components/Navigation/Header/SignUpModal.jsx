@@ -10,8 +10,13 @@ class SignUpModal extends Component {
     static formSubmit(data) {
         const { dispatch } = this.props
         if (data.email && data.password === data.repassword) {
-            dispatch(register(data))
+            return dispatch(register(data))
         }
+        this.renderError()
+    }
+
+    renderError() {
+
     }
 
     render() {

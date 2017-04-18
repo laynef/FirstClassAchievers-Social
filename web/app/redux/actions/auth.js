@@ -1,13 +1,13 @@
-import Rx from 'rx';
-import { hashHistory } from 'react-router';
-import actionTypes from '../../config/action-types';
-import settings from '../../config/settings';
+import Rx from 'rx'
+import { hashHistory } from 'react-router'
+import actionTypes from '../store/actionTypes'
+import settings from '../config/settings'
 
 
 export function login(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGIN_PENDING})
-		Rx.DOM.Request.post('/local/login', data)
+		Rx.DOM.Request.post(`${settings.API_ROOT}/auth/local/login`, data)
 			.subscribe(
 				(xhr) => {
 					dispatch({
@@ -25,10 +25,10 @@ export function login(data) {
 	}
 }
 
-export function logout(data) {
+export function logout() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGOUT_PENDING})
-		Rx.DOM.Request.get('/local/logout')
+		Rx.DOM.Request.get(`${settings.API_ROOT}/auth/local/logout`)
 			.subscribe(
 				(xhr) => {
 					dispatch({
@@ -49,7 +49,7 @@ export function logout(data) {
 export function register(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.REGISTER_PENDING})
-		Rx.DOM.Request.post('/local/register')
+		Rx.DOM.Request.post(`${settings.API_ROOT}/auth/local/register`)
 			.subscribe(
 				(xhr) => {
 					dispatch({
@@ -70,7 +70,7 @@ export function register(data) {
 export function getUser(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_USER_PENDING})
-		Rx.DOM.Request.get('/local/user')
+		Rx.DOM.Request.get(`${settings.API_ROOT}/auth/local/user`)
 			.subscribe(
 				(xhr) => {
 					dispatch({

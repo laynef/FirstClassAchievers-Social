@@ -6,7 +6,7 @@ const bunyan = require('bunyan')
 
 // local auth
 router.get('/local/user', (req, res, next) => {
-    User.findByid(req.body.id)
+    User.findById(req.body.id)
         .then(response => {
             res.status(200).send(response)
         })

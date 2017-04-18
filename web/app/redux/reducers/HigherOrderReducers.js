@@ -1,44 +1,44 @@
-import omit from "lodash/omit";
-import actionTypes from "../../config/action-types";
+import omit from 'lodash/omit'
+import actionTypes from '../store/actionTypes'
 
 
-const createModelState = () => ({});
+const createModelState = () => ({})
 
 export default function createModelReducer(resourceName, INITIAL_STATE=createModelState()) {
-    resourceName = resourceName.toUpperCase();
+    resourceName = resourceName.toUpperCase()
 
     return (state=INITIAL_STATE, action) => {
         switch (action.type) {
             case actionTypes[`${resourceName}_SUCCESS`]:
-                return action.payload || {};
+                return action.payload || {}
 
             case actionTypes[`GET_${resourceName}_LIST_SUCCESS`]:
-                return action.payload || {};
+                return action.payload || {}
 
             case actionTypes[`GET_${resourceName}_SUCCESS`]:
                 return {
                     ...state,
                     [action.payload.id]: action.payload
-                };
+                }
 
             case actionTypes[`CREATE_${resourceName}_SUCCESS`]:
                 return {
                     ...state,
                     [action.payload.id]: action.payload
-                };
+                }
 
             case actionTypes[`EDIT_${resourceName}_SUCCESS`]:
                 return {
                     ...state,
                     [action.payload.id]: action.payload
-                };
+                }
 
             case actionTypes[`DELETE_${resourceName}_SUCCESS`]:
-                return omit(state, [action.payload.id]);
+                return omit(state, [action.payload.id])
 
         }
 
-        return state;
+        return state
     }
 }
 
@@ -49,10 +49,10 @@ const createApiState = () => ({
     update: { pending: null, error: null },
     destroy: { pending: null, error: null },
     absolute: { pending: null, error: null }
-});
+})
 
 export default function createApiReducer(resourceName, INITIAL_STATE=createApiState()) {
-    resourceName = resourceName.toUpperCase();
+    resourceName = resourceName.toUpperCase()
 
     return (state=INITIAL_STATE, action) => {
         switch (action.type) {
@@ -65,7 +65,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`${resourceName}_ERROR`]:
                 return {
@@ -75,7 +75,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_LIST_PENDING`]:
                 return {
@@ -85,7 +85,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_LIST_ERROR`]:
                 return {
@@ -95,7 +95,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_LIST_SUCCESS`]:
                 return {
@@ -105,7 +105,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_PENDING`]:
                 return {
@@ -115,7 +115,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_ERROR`]:
                 return {
@@ -125,7 +125,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`GET_${resourceName}_SUCCESS`]:
                 return {
@@ -135,7 +135,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`CREATE_${resourceName}_PENDING`]:
                 return {
@@ -145,7 +145,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`CREATE_${resourceName}_ERROR`]:
                 return {
@@ -155,7 +155,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`CREATE_${resourceName}_SUCCESS`]:
                 return {
@@ -165,7 +165,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`EDIT_${resourceName}_PENDING`]:
                 return {
@@ -175,7 +175,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`EDIT_${resourceName}_ERROR`]:
                 return {
@@ -185,7 +185,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`EDIT_${resourceName}_SUCCESS`]:
                 return {
@@ -195,7 +195,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: null
                     },
-                };
+                }
 
             case actionTypes[`DELETE_${resourceName}_PENDING`]:
                 return {
@@ -205,7 +205,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: true,
                         error: null
                     }
-                };
+                }
 
             case actionTypes[`DELETE_${resourceName}_ERROR`]:
                 return {
@@ -215,7 +215,7 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: action.payload
                     }
-                };
+                }
 
             case actionTypes[`DELETE_${resourceName}_SUCCESS`]:
                 return {
@@ -225,9 +225,9 @@ export default function createApiReducer(resourceName, INITIAL_STATE=createApiSt
                         pending: null,
                         error: null
                     },
-                };
+                }
 
         }
-        return state;
+        return state
     }
 }
