@@ -1,6 +1,6 @@
 {
-  "name": "FirstClassAchievers",
-  "version": "1.0.0",
+  "name": "first-class-achievers",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "dependencies": {
