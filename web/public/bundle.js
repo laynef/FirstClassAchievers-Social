@@ -8632,7 +8632,7 @@ function getUser() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.renderInput = exports.renderReqInput = undefined;
+exports.renderTextArea = exports.renderInput = exports.renderReqInput = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -8691,6 +8691,30 @@ var renderInput = exports.renderInput = function renderInput(_ref2) {
 			help
 		),
 		_react2.default.createElement('input', _extends({}, input, { type: type, className: 'form-control' }))
+	);
+};
+
+var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
+	var input = _ref3.input,
+	    label = _ref3.label,
+	    _ref3$help = _ref3.help,
+	    help = _ref3$help === undefined ? '' : _ref3$help,
+	    _ref3$meta = _ref3.meta,
+	    touched = _ref3$meta.touched,
+	    error = _ref3$meta.error;
+	return _react2.default.createElement(
+		'div',
+		{ className: 'form-group' },
+		_react2.default.createElement(
+			'label',
+			{ 'for': 'name', className: 'col-md-8 control-label' },
+			label
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'col-md-12' },
+			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: help, 'aria-invalid': 'false' }))
+		)
 	);
 };
 
@@ -54812,7 +54836,7 @@ var SecondaryContact = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'panel-title' },
-                            'About You'
+                            'Contact Info'
                         )
                     ),
                     _react2.default.createElement(
@@ -54826,9 +54850,10 @@ var SecondaryContact = function (_Component) {
                         _react2.default.createElement(
                             _reduxForm.Form,
                             { role: 'form' },
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'First Name', type: 'text', name: 'first_name' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Nick Name', type: 'text', name: 'nick_name' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Last Name', type: 'text', name: 'last_name' })
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'City', type: 'text', name: 'city' }),
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Zip Code', type: 'text', name: 'zipCode' }),
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Position', type: 'text', name: 'position' }),
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' })
                         )
                     )
                 )

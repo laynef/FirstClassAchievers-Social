@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { renderInput } from '../../redux/utils/ReduxForms'
+import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 
 
 class SecondaryContact extends Component {
@@ -12,7 +12,7 @@ class SecondaryContact extends Component {
                 <div className="panel panel-default" id="panelSecondary">
                     <div className="panel-heading">
                         <div className="panel-title">
-                        About You
+                        Contact Info
                     </div>
                 </div>
                 <div className="panel-body">
@@ -20,9 +20,10 @@ class SecondaryContact extends Component {
                         Traditional Standard Style
                     </h5>
                     <Form role="form">
-                        <Field component={renderInput} label="First Name" type="text" name="first_name"/>
-                        <Field component={renderInput} label="Nick Name" type="text" name="nick_name"/>
-                        <Field component={renderInput} label="Last Name" type="text" name="last_name"/>
+                        <Field component={renderInput} label="City" type="text" name="city"/>
+                        <Field component={renderInput} label="Zip Code" type="text" name="zipCode"/>
+                        <Field component={renderInput} label="Position" type="text" name="position"/>
+                        <Field component={renderTextArea} label="Goals" type="text" name="goals"/>
                     </Form>
                 </div>
             </div>
