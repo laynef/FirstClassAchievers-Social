@@ -9,25 +9,33 @@ module.exports = {
               where: { user_id: req.params.userId }  
             })
             .then(response => {
-                res.status(201).send(response.dataValues)
+                res.status(201).json(response)
             }).catch(err => {
                 res.sendStatus(401)
             })
         },
         patch: (req, res) => {
             Profile.update({
-                firstName: req.body.firstName || null,
-                lastName: req.body.lastName || null,
-                location: req.body.location || null,
-                goals: req.body.goals || null,
-                position: req.body.position || null,
-                nickname: req.body.nickname || null,
-                image: req.body.image || null,
-                zipCode: req.body.zipCode || null,
-                state: req.body.state || null,
-                country: req.body.country || null
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                location: req.body.location,
+                goals: req.body.goals,
+                position: req.body.position,
+                nickname: req.body.nickname,
+                image: req.body.image,
+                zipCode: req.body.zipCode,
+                state: req.body.state,
+                country: req.body.country
             }, { 
                 where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                Profile.findAll({
+                    where: {user_id: response[0]}
+                })
+                .then(resp => {
+                    res.status(202).send(resp)
+                })
             })
         }
     },
