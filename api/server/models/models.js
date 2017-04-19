@@ -1,10 +1,10 @@
 // Interact with database on the models functions here
-const models = require('../../../database/models/index')
+const Profile = require('../../../database/models/index').Profile
 
 module.exports = {
     profile: {
-        get: (req, res) => {
-            models.Profile.findAll({
+        get: (req, res, next) => {
+            Profile.findAll({
               where: { user_id: req.params.userId }  
             })
             .then(response => {
@@ -13,8 +13,8 @@ module.exports = {
                 res.sendStatus(401)
             })
         },
-        patch: (req, res) => {
-            models.Profile.update({
+        patch: (req, res, next) => {
+            Profile.update({
                 firstName: req.body.firstName || null,
                 lastName: req.body.lastName || null,
                 location: req.body.location || null,
@@ -29,7 +29,7 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                models.Profile.findAll({
+                Profile.findAll({
                     where: {user_id: response[0]}
                 })
                 .then(resp => {
@@ -39,12 +39,12 @@ module.exports = {
         }
     },
     testify: {
-        get: (req, res) => {
+        get: (req, res, next) => {
             /*
              Interact with database
             */
         },
-        post: (req, res) => {
+        post: (req, res, next) => {
             /*
              Interact with database
             */
