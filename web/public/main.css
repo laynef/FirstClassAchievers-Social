@@ -44,3 +44,6 @@
 
 #ProfilePage #SecondaryContact #panelSecondary {
   height: 660px; }
+
+#ProfilePage #SecondaryContact textarea {
+  height: 74px; }

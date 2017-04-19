@@ -1,44 +1,48 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { renderInput } from '../../redux/utils/ReduxForms'
+import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 
 
 class PrimaryContact extends Component {
 
+    static formSubmit(data) {
+        const { dispatch } = this.props
+    }
+
     render() {
+        const { handleSubmit } = this.props;
         return (
             <div>
+             <Form role="form" onSubmit={handleSubmit(PrimaryContact.formSubmit.bind(this))}>
                 <div id="PrimaryContact" className="col-md-4">
                     <div className="panel panel-default">
                         <div className="panel-heading">
                             <div className="panel-title">
-                            About You
+                                About You
+                            </div>
+                        </div>
+                        <div className="panel-body">
+                            <h5>
+                                Traditional Standard Style
+                            </h5>
+                                <Field component={renderInput} label="First Name" type="text" name="first_name"/>
+                                <Field component={renderInput} label="Nick Name" type="text" name="nick_name"/>
+                                <Field component={renderInput} label="Last Name" type="text" name="last_name"/>
+                            </div>
                         </div>
                     </div>
-                    <div className="panel-body">
-                        <h5>
-                            Traditional Standard Style
-                        </h5>
-                        <Form role="form">
-                            <Field component={renderInput} label="First Name" type="text" name="first_name"/>
-                            <Field component={renderInput} label="Nick Name" type="text" name="nick_name"/>
-                            <Field component={renderInput} label="Last Name" type="text" name="last_name"/>
-                        </Form>
-                    </div>
-                </div>
-                <div id="SecondaryContact" className="col-md-7">
-                    <div className="panel panel-default" id="panelSecondary">
-                        <div className="panel-heading">
-                            <div className="panel-title">
-                            Contact Info
+                    <div id="SecondaryContact" className="col-md-7">
+                        <div className="panel panel-default" id="panelSecondary">
+                            <div className="panel-heading">
+                                <div className="panel-title">
+                                Contact Info
+                            </div>
                         </div>
-                    </div>
-                    <div className="panel-body">
-                        <h5>
-                            Traditional Standard Style
-                        </h5>
-                        <Form role="form">
+                        <div className="panel-body">
+                            <h5>
+                                Traditional Standard Style
+                            </h5>
                             <Field component={renderInput} label="City" type="text" name="city"/>
                             <Field component={renderInput} label="Zip Code" type="text" name="zipCode"/>
                             <Field component={renderInput} label="Position" type="text" name="position"/>
@@ -46,10 +50,15 @@ class PrimaryContact extends Component {
                             <h5>Change password</h5>
                             <Field component={renderInput} label="Change Password" type="password" name="password"/>
                             <Field component={renderInput} label="Confirm New Password" type="password" name="rePassword"/>
-                        </Form>
+                            <div className="row">
+                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                    <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Form>
         </div>
         )
     }

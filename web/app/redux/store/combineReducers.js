@@ -7,7 +7,8 @@ import userReducer from '../reducers/auth'
 
 const reducers = combineReducers({
     form: formReducer,
-    user: userReducer
+    user: userReducer,
+    profile: profileReducer
 })
 
 export default reducers
