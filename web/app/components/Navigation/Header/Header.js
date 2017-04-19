@@ -58,7 +58,7 @@ class Header extends Component {
                                             Settings
                                           </Link>
                                         </li>
-                                        <li className="bg-master-lighter" onClick={() => {dispatch(logout());localStorage.removeItem('user');window.location.reload()}}>
+                                        <li className="bg-master-lighter" onClick={() => {dispatch(logout());window.location.reload()}}>
                                           <Link to="/" className="clearfix">
                                             <span className="pull-left">Logout</span>
                                             <span className="pull-right"><i className="pg-power"></i></span>
