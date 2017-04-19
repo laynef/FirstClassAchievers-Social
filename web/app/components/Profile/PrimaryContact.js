@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
+import { getProfile, setProfile } from '../../redux/actions/profile'
 
 
 class PrimaryContact extends Component {
 
     static formSubmit(data) {
         const { dispatch } = this.props
+    }
+
+    componentWillMount() {
+        const { dispatch, user } = this.props 
+        dispatch(getProfile(user.data.id))
     }
 
     render() {
@@ -70,4 +76,6 @@ PrimaryContact = reduxForm({
 })(PrimaryContact)
 
 export default connect(state => ({
+    profile: state.profile.data,
+    user: state.user.data
 }))(PrimaryContact)

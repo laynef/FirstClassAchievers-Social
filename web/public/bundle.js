@@ -22513,6 +22513,8 @@ var _reduxForm = __webpack_require__(33);
 
 var _ReduxForms = __webpack_require__(99);
 
+var _profile = __webpack_require__(839);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22531,6 +22533,15 @@ var PrimaryContact = function (_Component) {
     }
 
     _createClass(PrimaryContact, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                user = _props.user;
+
+            dispatch((0, _profile.getProfile)(user.data.id));
+        }
+    }, {
         key: 'render',
         value: function render() {
             var handleSubmit = this.props.handleSubmit;
@@ -22638,7 +22649,10 @@ PrimaryContact = (0, _reduxForm.reduxForm)({
 })(PrimaryContact);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        profile: state.profile.data,
+        user: state.user.data
+    };
 })(PrimaryContact);
 
 /***/ }),
@@ -54924,6 +54938,67 @@ var INITIAL_STATE = {
     error: null,
     data: null
 };
+
+/***/ }),
+/* 839 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.setProfile = setProfile;
+exports.getProfile = getProfile;
+
+var _axios = __webpack_require__(327);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actionTypes = __webpack_require__(210);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+var _settings = __webpack_require__(357);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function setProfile(data) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
+		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile', data).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.LOGIN_SUCCESS,
+				payload: response
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.LOGIN_ERROR,
+				payload: err
+			});
+		});
+	};
+}
+
+function getProfile(id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
+		_axios2.default.get(_settings2.default.API_ROOT + '/api/profile/' + id).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.LOGIN_SUCCESS,
+				payload: response
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.LOGIN_ERROR,
+				payload: err
+			});
+		});
+	};
+}
 
 /***/ })
 /******/ ]);

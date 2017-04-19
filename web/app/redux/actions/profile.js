@@ -22,10 +22,10 @@ export function setProfile(data) {
 	}
 }
 
-export function getProfile() {
+export function getProfile(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGIN_PENDING})
-		axios.get(`${settings.API_ROOT}/api/profile`)
+		axios.get(`${settings.API_ROOT}/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGIN_SUCCESS,

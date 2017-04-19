@@ -8,7 +8,7 @@ module.exports = {
               where: { user_id: req.params.userId }  
             })
             .then(response => {
-                res.status(201).json(response[0])
+                res.status(201).json(response)
             }).catch(err => {
                 res.sendStatus(401)
             })
@@ -33,7 +33,7 @@ module.exports = {
                     where: {user_id: response[0]}
                 })
                 .then(resp => {
-                    res.status(202).send(resp[0])
+                    res.status(202).send(resp)
                 })
             })
         }
