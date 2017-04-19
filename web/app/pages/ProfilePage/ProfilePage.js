@@ -20,11 +20,11 @@ class ProfilePage extends Component {
                 <h1>My Profile</h1>
                 <span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5">
                     <img src="theme/assets/img/profiles/fine.jpg" 
-                                alt="" 
-                                data-src="theme/assets/img/profiles/fine.jpg" 
-                                data-src-retina="theme/assets/img/profiles/fine.jpg" 
-                                width="320" 
-                                height="320"/>
+                        alt="" 
+                        data-src="theme/assets/img/profiles/fine.jpg" 
+                        data-src-retina="theme/assets/img/profiles/fine.jpg" 
+                        width="320" 
+                        height="320"/>
                 </span>
                 <PrimaryContact />
                 <SecondaryContact />
