@@ -23,8 +23,8 @@ describe('Auth', function() {
         done()
     })
 
-    it('Fail Wrong password', function(done) {
-      let data= {email: 'wrong@emasdfs.@#(*DF', password: 'pass1234'}
+    it('Fail Wrong email', function(done) {
+      let data= {email: 'adminasdf@asdf.asdf', password: 'pass1234'}
       axios.post(`http://localhost:3232/auth/local/login`, data)
         .then(response => {
           assert.equal(false).to.be.true
