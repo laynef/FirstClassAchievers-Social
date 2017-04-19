@@ -8707,7 +8707,7 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 		{ className: 'form-group' },
 		_react2.default.createElement(
 			'label',
-			{ 'for': 'name', className: 'col-md-8 control-label' },
+			{ htmlFor: 'name', className: 'col-md-8 control-label' },
 			label
 		),
 		_react2.default.createElement(

@@ -19,7 +19,7 @@ export const renderInput = ({input, label, help='', type, meta: {touched, error}
 
 export const renderTextArea = ({input, label, help='', meta: {touched, error}}) => (
 	<div className="form-group">
-		<label for="name" className="col-md-8 control-label">{label}</label>
+		<label htmlFor="name" className="col-md-8 control-label">{label}</label>
 		<div className="col-md-12">
 			<textarea {...input} className="form-control" id="name" placeholder={help} aria-invalid="false" />
 		</div>
