@@ -22575,9 +22575,9 @@ var PrimaryContact = function (_Component) {
                                     null,
                                     'Traditional Standard Style'
                                 ),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'First Name', type: 'text', name: 'first_name' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Nick Name', type: 'text', name: 'nick_name' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Last Name', type: 'text', name: 'last_name' })
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'First Name', type: 'text', name: 'firstName' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Nick Name', type: 'text', name: 'nickname' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Last Name', type: 'text', name: 'lastName' })
                             )
                         )
                     ),
@@ -22609,13 +22609,6 @@ var PrimaryContact = function (_Component) {
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Position', type: 'text', name: 'position' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' }),
                                 _react2.default.createElement(
-                                    'h5',
-                                    null,
-                                    'Change password'
-                                ),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Change Password', type: 'password', name: 'password' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm New Password', type: 'password', name: 'rePassword' }),
-                                _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
                                     _react2.default.createElement(
@@ -22638,6 +22631,8 @@ var PrimaryContact = function (_Component) {
         key: 'formSubmit',
         value: function formSubmit(data) {
             var dispatch = this.props.dispatch;
+
+            dispatch((0, _profile.setProfile)(data, user.data.id));
         }
     }]);
 
@@ -54966,10 +54961,10 @@ var _settings2 = _interopRequireDefault(_settings);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function setProfile(data) {
+function setProfile(data, id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_PROFILE_PENDING });
-		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile', data).then(function (response) {
+		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile/' + id, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
 				payload: response

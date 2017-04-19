@@ -3,10 +3,10 @@ import actionTypes from '../store/actionTypes'
 import settings from '../config/settings'
 
 
-export function setProfile(data) {
+export function setProfile(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_PROFILE_PENDING})
-		axios.patch(`${settings.API_ROOT}/api/profile`, data)
+		axios.patch(`${settings.API_ROOT}/api/profile/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_PROFILE_SUCCESS,

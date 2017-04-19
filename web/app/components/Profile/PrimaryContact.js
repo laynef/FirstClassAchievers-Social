@@ -9,6 +9,7 @@ class PrimaryContact extends Component {
 
     static formSubmit(data) {
         const { dispatch } = this.props
+        dispatch(setProfile(data, user.data.id))
     }
 
     componentDidMount() {
@@ -32,9 +33,9 @@ class PrimaryContact extends Component {
                             <h5>
                                 Traditional Standard Style
                             </h5>
-                                <Field component={renderInput} label="First Name" type="text" name="first_name"/>
-                                <Field component={renderInput} label="Nick Name" type="text" name="nick_name"/>
-                                <Field component={renderInput} label="Last Name" type="text" name="last_name"/>
+                                <Field component={renderInput} label="First Name" type="text" name="firstName"/>
+                                <Field component={renderInput} label="Nick Name" type="text" name="nickname"/>
+                                <Field component={renderInput} label="Last Name" type="text" name="lastName"/>
                             </div>
                         </div>
                     </div>
@@ -53,9 +54,6 @@ class PrimaryContact extends Component {
                             <Field component={renderInput} label="Zip Code" type="text" name="zipCode"/>
                             <Field component={renderInput} label="Position" type="text" name="position"/>
                             <Field component={renderTextArea} label="Goals" type="text" name="goals"/>
-                            <h5>Change password</h5>
-                            <Field component={renderInput} label="Change Password" type="password" name="password"/>
-                            <Field component={renderInput} label="Confirm New Password" type="password" name="rePassword"/>
                             <div className="row">
                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
