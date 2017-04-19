@@ -55,17 +55,22 @@ router.post('/local/register', (req, res, next) => {
         })
         .then(response => {
             res.sendStatus(201)
-            models.Profile.create({
-                firstName: null,
-                lastName: null,
-                location: null,
-                goals: null,
-                position: null,
-                nickname: null,
-                image: null,
-                zipCode: null,
-                state: null,
-                country: null
+            db.Profile.findAll({
+                where: { user_id: req.body.userId }
+            })
+            .then(profile => {
+                profile.create({
+                    firstName: null,
+                    lastName: null,
+                    location: null,
+                    goals: null,
+                    position: null,
+                    nickname: null,
+                    image: null,
+                    zipCode: null,
+                    state: null,
+                    country: null
+                })
             })
             console.log(`sign up successful`)
         })
