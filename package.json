@@ -26,6 +26,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "pg": "^6.1.2",
+    "react-dropzone": "^3.12.4",
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.5.1",
     "socket.io": "^1.7.3"
