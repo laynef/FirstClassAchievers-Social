@@ -8707,12 +8707,12 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 		{ className: 'form-group' },
 		_react2.default.createElement(
 			'label',
-			{ htmlFor: 'name', className: 'col-md-8 control-label' },
+			{ htmlFor: 'name', className: 'control-label' },
 			label
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'col-md-12' },
+			null,
 			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: help, 'aria-invalid': 'false' }))
 		)
 	);
@@ -54853,7 +54853,14 @@ var SecondaryContact = function (_Component) {
                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'City', type: 'text', name: 'city' }),
                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Zip Code', type: 'text', name: 'zipCode' }),
                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Position', type: 'text', name: 'position' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' })
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' }),
+                            _react2.default.createElement(
+                                'h5',
+                                null,
+                                'Change password'
+                            ),
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Change Password', type: 'password', name: 'password' }),
+                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm New Password', type: 'password', name: 'rePassword' })
                         )
                     )
                 )

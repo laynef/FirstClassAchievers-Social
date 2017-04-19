@@ -24,6 +24,9 @@ class SecondaryContact extends Component {
                         <Field component={renderInput} label="Zip Code" type="text" name="zipCode"/>
                         <Field component={renderInput} label="Position" type="text" name="position"/>
                         <Field component={renderTextArea} label="Goals" type="text" name="goals"/>
+                        <h5>Change password</h5>
+                        <Field component={renderInput} label="Change Password" type="password" name="password"/>
+                        <Field component={renderInput} label="Confirm New Password" type="password" name="rePassword"/>
                     </Form>
                 </div>
             </div>
