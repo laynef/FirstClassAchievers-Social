@@ -2,10 +2,12 @@ const assert = require('assert')
 const axios = require('axios')
 const _ = require('lodash')
 
-let count = 0
+
+let count = new Date.now()
+count = count.replace(/[^0-9.]/g, '')
+
 // Auth
 describe('Auth', function() {
-  count++ // constantly changing
 
 // Login
   describe('Login', function() {
