@@ -3,10 +3,6 @@ const axios = require('axios')
 const port = require('../config/config').port
 
 
-let count = 0
-// let count = new Date.now()
-// count = count.replace(/[^0-9.]/g, '')
-
 // Auth
 describe('Auth', function() {
 
@@ -53,7 +49,7 @@ describe('Auth', function() {
 // Register
   describe('Register', function() {
     it('Register Successful', function(done) {
-      let data= {email: `email${count}@email.com`, password: 'pass1234'}
+      let data= {email: `test@email.com`, password: 'pass1234'}
       axios.post(`http://localhost:${port}/auth/local/register`, data)
         .then(response => {
           assert.equal(true).to.be.true
@@ -92,7 +88,7 @@ describe('Auth', function() {
 // Change Password
   describe('Successful Change Password', function() {
     it('Failed', function(done) {
-      let data = {email: `email${count}@email.com`, password: 'newPass14', newPassword: 'newPass1234'}
+      let data = {email: `test@email.com`, password: 'newPass14', newPassword: 'newPass1234'}
       axios.patch(`http://localhost:${port}/local/change/password`, data)
         .then(response => {
           assert.equal(false).to.be.true
@@ -104,7 +100,7 @@ describe('Auth', function() {
     })
 
     it('Successful Change Password', function(done) {
-      let data = {email: `email${count}@email.com`, password: 'pass1234', newPassword: 'newPass1234'}
+      let data = {email: `test@email.com`, password: 'pass1234', newPassword: 'newPass1234'}
       axios.patch(`http://localhost:${port}/local/change/password`, data)
         .then(response => {
           assert.equal(true).to.be.true
@@ -116,7 +112,7 @@ describe('Auth', function() {
     })
 
     it('Successful Change Password', function(done) {
-      let data = {email: `email${count}@email.com`, password: 'newPass1234', newPassword: 'pass1234'}
+      let data = {email: `test@email.com`, password: 'newPass1234', newPassword: 'pass1234'}
       axios.patch(`http://localhost:${port}/local/change/password`, data)
         .then(response => {
           assert.equal(true).to.be.true

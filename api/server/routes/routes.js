@@ -4,8 +4,8 @@ const models = require('../models/models')
 
 
 // profile
-router.get('/profile', models.profile.get)
-router.post('/profile', models.profile.post)
+router.get('/profile/:userId', models.profile.get)
+router.patch('/profile/:userId', models.profile.patch)
 
 router.get('/testify', models.testify.get)
 router.post('/testify', models.testify.post)
