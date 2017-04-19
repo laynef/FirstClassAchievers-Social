@@ -14,7 +14,7 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
-      location: {
+      city: {
         type: Sequelize.STRING
       },
       goals: {

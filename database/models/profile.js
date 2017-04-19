@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Profile = sequelize.define('Profile', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    location: DataTypes.STRING,
+    city: DataTypes.STRING,
     goals: DataTypes.TEXT,
     position: DataTypes.STRING,
     nickname: DataTypes.STRING,

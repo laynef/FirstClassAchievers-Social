@@ -22604,7 +22604,9 @@ var PrimaryContact = function (_Component) {
                                     null,
                                     'Traditional Standard Style'
                                 ),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'City', type: 'text', name: 'city' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'City', type: 'text', name: 'location' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'State', type: 'text', name: 'state' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Country', type: 'text', name: 'country' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Zip Code', type: 'text', name: 'zipCode' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Position', type: 'text', name: 'position' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' }),
@@ -22630,7 +22632,9 @@ var PrimaryContact = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var dispatch = this.props.dispatch;
+            var _props2 = this.props,
+                dispatch = _props2.dispatch,
+                user = _props2.user;
 
             dispatch((0, _profile.setProfile)(data, user.data.id));
         }

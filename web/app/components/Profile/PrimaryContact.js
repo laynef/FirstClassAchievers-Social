@@ -8,7 +8,7 @@ import { getProfile, setProfile } from '../../redux/actions/profile'
 class PrimaryContact extends Component {
 
     static formSubmit(data) {
-        const { dispatch } = this.props
+        const { dispatch, user } = this.props
         dispatch(setProfile(data, user.data.id))
     }
 
@@ -50,7 +50,9 @@ class PrimaryContact extends Component {
                             <h5>
                                 Traditional Standard Style
                             </h5>
-                            <Field component={renderInput} label="City" type="text" name="city"/>
+                            <Field component={renderInput} label="City" type="text" name="location"/>
+                            <Field component={renderInput} label="State" type="text" name="state"/>
+                            <Field component={renderInput} label="Country" type="text" name="country"/>
                             <Field component={renderInput} label="Zip Code" type="text" name="zipCode"/>
                             <Field component={renderInput} label="Position" type="text" name="position"/>
                             <Field component={renderTextArea} label="Goals" type="text" name="goals"/>
