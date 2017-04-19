@@ -98,7 +98,10 @@ router.patch('/local/change/password', (req, res, next) => {
                     })
                         .then(resp => {
                             req.cookies.user = resp
-                            res.sendStatus(202)
+                            User.findAll({
+                                where: {_id: response.id }
+                            })
+                            .then(respond => res.status(202).json(respond))
                         })
                         .catch(errs => {
                             console.log(`Update error`, errs)
