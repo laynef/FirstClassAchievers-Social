@@ -10,12 +10,13 @@ module.exports = function(sequelize, DataTypes) {
     image: DataTypes.TEXT,
     zipCode: DataTypes.STRING,
     state: DataTypes.STRING,
-    country: DataTypes.STRING
+    country: DataTypes.STRING,
+    user_id: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Profile.belongsTo(models.User, {foreignKey: 'profileId', as: 'user'})
+        Profile.belongsTo(models.User, {foreignKey: 'user_id'})
       }
     }
   });
