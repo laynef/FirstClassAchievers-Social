@@ -7,8 +7,16 @@
 #TestimonialPage h1 {
   text-align: center; }
 
+@media screen and (min-width: 992px) {
+  #AboutUsPage {
+    margin-left: 80px; } }
+
 #AboutUsPage h1 {
   text-align: center; }
+
+#AboutUsPage .aboutPanel {
+  height: 375px;
+  margin: 0; }
 
 @media screen and (min-width: 992px) {
   #ProfilePage {
