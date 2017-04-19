@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 
 // reducers
 import userReducer from '../reducers/auth'
+import profileReducer from '../reducers/profile'
 
 
 const reducers = combineReducers({

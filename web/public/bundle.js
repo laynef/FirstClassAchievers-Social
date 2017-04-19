@@ -20689,15 +20689,19 @@ var _auth = __webpack_require__(358);
 
 var _auth2 = _interopRequireDefault(_auth);
 
+var _profile = __webpack_require__(838);
+
+var _profile2 = _interopRequireDefault(_profile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// reducers
 var reducers = (0, _redux.combineReducers)({
     form: _reduxForm.reducer,
     user: _auth2.default,
-    profile: profileReducer
+    profile: _profile2.default
 });
 
-// reducers
 exports.default = reducers;
 
 /***/ }),
@@ -54847,6 +54851,79 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 838 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actionTypes2.default.GET_PROFILE_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.GET_PROFILE_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.GET_PROFILE_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+        case _actionTypes2.default.SET_PROFILE_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.SET_PROFILE_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.SET_PROFILE_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+    }
+
+    return state;
+};
+
+var _actionTypes = __webpack_require__(210);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+    pending: null,
+    error: null,
+    data: null
+};
 
 /***/ })
 /******/ ]);
