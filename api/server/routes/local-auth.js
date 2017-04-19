@@ -1,6 +1,7 @@
 const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
+const Profile = require('../../../database/models/index').Profile
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -54,24 +55,20 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
+            Profile.create({
+                firstName: null,
+                lastName: null,
+                location: null,
+                goals: null,
+                position: null,
+                nickname: null,
+                image: null,
+                zipCode: null,
+                state: null,
+                country: null,
+                user_id: response.dataValues.id
+            })
             res.sendStatus(201)
-            db.Profile.findAll({
-                where: { user_id: req.body.userId }
-            })
-            .then(profile => {
-                profile.create({
-                    firstName: null,
-                    lastName: null,
-                    location: null,
-                    goals: null,
-                    position: null,
-                    nickname: null,
-                    image: null,
-                    zipCode: null,
-                    state: null,
-                    country: null
-                })
-            })
             console.log(`sign up successful`)
         })
         .catch(error => {
