@@ -9,11 +9,11 @@ export const renderReqInput = ({input, label, help='', type, meta: {touched, err
 	</div>
 )
 
-export const renderInput = ({input, label, help='', type, meta: {touched, error}}) => (
+export const renderInput = ({input, label, placeholder='', help='', type, meta: {touched, error}}) => (
 	<div className="form-group">
 		  <label>{label}</label>
 		  <span className="help">{help}</span>
-		  <input {...input} type={type} className="form-control"/>
+		  <input {...input} type={type} placeholder={placeholder} className="form-control"/>
 	</div>
 )
 

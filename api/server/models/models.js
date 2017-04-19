@@ -33,7 +33,7 @@ module.exports = {
                     where: {user_id: response[0]}
                 })
                 .then(resp => {
-                    res.status(202).send(resp)
+                    res.status(202).send(resp[0])
                 })
             })
         }
