@@ -21993,7 +21993,7 @@ var Header = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'dropdown pull-right rightSpacing' },
-                  localStorage['user'] || user && user.data.id ? _react2.default.createElement(
+                  localStorage['user'] || user && user.id ? _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(
@@ -22557,7 +22557,7 @@ var PrimaryContact = function (_Component) {
                 dispatch = _props.dispatch,
                 user = _props.user;
 
-            dispatch((0, _profile.getProfile)(user.data.id));
+            dispatch((0, _profile.getProfile)(user.id));
         }
     }, {
         key: 'render',
@@ -22595,9 +22595,9 @@ var PrimaryContact = function (_Component) {
                                     null,
                                     'Traditional Standard Style'
                                 ),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.firstName, label: 'First Name', type: 'text', name: 'firstName' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.nickname, label: 'Nick Name', type: 'text', name: 'nickname' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.lastName, label: 'Last Name', type: 'text', name: 'lastName' })
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.firstName || '', label: 'First Name', type: 'text', name: 'firstName' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.nickname || '', label: 'Nick Name', type: 'text', name: 'nickname' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.lastName || '', label: 'Last Name', type: 'text', name: 'lastName' })
                             )
                         )
                     ),
@@ -22624,12 +22624,12 @@ var PrimaryContact = function (_Component) {
                                     null,
                                     'Traditional Standard Style'
                                 ),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.city, label: 'City', type: 'text', name: 'city' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.state, label: 'State', type: 'text', name: 'state' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.country, label: 'Country', type: 'text', name: 'country' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.zipCode, label: 'Zip Code', type: 'text', name: 'zipCode' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.data.position, label: 'Position', type: 'text', name: 'position' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, placeholder: profile.data.goals, label: 'Goals', type: 'text', name: 'goals' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.city || '', label: 'City', type: 'text', name: 'city' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.state || '', label: 'State', type: 'text', name: 'state' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.country || '', label: 'Country', type: 'text', name: 'country' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.zipCode || '', label: 'Zip Code', type: 'text', name: 'zipCode' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.position || '', label: 'Position', type: 'text', name: 'position' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, placeholder: profile.goals || '', label: 'Goals', type: 'text', name: 'goals' }),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
@@ -22656,7 +22656,7 @@ var PrimaryContact = function (_Component) {
                 dispatch = _props3.dispatch,
                 user = _props3.user;
 
-            dispatch((0, _profile.setProfile)(data, user.data.id));
+            dispatch((0, _profile.setProfile)(data, user.id));
         }
     }]);
 
@@ -22669,8 +22669,8 @@ PrimaryContact = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        profile: state.profile.data,
-        user: state.user.data
+        profile: state.profile,
+        user: state.user
     };
 })(PrimaryContact);
 

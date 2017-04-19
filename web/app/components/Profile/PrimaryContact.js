@@ -9,12 +9,12 @@ class PrimaryContact extends Component {
 
     static formSubmit(data) {
         const { dispatch, user } = this.props
-        dispatch(setProfile(data, user.data.id))
+        dispatch(setProfile(data, user.id))
     }
 
     componentDidMount() {
         const { dispatch, user } = this.props 
-        dispatch(getProfile(user.data.id))
+        dispatch(getProfile(user.id))
     }
 
     render() {
@@ -33,9 +33,9 @@ class PrimaryContact extends Component {
                             <h5>
                                 Traditional Standard Style
                             </h5>
-                                <Field component={renderInput} placeholder={profile.data.firstName} label="First Name" type="text" name="firstName"/>
-                                <Field component={renderInput} placeholder={profile.data.nickname} label="Nick Name" type="text" name="nickname"/>
-                                <Field component={renderInput} placeholder={profile.data.lastName} label="Last Name" type="text" name="lastName"/>
+                                <Field component={renderInput} placeholder={profile.firstName || ''} label="First Name" type="text" name="firstName"/>
+                                <Field component={renderInput} placeholder={profile.nickname || ''} label="Nick Name" type="text" name="nickname"/>
+                                <Field component={renderInput} placeholder={profile.lastName || ''} label="Last Name" type="text" name="lastName"/>
                             </div>
                         </div>
                     </div>
@@ -50,12 +50,12 @@ class PrimaryContact extends Component {
                             <h5>
                                 Traditional Standard Style
                             </h5>
-                            <Field component={renderInput} placeholder={profile.data.city} label="City" type="text" name="city"/>
-                            <Field component={renderInput} placeholder={profile.data.state} label="State" type="text" name="state"/>
-                            <Field component={renderInput} placeholder={profile.data.country} label="Country" type="text" name="country"/>
-                            <Field component={renderInput} placeholder={profile.data.zipCode} label="Zip Code" type="text" name="zipCode"/>
-                            <Field component={renderInput} placeholder={profile.data.position} label="Position" type="text" name="position"/>
-                            <Field component={renderTextArea} placeholder={profile.data.goals} label="Goals" type="text" name="goals"/>
+                            <Field component={renderInput} placeholder={profile.city || ''} label="City" type="text" name="city"/>
+                            <Field component={renderInput} placeholder={profile.state || ''} label="State" type="text" name="state"/>
+                            <Field component={renderInput} placeholder={profile.country || ''} label="Country" type="text" name="country"/>
+                            <Field component={renderInput} placeholder={profile.zipCode || ''} label="Zip Code" type="text" name="zipCode"/>
+                            <Field component={renderInput} placeholder={profile.position || ''} label="Position" type="text" name="position"/>
+                            <Field component={renderTextArea} placeholder={profile.goals || ''} label="Goals" type="text" name="goals"/>
                             <div className="row">
                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
@@ -76,6 +76,6 @@ PrimaryContact = reduxForm({
 })(PrimaryContact)
 
 export default connect(state => ({
-    profile: state.profile.data,
-    user: state.user.data
+    profile: state.profile,
+    user: state.user
 }))(PrimaryContact)
