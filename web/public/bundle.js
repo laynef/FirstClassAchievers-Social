@@ -8603,7 +8603,7 @@ function login(data) {
 		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/login', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_SUCCESS,
-				payload: response
+				payload: response.data
 			});
 			localStorage.setItem('user', response.data);
 		}).catch(function (err) {
@@ -8621,7 +8621,7 @@ function logout() {
 		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/logout').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGOUT_SUCCESS,
-				payload: response
+				payload: response.data
 			});
 			localStorage.removeItem('user');
 		}).catch(function (err) {
@@ -8639,8 +8639,13 @@ function register(data) {
 		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/register', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_SUCCESS,
-				payload: response
+				payload: response.data
 			});
+			dispatch({
+				type: _actionTypes2.default.LOGIN_SUCCESS,
+				payload: response.data
+			});
+			localStorage.setItem('user', response.data);
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_ERROR,
@@ -23064,7 +23069,7 @@ function setProfile(data, id) {
 		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile/' + id, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
-				payload: response
+				payload: response.data
 			});
 		}).catch(function (err) {
 			dispatch({
@@ -23081,7 +23086,7 @@ function getProfile(id) {
 		_axios2.default.get(_settings2.default.API_ROOT + '/api/profile/' + id).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_PROFILE_SUCCESS,
-				payload: response
+				payload: response.data
 			});
 		}).catch(function (err) {
 			dispatch({

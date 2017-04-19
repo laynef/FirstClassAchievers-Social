@@ -10,7 +10,7 @@ export function setProfile(data, id) {
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_PROFILE_SUCCESS,
-						payload: response
+						payload: response.data
 					})
 				})
 				.catch((err) => {
@@ -29,7 +29,7 @@ export function getProfile(id) {
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_PROFILE_SUCCESS,
-						payload: response
+						payload: response.data
 					})
 				})
 				.catch((err) => {
