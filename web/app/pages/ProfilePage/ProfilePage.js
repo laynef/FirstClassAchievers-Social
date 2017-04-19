@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import PrimaryContact from '../../components/Profile/PrimaryContact'
-import SecondaryContact from '../../components/Profile/SecondaryContact'
 
 
 class ProfilePage extends Component {
@@ -27,7 +26,6 @@ class ProfilePage extends Component {
                         height="320"/>
                 </span>
                 <PrimaryContact />
-                <SecondaryContact />
             </div>
         )
     }

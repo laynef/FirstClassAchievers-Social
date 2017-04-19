@@ -22478,193 +22478,12 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 
 /***/ }),
 /* 350 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(17);
-
-var _reduxForm = __webpack_require__(33);
-
-var _ReduxForms = __webpack_require__(99);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PrimaryContact = function (_Component) {
-    _inherits(PrimaryContact, _Component);
-
-    function PrimaryContact() {
-        _classCallCheck(this, PrimaryContact);
-
-        return _possibleConstructorReturn(this, (PrimaryContact.__proto__ || Object.getPrototypeOf(PrimaryContact)).apply(this, arguments));
-    }
-
-    _createClass(PrimaryContact, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { id: 'PrimaryContact', className: 'col-md-4' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'panel panel-default' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'panel-heading' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'panel-title' },
-                            'About You'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'panel-body' },
-                        _react2.default.createElement(
-                            'h5',
-                            null,
-                            'Traditional Standard Style'
-                        ),
-                        _react2.default.createElement(
-                            _reduxForm.Form,
-                            { role: 'form' },
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'First Name', type: 'text', name: 'first_name' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Nick Name', type: 'text', name: 'nick_name' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Last Name', type: 'text', name: 'last_name' })
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return PrimaryContact;
-}(_react.Component);
-
-PrimaryContact = (0, _reduxForm.reduxForm)({
-    form: 'PrimaryContact'
-})(PrimaryContact);
-
-exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
-})(PrimaryContact);
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected } (60:8)\n\n\u001b[0m \u001b[90m 58 | \u001b[39m\n \u001b[90m 59 | \u001b[39m\u001b[33mPrimaryContact\u001b[39m \u001b[33m=\u001b[39m reduxForm({\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 | \u001b[39m    form\u001b[33m:\u001b[39m \u001b[32m'PrimaryContact'\u001b[39m\n \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 | \u001b[39m})(\u001b[33mPrimaryContact\u001b[39m)\n \u001b[90m 62 | \u001b[39m\n \u001b[90m 63 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m connect(state \u001b[33m=>\u001b[39m ({\u001b[0m\n");
 
 /***/ }),
-/* 351 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(17);
-
-var _reduxForm = __webpack_require__(33);
-
-var _ReduxForms = __webpack_require__(99);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SecondaryContact = function (_Component) {
-    _inherits(SecondaryContact, _Component);
-
-    function SecondaryContact() {
-        _classCallCheck(this, SecondaryContact);
-
-        return _possibleConstructorReturn(this, (SecondaryContact.__proto__ || Object.getPrototypeOf(SecondaryContact)).apply(this, arguments));
-    }
-
-    _createClass(SecondaryContact, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { id: 'SecondaryContact', className: 'col-md-7' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'panel panel-default', id: 'panelSecondary' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'panel-heading' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'panel-title' },
-                            'Contact Info'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'panel-body' },
-                        _react2.default.createElement(
-                            'h5',
-                            null,
-                            'Traditional Standard Style'
-                        ),
-                        _react2.default.createElement(
-                            _reduxForm.Form,
-                            { role: 'form' },
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'City', type: 'text', name: 'city' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Zip Code', type: 'text', name: 'zipCode' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Position', type: 'text', name: 'position' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Goals', type: 'text', name: 'goals' }),
-                            _react2.default.createElement(
-                                'h5',
-                                null,
-                                'Change password'
-                            ),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Change Password', type: 'password', name: 'password' }),
-                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm New Password', type: 'password', name: 'rePassword' })
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return SecondaryContact;
-}(_react.Component);
-
-SecondaryContact = (0, _reduxForm.reduxForm)({
-    form: 'SecondaryContact'
-})(SecondaryContact);
-
-exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
-})(SecondaryContact);
-
-/***/ }),
+/* 351 */,
 /* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22897,10 +22716,6 @@ var _PrimaryContact = __webpack_require__(350);
 
 var _PrimaryContact2 = _interopRequireDefault(_PrimaryContact);
 
-var _SecondaryContact = __webpack_require__(351);
-
-var _SecondaryContact2 = _interopRequireDefault(_SecondaryContact);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22942,8 +22757,7 @@ var ProfilePage = function (_Component) {
                         width: '320',
                         height: '320' })
                 ),
-                _react2.default.createElement(_PrimaryContact2.default, null),
-                _react2.default.createElement(_SecondaryContact2.default, null)
+                _react2.default.createElement(_PrimaryContact2.default, null)
             );
         }
     }]);
