@@ -11,7 +11,7 @@ machine:
 dependencies:
   pre:
     - npm install
-    - npm start
+    - node ./api/server/server.js
 
 general:
   branches:
