@@ -23,3 +23,8 @@
     #ProfilePage #profileImage {
       margin-left: 200px;
       margin-top: 150px; } }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #PrimaryContact {
+    margin-left: -230px;
+    margin-top: 350px; } }

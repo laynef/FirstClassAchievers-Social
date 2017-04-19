@@ -74,7 +74,7 @@ router.patch('/local/change/password', (req, res, next) => {
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
+        bcrypt.compare(req.body.password, response.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({
