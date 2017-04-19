@@ -87,15 +87,43 @@ describe('Auth', function() {
   })
 
 // Change Password
-  // describe('#indexOf()', function() {
-  //   it('should return -1 when the value is not present', function(done) {
-  //     assert.equal(-1, [1,2,3].indexOf(4))
-  //   })
+  describe('Successful Change Password', function() {
+    it('Failed', function(done) {
+      let data = {email: `email${count}@email.com`, password: 'newPass14', newPassword: 'newPass1234'}
+      axios.patch(`http://localhost:3232/local/change/password`, data)
+        .then(response => {
+          assert.equal(false).to.be.true
+        })
+        .catch(err => {
+          assert.equal(true).to.be.true
+        })
+        done()
+    })
 
-  //   it('should return -1 when the value is not present', function(done) {
-  //     assert.equal(-1, [1,2,3].indexOf(4))
-  //   })
-  // })
+    it('Successful Change Password', function(done) {
+      let data = {email: `email${count}@email.com`, password: 'pass1234', newPassword: 'newPass1234'}
+      axios.patch(`http://localhost:3232/local/change/password`, data)
+        .then(response => {
+          assert.equal(true).to.be.true
+        })
+        .catch(err => {
+          assert.equal(false).to.be.true
+        })
+        done()
+    })
+
+    it('Successful Change Password', function(done) {
+      let data = {email: `email${count}@email.com`, password: 'newPass1234', newPassword: 'pass1234'}
+      axios.patch(`http://localhost:3232/local/change/password`, data)
+        .then(response => {
+          assert.equal(true).to.be.true
+        })
+        .catch(err => {
+          assert.equal(false).to.be.true
+        })
+        done()
+    })
+  })
 
 // Logout
   describe('Logout Success', function() {
