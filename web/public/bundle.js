@@ -8697,8 +8697,8 @@ var renderInput = exports.renderInput = function renderInput(_ref2) {
 var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 	var input = _ref3.input,
 	    label = _ref3.label,
-	    _ref3$help = _ref3.help,
-	    help = _ref3$help === undefined ? '' : _ref3$help,
+	    _ref3$placeholder = _ref3.placeholder,
+	    placeholder = _ref3$placeholder === undefined ? '' : _ref3$placeholder,
 	    _ref3$meta = _ref3.meta,
 	    touched = _ref3$meta.touched,
 	    error = _ref3$meta.error;
@@ -8713,7 +8713,7 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 		_react2.default.createElement(
 			'div',
 			null,
-			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: help, 'aria-invalid': 'false' }))
+			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
 		)
 	);
 };

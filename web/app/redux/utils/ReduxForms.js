@@ -17,11 +17,11 @@ export const renderInput = ({input, label, help='', type, meta: {touched, error}
 	</div>
 )
 
-export const renderTextArea = ({input, label,  help='', meta: {touched, error}}) => (
+export const renderTextArea = ({input, label,  placeholder='', meta: {touched, error}}) => (
 	<div className="form-group">
 		<label htmlFor="name" className="control-label">{label}</label>
 		<div>
-			<textarea {...input} className="form-control" id="name" placeholder={help} aria-invalid="false" />
+			<textarea {...input} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
 		</div>
 	</div>
 )
