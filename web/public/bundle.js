@@ -22533,8 +22533,8 @@ var PrimaryContact = function (_Component) {
     }
 
     _createClass(PrimaryContact, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _props = this.props,
                 dispatch = _props.dispatch,
                 user = _props.user;
@@ -54968,15 +54968,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function setProfile(data) {
 	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
+		dispatch({ type: _actionTypes2.default.SET_PROFILE_PENDING });
 		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile', data).then(function (response) {
 			dispatch({
-				type: _actionTypes2.default.LOGIN_SUCCESS,
+				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
 				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
-				type: _actionTypes2.default.LOGIN_ERROR,
+				type: _actionTypes2.default.SET_PROFILE_ERROR,
 				payload: err
 			});
 		});
@@ -54985,15 +54985,15 @@ function setProfile(data) {
 
 function getProfile(id) {
 	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
+		dispatch({ type: _actionTypes2.default.GET_PROFILE_PENDING });
 		_axios2.default.get(_settings2.default.API_ROOT + '/api/profile/' + id).then(function (response) {
 			dispatch({
-				type: _actionTypes2.default.LOGIN_SUCCESS,
+				type: _actionTypes2.default.GET_PROFILE_SUCCESS,
 				payload: response
 			});
 		}).catch(function (err) {
 			dispatch({
-				type: _actionTypes2.default.LOGIN_ERROR,
+				type: _actionTypes2.default.GET_PROFILE_ERROR,
 				payload: err
 			});
 		});

@@ -5,17 +5,17 @@ import settings from '../config/settings'
 
 export function setProfile(data) {
 	return function(dispatch) {
-		dispatch({type: actionTypes.LOGIN_PENDING})
+		dispatch({type: actionTypes.SET_PROFILE_PENDING})
 		axios.patch(`${settings.API_ROOT}/api/profile`, data)
 			.then((response) => {
 					dispatch({
-						type: actionTypes.LOGIN_SUCCESS,
+						type: actionTypes.SET_PROFILE_SUCCESS,
 						payload: response
 					})
 				})
 				.catch((err) => {
 					dispatch({
-						type: actionTypes.LOGIN_ERROR,
+						type: actionTypes.SET_PROFILE_ERROR,
 						payload: err
 					})
 				})			
@@ -24,17 +24,17 @@ export function setProfile(data) {
 
 export function getProfile(id) {
 	return function(dispatch) {
-		dispatch({type: actionTypes.LOGIN_PENDING})
+		dispatch({type: actionTypes.GET_PROFILE_PENDING})
 		axios.get(`${settings.API_ROOT}/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
-						type: actionTypes.LOGIN_SUCCESS,
+						type: actionTypes.GET_PROFILE_SUCCESS,
 						payload: response
 					})
 				})
 				.catch((err) => {
 					dispatch({
-						type: actionTypes.LOGIN_ERROR,
+						type: actionTypes.GET_PROFILE_ERROR,
 						payload: err
 					})
 				})			

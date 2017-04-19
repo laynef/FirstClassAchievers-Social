@@ -11,7 +11,7 @@ class PrimaryContact extends Component {
         const { dispatch } = this.props
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { dispatch, user } = this.props 
         dispatch(getProfile(user.data.id))
     }
