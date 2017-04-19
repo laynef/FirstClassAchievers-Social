@@ -8,7 +8,7 @@ module.exports = {
               where: { user_id: req.params.userId }  
             })
             .then(response => {
-                res.status(201).json(response)
+                res.status(201).json(response[0])
             }).catch(err => {
                 res.sendStatus(401)
             })
@@ -25,7 +25,7 @@ module.exports = {
                 zipCode: req.body.zipCode || null,
                 state: req.body.state || null,
                 country: req.body.country || null
-            }, { 
+            }, {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
@@ -33,7 +33,7 @@ module.exports = {
                     where: {user_id: response[0]}
                 })
                 .then(resp => {
-                    res.status(202).send(resp)
+                    res.status(202).send(resp[0])
                 })
             })
         }
