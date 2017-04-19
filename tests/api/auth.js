@@ -1,6 +1,5 @@
 const assert = require('assert')
 const axios = require('axios')
-const _ = require('lodash')
 const port = require('../config/config').port
 
 
