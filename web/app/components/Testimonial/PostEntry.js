@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 export default class PostEntry extends Component {
 
     render() {
-        const { author, message } = this.props;
+        const { author, message } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>

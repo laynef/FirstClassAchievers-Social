@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { renderReqInput, renderTextArea } from '../../redux/utils/ReduxForms'
+import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { createTestimonials } from '../../redux/actions/testimonial'
 import { getProfile } from '../../redux/actions/profile'
 
@@ -15,7 +15,7 @@ class TestimonialModal extends Component {
             data.author = data.firstName + ' ' + data.lastName
             dispatch(createTestimonials(data))
             $('#testimonial-modal').modal('hide')
-            dispatch(reset('Testimonial Modal'))
+            dispatch(reset('TestimonialModal'))
         }
     }
 
@@ -44,8 +44,8 @@ class TestimonialModal extends Component {
                                     <p className="p-b-10">Help others get jobs</p>
                                     <div className="modal-body">
                                         <Form onSubmit={handleSubmit(TestimonialModal.formSubmit.bind(this))}>
-                                            <Field component={renderReqInput} placeholder={firstName} label="First Name" type="text" name="firstName"/>
-                                            <Field component={renderReqInput} placeholder={lastName} label="Last Name" type="text" name="lastName"/>
+                                            <Field component={renderInput} placeholder={firstName} label="First Name" type="text" name="firstName"/>
+                                            <Field component={renderInput} placeholder={lastName} label="Last Name" type="text" name="lastName"/>
                                             <Field component={renderTextArea} label="Message" type="text" name="message"/>
                                             <div className="row">
                                                 <div className="col-sm-4 m-t-10 sm-m-t-10">
@@ -66,7 +66,7 @@ class TestimonialModal extends Component {
 }
 
 TestimonialModal = reduxForm({
-    form: 'Testimonial Modal'
+    form: 'TestimonialModal'
 })(TestimonialModal)
 
 export default connect(state => ({

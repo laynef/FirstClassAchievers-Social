@@ -28470,8 +28470,8 @@ var TestimonialModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(TestimonialModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, placeholder: firstName, label: 'First Name', type: 'text', name: 'firstName' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, placeholder: lastName, label: 'Last Name', type: 'text', name: 'lastName' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: firstName, label: 'First Name', type: 'text', name: 'firstName' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: lastName, label: 'Last Name', type: 'text', name: 'lastName' }),
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Message', type: 'text', name: 'message' }),
                                             _react2.default.createElement(
                                                 'div',
@@ -28508,7 +28508,7 @@ var TestimonialModal = function (_Component) {
                 data.author = data.firstName + ' ' + data.lastName;
                 dispatch((0, _testimonial.createTestimonials)(data));
                 $('#testimonial-modal').modal('hide');
-                dispatch(reset('Testimonial Modal'));
+                dispatch(reset('TestimonialModal'));
             }
         }
     }]);
@@ -28517,7 +28517,7 @@ var TestimonialModal = function (_Component) {
 }(_react.Component);
 
 TestimonialModal = (0, _reduxForm.reduxForm)({
-    form: 'Testimonial Modal'
+    form: 'TestimonialModal'
 })(TestimonialModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
