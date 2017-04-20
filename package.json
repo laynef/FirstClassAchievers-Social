@@ -1,6 +1,6 @@
 {
   "name": "first-class-achievers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -32,6 +32,7 @@
     "sequelize-cli": "^2.5.1",
     "socket.io": "^1.7.3"
   },
+  "author": "Layne Faler <laynefaler>",
   "scripts": {
     "test": "mocha ./tests/index.js",
     "start": "node ./api/server/server.js"
