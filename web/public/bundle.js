@@ -7281,7 +7281,7 @@ module.exports = ReactCurrentOwner;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.renderTextArea = exports.renderInput = exports.renderReqInput = undefined;
+exports.renderProfileTextArea = exports.renderTextArea = exports.renderInput = exports.renderReqInput = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -7353,6 +7353,30 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 	    _ref3$meta = _ref3.meta,
 	    touched = _ref3$meta.touched,
 	    error = _ref3$meta.error;
+	return _react2.default.createElement(
+		'div',
+		{ className: 'form-group' },
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: 'name', className: 'control-label' },
+			label
+		),
+		_react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
+		)
+	);
+};
+
+var renderProfileTextArea = exports.renderProfileTextArea = function renderProfileTextArea(_ref4) {
+	var input = _ref4.input,
+	    label = _ref4.label,
+	    _ref4$placeholder = _ref4.placeholder,
+	    placeholder = _ref4$placeholder === undefined ? '' : _ref4$placeholder,
+	    _ref4$meta = _ref4.meta,
+	    touched = _ref4$meta.touched,
+	    error = _ref4$meta.error;
 	return _react2.default.createElement(
 		'div',
 		{ className: 'form-group' },
@@ -28105,7 +28129,7 @@ var PrimaryContact = function (_Component) {
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.country, label: 'Country', type: 'text', name: 'country' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.zipCode, label: 'Zip Code', type: 'text', name: 'zipCode' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.position, label: 'Position', type: 'text', name: 'position' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, placeholder: profile.goals, label: 'Goals', type: 'text', name: 'goals' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderProfileTextArea, placeholder: profile.goals, label: 'Goals', type: 'text', name: 'goals' }),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
@@ -28937,8 +28961,7 @@ var TestimonialPage = function (_Component) {
                             { className: 'input-group-addon primary',
                                 'data-toggle': 'modal',
                                 'data-target': '#testimonial-modal' },
-                            _react2.default.createElement('i', { className: 'fa fa-plus' }),
-                            _react2.default.createElement(_TestimonialModal2.default, null)
+                            _react2.default.createElement('i', { className: 'fa fa-plus' })
                         ) : _react2.default.createElement('span', { className: 'input-group-addon' })
                     )
                 ),
@@ -28953,7 +28976,8 @@ var TestimonialPage = function (_Component) {
                             message: entry.message
                         });
                     })
-                )
+                ),
+                user && user.id ? _react2.default.createElement(_TestimonialModal2.default, null) : null
             );
         }
     }]);

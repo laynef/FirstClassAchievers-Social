@@ -21,6 +21,15 @@ export const renderTextArea = ({input, label,  placeholder='', meta: {touched, e
 	<div className="form-group">
 		<label htmlFor="name" className="control-label">{label}</label>
 		<div>
+			<textarea {...input} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
+		</div>
+	</div>
+)
+
+export const renderProfileTextArea = ({input, label,  placeholder='', meta: {touched, error}}) => (
+	<div className="form-group">
+		<label htmlFor="name" className="control-label">{label}</label>
+		<div>
 			<textarea {...input} value={placeholder} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
 		</div>
 	</div>

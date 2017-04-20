@@ -41,7 +41,6 @@ class TestimonialPage extends Component {
                                 data-toggle="modal"
                                 data-target="#testimonial-modal">
                                 <i className="fa fa-plus"></i>
-                                <TestimonialModal />
                             </span>
                         ) : (
                             <span className="input-group-addon" />
@@ -58,6 +57,7 @@ class TestimonialPage extends Component {
                         />
                     ))}
                 </div>
+                {(user && user.id) ? (<TestimonialModal />) : null}
             </div>
         )
     }

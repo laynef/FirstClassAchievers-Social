@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
+import { renderInput, renderProfileTextArea } from '../../redux/utils/ReduxForms'
 import { getProfile, setProfile } from '../../redux/actions/profile'
 
 
@@ -56,7 +56,7 @@ class PrimaryContact extends Component {
                             <Field component={renderInput} placeholder={profile.country} label="Country" type="text" name="country"/>
                             <Field component={renderInput} placeholder={profile.zipCode} label="Zip Code" type="text" name="zipCode"/>
                             <Field component={renderInput} placeholder={profile.position} label="Position" type="text" name="position"/>
-                            <Field component={renderTextArea} placeholder={profile.goals} label="Goals" type="text" name="goals"/>
+                            <Field component={renderProfileTextArea} placeholder={profile.goals} label="Goals" type="text" name="goals"/>
                             <div className="row">
                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
