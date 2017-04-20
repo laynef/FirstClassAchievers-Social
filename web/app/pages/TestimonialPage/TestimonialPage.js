@@ -14,8 +14,9 @@ class TestimonialPage extends Component {
     }
 
     render() {
-        const { user, testimonial } = this.props;
+        const { user, testimonial, search } = this.props;
         if (!testimonial) return null
+        let regex = new RegExp(search, 'ig')
         return (
             <div id="TestimonialPage">
                 <h1>Real Testimonials</h1>
@@ -39,7 +40,9 @@ class TestimonialPage extends Component {
                     </div>
                 </div>
                 <div id="testimonial-background" className="col-sm-12">
-                    {testimonial.map((entry, i) => (
+                    {testimonial
+                        .filter(e => regex.match(e.author))
+                        .map((entry, i) => (
                         <PostEntry key={i}
                             author={entry.author}
                             message={entry.message}
@@ -59,5 +62,6 @@ TestimonialPage = reduxForm({
 
 export default connect(state => ({
     user: state.user.data,
-    testimonial: state.testimonial.data
+    testimonial: state.testimonial.data,
+    search: state.testimonial.search
 }))(TestimonialPage)

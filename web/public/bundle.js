@@ -15147,64 +15147,10 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 /* 231 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.setProfile = setProfile;
-exports.getProfile = getProfile;
-
-var _axios = __webpack_require__(145);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _actionTypes = __webpack_require__(77);
-
-var _actionTypes2 = _interopRequireDefault(_actionTypes);
-
-var _settings = __webpack_require__(148);
-
-var _settings2 = _interopRequireDefault(_settings);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function setProfile(data, id) {
-	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.SET_PROFILE_PENDING });
-		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile/' + id, data).then(function (response) {
-			dispatch({
-				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
-				payload: response.data
-			});
-		}).catch(function (err) {
-			dispatch({
-				type: _actionTypes2.default.SET_PROFILE_ERROR,
-				payload: err
-			});
-		});
-	};
-}
-
-function getProfile(id) {
-	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.GET_PROFILE_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/api/profile/' + id).then(function (response) {
-			dispatch({
-				type: _actionTypes2.default.GET_PROFILE_SUCCESS,
-				payload: response.data
-			});
-		}).catch(function (err) {
-			dispatch({
-				type: _actionTypes2.default.GET_PROFILE_ERROR,
-				payload: err
-			});
-		});
-	};
-}
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected { (44:7)\n\n\u001b[0m \u001b[90m 42 | \u001b[39m}\n \u001b[90m 43 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 | \u001b[39m\u001b[36mexport\u001b[39m \n \u001b[90m    | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 232 */
