@@ -7281,7 +7281,7 @@ module.exports = ReactCurrentOwner;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.renderProfileTextArea = exports.renderTextArea = exports.renderInput = exports.renderReqInput = undefined;
+exports.renderTextArea = exports.renderInput = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -7291,9 +7291,11 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var renderReqInput = exports.renderReqInput = function renderReqInput(_ref) {
+var renderInput = exports.renderInput = function renderInput(_ref) {
 	var input = _ref.input,
 	    label = _ref.label,
+	    _ref$placeholder = _ref.placeholder,
+	    placeholder = _ref$placeholder === undefined ? '' : _ref$placeholder,
 	    _ref$help = _ref.help,
 	    help = _ref$help === undefined ? '' : _ref$help,
 	    type = _ref.type,
@@ -7313,70 +7315,18 @@ var renderReqInput = exports.renderReqInput = function renderReqInput(_ref) {
 			{ className: 'help' },
 			help
 		),
-		_react2.default.createElement('input', _extends({}, input, { type: type, className: 'form-control', required: true }))
+		_react2.default.createElement('input', _extends({}, input, { type: type, placeholder: placeholder, className: 'form-control' }))
 	);
 };
 
-var renderInput = exports.renderInput = function renderInput(_ref2) {
+var renderTextArea = exports.renderTextArea = function renderTextArea(_ref2) {
 	var input = _ref2.input,
 	    label = _ref2.label,
 	    _ref2$placeholder = _ref2.placeholder,
 	    placeholder = _ref2$placeholder === undefined ? '' : _ref2$placeholder,
-	    _ref2$help = _ref2.help,
-	    help = _ref2$help === undefined ? '' : _ref2$help,
-	    type = _ref2.type,
 	    _ref2$meta = _ref2.meta,
 	    touched = _ref2$meta.touched,
 	    error = _ref2$meta.error;
-	return _react2.default.createElement(
-		'div',
-		{ className: 'form-group' },
-		_react2.default.createElement(
-			'label',
-			null,
-			label
-		),
-		_react2.default.createElement(
-			'span',
-			{ className: 'help' },
-			help
-		),
-		_react2.default.createElement('input', _extends({}, input, { type: type, value: placeholder, placeholder: placeholder, className: 'form-control' }))
-	);
-};
-
-var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
-	var input = _ref3.input,
-	    label = _ref3.label,
-	    _ref3$placeholder = _ref3.placeholder,
-	    placeholder = _ref3$placeholder === undefined ? '' : _ref3$placeholder,
-	    _ref3$meta = _ref3.meta,
-	    touched = _ref3$meta.touched,
-	    error = _ref3$meta.error;
-	return _react2.default.createElement(
-		'div',
-		{ className: 'form-group' },
-		_react2.default.createElement(
-			'label',
-			{ htmlFor: 'name', className: 'control-label' },
-			label
-		),
-		_react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
-		)
-	);
-};
-
-var renderProfileTextArea = exports.renderProfileTextArea = function renderProfileTextArea(_ref4) {
-	var input = _ref4.input,
-	    label = _ref4.label,
-	    _ref4$placeholder = _ref4.placeholder,
-	    placeholder = _ref4$placeholder === undefined ? '' : _ref4$placeholder,
-	    _ref4$meta = _ref4.meta,
-	    touched = _ref4$meta.touched,
-	    error = _ref4$meta.error;
 	return _react2.default.createElement(
 		'div',
 		{ className: 'form-group' },
@@ -27669,8 +27619,8 @@ var LoginModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(LoginModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Email', type: 'email', name: 'email' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Password', type: 'password', name: 'password' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
@@ -27807,9 +27757,9 @@ var SignUpModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(SignUpModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Email', type: 'email', name: 'email' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Password', type: 'password', name: 'password' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderReqInput, label: 'Confirm Password', type: 'password', name: 'repassword' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
+                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Confirm Password', type: 'password', name: 'repassword' }),
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
@@ -28129,7 +28079,7 @@ var PrimaryContact = function (_Component) {
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.country, label: 'Country', type: 'text', name: 'country' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.zipCode, label: 'Zip Code', type: 'text', name: 'zipCode' }),
                                 _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: profile.position, label: 'Position', type: 'text', name: 'position' }),
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderProfileTextArea, placeholder: profile.goals, label: 'Goals', type: 'text', name: 'goals' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, placeholder: profile.goals, label: 'Goals', type: 'text', name: 'goals' }),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
