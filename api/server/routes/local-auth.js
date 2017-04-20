@@ -58,7 +58,7 @@ router.post('/local/register', (req, res, next) => {
             Profile.create({
                 firstName: null,
                 lastName: null,
-                location: null,
+                city: null,
                 goals: null,
                 position: null,
                 nickname: null,

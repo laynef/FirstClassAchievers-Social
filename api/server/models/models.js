@@ -18,7 +18,7 @@ module.exports = {
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                location: req.body.location,
+                city: req.body.city,
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
