@@ -28240,7 +28240,8 @@ var ProfileImageModal = function (_Component) {
                                                     'span',
                                                     null,
                                                     'Drop image to upload or CLICK'
-                                                )
+                                                ),
+                                                _react2.default.createElement('img', { src: 'theme/assets/img/default-image.png' })
                                             )
                                         )
                                     )
