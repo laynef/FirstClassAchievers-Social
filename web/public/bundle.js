@@ -10229,7 +10229,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var settings = {
-	API_ROOT: 'http://localhost:3232'
+	API_ROOT: 'http://localhost:3214'
 };
 
 exports.default = settings;
@@ -27912,29 +27912,6 @@ var SideMenu = function (_Component) {
                   'span',
                   { className: 'icon-thumbnail ' },
                   _react2.default.createElement('i', { className: 'pg-social' })
-                )
-              ),
-              _react2.default.createElement(
-                'li',
-                { className: '' },
-                _react2.default.createElement(
-                  _reactRouter.Link,
-                  { to: '/about' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'title' },
-                    'About'
-                  ),
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'details' },
-                    'Meet liked minds'
-                  )
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'icon-thumbnail' },
-                  _react2.default.createElement('i', { className: 'pg-grid' })
                 )
               )
             ),
