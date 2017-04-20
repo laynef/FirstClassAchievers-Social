@@ -33,13 +33,15 @@ class SideMenu extends Component {
                         </Link>
                         <span className="icon-thumbnail "><i className="pg-social"></i></span>
                       </li>
+                      {/*
                       <li className="">
                         <Link to="/about">
                           <span className="title">About</span>
                           <span className="details">Meet liked minds</span>
                         </Link>
                         <span className="icon-thumbnail"><i className="pg-grid"></i></span>
-                      </li>
+                      </li> 
+                    */}
                     </ul>
                     <div className="clearfix"></div>
                   </div>
