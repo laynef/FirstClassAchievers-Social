@@ -7388,7 +7388,7 @@ var renderProfileTextArea = exports.renderProfileTextArea = function renderProfi
 		_react2.default.createElement(
 			'div',
 			null,
-			_react2.default.createElement('textarea', _extends({}, input, { value: placeholder, className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
+			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
 		)
 	);
 };
@@ -28154,8 +28154,18 @@ var PrimaryContact = function (_Component) {
         value: function formSubmit(data) {
             var _props3 = this.props,
                 dispatch = _props3.dispatch,
-                user = _props3.user;
+                user = _props3.user,
+                profile = _props3.profile;
 
+            data.firstName = data.firstName || profile.firstName;
+            data.lastName = data.lastName || profile.lastName;
+            data.nickname = data.nickname || profile.nickname;
+            data.city = data.city || profile.city;
+            data.state = data.state || profile.state;
+            data.country = data.country || profile.country;
+            data.zipCode = data.zipCode || profile.zipCode;
+            data.position = data.position || profile.position;
+            data.goals = data.goals || profile.goals;
             dispatch((0, _profile.setProfile)(data, user.id));
         }
     }]);

@@ -30,7 +30,7 @@ export const renderProfileTextArea = ({input, label,  placeholder='', meta: {tou
 	<div className="form-group">
 		<label htmlFor="name" className="control-label">{label}</label>
 		<div>
-			<textarea {...input} value={placeholder} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
+			<textarea {...input} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
 		</div>
 	</div>
 )

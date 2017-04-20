@@ -8,7 +8,16 @@ import { getProfile, setProfile } from '../../redux/actions/profile'
 class PrimaryContact extends Component {
 
     static formSubmit(data) {
-        const { dispatch, user } = this.props
+        const { dispatch, user, profile } = this.props
+        data.firstName = data.firstName || profile.firstName
+        data.lastName = data.lastName || profile.lastName
+        data.nickname = data.nickname || profile.nickname
+        data.city = data.city || profile.city
+        data.state = data.state || profile.state
+        data.country = data.country || profile.country
+        data.zipCode = data.zipCode || profile.zipCode
+        data.position = data.position || profile.position
+        data.goals = data.goals || profile.goals
         dispatch(setProfile(data, user.id))
     }
 
