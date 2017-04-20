@@ -29,10 +29,7 @@ class ProfileImageModal extends Component {
                                     <div className="modal-body">
                                         <Dropzone onDrop={this.dropHandler.bind(this)} multiple={false} className="dropzone-react">
                                             <div className="dropzone-react-message">
-                                                <i className="icon-images2 dropzone-react-icon"/>
-                                                <span>Drop image to upload
-                                                    <div className="dropzone-react-message-sub">or CLICK</div>
-                                                </span>
+                                                <span>Drop image to upload or CLICK</span>
                                             </div>
                                         </Dropzone>
                                     </div>

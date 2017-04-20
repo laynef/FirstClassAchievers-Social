@@ -55110,16 +55110,10 @@ var ProfileImageModal = function (_Component) {
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'dropzone-react-message' },
-                                                _react2.default.createElement('i', { className: 'icon-images2 dropzone-react-icon' }),
                                                 _react2.default.createElement(
                                                     'span',
                                                     null,
-                                                    'Drop image to upload',
-                                                    _react2.default.createElement(
-                                                        'div',
-                                                        { className: 'dropzone-react-message-sub' },
-                                                        'or CLICK'
-                                                    )
+                                                    'Drop image to upload or CLICK'
                                                 )
                                             )
                                         )
