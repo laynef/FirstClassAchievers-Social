@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
 import TestimonialModal from '../../components/Testimonial/TestimonialModal'
+import PostEntry from '../../components/Testimonial/PostEntry'
 
 
 class TestimonialPage extends Component {
@@ -13,7 +14,8 @@ class TestimonialPage extends Component {
     }
 
     render() {
-        const { user } = this.props;
+        const { user, testimonial } = this.props;
+        if (!testimonial) return null
         return (
             <div id="TestimonialPage">
                 <h1>Real Testimonials</h1>
@@ -37,7 +39,12 @@ class TestimonialPage extends Component {
                     </div>
                 </div>
                 <div id="testimonial-background" className="col-sm-12">
-                    actions
+                    {testimonial.map((entry, i) => (
+                        <PostEntry key={i}
+                            author={entry.author}
+                            message={entry.message}
+                        />
+                    ))}
                 </div>
                 <TestimonialModal />
             </div>

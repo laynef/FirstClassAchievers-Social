@@ -28543,6 +28543,10 @@ var _TestimonialModal = __webpack_require__(878);
 
 var _TestimonialModal2 = _interopRequireDefault(_TestimonialModal);
 
+var _PostEntry = __webpack_require__(879);
+
+var _PostEntry2 = _interopRequireDefault(_PostEntry);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28570,8 +28574,11 @@ var TestimonialPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var user = this.props.user;
+            var _props = this.props,
+                user = _props.user,
+                testimonial = _props.testimonial;
 
+            if (!testimonial) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'TestimonialPage' },
@@ -28604,7 +28611,12 @@ var TestimonialPage = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'testimonial-background', className: 'col-sm-12' },
-                    'actions'
+                    testimonial.map(function (entry, i) {
+                        return _react2.default.createElement(_PostEntry2.default, { key: i,
+                            author: entry.author,
+                            message: entry.message
+                        });
+                    })
                 ),
                 _react2.default.createElement(_TestimonialModal2.default, null)
             );
@@ -60830,6 +60842,105 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         profile: state.profile.data
     };
 })(TestimonialModal);
+
+/***/ }),
+/* 879 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(17);
+
+var _reduxForm = __webpack_require__(34);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PostEntry = function (_Component) {
+    _inherits(PostEntry, _Component);
+
+    function PostEntry() {
+        _classCallCheck(this, PostEntry);
+
+        return _possibleConstructorReturn(this, (PostEntry.__proto__ || Object.getPrototypeOf(PostEntry)).apply(this, arguments));
+    }
+
+    _createClass(PostEntry, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                author = _props.author,
+                message = _props.message;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'PostEntry' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
+                    _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'card-header clearfix' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'user-pic' },
+                            _react2.default.createElement('img', { alt: 'Profile Image',
+                                width: '122', height: '122',
+                                'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
+                                'data-src': 'theme/assets/img/profiles/fine.jpg',
+                                src: 'theme/assets/img/profiles/fine.jpg' })
+                        ),
+                        _react2.default.createElement(
+                            'h5',
+                            null,
+                            author
+                        ),
+                        _react2.default.createElement(
+                            'h6',
+                            null,
+                            'Created posted',
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'location semi-bold' },
+                                _react2.default.createElement('i', { className: 'icon-map' })
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'card-description' },
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            message
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return PostEntry;
+}(_react.Component);
+
+exports.default = PostEntry;
 
 /***/ })
 /******/ ]);
