@@ -41,9 +41,9 @@ module.exports = {
     },
     testify: {
         get: (req, res, next) => {
-            Testimonial.findAll({})
+            Testimonial.findAll()
                 .then(response => {
-                    res.status(200).send(response[0])
+                    res.status(200).send(response)
                 })
         },
         post: (req, res, next) => {
@@ -56,7 +56,7 @@ module.exports = {
             .then(response => {
                 Testimonial.findAll({})
                     .then(resp => {
-                        res.status(200).send(resp[0])
+                        res.status(200).send(resp)
                     })
             })
         }
