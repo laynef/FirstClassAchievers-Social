@@ -6,13 +6,6 @@ import { Link } from 'react-router'
 
 class SideMenu extends Component {
 
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
-    }
-
     render() {
         return (
             <div id="SideMenuComponent">

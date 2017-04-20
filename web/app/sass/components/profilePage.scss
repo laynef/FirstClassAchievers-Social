@@ -1,9 +1,39 @@
 #ProfilePage {
-	// @media screen and (min-width: 992px) {
-	// 	margin-left: 80px;
-	// }
+	@media screen and (min-width: 992px) {
+		margin-left: 80px;
+	}
 
 	h1 {
 		text-align: center;
+	}
+
+	#profileImage {
+		transform: scale(10);
+		@media screen and (min-width: 992px) {
+			margin-left: 200px;
+			margin-top: 150px;
+		}
+	}
+
+	#PrimaryContact {
+		@media screen and (min-width: 992px) {
+			margin-left: -230px;
+			margin-top: 350px;
+		}
+	}
+
+	#SecondaryContact {
+		@media screen and (min-width: 992px) {
+			margin-left: 400px;
+			margin-top: -680px;
+		}
+
+		#panelSecondary {
+			height: 660px;
+		}
+
+		textarea {
+			height: 100px;
+		}
 	}
 }

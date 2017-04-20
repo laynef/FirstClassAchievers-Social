@@ -11,7 +11,7 @@ class LoginModal extends Component {
         const { dispatch, reset } = this.props
         dispatch(login(data))
         $('#login-modal').modal('hide')
-        dispatch(reset('Login Modal'))
+        dispatch(reset('LoginModal'))
     }
 
     render() {
@@ -49,7 +49,7 @@ class LoginModal extends Component {
 }
 
 LoginModal = reduxForm({
-    form: 'Login Modal'
+    form: 'LoginModal'
 })(LoginModal)
 
 export default connect(state => ({

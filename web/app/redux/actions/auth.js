@@ -10,9 +10,8 @@ export function login(data) {
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGIN_SUCCESS,
-						payload: response
+						payload: response.data
 					})
-					localStorage.setItem('user', response.data)
 				})
 				.catch((err) => {
 					dispatch({
@@ -30,9 +29,8 @@ export function logout() {
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGOUT_SUCCESS,
-						payload: response
+						payload: response.data
 					})
-					localStorage.removeItem('user')
 				})
 				.catch((err) => {
 					dispatch({
@@ -50,8 +48,9 @@ export function register(data) {
 			.then((response) => {
 					dispatch({
 						type: actionTypes.REGISTER_SUCCESS,
-						payload: response
+						payload: response.data
 					})
+					dispatch(login(data))
 				})
 				.catch((err) => {
 					dispatch({

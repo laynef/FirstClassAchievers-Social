@@ -4,11 +4,33 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.16.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "bunyan": "^1.8.5",
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
-  },
-  "devDependencies": {
-    "mocha": "^3.2.0"
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "express-favicon": "^2.0.0",
+    "express-flash": "0.0.2",
+    "express-session": "^1.14.2",
+    "font-awesome": "^4.7.0",
+    "jsonwebtoken": "^7.3.0",
+    "mocha": "^3.2.0",
+    "morgan": "^1.8.1",
+    "nodemailer": "^3.1.4",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "pg": "^6.1.2",
+    "react-dropzone": "^3.12.4",
+    "sequelize": "^3.30.2",
+    "sequelize-cli": "^2.5.1",
+    "socket.io": "^1.7.3"
   },
   "author": "Layne Faler <laynefaler>",
   "scripts": {
@@ -20,7 +42,7 @@
     "url": "git+https://github.com/laynefaler/FirstClassAchievers.git"
   },
   "keywords": [],
-  "author": "Layne Faler",
+  "author": "Layne Faler <laynefaler>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/laynefaler/FirstClassAchievers/issues"

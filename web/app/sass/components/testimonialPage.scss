@@ -1,9 +1,18 @@
 #TestimonialPage {
-  // @media screen and (min-width: 992px) {
-	// 	margin-left: 80px;
-	// }
+  @media screen and (min-width: 992px) {
+		margin-left: 80px;
+	}
 
 	h1 {
 		text-align: center;
 	}
+
+	#testimonial-background {
+		margin: 40px 15px;
+		height: 580px;
+		width: 97.5%;
+		background-color: white;
+		overflow: scroll;
+	}
+	
 }

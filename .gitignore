@@ -4,5 +4,6 @@ web/public/theme/pages
 
 api/config
 database/config
+tests/config
 
 node_modules
