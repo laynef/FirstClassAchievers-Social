@@ -1,5 +1,6 @@
 // Interact with database on the models functions here
 const Profile = require('../../../database/models/index').Profile
+const Testimonial = require('../../../database/models/index').Testimonial
 
 module.exports = {
     profile: {
@@ -40,14 +41,24 @@ module.exports = {
     },
     testify: {
         get: (req, res, next) => {
-            /*
-             Interact with database
-            */
+            Testimonial.findAll({})
+                .then(response => {
+                    res.status(200).send(response[0])
+                })
         },
         post: (req, res, next) => {
-            /*
-             Interact with database
-            */
+            Testimonial.create({
+                author: req.body.author,
+                message: req.body.message,
+                user_id: req.body.userId,
+                likes: 0
+            })
+            .then(response => {
+                Testimonial.findAll({})
+                    .then(resp => {
+                        res.status(200).send(resp[0])
+                    })
+            })
         }
     }
 }
