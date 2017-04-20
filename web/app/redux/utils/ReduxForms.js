@@ -13,7 +13,7 @@ export const renderInput = ({input, label, placeholder='', help='', type, meta: 
 	<div className="form-group">
 		  <label>{label}</label>
 		  <span className="help">{help}</span>
-		  <input {...input} type={type} placeholder={placeholder} className="form-control"/>
+		  <input {...input} type={type} value={placeholder} placeholder={placeholder} className="form-control"/>
 	</div>
 )
 
@@ -21,7 +21,7 @@ export const renderTextArea = ({input, label,  placeholder='', meta: {touched, e
 	<div className="form-group">
 		<label htmlFor="name" className="control-label">{label}</label>
 		<div>
-			<textarea {...input} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
+			<textarea {...input} value={placeholder} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
 		</div>
 	</div>
 )

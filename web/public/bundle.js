@@ -7341,7 +7341,7 @@ var renderInput = exports.renderInput = function renderInput(_ref2) {
 			{ className: 'help' },
 			help
 		),
-		_react2.default.createElement('input', _extends({}, input, { type: type, placeholder: placeholder, className: 'form-control' }))
+		_react2.default.createElement('input', _extends({}, input, { type: type, value: placeholder, placeholder: placeholder, className: 'form-control' }))
 	);
 };
 
@@ -7364,7 +7364,7 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref3) {
 		_react2.default.createElement(
 			'div',
 			null,
-			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
+			_react2.default.createElement('textarea', _extends({}, input, { value: placeholder, className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' }))
 		)
 	);
 };
