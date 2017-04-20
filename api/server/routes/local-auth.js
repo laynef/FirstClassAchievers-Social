@@ -1,6 +1,7 @@
 const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
+const Profile = require('../../../database/models/index').Profile
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -20,6 +21,10 @@ router.get('/local/user', (req, res, next) => {
 })
 
 router.post('/local/login', (req, res, next) => {
+    let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    if (req.body.password.length < 8 && regex.test(req.body.email)) {
+        return res.statusCode(404)
+    }
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
@@ -39,6 +44,10 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
+    let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    if (!req.body.password.length > 0 && regex.test(req.body.email)) {
+        return res.statusCode(404)
+    }
     let salt = bcrypt.genSaltSync(10)
     bcrypt.hash(req.body.password, salt, null, (err, hash) => {
         User.create({
@@ -46,6 +55,19 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
+            Profile.create({
+                firstName: null,
+                lastName: null,
+                city: null,
+                goals: null,
+                position: null,
+                nickname: null,
+                image: null,
+                zipCode: null,
+                state: null,
+                country: null,
+                user_id: response.dataValues.id
+            })
             res.sendStatus(201)
             console.log(`sign up successful`)
         })
@@ -66,7 +88,7 @@ router.patch('/local/change/password', (req, res, next) => {
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
+        bcrypt.compare(req.body.password, response.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({
@@ -76,7 +98,10 @@ router.patch('/local/change/password', (req, res, next) => {
                     })
                         .then(resp => {
                             req.cookies.user = resp
-                            res.sendStatus(202)
+                            User.findAll({
+                                where: {_id: response.id }
+                            })
+                            .then(respond => res.status(202).json(respond))
                         })
                         .catch(errs => {
                             console.log(`Update error`, errs)

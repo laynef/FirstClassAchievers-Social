@@ -14,7 +14,7 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
-      location: {
+      city: {
         type: Sequelize.STRING
       },
       goals: {
@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       zipCode: {
         type: Sequelize.STRING
@@ -45,6 +45,9 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      user_id: {
+        type: Sequelize.INTEGER
       }
     });
   },
