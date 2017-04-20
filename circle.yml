@@ -11,7 +11,7 @@ machine:
 dependencies:
   pre:
     - npm install
-    - npm start
+    # - npm start
 
 general:
   branches:
@@ -21,19 +21,19 @@ general:
       - tests # list of branches to build
       - /feat.*/ # or regexes
 
-test:
-  override:
-    - npm test
+# test:
+#   override:
+#     - npm test
 
 deployment:
   production:
     branch: master
     heroku:
       appname: first-class-achievers
-  staging:
-    branch: dev
-    heroku:
-      appname: first-class-achievers-staging
+  # staging:
+  #   branch: dev
+  #   heroku:
+  #     appname: first-class-achievers-staging
 
 # Deployment URL:
 # http://www.first-class-achievers.herokuapp.com/
