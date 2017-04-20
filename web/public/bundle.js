@@ -27652,7 +27652,7 @@ var LoginModal = function (_Component) {
 
             dispatch((0, _auth.login)(data));
             $('#login-modal').modal('hide');
-            dispatch(reset('Login Modal'));
+            dispatch(reset('LoginModal'));
         }
     }]);
 
@@ -27660,7 +27660,7 @@ var LoginModal = function (_Component) {
 }(_react.Component);
 
 LoginModal = (0, _reduxForm.reduxForm)({
-    form: 'Login Modal'
+    form: 'LoginModal'
 })(LoginModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -27792,7 +27792,7 @@ var SignUpModal = function (_Component) {
             if (data.email && data.password === data.repassword) {
                 dispatch((0, _auth.register)(data));
                 $('#sign-up-modal').modal('hide');
-                dispatch(reset('SignUp Modal'));
+                dispatch(reset('SignUpModal'));
             }
         }
     }]);
@@ -27801,7 +27801,7 @@ var SignUpModal = function (_Component) {
 }(_react.Component);
 
 SignUpModal = (0, _reduxForm.reduxForm)({
-    form: 'SignUp Modal'
+    form: 'SignUpModal'
 })(SignUpModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {

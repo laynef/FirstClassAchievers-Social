@@ -12,7 +12,7 @@ class SignUpModal extends Component {
         if (data.email && data.password === data.repassword) {
             dispatch(register(data))
             $('#sign-up-modal').modal('hide')
-            dispatch(reset('SignUp Modal'))
+            dispatch(reset('SignUpModal'))
         }
     }
 
@@ -56,7 +56,7 @@ class SignUpModal extends Component {
 }
 
 SignUpModal = reduxForm({
-    form: 'SignUp Modal'
+    form: 'SignUpModal'
 })(SignUpModal)
 
 export default connect(state => ({
