@@ -27453,10 +27453,10 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'span',
                         { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                        _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg',
+                        _react2.default.createElement('img', { src: 'theme/assets/img/default-user.png',
                           alt: '',
-                          'data-src': 'theme/assets/img/profiles/fine.jpg',
-                          'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
+                          'data-src': 'theme/assets/img/default-user.png',
+                          'data-src-retina': 'theme/assets/img/default-user.png',
                           width: '32',
                           height: '32' })
                       )
@@ -28241,7 +28241,10 @@ var ProfileImageModal = function (_Component) {
                                                     null,
                                                     'Drop image to upload or CLICK'
                                                 ),
-                                                _react2.default.createElement('img', { src: 'theme/assets/img/default-image.png' })
+                                                _react2.default.createElement('img', { src: 'theme/assets/img/default-product.png',
+                                                    'data-src': 'theme/assets/img/default-product.png',
+                                                    'data-src-retina': 'theme/assets/img/default-product.png'
+                                                })
                                             )
                                         )
                                     )
@@ -28327,9 +28330,9 @@ var PostEntry = function (_Component) {
                             { className: 'user-pic' },
                             _react2.default.createElement('img', { alt: 'Profile Image',
                                 width: '122', height: '122',
-                                'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
-                                'data-src': 'theme/assets/img/profiles/fine.jpg',
-                                src: 'theme/assets/img/profiles/fine.jpg' })
+                                'data-src-retina': 'theme/assets/img/default-user.png',
+                                'data-src': 'theme/assets/img/default-user.png',
+                                src: 'theme/assets/img/default-user.png' })
                         ),
                         _react2.default.createElement(
                             'h5',
@@ -28799,10 +28802,10 @@ var ProfilePage = function (_Component) {
                         className: 'thumbnail-wrapper d32 circular inline m-t-5',
                         'data-toggle': 'modal',
                         'data-target': '#profile-image-modal' },
-                    _react2.default.createElement('img', { src: 'theme/assets/img/profiles/fine.jpg',
+                    _react2.default.createElement('img', { src: 'theme/assets/img/default-user.png',
                         alt: '',
-                        'data-src': 'theme/assets/img/profiles/fine.jpg',
-                        'data-src-retina': 'theme/assets/img/profiles/fine.jpg',
+                        'data-src': 'theme/assets/img/default-user.png',
+                        'data-src-retina': 'theme/assets/img/default-user.png',
                         width: '320',
                         height: '320' })
                 ),
