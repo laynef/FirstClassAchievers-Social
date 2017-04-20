@@ -8,15 +8,22 @@ import PostEntry from '../../components/Testimonial/PostEntry'
 
 class TestimonialPage extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchTerm: ''
+        }
+    }
+
     componentDidMount() {
         const { dispatch } = this.props 
         dispatch(getTestimonials())
     }
 
     render() {
-        const { user, testimonial, search } = this.props;
+        const { user, testimonial } = this.props;
         if (!testimonial) return null
-        let regex = new RegExp(search, 'ig')
+        let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="TestimonialPage">
                 <h1>Real Testimonials</h1>
@@ -25,6 +32,7 @@ class TestimonialPage extends Component {
                         <input type="text" 
                             className="form-control" 
                             id="search-bar" 
+                            onChange={e => this.setState({searchTerm: e.target.value})}
                             placeholder="Search" 
                             aria-required="true" 
                             aria-invalid="true"/>
@@ -33,6 +41,7 @@ class TestimonialPage extends Component {
                                 data-toggle="modal"
                                 data-target="#testimonial-modal">
                                 <i className="fa fa-plus"></i>
+                                <TestimonialModal />
                             </span>
                         ) : (
                             <span className="input-group-addon" />
@@ -41,7 +50,7 @@ class TestimonialPage extends Component {
                 </div>
                 <div id="testimonial-background" className="col-sm-12">
                     {testimonial
-                        .filter(e => regex.match(e.author))
+                        .filter(e => regex.test(e.author) || regex.test(e.message))
                         .map((entry, i) => (
                         <PostEntry key={i}
                             author={entry.author}
@@ -49,7 +58,6 @@ class TestimonialPage extends Component {
                         />
                     ))}
                 </div>
-                <TestimonialModal />
             </div>
         )
     }

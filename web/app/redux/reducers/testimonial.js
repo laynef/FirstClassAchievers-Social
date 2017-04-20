@@ -52,14 +52,6 @@ export default function (state = INITIAL_STATE, action) {
                 pending: null
             } 
 
-        case actionTypes.SEARCH_TESTIMONIALS:
-            return {
-                ...state,
-                error: null,
-                pending: null,
-                search: action.search
-            }
-
     }
     
     return state

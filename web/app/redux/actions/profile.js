@@ -40,7 +40,3 @@ export function getProfile(id) {
 				})			
 	}
 }
-
-export function searchTestimonials(search) {
-    return { type: actionTypes.SEARCH_TESTIMONIALS, search }
-}
