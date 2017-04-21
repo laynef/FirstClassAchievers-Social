@@ -12,19 +12,24 @@ module.exports = {
             })
             .then(response => {
                 let resp = response[0]
-                fs.writeFileSync(
-                    __dirname + '/../../../web/public/image/' + resp.user_id + '.png',
-                    resp.image,
-                    'base64'
-                )
-                resp.image = 'image/' + resp.user_id + '.png'
+                if (resp.image) {
+                    fs.writeFileSync(
+                        __dirname + '/../../../web/public/image/' + resp.user_id + '.png',
+                        resp.image,
+                        'base64'
+                    )
+                    resp.image = 'image/' + resp.user_id + '.png'
+                }
                 res.status(201).json(response[0])
             }).catch(err => {
                 res.sendStatus(401)
             })
         },
         patch: (req, res, next) => {
-            let image = fs.readFileSync(req.body.image).toString('base64')
+            let image = req.body.image
+            if (req.body.image) {
+                image = fs.readFileSync(req.body.image).toString('base64')
+            }
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
