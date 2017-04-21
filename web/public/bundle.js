@@ -22119,10 +22119,10 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'span',
                         { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                        _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "theme/assets/img/default-product.png",
+                        _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
                           alt: '',
-                          'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-product.png",
-                          'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-product.png",
+                          'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                          'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
                           width: '32',
                           height: '32' })
                       )
@@ -22975,9 +22975,9 @@ var PostEntry = function (_Component) {
                             { className: 'user-pic' },
                             _react2.default.createElement('img', { alt: 'Profile Image',
                                 width: '122', height: '122',
-                                'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-product.png",
-                                'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-product.png",
-                                src: profile && profile.image ? profile.image : "theme/assets/img/default-product.png" })
+                                'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                                'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                                src: profile && profile.image ? profile.image : "theme/assets/img/default-user.png" })
                         ),
                         _react2.default.createElement(
                             'h5',
