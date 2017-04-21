@@ -15,9 +15,9 @@ class PostEntry extends Component {
                             <div className="user-pic">
                                 <img alt="Profile Image" 
                                     width="122" height="122" 
-                                    data-src-retina={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"} 
-                                    data-src={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"} 
-                                    src={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"}/>
+                                    data-src-retina={(profile && profile.image) ? profile.image : "theme/assets/img/default-user.png"} 
+                                    data-src={(profile && profile.image) ? profile.image : "theme/assets/img/default-user.png"} 
+                                    src={(profile && profile.image) ? profile.image : "theme/assets/img/default-user.png"}/>
                             </div>
                             <h5>{author}</h5>
                             <h6>Created posted
