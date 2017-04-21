@@ -10,7 +10,7 @@ class ProfileImageModal extends Component {
     dropHandler(file) {
 		const { dispatch, user } = this.props
         let body = {}
-        body.image = file
+        body.image = file[0].preview
         body.user = user.id
 		dispatch(setProfile(body, user.id))
 	}

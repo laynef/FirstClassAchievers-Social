@@ -23992,7 +23992,7 @@ var ProfileImageModal = function (_Component) {
                 user = _props.user;
 
             var body = {};
-            body.image = file;
+            body.image = file[0].preview;
             body.user = user.id;
             dispatch((0, _profile.setProfile)(body, user.id));
         }

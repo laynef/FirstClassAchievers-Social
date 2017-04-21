@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     message: DataTypes.TEXT,
     likes: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    image: DataTypes.BLOB
+    image: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

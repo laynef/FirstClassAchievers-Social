@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     goals: DataTypes.TEXT,
     position: DataTypes.STRING,
     nickname: DataTypes.STRING,
-    image: DataTypes.BLOB,
+    image: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING,
