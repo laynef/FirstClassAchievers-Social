@@ -24322,7 +24322,7 @@ var TestimonialModal = function (_Component) {
             if (data.message || profile) {
                 data.firstName = data.firstName || profile.firstName;
                 data.lastName = data.lastName || profile.lastName;
-                data.userId = user.id;
+                data.userId = profile.user_id;
                 data.image = profile.image;
                 data.author = data.firstName + ' ' + data.lastName;
                 dispatch((0, _testimonial.createTestimonials)(data));

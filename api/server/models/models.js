@@ -54,6 +54,7 @@ module.exports = {
                 author: req.body.author,
                 message: req.body.message,
                 user_id: req.body.userId,
+                image: req.body.image,
                 likes: 0
             })
             .then(response => {

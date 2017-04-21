@@ -13,7 +13,7 @@ class TestimonialModal extends Component {
         if (data.message || profile) {
             data.firstName = data.firstName || profile.firstName
             data.lastName = data.lastName || profile.lastName
-            data.userId = user.id
+            data.userId = profile.user_id
             data.image = profile.image
             data.author = data.firstName + ' ' + data.lastName
             dispatch(createTestimonials(data))
