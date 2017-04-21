@@ -21,10 +21,10 @@ class DetailPage extends Component {
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
                 <span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5">
-                    <img src={profile && profile.image ? profile.image : "theme/assets/img/default-user.png"}
+                    <img src={profile.image ? profile.image : "theme/assets/img/default-user.png"}
                         alt=""
-                        data-src={profile && profile.image ? profile.image : "theme/assets/img/default-user.png"}
-                        data-src-retina={profile && profile.image ? profile.image : "theme/assets/img/default-user.png"}
+                        data-src={profile.image ? profile.image : "theme/assets/img/default-user.png"}
+                        data-src-retina={profile.image ? profile.image : "theme/assets/img/default-user.png"}
                         width="320"
                         height="320"/>
                 </span>

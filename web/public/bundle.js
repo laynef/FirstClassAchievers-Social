@@ -56591,10 +56591,10 @@ var DetailPage = function (_Component) {
                 _react2.default.createElement(
                     'span',
                     { id: 'profileImage', className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                    _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                    _react2.default.createElement('img', { src: profile.image ? profile.image : "theme/assets/img/default-user.png",
                         alt: '',
-                        'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
-                        'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                        'data-src': profile.image ? profile.image : "theme/assets/img/default-user.png",
+                        'data-src-retina': profile.image ? profile.image : "theme/assets/img/default-user.png",
                         width: '320',
                         height: '320' })
                 ),
