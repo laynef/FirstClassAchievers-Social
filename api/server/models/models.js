@@ -1,6 +1,9 @@
 // Interact with database on the models functions here
 const Profile = require('../../../database/models/index').Profile
 const Testimonial = require('../../../database/models/index').Testimonial
+const fs = require('fs')
+const path = require('path')
+
 
 module.exports = {
     profile: {
@@ -51,6 +54,7 @@ module.exports = {
                 author: req.body.author,
                 message: req.body.message,
                 user_id: req.body.userId,
+                image: req.body.image,
                 likes: 0
             })
             .then(response => {

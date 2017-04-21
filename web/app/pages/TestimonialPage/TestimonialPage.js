@@ -54,6 +54,7 @@ class TestimonialPage extends Component {
                         <PostEntry key={i}
                             author={entry.author}
                             message={entry.message}
+                            image={entry.image}
                         />
                     ))}
                 </div>
