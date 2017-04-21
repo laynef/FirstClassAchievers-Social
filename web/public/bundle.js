@@ -23994,7 +23994,7 @@ var ProfileImageModal = function (_Component) {
             var body = {};
             body.image = file;
             body.user = user.id;
-            dispatch((0, _profile.setProfile)(body));
+            dispatch((0, _profile.setProfile)(body, user.id));
         }
     }, {
         key: 'render',

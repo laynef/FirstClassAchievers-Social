@@ -12,7 +12,7 @@ class ProfileImageModal extends Component {
         let body = {}
         body.image = file
         body.user = user.id
-		dispatch(setProfile(body))
+		dispatch(setProfile(body, user.id))
 	}
 
     render() {
