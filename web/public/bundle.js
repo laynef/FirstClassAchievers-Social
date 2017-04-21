@@ -24124,11 +24124,8 @@ var PostEntry = function (_Component) {
             var _props = this.props,
                 author = _props.author,
                 message = _props.message,
-                testimonial = _props.testimonial;
+                image = _props.image;
 
-            var entry = testimonial.filter(function (ele) {
-                return ele.author == author;
-            });
             return _react2.default.createElement(
                 'div',
                 { className: 'PostEntry' },
@@ -24144,9 +24141,9 @@ var PostEntry = function (_Component) {
                             { className: 'user-pic' },
                             _react2.default.createElement('img', { alt: 'Profile Image',
                                 width: '122', height: '122',
-                                'data-src-retina': entry && entry.image ? entry.image : "theme/assets/img/default-user.png",
-                                'data-src': entry && entry.image ? entry.image : "theme/assets/img/default-user.png",
-                                src: entry && entry.image ? entry.image : "theme/assets/img/default-user.png" })
+                                'data-src-retina': image ? image : "theme/assets/img/default-user.png",
+                                'data-src': image ? image : "theme/assets/img/default-user.png",
+                                src: image ? image : "theme/assets/img/default-user.png" })
                         ),
                         _react2.default.createElement(
                             'h5',
@@ -24181,11 +24178,7 @@ var PostEntry = function (_Component) {
     return PostEntry;
 }(_react.Component);
 
-exports.default = (0, _reactRedux.connect)(function (state) {
-    return {
-        testimonial: state.testimonial.data
-    };
-})(PostEntry);
+exports.default = PostEntry;
 
 /***/ }),
 /* 392 */
@@ -24247,6 +24240,7 @@ var TestimonialModal = function (_Component) {
                 handleSubmit = _props2.handleSubmit,
                 profile = _props2.profile;
 
+            if (!profile) return null;
             var firstName = profile ? profile.firstName : '';
             var lastName = profile ? profile.lastName : '';
             return _react2.default.createElement(
@@ -24323,10 +24317,9 @@ var TestimonialModal = function (_Component) {
             var _props3 = this.props,
                 dispatch = _props3.dispatch,
                 reset = _props3.reset,
-                user = _props3.user,
                 profile = _props3.profile;
 
-            if (data.message) {
+            if (data.message || profile) {
                 data.firstName = data.firstName || profile.firstName;
                 data.lastName = data.lastName || profile.lastName;
                 data.userId = user.id;
@@ -24763,7 +24756,8 @@ var TestimonialPage = function (_Component) {
                     }).map(function (entry, i) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
-                            message: entry.message
+                            message: entry.message,
+                            image: entry.image
                         });
                     })
                 ),

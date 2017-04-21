@@ -4,11 +4,10 @@ import { Field, reduxForm } from 'redux-form'
 import find from 'lodash/find'
 
 
-class PostEntry extends Component {
+export default class PostEntry extends Component {
 
     render() {
-        const { author, message, testimonial } = this.props
-        let entry = testimonial.filter(ele => ele.author == author)
+        const { author, message, image } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -17,9 +16,9 @@ class PostEntry extends Component {
                             <div className="user-pic">
                                 <img alt="Profile Image"
                                     width="122" height="122" 
-                                    data-src-retina={(entry && entry.image) ? entry.image : "theme/assets/img/default-user.png"} 
-                                    data-src={(entry && entry.image) ? entry.image : "theme/assets/img/default-user.png"} 
-                                    src={(entry && entry.image) ? entry.image : "theme/assets/img/default-user.png"}/>
+                                    data-src-retina={image ? image : "theme/assets/img/default-user.png"} 
+                                    data-src={image ? image : "theme/assets/img/default-user.png"} 
+                                    src={image ? image : "theme/assets/img/default-user.png"}/>
                             </div>
                             <h5>{author}</h5>
                             <h6>Created posted
@@ -37,7 +36,3 @@ class PostEntry extends Component {
     }
 
 }
-
-export default connect(state => ({
-    testimonial: state.testimonial.data
-}))(PostEntry)
