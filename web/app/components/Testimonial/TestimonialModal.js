@@ -9,9 +9,10 @@ import { getProfile } from '../../redux/actions/profile'
 class TestimonialModal extends Component {
 
     static formSubmit(data) {
-        const { dispatch, reset, user } = this.props
+        const { dispatch, reset, user, profile } = this.props
         if (data.message) {
             data.userId = user.id
+            data.image = profile.image || null
             data.author = data.firstName + ' ' + data.lastName
             dispatch(createTestimonials(data))
             $('#testimonial-modal').modal('hide')

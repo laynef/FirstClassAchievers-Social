@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 
-export default class PostEntry extends Component {
+class PostEntry extends Component {
 
     render() {
-        const { author, message } = this.props
+        const { author, message, profile } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -15,9 +15,9 @@ export default class PostEntry extends Component {
                             <div className="user-pic">
                                 <img alt="Profile Image" 
                                     width="122" height="122" 
-                                    data-src-retina="theme/assets/img/default-user.png" 
-                                    data-src="theme/assets/img/default-user.png" 
-                                    src="theme/assets/img/default-user.png"/>
+                                    data-src-retina={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"} 
+                                    data-src={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"} 
+                                    src={(profile && profile.image) ? profile.image : "theme/assets/img/default-product.png"}/>
                             </div>
                             <h5>{author}</h5>
                             <h6>Created posted
@@ -35,3 +35,7 @@ export default class PostEntry extends Component {
     }
 
 }
+
+export default connect(state => ({
+    profile: state.profile.data
+}))(PostEntry)

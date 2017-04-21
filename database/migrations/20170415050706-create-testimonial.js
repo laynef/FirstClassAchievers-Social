@@ -17,6 +17,9 @@ module.exports = {
       likes: {
         type: Sequelize.INTEGER
       },
+      image: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

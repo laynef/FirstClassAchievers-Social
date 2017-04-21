@@ -1,6 +1,8 @@
 // Interact with database on the models functions here
 const Profile = require('../../../database/models/index').Profile
 const Testimonial = require('../../../database/models/index').Testimonial
+const fs = require('fs')
+
 
 module.exports = {
     profile: {
@@ -9,12 +11,20 @@ module.exports = {
               where: { user_id: req.params.userId }  
             })
             .then(response => {
+                let resp = response[0]
+                fs.writeFileSync(
+                    __dirname + '/../../../web/public/image/' + resp.user_id + '.png',
+                    resp.image,
+                    'base64'
+                )
+                resp.image = 'image/' + resp.user_id + '.png'
                 res.status(201).json(response[0])
             }).catch(err => {
                 res.sendStatus(401)
             })
         },
         patch: (req, res, next) => {
+            let image = fs.readFileSync(req.body.image).toString('base64')
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -22,7 +32,7 @@ module.exports = {
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
-                image: req.body.image,
+                image: image,
                 zipCode: req.body.zipCode,
                 state: req.body.state,
                 country: req.body.country
