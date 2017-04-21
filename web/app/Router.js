@@ -7,6 +7,7 @@ import MainPage from './pages/MainPage/MainPage'
 import TestimonialPage from './pages/TestimonialPage/TestimonialPage'
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
+import DetailPage from './pages/DetailPage/DetailPage'
 
 
 export default (
@@ -17,6 +18,7 @@ export default (
             <Route path="testimonials" component={TestimonialPage} />
             <Route path="about" component={AboutUsPage} />
             <Route path="profile" component={ProfilePage} />
+            <Route path="profile/:userId" component={DetailPage} />
         </Route>
 
     </Route>

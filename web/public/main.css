@@ -58,3 +58,32 @@
 
 #ProfilePage #SecondaryContact textarea {
   height: 100px; }
+
+@media screen and (min-width: 992px) {
+  #DetailPage {
+    margin-left: 80px; } }
+
+#DetailPage h1 {
+  text-align: center; }
+
+#DetailPage #profileImage {
+  transform: scale(10); }
+  @media screen and (min-width: 992px) {
+    #DetailPage #profileImage {
+      margin-left: 200px;
+      margin-top: 150px; } }
+
+@media screen and (min-width: 992px) {
+  #DetailPage #PrimaryContact {
+    margin-left: -230px;
+    margin-top: 350px; } }
+
+#DetailPage #SecondaryContact {
+  margin: 40px;
+  height: 660px;
+  background-color: white;
+  overflow: scroll; }
+  @media screen and (min-width: 992px) {
+    #DetailPage #SecondaryContact {
+      margin-left: 400px;
+      margin-top: -680px; } }
