@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.TEXT
+        type: Sequelize.BLOB
       },
       zipCode: {
         type: Sequelize.STRING
