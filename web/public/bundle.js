@@ -13603,9 +13603,9 @@ var PostEntry = function (_Component) {
                                 { className: 'user-pic' },
                                 _react2.default.createElement('img', { alt: 'Profile Image ' + userId,
                                     width: '122', height: '122',
-                                    'data-src-retina': image ? image : "theme/assets/img/default-user.png",
-                                    'data-src': image ? image : "theme/assets/img/default-user.png",
-                                    src: image ? image : "theme/assets/img/default-user.png" })
+                                    'data-src-retina': image ? image : "http://i.imgur.com/sRbuHxN.png",
+                                    'data-src': image ? image : "http://i.imgur.com/sRbuHxN.png",
+                                    src: image ? image : "http://i.imgur.com/sRbuHxN.png" })
                             ),
                             _react2.default.createElement(
                                 'h5',
@@ -22230,10 +22230,10 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'span',
                         { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                        _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                        _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                           alt: '',
-                          'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
-                          'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                          'data-src': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                          'data-src-retina': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                           width: '32',
                           height: '32' })
                       )
@@ -22996,9 +22996,9 @@ var ProfileImageModal = function (_Component) {
                                                     null,
                                                     'Drop image to upload or CLICK'
                                                 ),
-                                                _react2.default.createElement('img', { src: "theme/assets/img/default-product.png",
-                                                    'data-src': "theme/assets/img/default-product.png",
-                                                    'data-src-retina': "theme/assets/img/default-product.png"
+                                                _react2.default.createElement('img', { src: 'http://i.imgur.com/u81HFsO.png',
+                                                    'data-src': 'http://i.imgur.com/u81HFsO.png',
+                                                    'data-src-retina': 'http://i.imgur.com/u81HFsO.png'
                                                 })
                                             )
                                         )
@@ -23334,10 +23334,10 @@ var DetailPage = function (_Component) {
                 _react2.default.createElement(
                     'span',
                     { id: 'profileImage', className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                    _react2.default.createElement('img', { src: profile.image ? profile.image : "theme/assets/img/default-user.png",
+                    _react2.default.createElement('img', { src: profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                         alt: '',
-                        'data-src': profile.image ? profile.image : "theme/assets/img/default-user.png",
-                        'data-src-retina': profile.image ? profile.image : "theme/assets/img/default-user.png",
+                        'data-src': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                        'data-src-retina': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                         width: '320',
                         height: '320' })
                 ),
@@ -23647,10 +23647,10 @@ var ProfilePage = function (_Component) {
                         className: 'thumbnail-wrapper d32 circular inline m-t-5',
                         'data-toggle': 'modal',
                         'data-target': '#profile-image-modal' },
-                    _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                    _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                         alt: '',
-                        'data-src': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
-                        'data-src-retina': profile && profile.image ? profile.image : "theme/assets/img/default-user.png",
+                        'data-src': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                        'data-src-retina': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                         width: '320',
                         height: '320' })
                 ),
