@@ -2,6 +2,7 @@
 
 **/node_modules
 web/public/theme/pages
+web/public/theme/assets
 
 api/config
 database/config
