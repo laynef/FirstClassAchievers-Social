@@ -23048,9 +23048,9 @@ var PostEntry = function (_Component) {
                                 { className: 'user-pic' },
                                 _react2.default.createElement('img', { alt: 'Profile Image ' + userId,
                                     width: '122', height: '122',
-                                    'data-src-retina': image != null ? image : "theme/assets/img/default-user.png",
-                                    'data-src': image != null ? image : "theme/assets/img/default-user.png",
-                                    src: image != null ? image : "theme/assets/img/default-user.png" })
+                                    'data-src-retina': image ? image : "theme/assets/img/default-user.png",
+                                    'data-src': image ? image : "theme/assets/img/default-user.png",
+                                    src: image ? image : "theme/assets/img/default-user.png" })
                             ),
                             _react2.default.createElement(
                                 'h5',

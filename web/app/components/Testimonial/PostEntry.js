@@ -17,9 +17,9 @@ export default class PostEntry extends Component {
                                 <div className="user-pic">
                                     <img alt={`Profile Image ${userId}`}
                                         width="122" height="122" 
-                                        data-src-retina={image != null ? image : "theme/assets/img/default-user.png"} 
-                                        data-src={image != null ? image : "theme/assets/img/default-user.png"} 
-                                        src={image != null ? image : "theme/assets/img/default-user.png"} />
+                                        data-src-retina={image ? image : "theme/assets/img/default-user.png"} 
+                                        data-src={image ? image : "theme/assets/img/default-user.png"} 
+                                        src={image ? image : "theme/assets/img/default-user.png"} />
                                 </div>
                                 <h5>{author}</h5>
                                 <h6>Created posted
