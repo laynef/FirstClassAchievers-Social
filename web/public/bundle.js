@@ -8767,8 +8767,6 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
 			});
-			dispatch((0, _following.getFollowers)(response.data.id));
-			dispatch((0, _profile.getProfile)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -8804,8 +8802,6 @@ function register(data) {
 				payload: response.data
 			});
 			dispatch(login(data));
-			dispatch((0, _following.getFollowers)(response.data.id));
-			dispatch((0, _profile.getProfile)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_ERROR,
@@ -23282,6 +23278,8 @@ var _profile = __webpack_require__(100);
 
 var _testimonial = __webpack_require__(136);
 
+var _following = __webpack_require__(846);
+
 var _PostEntry = __webpack_require__(215);
 
 var _PostEntry2 = _interopRequireDefault(_PostEntry);
@@ -23304,11 +23302,22 @@ var DetailPage = function (_Component) {
     }
 
     _createClass(DetailPage, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _props = this.props,
+                user = _props.user,
+                dispatch = _props.dispatch;
+
+            if (user) {
+                dispatch((0, _following.getFollowers)(user.id));
+            }
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                params = _props.params;
+            var _props2 = this.props,
+                dispatch = _props2.dispatch,
+                params = _props2.params;
 
             dispatch((0, _profile.getProfile)(params.userId));
             dispatch((0, _testimonial.getTestimonials)());
@@ -23316,11 +23325,11 @@ var DetailPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props2 = this.props,
-                profile = _props2.profile,
-                params = _props2.params,
-                testimonial = _props2.testimonial,
-                handleSubmit = _props2.handleSubmit;
+            var _props3 = this.props,
+                profile = _props3.profile,
+                params = _props3.params,
+                testimonial = _props3.testimonial,
+                handleSubmit = _props3.handleSubmit;
 
             if (!profile) return null;
             return _react2.default.createElement(
@@ -23445,9 +23454,9 @@ var DetailPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props3 = this.props,
-                dispatch = _props3.dispatch,
-                profile = _props3.profile;
+            var _props4 = this.props,
+                dispatch = _props4.dispatch,
+                profile = _props4.profile;
         }
     }]);
 
@@ -23460,6 +23469,7 @@ DetailPage = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
+        user: state.user.data,
         profile: state.profile.data,
         testimonial: state.testimonial.data
     };

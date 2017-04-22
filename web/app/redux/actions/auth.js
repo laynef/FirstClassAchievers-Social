@@ -13,8 +13,6 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
-					dispatch(getFollowers(response.data.id))
-					dispatch(getProfile(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
@@ -54,8 +52,6 @@ export function register(data) {
 						payload: response.data
 					})
 					dispatch(login(data))
-					dispatch(getFollowers(response.data.id))
-					dispatch(getProfile(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({

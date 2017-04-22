@@ -3,10 +3,18 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { getProfile } from '../../redux/actions/profile'
 import { getTestimonials } from '../../redux/actions/testimonial'
+import { getFollowers } from '../../redux/actions/following'
 import PostEntry from '../../components/Testimonial/PostEntry'
 
 
 class DetailPage extends Component {
+
+    componentWillMount() {
+        const { user, dispatch } = this.props
+        if (user) {
+            dispatch(getFollowers(user.id))
+        }
+    }
 
     componentDidMount() {
         const { dispatch, params } = this.props 
@@ -89,6 +97,7 @@ DetailPage = reduxForm({
 })(DetailPage)
 
 export default connect(state => ({
+    user: state.user.data,
     profile: state.profile.data,
     testimonial: state.testimonial.data
 }))(DetailPage)
