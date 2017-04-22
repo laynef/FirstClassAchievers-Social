@@ -4,7 +4,7 @@ const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
 const fs = require('fs')
 const path = require('path')
-
+const _ = require('lodash')
 
 module.exports = {
     profile: {
@@ -77,7 +77,7 @@ module.exports = {
         },
         patch: (req, res, next) => {
             Following.update({
-                followers: req.body.followers
+                followers: _.uniq(req.body.followers)
             }, {
                 where: { user_id: req.params.userId }
             })
