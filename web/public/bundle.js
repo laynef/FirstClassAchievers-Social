@@ -6605,7 +6605,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function setProfile(data, id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_PROFILE_PENDING });
-		_axios2.default.patch(_settings2.default.API_ROOT + '/api/profile/' + id, data).then(function (response) {
+		_axios2.default.patch('/api/profile/' + id, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
 				payload: response.data
@@ -6622,7 +6622,7 @@ function setProfile(data, id) {
 function getProfile(id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_PROFILE_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/api/profile/' + id).then(function (response) {
+		_axios2.default.get('/api/profile/' + id).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_PROFILE_SUCCESS,
 				payload: response.data
@@ -8755,7 +8755,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function login(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGIN_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/login', data).then(function (response) {
+		_axios2.default.post('/auth/local/login', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
@@ -8772,7 +8772,7 @@ function login(data) {
 function logout() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.LOGOUT_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/logout').then(function (response) {
+		_axios2.default.get('/auth/local/logout').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.LOGOUT_SUCCESS,
 				payload: response.data
@@ -8789,7 +8789,7 @@ function logout() {
 function register(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.REGISTER_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/auth/local/register', data).then(function (response) {
+		_axios2.default.post('/auth/local/register', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_SUCCESS,
 				payload: response.data
@@ -8807,7 +8807,7 @@ function register(data) {
 function getUser() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/auth/local/user').then(function (response) {
+		_axios2.default.get('/auth/local/user').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_USER_SUCCESS,
 				payload: response
@@ -8851,7 +8851,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function getTestimonials() {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_TESTIMONIAL_PENDING });
-		_axios2.default.get(_settings2.default.API_ROOT + '/api/testify').then(function (response) {
+		_axios2.default.get('/api/testify').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_TESTIMONIAL_SUCCESS,
 				payload: response.data
@@ -8868,7 +8868,7 @@ function getTestimonials() {
 function createTestimonials(data) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.CREATE_TESTIMONIAL_PENDING });
-		_axios2.default.post(_settings2.default.API_ROOT + '/api/testify', data).then(function (response) {
+		_axios2.default.post('/api/testify', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.CREATE_TESTIMONIAL_SUCCESS,
 				payload: response.data
