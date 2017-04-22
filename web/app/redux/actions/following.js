@@ -25,7 +25,7 @@ export function getFollowers(id) {
 export function setFollowers(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FOLLOWERS_PENDING})
-		axios.post(`/api/following/${id}`, data)
+		axios.patch(`/api/following/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_FOLLOWERS_SUCCESS,

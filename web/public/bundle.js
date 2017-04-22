@@ -13680,7 +13680,7 @@ function getFollowers(id) {
 function setFollowers(data, id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_FOLLOWERS_PENDING });
-		_axios2.default.post('/api/following/' + id, data).then(function (response) {
+		_axios2.default.patch('/api/following/' + id, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_FOLLOWERS_SUCCESS,
 				payload: response.data
