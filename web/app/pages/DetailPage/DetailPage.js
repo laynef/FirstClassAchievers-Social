@@ -20,13 +20,13 @@ class DetailPage extends Component {
     }
 
     static formSubmit() {
-        const { dispatch, following, user } = this.props
+        const { dispatch, following, user, profile } = this.props
         let body = {};
         let array = following.followers.slice()
-        if (array.includes(params.userId)) {
-             pull(array, params.userId)
+        if (array.includes(profile.user_id)) {
+             pull(array, profile.user_id)
         } else {
-            array.push(params.userId)
+            array.push(profile.user_id)
         }
         body.followers = array
         dispatch(setFollowers(body, user.id))

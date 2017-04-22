@@ -23619,14 +23619,15 @@ var DetailPage = function (_Component) {
             var _props3 = this.props,
                 dispatch = _props3.dispatch,
                 following = _props3.following,
-                user = _props3.user;
+                user = _props3.user,
+                profile = _props3.profile;
 
             var body = {};
             var array = following.followers.slice();
-            if (array.includes(params.userId)) {
-                (0, _pull2.default)(array, params.userId);
+            if (array.includes(profile.user_id)) {
+                (0, _pull2.default)(array, profile.user_id);
             } else {
-                array.push(params.userId);
+                array.push(profile.user_id);
             }
             body.followers = array;
             dispatch((0, _following.setFollowers)(body, user.id));
