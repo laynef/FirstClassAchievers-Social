@@ -6,6 +6,7 @@ export const renderInput = ({input, label, placeholder='', help='', type, meta: 
 		  <label>{label}</label>
 		  <span className="help">{help}</span>
 		  <input {...input} type={type} placeholder={placeholder} className="form-control"/>
+		  {touched && error && <span style={{color: 'red'}}>{error}</span>}
 	</div>
 )
 
@@ -14,6 +15,7 @@ export const renderTextArea = ({input, label,  placeholder='', meta: {touched, e
 		<label htmlFor="name" className="control-label">{label}</label>
 		<div>
 			<textarea {...input} className="form-control" id="name" placeholder={placeholder} aria-invalid="false" />
+			{touched && error && <span style={{color: 'red'}}>{error}</span>}
 		</div>
 	</div>
 )

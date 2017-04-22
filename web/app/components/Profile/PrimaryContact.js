@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { getProfile, setProfile } from '../../redux/actions/profile'
-
+import { validate }  from '../../redux/validators/profile'
+ 
 
 class PrimaryContact extends Component {
 
@@ -82,7 +83,8 @@ class PrimaryContact extends Component {
 }
 
 PrimaryContact = reduxForm({
-    form: 'PrimaryContact'
+    form: 'PrimaryContact',
+    validate
 })(PrimaryContact)
 
 export default connect(state => ({
