@@ -35,7 +35,7 @@ module.exports = {
             })
             .then(response => {
                 Profile.findAll({
-                    where: {user_id: response[0]}
+                    where: {user_id: req.params.userId}
                 })
                 .then(resp => {
                     res.status(202).send(resp[0])
@@ -83,7 +83,7 @@ module.exports = {
             })
             .then(response => {
                 Following.findAll({
-                    where: {user_id: response[0]}
+                    where: {user_id: req.params.userId}
                 })
                 .then(resp => {
                     res.status(200).send(resp[0])
