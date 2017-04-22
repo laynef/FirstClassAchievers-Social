@@ -51,6 +51,8 @@ export default function (state = INITIAL_STATE, action) {
                 pending: null,
                 error: action.payload
             }
+    
+    }
 
 	return state
 }
