@@ -27,33 +27,31 @@ class MainPage extends Component {
                 <h1>Welcome to First Class</h1>
                 {user && user.id && 
                     following && following.followers ? (
-                    <div>
-                        <div className="col-sm-12">
-                            <div className="input-group">
-                                <input type="text" 
-                                    className="form-control" 
-                                    id="search-bar" 
-                                    onChange={e => this.setState({searchTerm: e.target.value})}
-                                    placeholder="Search" 
-                                    aria-required="true" 
-                                    aria-invalid="true"/>
-                                    <span className="input-group-addon" />
+                    <div className="col-sm-12">
+                        <div className="input-group">
+                            <input type="text" 
+                                className="form-control" 
+                                id="search-bar" 
+                                onChange={e => this.setState({searchTerm: e.target.value})}
+                                placeholder="Search" 
+                                aria-required="true" 
+                                aria-invalid="true"/>
+                                <span className="input-group-addon" />
+                            </div>
+                            <div id="testimonial-background" className="col-sm-12">
+                                {testimonial
+                                    .filter(e => following.followers.includes(e.user_id))
+                                    .map((entry, i) => (
+                                    <PostEntry key={i}
+                                        author={entry.author}
+                                        message={entry.message}
+                                        image={entry.image}
+                                        userId={entry.user_id}
+                                    />
+                                ))}
                             </div>
                         </div>
-                        <div id="testimonial-background" className="col-sm-12">
-                            {testimonial
-                                .filter(e => following.followers.includes(e.user_id))
-                                .map((entry, i) => (
-                                <PostEntry key={i}
-                                    author={entry.author}
-                                    message={entry.message}
-                                    image={entry.image}
-                                    userId={entry.user_id}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                ) : null}
+                    ) : null}
             </div>
         )
     }

@@ -23731,24 +23731,20 @@ var MainPage = function (_Component) {
                 ),
                 user && user.id && following && following.followers ? _react2.default.createElement(
                     'div',
-                    null,
+                    { className: 'col-sm-12' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'input-group' },
-                            _react2.default.createElement('input', { type: 'text',
-                                className: 'form-control',
-                                id: 'search-bar',
-                                onChange: function onChange(e) {
-                                    return _this2.setState({ searchTerm: e.target.value });
-                                },
-                                placeholder: 'Search',
-                                'aria-required': 'true',
-                                'aria-invalid': 'true' }),
-                            _react2.default.createElement('span', { className: 'input-group-addon' })
-                        )
+                        { className: 'input-group' },
+                        _react2.default.createElement('input', { type: 'text',
+                            className: 'form-control',
+                            id: 'search-bar',
+                            onChange: function onChange(e) {
+                                return _this2.setState({ searchTerm: e.target.value });
+                            },
+                            placeholder: 'Search',
+                            'aria-required': 'true',
+                            'aria-invalid': 'true' }),
+                        _react2.default.createElement('span', { className: 'input-group-addon' })
                     ),
                     _react2.default.createElement(
                         'div',

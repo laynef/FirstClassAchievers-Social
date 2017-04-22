@@ -57,7 +57,7 @@ router.post('/local/register', (req, res, next) => {
         })
         .then(response => {
             Following.create({
-                followers: [-1],
+                followers: [],
                 user_id: response.dataValues.id
             })
             Profile.create({
