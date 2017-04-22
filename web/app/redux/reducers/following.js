@@ -8,14 +8,14 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
-		case actionTypes.LOGIN_PENDING:
+		case actionTypes.GET_FOLLOWERS_PENDING:
 			return {
 				...state,
 				pending: true,
 				error: null
 			}
 
-		case actionTypes.LOGIN_SUCCESS:
+		case actionTypes.GET_FOLLOWERS_SUCCESS:
 			return {
 				...state,
 				pending: null,
@@ -23,12 +23,34 @@ export default function (state = INITIAL_STATE, action) {
 				data: action.payload
 			}
 
-		case actionTypes.LOGIN_ERROR:
+		case actionTypes.GET_FOLLOWERS_ERROR:
 			return {
 				...state,
 				pending: null,
 				error: action.payload
 			}
+
+        case actionTypes.SET_FOLLOWERS_PENDING:
+            return {
+                ...state,
+                pending: true,
+                error: null
+            }
+
+        case actionTypes.SET_FOLLOWERS_SUCCESS:
+            return {
+                ...state,
+                pending: null,
+                error: null,
+                data: action.payload
+            }
+
+        case actionTypes.SET_FOLLOWERS_ERROR:
+            return {
+                ...state,
+                pending: null,
+                error: action.payload
+            }
 
 	return state
 }

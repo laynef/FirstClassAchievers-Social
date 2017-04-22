@@ -78,6 +78,8 @@ module.exports = {
         post: (req, res, next) => {
             Following.update({
                 followers: req.body.followers
+            }, {
+                where: { user_id: req.params.userId }
             })
         }
     }

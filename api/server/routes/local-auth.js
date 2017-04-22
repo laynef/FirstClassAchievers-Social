@@ -2,6 +2,7 @@ const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const Profile = require('../../../database/models/index').Profile
+const Following = require('../../../database/models/index').Following
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -55,6 +56,10 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
+            Following.create({
+                followers: [],
+                user_id: response.dataValues.id
+            })
             Profile.create({
                 firstName: null,
                 lastName: null,

@@ -4865,6 +4865,15 @@ var actionTypes = {
 	SET_PROFILE_PENDING: 'SET_PROFILE_PENDING',
 	SET_PROFILE_ERROR: 'SET_PROFILE_ERROR',
 
+	// Followings
+	GET_FOLLOWERS_SUCCESS: 'GET_FOLLOWERS_SUCCESS',
+	GET_FOLLOWERS_PENDING: 'GET_FOLLOWERS_PENDING',
+	GET_FOLLOWERS_ERROR: 'GET_FOLLOWERS_ERROR',
+
+	SET_FOLLOWERS_SUCCESS: 'SET_FOLLOWERS_SUCCESS',
+	SET_FOLLOWERS_PENDING: 'SET_FOLLOWERS_PENDING',
+	SET_FOLLOWERS_ERROR: 'SET_FOLLOWERS_ERROR',
+
 	// User
 	GET_USER_SUCCESS: 'GET_USER_SUCCESS',
 	GET_USER_PENDING: 'GET_USER_PENDING',
@@ -20943,16 +20952,21 @@ var _testimonial = __webpack_require__(365);
 
 var _testimonial2 = _interopRequireDefault(_testimonial);
 
+var _following = __webpack_require__(845);
+
+var _following2 = _interopRequireDefault(_following);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// reducers
 var reducers = (0, _redux.combineReducers)({
     form: _reduxForm.reducer,
     user: _auth2.default,
     profile: _profile2.default,
-    testimonial: _testimonial2.default
+    testimonial: _testimonial2.default,
+    following: _following2.default
 });
 
-// reducers
 exports.default = reducers;
 
 /***/ }),
@@ -56601,6 +56615,12 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 845 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: SyntaxError: Unexpected token (58:0)\n\n\u001b[0m \u001b[90m 56 | \u001b[39m}\n \u001b[90m 57 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 | \u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n");
 
 /***/ })
 /******/ ]);
