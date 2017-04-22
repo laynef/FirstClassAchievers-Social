@@ -4872,12 +4872,7 @@ var actionTypes = {
 
 	SET_FOLLOWERS_SUCCESS: 'SET_FOLLOWERS_SUCCESS',
 	SET_FOLLOWERS_PENDING: 'SET_FOLLOWERS_PENDING',
-	SET_FOLLOWERS_ERROR: 'SET_FOLLOWERS_ERROR',
-
-	// User
-	GET_USER_SUCCESS: 'GET_USER_SUCCESS',
-	GET_USER_PENDING: 'GET_USER_PENDING',
-	GET_USER_ERROR: 'GET_USER_ERROR'
+	SET_FOLLOWERS_ERROR: 'SET_FOLLOWERS_ERROR'
 
 };
 
@@ -8745,7 +8740,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.login = login;
 exports.logout = logout;
 exports.register = register;
-exports.getUser = getUser;
 
 var _axios = __webpack_require__(133);
 
@@ -8759,6 +8753,10 @@ var _settings = __webpack_require__(137);
 
 var _settings2 = _interopRequireDefault(_settings);
 
+var _following = __webpack_require__(846);
+
+var _profile = __webpack_require__(100);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function login(data) {
@@ -8769,6 +8767,8 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
 			});
+			dispatch((0, _following.getFollowers)(response.data.id));
+			dispatch((0, _profile.getProfile)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -8804,26 +8804,11 @@ function register(data) {
 				payload: response.data
 			});
 			dispatch(login(data));
+			dispatch((0, _following.getFollowers)(response.data.id));
+			dispatch((0, _profile.getProfile)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.REGISTER_ERROR,
-				payload: err
-			});
-		});
-	};
-}
-
-function getUser() {
-	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
-		_axios2.default.get('/auth/local/user').then(function (response) {
-			dispatch({
-				type: _actionTypes2.default.GET_USER_SUCCESS,
-				payload: response
-			});
-		}).catch(function (err) {
-			dispatch({
-				type: _actionTypes2.default.GET_USER_ERROR,
 				payload: err
 			});
 		});
@@ -56688,6 +56673,67 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 846 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getFollowers = getFollowers;
+exports.setFollowers = setFollowers;
+
+var _axios = __webpack_require__(133);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actionTypes = __webpack_require__(74);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+var _settings = __webpack_require__(137);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getFollowers(data, id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.GET_FOLLOWERS_PENDING });
+		_axios2.default.get('/api/following/' + id, data).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.GET_FOLLOWERS_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.GET_FOLLOWERS_ERROR,
+				payload: err
+			});
+		});
+	};
+}
+
+function setFollowers(data, id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.SET_FOLLOWERS_PENDING });
+		_axios2.default.post('/api/following/' + id, data).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.SET_FOLLOWERS_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.SET_FOLLOWERS_ERROR,
+				payload: err
+			});
+		});
+	};
+}
 
 /***/ })
 /******/ ]);

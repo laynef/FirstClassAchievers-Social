@@ -1,7 +1,8 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 import settings from '../config/settings'
-
+import { getFollowers } from './following'
+import { getProfile } from './profile'
 
 export function login(data) {
 	return function(dispatch) {
@@ -12,6 +13,8 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getFollowers(response.data.id))
+					dispatch(getProfile(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
@@ -51,29 +54,12 @@ export function register(data) {
 						payload: response.data
 					})
 					dispatch(login(data))
+					dispatch(getFollowers(response.data.id))
+					dispatch(getProfile(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
 						type: actionTypes.REGISTER_ERROR,
-						payload: err
-					})
-				})
-	}
-}
-
-export function getUser() {
-	return function(dispatch) {
-		dispatch({type: actionTypes.GET_USER_PENDING})
-		axios.get(`/auth/local/user`)
-			.then((response) => {
-					dispatch({
-						type: actionTypes.GET_USER_SUCCESS,
-						payload: response
-					})
-				})
-				.catch((err) => {
-					dispatch({
-						type: actionTypes.GET_USER_ERROR,
 						payload: err
 					})
 				})
