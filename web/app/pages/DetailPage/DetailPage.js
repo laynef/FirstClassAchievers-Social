@@ -9,26 +9,22 @@ import PostEntry from '../../components/Testimonial/PostEntry'
 
 class DetailPage extends Component {
 
-    componentWillMount() {
-        const { user, dispatch } = this.props
+    componentDidMount() {
+        const { dispatch, params, user } = this.props 
+        dispatch(getProfile(params.userId))
+        dispatch(getTestimonials())
         if (user) {
             dispatch(getFollowers(user.id))
         }
     }
 
-    componentDidMount() {
-        const { dispatch, params } = this.props 
-        dispatch(getProfile(params.userId))
-        dispatch(getTestimonials())
-    }
-
     static formSubmit(data) {
-        const { dispatch, profile } = this.props
+        const { dispatch, profile, following } = this.props
         
     }
 
     render() {
-        const { profile, params, testimonial, handleSubmit, user } = this.props;
+        const { profile, params, testimonial, handleSubmit, user, following } = this.props;
         if (!profile) return null
         return (
             <div id="DetailPage">
@@ -65,13 +61,21 @@ class DetailPage extends Component {
                                         <label>Last Name</label>
                                         <span className="form-control">{profile.lastName}</span>
                                     </div>
-                                    {(user && profile.user_id != user.id) ? (
-                                        <div className="row">
-                                            <div className="col-sm-12 m-t-10 sm-m-t-10">
-                                                <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                    {(user && profile.user_id != user.id) ? 
+                                        following.followers.includes(profile.user_id) ? (
+                                            <div className="row">
+                                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-complete btn-block m-t-5">Unfollow</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ) : null }
+                                        ) : (
+                                            <div className="row">
+                                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                                </div>
+                                            </div>
+                                        )
+                                     : null }
                                 </div>
                             </div>
                         </div>
@@ -101,5 +105,6 @@ DetailPage = reduxForm({
 export default connect(state => ({
     user: state.user.data,
     profile: state.profile.data,
-    testimonial: state.testimonial.data
+    testimonial: state.testimonial.data,
+    following: state.following.data
 }))(DetailPage)

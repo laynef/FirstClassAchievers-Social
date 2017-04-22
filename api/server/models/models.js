@@ -72,7 +72,7 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                res.status(200).send(response)
+                res.status(200).send(response[0])
             })
         },
         patch: (req, res, next) => {
@@ -84,7 +84,7 @@ module.exports = {
             .then(response => {
                 Following.findAll()
                     .then(resp => {
-                        res.status(200).send(resp)
+                        res.status(200).send(resp[0])
                     })
             })
         }
