@@ -22,19 +22,19 @@ export function getFollowers(data, id) {
 	}
 }
 
-export function setFollowers(data) {
+export function setFollowers(data, id) {
 	return function(dispatch) {
-		dispatch({type: actionTypes.LOGIN_PENDING})
-		axios.post(`/api/following`, data)
+		dispatch({type: actionTypes.SET_FOLLOWERS_PENDING})
+		axios.post(`/api/following/${id}`, data)
 			.then((response) => {
 					dispatch({
-						type: actionTypes.LOGIN_SUCCESS,
+						type: actionTypes.SET_FOLLOWERS_SUCCESS,
 						payload: response.data
 					})
 				})
 				.catch((err) => {
 					dispatch({
-						type: actionTypes.LOGIN_ERROR,
+						type: actionTypes.SET_FOLLOWERS_ERROR,
 						payload: err
 					})
 				})			
