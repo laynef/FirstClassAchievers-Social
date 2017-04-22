@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { getProfile } from '../../redux/actions/profile'
 import { getTestimonials } from '../../redux/actions/testimonial'
-import { getFollowers } from '../../redux/actions/following'
+import { getFollowers, setFollowers } from '../../redux/actions/following'
 import PostEntry from '../../components/Testimonial/PostEntry'
+import pull from 'lodash/pull'
 
 
 class DetailPage extends Component {
@@ -19,8 +20,14 @@ class DetailPage extends Component {
     }
 
     static formSubmit(data) {
-        const { dispatch, profile, following } = this.props
-        
+        const { dispatch, profile, following, user } = this.props
+        if (following.followers.includes(profile.user_id)) {
+            data.followers = pull(following.followers, profile.user_id)
+        } else {
+            data.followers = following.followers.push(profile.user_id)
+        }
+        data.user_id = profile.user_id
+        dispatch(setFollowers(data, user.id))
     }
 
     render() {
