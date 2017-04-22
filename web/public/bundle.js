@@ -22476,6 +22476,8 @@ var _ReduxForms = __webpack_require__(102);
 
 var _auth = __webpack_require__(135);
 
+var _login = __webpack_require__(882);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22582,7 +22584,8 @@ var LoginModal = function (_Component) {
 }(_react.Component);
 
 LoginModal = (0, _reduxForm.reduxForm)({
-    form: 'LoginModal'
+    form: 'LoginModal',
+    validate: _login.validate
 })(LoginModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -22613,6 +22616,8 @@ var _reduxForm = __webpack_require__(21);
 var _ReduxForms = __webpack_require__(102);
 
 var _auth = __webpack_require__(135);
+
+var _signup = __webpack_require__(883);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22723,7 +22728,8 @@ var SignUpModal = function (_Component) {
 }(_react.Component);
 
 SignUpModal = (0, _reduxForm.reduxForm)({
-    form: 'SignUpModal'
+    form: 'SignUpModal',
+    validate: _signup.validate
 })(SignUpModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -23196,6 +23202,8 @@ var _testimonial = __webpack_require__(136);
 
 var _profile = __webpack_require__(90);
 
+var _testimonial2 = __webpack_require__(884);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23325,7 +23333,8 @@ var TestimonialModal = function (_Component) {
 }(_react.Component);
 
 TestimonialModal = (0, _reduxForm.reduxForm)({
-    form: 'TestimonialModal'
+    form: 'TestimonialModal',
+    validate: _testimonial2.validate
 })(TestimonialModal);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -57948,6 +57957,62 @@ Footer = (0, _reduxForm.reduxForm)({
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {};
 })(Footer);
+
+/***/ }),
+/* 882 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.validate = validate;
+function validate(values) {
+	var errors = {};
+	if (!values.email) errors.email = 'Email required';
+	if (!values.password) errors.password = 'Password required';
+	return errors;
+}
+
+/***/ }),
+/* 883 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.validate = validate;
+function validate(values) {
+	var errors = {};
+	if (!values.email) errors.email = 'Email required';
+	if (!values.password) errors.password = 'Password required';
+	if (!values.repassword) errors.repassword = 'Confirm Password';
+	return errors;
+}
+
+/***/ }),
+/* 884 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.validate = validate;
+function validate(values) {
+	var errors = {};
+	if (!values.firstName) errors.firstName = 'First Name required';
+	if (!values.lastName) errors.lastName = 'Last Name required';
+	if (!values.message) errors.message = 'Add a message';
+	return errors;
+}
 
 /***/ })
 /******/ ]);

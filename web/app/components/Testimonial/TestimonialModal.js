@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { createTestimonials } from '../../redux/actions/testimonial'
 import { getProfile } from '../../redux/actions/profile'
+import { validate } from '../../redux/validators/testimonial'
 
 
 class TestimonialModal extends Component {
@@ -70,7 +71,8 @@ class TestimonialModal extends Component {
 }
 
 TestimonialModal = reduxForm({
-    form: 'TestimonialModal'
+    form: 'TestimonialModal',
+    validate
 })(TestimonialModal)
 
 export default connect(state => ({

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../../redux/utils/ReduxForms'
 import { register } from '../../../redux/actions/auth'
+import { validate } from '../../../redux/validators/signup'
 
 
 class SignUpModal extends Component {
@@ -56,7 +57,8 @@ class SignUpModal extends Component {
 }
 
 SignUpModal = reduxForm({
-    form: 'SignUpModal'
+    form: 'SignUpModal',
+    validate
 })(SignUpModal)
 
 export default connect(state => ({
