@@ -1,6 +1,7 @@
 // Interact with database on the models functions here
 const Profile = require('../../../database/models/index').Profile
 const Testimonial = require('../../../database/models/index').Testimonial
+const Following = require('../../../database/models/index').Following
 const fs = require('fs')
 const path = require('path')
 
@@ -62,6 +63,21 @@ module.exports = {
                     .then(resp => {
                         res.status(200).send(resp)
                     })
+            })
+        }
+    },
+    follower: {
+        get: (req, res, next) => {
+            Following.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                res.status(200).send(response)
+            })
+        },
+        post: (req, res, next) => {
+            Following.update({
+                followers: req.body.followers
             })
         }
     }

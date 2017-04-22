@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, Form } from 'redux-form'
 import { getProfile } from '../../redux/actions/profile'
 import { getTestimonials } from '../../redux/actions/testimonial'
 import PostEntry from '../../components/Testimonial/PostEntry'
@@ -14,8 +14,13 @@ class DetailPage extends Component {
         dispatch(getTestimonials())
     }
 
+    static formSubmit(data) {
+        const { dispatch, profile } = this.props
+        
+    }
+
     render() {
-        const { profile, params, testimonial } = this.props;
+        const { profile, params, testimonial, handleSubmit } = this.props;
         if (!profile) return null
         return (
             <div id="DetailPage">
@@ -28,32 +33,39 @@ class DetailPage extends Component {
                         width="320"
                         height="320"/>
                 </span>
-                <div id="PrimaryContact" className="col-md-4">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <div className="panel-title">
-                                About Them
-                            </div>
-                        </div>
-                        <div className="panel-body">
-                            <h5>
-                                Traditional Standard Style
-                            </h5>
-                                <div className="form-group">
-                                    <label>First Name</label>
-                                    <span className="form-control">{profile.firstName}</span>
-                                </div>
-                                <div className="form-group">
-                                    <label>Nick Name</label>
-                                    <span className="form-control">{profile.nickname}</span>
-                                </div>
-                                <div className="form-group">
-                                    <label>Last Name</label>
-                                    <span className="form-control">{profile.lastName}</span>
+                <Form onSubmit={handleSubmit(DetailPage.formSubmit.bind(this))}>
+                    <div id="PrimaryContact" className="col-md-4">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <div className="panel-title">
+                                    About Them
                                 </div>
                             </div>
+                            <div className="panel-body">
+                                <h5>
+                                    Traditional Standard Style
+                                </h5>
+                                    <div className="form-group">
+                                        <label>First Name</label>
+                                        <span className="form-control">{profile.firstName}</span>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Nick Name</label>
+                                        <span className="form-control">{profile.nickname}</span>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Last Name</label>
+                                        <span className="form-control">{profile.lastName}</span>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                            <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </Form>
                     <div id="SecondaryContact" className="col-sm-8">
                         {testimonial
                             .filter(e => e.user_id == params.userId)

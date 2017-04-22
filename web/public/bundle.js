@@ -23320,7 +23320,8 @@ var DetailPage = function (_Component) {
             var _props2 = this.props,
                 profile = _props2.profile,
                 params = _props2.params,
-                testimonial = _props2.testimonial;
+                testimonial = _props2.testimonial,
+                handleSubmit = _props2.handleSubmit;
 
             if (!profile) return null;
             return _react2.default.createElement(
@@ -23342,68 +23343,85 @@ var DetailPage = function (_Component) {
                         height: '320' })
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { id: 'PrimaryContact', className: 'col-md-4' },
+                    _reduxForm.Form,
+                    { onSubmit: handleSubmit(DetailPage.formSubmit.bind(this)) },
                     _react2.default.createElement(
                         'div',
-                        { className: 'panel panel-default' },
+                        { id: 'PrimaryContact', className: 'col-md-4' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'panel-heading' },
+                            { className: 'panel panel-default' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'panel-title' },
-                                'About Them'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'panel-body' },
-                            _react2.default.createElement(
-                                'h5',
-                                null,
-                                'Traditional Standard Style'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'form-group' },
+                                { className: 'panel-heading' },
                                 _react2.default.createElement(
-                                    'label',
-                                    null,
-                                    'First Name'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'form-control' },
-                                    profile.firstName
+                                    'div',
+                                    { className: 'panel-title' },
+                                    'About Them'
                                 )
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { className: 'form-group' },
+                                { className: 'panel-body' },
                                 _react2.default.createElement(
-                                    'label',
+                                    'h5',
                                     null,
-                                    'Nick Name'
+                                    'Traditional Standard Style'
                                 ),
                                 _react2.default.createElement(
-                                    'span',
-                                    { className: 'form-control' },
-                                    profile.nickname
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'form-group' },
-                                _react2.default.createElement(
-                                    'label',
-                                    null,
-                                    'Last Name'
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        null,
+                                        'First Name'
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'form-control' },
+                                        profile.firstName
+                                    )
                                 ),
                                 _react2.default.createElement(
-                                    'span',
-                                    { className: 'form-control' },
-                                    profile.lastName
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        null,
+                                        'Nick Name'
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'form-control' },
+                                        profile.nickname
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        null,
+                                        'Last Name'
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'form-control' },
+                                        profile.lastName
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'row' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'col-sm-12 m-t-10 sm-m-t-10' },
+                                        _react2.default.createElement(
+                                            'button',
+                                            { type: 'submit', className: 'btn btn-complete btn-block m-t-5' },
+                                            'Follow'
+                                        )
+                                    )
                                 )
                             )
                         )
@@ -23424,6 +23442,13 @@ var DetailPage = function (_Component) {
                     })
                 )
             );
+        }
+    }], [{
+        key: 'formSubmit',
+        value: function formSubmit(data) {
+            var _props3 = this.props,
+                dispatch = _props3.dispatch,
+                profile = _props3.profile;
         }
     }]);
 
