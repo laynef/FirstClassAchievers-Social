@@ -19,20 +19,23 @@ class DetailPage extends Component {
         }
     }
 
-    static formSubmit(data) {
-        const { dispatch, profile, following, user } = this.props
-        if (following.followers.includes(profile.user_id)) {
-            data.followers = pull(following.followers, profile.user_id)
+    static formSubmit() {
+        const { dispatch, following, user } = this.props
+        let body = {};
+        let array = following.followers.slice()
+        if (array.includes(params.userId)) {
+             pull(array, params.userId)
         } else {
-            data.followers = following.followers.push(profile.user_id)
+            array.push(params.userId)
         }
-        data.user_id = profile.user_id
-        dispatch(setFollowers(data, user.id))
+        body.followers = array
+        dispatch(setFollowers(body, user.id))
     }
 
     render() {
         const { profile, params, testimonial, handleSubmit, user, following } = this.props;
         if (!profile) return null
+        if (user) { if (!following) return null }
         return (
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
@@ -69,7 +72,7 @@ class DetailPage extends Component {
                                         <span className="form-control">{profile.lastName}</span>
                                     </div>
                                     {(user && profile.user_id != user.id) ? 
-                                        following.followers.includes(profile.user_id) ? (
+                                        following.followers.includes(params.userId) ? (
                                             <div className="row">
                                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                     <button type="submit" className="btn btn-complete btn-block m-t-5">Unfollow</button>

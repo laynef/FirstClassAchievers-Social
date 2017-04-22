@@ -77,15 +77,17 @@ module.exports = {
         },
         patch: (req, res, next) => {
             Following.update({
-                followers: _.uniq(req.body.followers)
+                followers: req.body.followers
             }, {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                Following.findAll()
-                    .then(resp => {
-                        res.status(200).send(resp[0])
-                    })
+                Following.findAll({
+                    where: {user_id: response[0]}
+                })
+                .then(resp => {
+                    res.status(200).send(resp[0])
+                })
             })
         }
     }
