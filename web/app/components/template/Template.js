@@ -14,7 +14,7 @@ class Template extends Component {
 
     render() {
         return (
-            <div id="TemplateComponent">
+            <div id="Template">
                 {/* Fill me in */}
             </div>
         )
@@ -23,7 +23,7 @@ class Template extends Component {
 }
 
 Template = reduxForm({
-    form: 'TemplateComponent'
+    form: 'Template'
 })(Template)
 
 export default connect(state => ({

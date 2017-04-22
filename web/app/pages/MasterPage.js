@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import Header from '../components/Navigation/Header/Header'
 import SideMenu from '../components/Navigation/SideMenu/SideMenu'
+import Footer from '../components/Navigation/Footer/Footer'
 
 
 class MasterPage extends Component {
@@ -15,6 +16,7 @@ class MasterPage extends Component {
                 <Header />
                 <SideMenu />
                 { children }
+                <Footer />
             </div>
         )
     }

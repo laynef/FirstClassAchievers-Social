@@ -23729,38 +23729,42 @@ var MainPage = function (_Component) {
                     null,
                     'Welcome to First Class'
                 ),
-                user && user.id && following && following.followers ? _react2.default.createElement(
+                _react2.default.createElement(
                     'div',
-                    { className: 'col-sm-12' },
-                    _react2.default.createElement(
+                    { id: 'mainContainer' },
+                    user && user.id && following && following.followers ? _react2.default.createElement(
                         'div',
-                        { className: 'input-group' },
-                        _react2.default.createElement('input', { type: 'text',
-                            className: 'form-control',
-                            id: 'search-bar',
-                            onChange: function onChange(e) {
-                                return _this2.setState({ searchTerm: e.target.value });
-                            },
-                            placeholder: 'Search',
-                            'aria-required': 'true',
-                            'aria-invalid': 'true' }),
-                        _react2.default.createElement('span', { className: 'input-group-addon' })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { id: 'testimonial-background', className: 'col-sm-12' },
-                        testimonial.filter(function (e) {
-                            return following.followers.includes(e.user_id);
-                        }).map(function (entry, i) {
-                            return _react2.default.createElement(_PostEntry2.default, { key: i,
-                                author: entry.author,
-                                message: entry.message,
-                                image: entry.image,
-                                userId: entry.user_id
-                            });
-                        })
-                    )
-                ) : null
+                        { className: 'col-sm-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'input-group' },
+                            _react2.default.createElement('input', { type: 'text',
+                                className: 'form-control',
+                                id: 'search-bar',
+                                onChange: function onChange(e) {
+                                    return _this2.setState({ searchTerm: e.target.value });
+                                },
+                                placeholder: 'Search',
+                                'aria-required': 'true',
+                                'aria-invalid': 'true' }),
+                            _react2.default.createElement('span', { className: 'input-group-addon' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { id: 'testimonial-background', className: 'col-sm-12' },
+                            testimonial.filter(function (e) {
+                                return following.followers.includes(e.user_id);
+                            }).map(function (entry, i) {
+                                return _react2.default.createElement(_PostEntry2.default, { key: i,
+                                    author: entry.author,
+                                    message: entry.message,
+                                    image: entry.image,
+                                    userId: entry.user_id
+                                });
+                            })
+                        )
+                    ) : null
+                )
             );
         }
     }]);
@@ -23811,6 +23815,10 @@ var _SideMenu = __webpack_require__(358);
 
 var _SideMenu2 = _interopRequireDefault(_SideMenu);
 
+var _Footer = __webpack_require__(881);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23838,7 +23846,8 @@ var MasterPage = function (_Component) {
                 null,
                 _react2.default.createElement(_Header2.default, null),
                 _react2.default.createElement(_SideMenu2.default, null),
-                children
+                children,
+                _react2.default.createElement(_Footer2.default, null)
             );
         }
     }]);
@@ -57818,6 +57827,127 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 881 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(15);
+
+var _reduxForm = __webpack_require__(21);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+    _inherits(Footer, _Component);
+
+    function Footer(props, context) {
+        _classCallCheck(this, Footer);
+
+        var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props, context));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(Footer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'Footer' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'container-fluid container-fixed-lg footer', style: { marginLeft: '50px' } },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'copyright sm-text-center' },
+                        _react2.default.createElement(
+                            'p',
+                            { className: 'small no-margin pull-left sm-pull-reset' },
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'hint-text' },
+                                'Copyright \xA9 2014 '
+                            ),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'font-montserrat' },
+                                'REVOX'
+                            ),
+                            '.',
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'hint-text' },
+                                'All rights reserved. '
+                            ),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'sm-block' },
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#', className: 'm-l-10 m-r-10' },
+                                    'Terms of use'
+                                ),
+                                ' | ',
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#', className: 'm-l-10' },
+                                    'Privacy Policy'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            { className: 'small no-margin pull-right sm-pull-reset' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                'Hand-crafted'
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'hint-text' },
+                                '& Made with Love \xAE'
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'clearfix' })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Footer;
+}(_react.Component);
+
+Footer = (0, _reduxForm.reduxForm)({
+    form: 'Footer'
+})(Footer);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {};
+})(Footer);
 
 /***/ })
 /******/ ]);

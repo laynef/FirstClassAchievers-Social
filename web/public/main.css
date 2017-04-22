@@ -5,6 +5,9 @@
 #mainPage h1 {
   text-align: center; }
 
+#mainPage #mainContainer {
+  height: 80vh; }
+
 #mainPage #testimonial-background {
   margin: 40px 15px;
   height: 580px;

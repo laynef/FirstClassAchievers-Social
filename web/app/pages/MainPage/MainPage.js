@@ -25,6 +25,7 @@ class MainPage extends Component {
         return (
             <div id="mainPage">
                 <h1>Welcome to First Class</h1>
+                <div id="mainContainer">
                 {user && user.id && 
                     following && following.followers ? (
                     <div className="col-sm-12">
@@ -52,6 +53,7 @@ class MainPage extends Component {
                             </div>
                         </div>
                     ) : null}
+                </div>
             </div>
         )
     }
