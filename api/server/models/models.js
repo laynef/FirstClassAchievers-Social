@@ -59,14 +59,14 @@ module.exports = {
                 likes: 0
             })
             .then(response => {
-                Testimonial.findAll({})
+                Testimonial.findAll()
                     .then(resp => {
                         res.status(200).send(resp)
                     })
             })
         }
     },
-    follower: {
+    following: {
         get: (req, res, next) => {
             Following.findAll({
                 where: { user_id: req.params.userId }
@@ -75,11 +75,17 @@ module.exports = {
                 res.status(200).send(response)
             })
         },
-        post: (req, res, next) => {
+        patch: (req, res, next) => {
             Following.update({
                 followers: req.body.followers
             }, {
                 where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                Following.findAll()
+                    .then(resp => {
+                        res.status(200).send(resp)
+                    })
             })
         }
     }
