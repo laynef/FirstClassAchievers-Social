@@ -28,7 +28,7 @@ class DetailPage extends Component {
     }
 
     render() {
-        const { profile, params, testimonial, handleSubmit } = this.props;
+        const { profile, params, testimonial, handleSubmit, user } = this.props;
         if (!profile) return null
         return (
             <div id="DetailPage">
@@ -65,11 +65,13 @@ class DetailPage extends Component {
                                         <label>Last Name</label>
                                         <span className="form-control">{profile.lastName}</span>
                                     </div>
-                                    <div className="row">
-                                        <div className="col-sm-12 m-t-10 sm-m-t-10">
-                                            <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                    {(user && profile.user_id != user.id) ? (
+                                        <div className="row">
+                                            <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                                <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    ) : null }
                                 </div>
                             </div>
                         </div>

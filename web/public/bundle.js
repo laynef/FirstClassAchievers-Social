@@ -22102,7 +22102,7 @@ var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyM
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
-    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _Router2.default })
+    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _Router2.default })
 ), document.getElementById('app'));
 
 /***/ }),
@@ -23329,7 +23329,8 @@ var DetailPage = function (_Component) {
                 profile = _props3.profile,
                 params = _props3.params,
                 testimonial = _props3.testimonial,
-                handleSubmit = _props3.handleSubmit;
+                handleSubmit = _props3.handleSubmit,
+                user = _props3.user;
 
             if (!profile) return null;
             return _react2.default.createElement(
@@ -23418,7 +23419,7 @@ var DetailPage = function (_Component) {
                                         profile.lastName
                                     )
                                 ),
-                                _react2.default.createElement(
+                                user && profile.user_id != user.id ? _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
                                     _react2.default.createElement(
@@ -23430,7 +23431,7 @@ var DetailPage = function (_Component) {
                                             'Follow'
                                         )
                                     )
-                                )
+                                ) : null
                             )
                         )
                     )
@@ -56711,10 +56712,10 @@ var _settings2 = _interopRequireDefault(_settings);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getFollowers(data, id) {
+function getFollowers(id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_FOLLOWERS_PENDING });
-		_axios2.default.get('/api/following/' + id, data).then(function (response) {
+		_axios2.default.get('/api/following/' + id).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_FOLLOWERS_SUCCESS,
 				payload: response.data

@@ -3,10 +3,10 @@ import actionTypes from '../store/actionTypes'
 import settings from '../config/settings'
 
 
-export function getFollowers(data, id) {
+export function getFollowers(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FOLLOWERS_PENDING})
-		axios.get(`/api/following/${id}`, data)
+		axios.get(`/api/following/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_FOLLOWERS_SUCCESS,
