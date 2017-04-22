@@ -13,6 +13,7 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getFollowers(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({

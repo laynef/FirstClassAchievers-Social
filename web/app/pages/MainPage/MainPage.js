@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import PostEntry from '../../components/Testimonial/PostEntry'
+import { getFollowers } from '../../redux/actions/following'
+import { getTestimonials } from '../../redux/actions/testimonial'
 
 
 class MainPage extends Component {
@@ -8,14 +11,49 @@ class MainPage extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            
+            searchTerm: ''
         }
     }
 
+    componentDidMount() {
+        const { dispatch, user } = this.props 
+        dispatch(getTestimonials())
+    }
+
     render() {
+        const { user, testimonial, following } = this.props
         return (
             <div id="mainPage">
                 <h1>Welcome to First Class</h1>
+                {user && user.id && 
+                    following && following.followers ? (
+                    <div>
+                        <div className="col-sm-12">
+                            <div className="input-group">
+                                <input type="text" 
+                                    className="form-control" 
+                                    id="search-bar" 
+                                    onChange={e => this.setState({searchTerm: e.target.value})}
+                                    placeholder="Search" 
+                                    aria-required="true" 
+                                    aria-invalid="true"/>
+                                    <span className="input-group-addon" />
+                            </div>
+                        </div>
+                        <div id="testimonial-background" className="col-sm-12">
+                            {testimonial
+                                .filter(e => following.followers.includes(e.user_id))
+                                .map((entry, i) => (
+                                <PostEntry key={i}
+                                    author={entry.author}
+                                    message={entry.message}
+                                    image={entry.image}
+                                    userId={entry.user_id}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ) : null}
             </div>
         )
     }
@@ -26,4 +64,7 @@ MainPage = reduxForm({
 })(MainPage)
 
 export default connect(state => ({
+    user: state.user.data,
+    testimonial: state.testimonial.data,
+    following: state.following.data
 }))(MainPage)

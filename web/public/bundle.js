@@ -8767,6 +8767,7 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
 			});
+			dispatch((0, _following.getFollowers)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -23671,6 +23672,14 @@ var _reactRedux = __webpack_require__(15);
 
 var _reduxForm = __webpack_require__(21);
 
+var _PostEntry = __webpack_require__(215);
+
+var _PostEntry2 = _interopRequireDefault(_PostEntry);
+
+var _following = __webpack_require__(216);
+
+var _testimonial = __webpack_require__(136);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23687,13 +23696,31 @@ var MainPage = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (MainPage.__proto__ || Object.getPrototypeOf(MainPage)).call(this, props, context));
 
-        _this.state = {};
+        _this.state = {
+            searchTerm: ''
+        };
         return _this;
     }
 
     _createClass(MainPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                user = _props.user;
+
+            dispatch((0, _testimonial.getTestimonials)());
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _props2 = this.props,
+                user = _props2.user,
+                testimonial = _props2.testimonial,
+                following = _props2.following;
+
             return _react2.default.createElement(
                 'div',
                 { id: 'mainPage' },
@@ -23701,7 +23728,43 @@ var MainPage = function (_Component) {
                     'h1',
                     null,
                     'Welcome to First Class'
-                )
+                ),
+                user && user.id && following && following.followers ? _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-sm-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'input-group' },
+                            _react2.default.createElement('input', { type: 'text',
+                                className: 'form-control',
+                                id: 'search-bar',
+                                onChange: function onChange(e) {
+                                    return _this2.setState({ searchTerm: e.target.value });
+                                },
+                                placeholder: 'Search',
+                                'aria-required': 'true',
+                                'aria-invalid': 'true' }),
+                            _react2.default.createElement('span', { className: 'input-group-addon' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'testimonial-background', className: 'col-sm-12' },
+                        testimonial.filter(function (e) {
+                            return following.followers.includes(e.user_id);
+                        }).map(function (entry, i) {
+                            return _react2.default.createElement(_PostEntry2.default, { key: i,
+                                author: entry.author,
+                                message: entry.message,
+                                image: entry.image,
+                                userId: entry.user_id
+                            });
+                        })
+                    )
+                ) : null
             );
         }
     }]);
@@ -23714,7 +23777,11 @@ MainPage = (0, _reduxForm.reduxForm)({
 })(MainPage);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        user: state.user.data,
+        testimonial: state.testimonial.data,
+        following: state.following.data
+    };
 })(MainPage);
 
 /***/ }),
