@@ -6,7 +6,14 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const cloudinary = require('cloudinary')
+const config = require('../../config/config')
 
+
+cloudinary.config({
+    cloud_name: config.cloud_name,
+    api_key: config.cloud_api_key,
+    api_secret: config.cloud_api_secret
+})
 
 module.exports = {
     profile: {
@@ -22,9 +29,6 @@ module.exports = {
         },
         patch: (req, res, next) => {
             let image = req.body.image
-            cloudinary.uploader.upload(image, (result) => {
-                image = result.secure_url
-            })
             Testimonial.update({
                 image: image
             }, {
