@@ -72,7 +72,7 @@ class DetailPage extends Component {
                                         <span className="form-control">{profile.lastName}</span>
                                     </div>
                                     {(user && params.userId != user.id) ? 
-                                        following.followers.includes(profile.user_id) ? (
+                                        following.followers.includes(params.userId) ? (
                                             <div className="row">
                                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                     <button type="submit" className="btn btn-complete btn-block m-t-5">Unfollow</button>

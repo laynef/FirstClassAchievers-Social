@@ -101,8 +101,7 @@ class PrimaryContact extends Component {
 }
 
 PrimaryContact = reduxForm({
-    form: 'PrimaryContact',
-    validate
+    form: 'PrimaryContact'
 })(PrimaryContact)
 
 export default connect(state => ({

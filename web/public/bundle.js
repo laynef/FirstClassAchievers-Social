@@ -23196,8 +23196,7 @@ var PrimaryContact = function (_Component) {
 }(_react.Component);
 
 PrimaryContact = (0, _reduxForm.reduxForm)({
-    form: 'PrimaryContact',
-    validate: _profile2.validate
+    form: 'PrimaryContact'
 })(PrimaryContact);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -23746,7 +23745,7 @@ var DetailPage = function (_Component) {
                                         profile.lastName
                                     )
                                 ),
-                                user && params.userId != user.id ? following.followers.includes(profile.user_id) ? _react2.default.createElement(
+                                user && params.userId != user.id ? following.followers.includes(params.userId) ? _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
                                     _react2.default.createElement(
