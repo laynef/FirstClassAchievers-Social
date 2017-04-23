@@ -22324,18 +22324,18 @@ var Footer = function (_Component) {
                             _react2.default.createElement(
                                 'span',
                                 { className: 'hint-text' },
-                                'Copyright \xA9 2014 '
+                                'Copyright \xA9 2017 '
                             ),
                             _react2.default.createElement(
                                 'span',
                                 { className: 'font-montserrat' },
-                                'REVOX'
+                                'ManOfTech'
                             ),
                             '.',
                             _react2.default.createElement(
                                 'span',
                                 { className: 'hint-text' },
-                                'All rights reserved. '
+                                ' All rights reserved. '
                             ),
                             _react2.default.createElement(
                                 'span',
@@ -22365,7 +22365,7 @@ var Footer = function (_Component) {
                             _react2.default.createElement(
                                 'span',
                                 { className: 'hint-text' },
-                                '& Made with Love \xAE'
+                                '& Made with Intellect \xAE'
                             )
                         ),
                         _react2.default.createElement('div', { className: 'clearfix' })
