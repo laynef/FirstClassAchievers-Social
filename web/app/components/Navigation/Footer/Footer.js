@@ -3,14 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 
-class Footer extends Component {
-
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
-    }
+export default class Footer extends Component {
 
     render() {
         return (
@@ -34,10 +27,3 @@ class Footer extends Component {
     }
 
 }
-
-Footer = reduxForm({
-    form: 'Footer'
-})(Footer)
-
-export default connect(state => ({
-}))(Footer)

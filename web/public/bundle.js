@@ -6754,7 +6754,7 @@ var renderInput = exports.renderInput = function renderInput(_ref) {
 		_react2.default.createElement('input', _extends({}, input, { type: type, placeholder: placeholder, className: 'form-control' })),
 		touched && error && _react2.default.createElement(
 			'span',
-			{ style: { color: 'red' } },
+			{ style: { color: '#f55753' } },
 			error
 		)
 	);
@@ -6782,7 +6782,7 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref2) {
 			_react2.default.createElement('textarea', _extends({}, input, { className: 'form-control', id: 'name', placeholder: placeholder, 'aria-invalid': 'false' })),
 			touched && error && _react2.default.createElement(
 				'span',
-				{ style: { color: 'red' } },
+				{ style: { color: '#f55753' } },
 				error
 			)
 		)
@@ -22300,13 +22300,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Footer = function (_Component) {
     _inherits(Footer, _Component);
 
-    function Footer(props, context) {
+    function Footer() {
         _classCallCheck(this, Footer);
 
-        var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props, context));
-
-        _this.state = {};
-        return _this;
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
     }
 
     _createClass(Footer, [{
@@ -22381,13 +22378,7 @@ var Footer = function (_Component) {
     return Footer;
 }(_react.Component);
 
-Footer = (0, _reduxForm.reduxForm)({
-    form: 'Footer'
-})(Footer);
-
-exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
-})(Footer);
+exports.default = Footer;
 
 /***/ }),
 /* 356 */
