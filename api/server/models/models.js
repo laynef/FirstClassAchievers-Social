@@ -19,6 +19,17 @@ module.exports = {
             })
         },
         patch: (req, res, next) => {
+            Testimonial.update({
+                image: req.body.image
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                Testimonial.findAll()
+                .then(resp => {
+                    res.status(202).send(resp[0])
+                })
+            })
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -35,7 +46,7 @@ module.exports = {
             })
             .then(response => {
                 Profile.findAll({
-                    where: {user_id: req.params.userId}
+                    where: { user_id: req.params.userId }
                 })
                 .then(resp => {
                     res.status(202).send(resp[0])
@@ -83,7 +94,7 @@ module.exports = {
             })
             .then(response => {
                 Following.findAll({
-                    where: {user_id: req.params.userId}
+                    where: { user_id: req.params.userId }
                 })
                 .then(resp => {
                     res.status(200).send(resp[0])
