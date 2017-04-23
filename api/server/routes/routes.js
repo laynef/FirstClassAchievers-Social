@@ -12,6 +12,5 @@ router.post('/testify', models.testify.post)
 router.get('/following/:userId', models.following.get)
 router.patch('/following/:userId', models.following.patch)
 
-
 // export router for server.js
 module.exports = router

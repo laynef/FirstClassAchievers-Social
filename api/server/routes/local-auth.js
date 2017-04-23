@@ -93,20 +93,17 @@ router.patch('/local/change/password', (req, res, next) => {
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({
                         password: hash
                     }, { 
-                        where: { _id: response.id }
+                        where: { id: response[0].dataValues.id }
                     })
                         .then(resp => {
                             req.cookies.user = resp
-                            User.findAll({
-                                where: { _id: response.id }
-                            })
-                            .then(respond => res.status(202).json(respond))
+                            res.status(202).json(resp)
                         })
                         .catch(errs => {
                             console.log(`Update error`, errs)
