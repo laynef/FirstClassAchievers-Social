@@ -5,6 +5,8 @@ const Following = require('../../../database/models/index').Following
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
+const cloudinary = require('cloudinary')
+
 
 module.exports = {
     profile: {
@@ -19,8 +21,12 @@ module.exports = {
             })
         },
         patch: (req, res, next) => {
+            let image = req.body.image
+            cloudinary.uploader.upload(image, (result) => {
+                image = result.secure_url
+            })
             Testimonial.update({
-                image: req.body.image
+                image: image
             }, {
                 where: { user_id: req.params.userId }
             })
@@ -37,7 +43,7 @@ module.exports = {
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
-                image: req.body.image,
+                image: image,
                 zipCode: req.body.zipCode,
                 state: req.body.state,
                 country: req.body.country

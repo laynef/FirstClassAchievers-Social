@@ -12,6 +12,7 @@ const favicon = require('express-favicon')
 const fs = require('fs')
 const config = require('../config/config')
 const flash = require('express-flash')
+const cloudinary = require('cloudinary')
 
 
 // port settings
@@ -38,6 +39,11 @@ app.use(session({
 }))
 app.use(cookieParser())
 app.use(flash())
+app.use(cloudinary.config({
+    cloud_name: config.cloud_name,
+    api_key: config.cloud_api_key,
+    api_secret: config.cloud_api_secret
+}))
 
 app.use('/api', routes) // when you add api routes in routes.js
 app.use('/auth', local) // when you add api routes in routes.js
