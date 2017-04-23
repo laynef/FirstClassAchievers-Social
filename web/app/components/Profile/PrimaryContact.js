@@ -8,6 +8,13 @@ import { validate }  from '../../redux/validators/profile'
 
 class PrimaryContact extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            success: ''
+        }
+    }
+
     static formSubmit(data) {
         const { dispatch, user, profile } = this.props
         data.firstName = data.firstName || profile.firstName
@@ -20,11 +27,21 @@ class PrimaryContact extends Component {
         data.position = data.position || profile.position
         data.goals = data.goals || profile.goals
         dispatch(setProfile(data, user.id))
+        this.setState({success: 'Profile Updated'})
     }
 
     componentDidMount() {
         const { dispatch, user } = this.props 
         dispatch(getProfile(user.id))
+    }
+
+    renderSuccess() {
+        if (!this.state.success) return null
+        return (
+            <span style={{color: 'green'}}>
+                {this.state.success}
+            </span>
+        )
     }
 
     render() {
@@ -72,6 +89,7 @@ class PrimaryContact extends Component {
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
                                 </div>
                             </div>
+                            {this.renderSuccess()}
                         </div>
                     </div>
                 </div>

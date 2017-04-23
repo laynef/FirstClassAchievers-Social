@@ -54,7 +54,6 @@ class TestimonialPage extends Component {
                         <PostEntry key={i}
                             author={entry.author}
                             message={entry.message}
-                            image={entry.image}
                             userId={entry.user_id}
                         />
                     ))}

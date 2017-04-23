@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { getProfile } from '../../redux/actions/profile'
 
 
-export default class PostEntry extends Component {
+class PostEntry extends Component {
+
+    componentDidMount() {
+        const { dispatch, userId } = this.props
+        dispatch(getProfile(userId))
+    }
 
     render() {
-        const { author, message, image, userId } = this.props
+        const { author, message, image, userId, profile } = this.props
+        if (!profile) return null
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -17,9 +24,9 @@ export default class PostEntry extends Component {
                                 <div className="user-pic">
                                     <img alt={`Profile Image ${userId}`}
                                         width="122" height="122" 
-                                        data-src-retina={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        data-src={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        src={image ? image : "http://i.imgur.com/sRbuHxN.png"} />
+                                        data-src-retina={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                        data-src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                        src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} />
                                 </div>
                                 <h5>{author}</h5>
                                 <h6>Created posted
@@ -38,3 +45,7 @@ export default class PostEntry extends Component {
     }
 
 }
+
+export default connect(state => ({
+    profile: state.profile.data
+}))(PostEntry)

@@ -8821,6 +8821,8 @@ var _reduxForm = __webpack_require__(21);
 
 var _reactRouter = __webpack_require__(75);
 
+var _profile = __webpack_require__(90);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8839,14 +8841,25 @@ var PostEntry = function (_Component) {
     }
 
     _createClass(PostEntry, [{
-        key: 'render',
-        value: function render() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _props = this.props,
-                author = _props.author,
-                message = _props.message,
-                image = _props.image,
+                dispatch = _props.dispatch,
                 userId = _props.userId;
 
+            dispatch((0, _profile.getProfile)(userId));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _props2 = this.props,
+                author = _props2.author,
+                message = _props2.message,
+                image = _props2.image,
+                userId = _props2.userId,
+                profile = _props2.profile;
+
+            if (!profile) return null;
             return _react2.default.createElement(
                 'div',
                 { className: 'PostEntry' },
@@ -8865,9 +8878,9 @@ var PostEntry = function (_Component) {
                                 { className: 'user-pic' },
                                 _react2.default.createElement('img', { alt: 'Profile Image ' + userId,
                                     width: '122', height: '122',
-                                    'data-src-retina': image ? image : "http://i.imgur.com/sRbuHxN.png",
-                                    'data-src': image ? image : "http://i.imgur.com/sRbuHxN.png",
-                                    src: image ? image : "http://i.imgur.com/sRbuHxN.png" })
+                                    'data-src-retina': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                                    'data-src': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                                    src: profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png" })
                             ),
                             _react2.default.createElement(
                                 'h5',
@@ -8903,7 +8916,11 @@ var PostEntry = function (_Component) {
     return PostEntry;
 }(_react.Component);
 
-exports.default = PostEntry;
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {
+        profile: state.profile.data
+    };
+})(PostEntry);
 
 /***/ }),
 /* 137 */
@@ -23030,10 +23047,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PrimaryContact = function (_Component) {
     _inherits(PrimaryContact, _Component);
 
-    function PrimaryContact() {
+    function PrimaryContact(props) {
         _classCallCheck(this, PrimaryContact);
 
-        return _possibleConstructorReturn(this, (PrimaryContact.__proto__ || Object.getPrototypeOf(PrimaryContact)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (PrimaryContact.__proto__ || Object.getPrototypeOf(PrimaryContact)).call(this, props));
+
+        _this.state = {
+            success: ''
+        };
+        return _this;
     }
 
     _createClass(PrimaryContact, [{
@@ -23044,6 +23066,16 @@ var PrimaryContact = function (_Component) {
                 user = _props.user;
 
             dispatch((0, _profile.getProfile)(user.id));
+        }
+    }, {
+        key: 'renderSuccess',
+        value: function renderSuccess() {
+            if (!this.state.success) return null;
+            return _react2.default.createElement(
+                'span',
+                { style: { color: 'green' } },
+                this.state.success
+            );
         }
     }, {
         key: 'render',
@@ -23130,7 +23162,8 @@ var PrimaryContact = function (_Component) {
                                             'Submit'
                                         )
                                     )
-                                )
+                                ),
+                                this.renderSuccess()
                             )
                         )
                     )
@@ -23155,6 +23188,7 @@ var PrimaryContact = function (_Component) {
             data.position = data.position || profile.position;
             data.goals = data.goals || profile.goals;
             dispatch((0, _profile.setProfile)(data, user.id));
+            this.setState({ success: 'Profile Updated' });
         }
     }]);
 
@@ -24209,7 +24243,6 @@ var TestimonialPage = function (_Component) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
                             message: entry.message,
-                            image: entry.image,
                             userId: entry.user_id
                         });
                     })
