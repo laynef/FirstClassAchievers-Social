@@ -10,7 +10,6 @@ class ProfileImageModal extends Component {
     onDrop(file) {
 		const { dispatch, user } = this.props
         let body = {}
-        console.log(`FILE`, file)
         body.image = file[0].preview
         body.user = user.id
 		dispatch(setProfile(body, user.id))
