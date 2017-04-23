@@ -23908,6 +23908,7 @@ var MainPage = function (_Component) {
                 testimonial = _props2.testimonial,
                 following = _props2.following;
 
+            var regex = new RegExp(this.state.searchTerm, 'ig');
             return _react2.default.createElement(
                 'div',
                 { id: 'mainPage' },
@@ -23941,6 +23942,8 @@ var MainPage = function (_Component) {
                             { id: 'testimonial-background', className: 'col-sm-12' },
                             testimonial.filter(function (e) {
                                 return following.followers.includes(e.user_id);
+                            }).filter(function (e) {
+                                return regex.test(e.author) || regex.test(e.message);
                             }).map(function (entry, i) {
                                 return _react2.default.createElement(_PostEntry2.default, { key: i,
                                     author: entry.author,
