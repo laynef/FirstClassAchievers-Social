@@ -5,15 +5,7 @@ const Following = require('../../../database/models/index').Following
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
-const cloudinary = require('cloudinary')
-const config = require('../../config/config')
 
-
-cloudinary.config({
-    cloud_name: config.cloud_name,
-    api_key: config.cloud_api_key,
-    api_secret: config.cloud_api_secret
-})
 
 module.exports = {
     profile: {
@@ -33,12 +25,6 @@ module.exports = {
                 image: image
             }, {
                 where: { user_id: req.params.userId }
-            })
-            .then(response => {
-                Testimonial.findAll()
-                .then(resp => {
-                    res.status(202).send(resp[0])
-                })
             })
             Profile.update({
                 firstName: req.body.firstName,

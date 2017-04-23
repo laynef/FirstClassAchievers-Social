@@ -23229,13 +23229,14 @@ var ProfileImageModal = function (_Component) {
     }
 
     _createClass(ProfileImageModal, [{
-        key: 'dropHandler',
-        value: function dropHandler(file) {
+        key: 'onDrop',
+        value: function onDrop(file) {
             var _props = this.props,
                 dispatch = _props.dispatch,
                 user = _props.user;
 
             var body = {};
+            console.log('FILE', file);
             body.image = file[0].preview;
             body.user = user.id;
             dispatch((0, _profile.setProfile)(body, user.id));
@@ -23282,7 +23283,7 @@ var ProfileImageModal = function (_Component) {
                                         { className: 'modal-body' },
                                         _react2.default.createElement(
                                             _reactDropzone2.default,
-                                            { onDrop: this.dropHandler.bind(this), multiple: false, className: 'dropzone-react' },
+                                            { onDrop: this.onDrop.bind(this), multiple: false, className: 'dropzone', activeClassName: 'active-dropzone' },
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'dropzone-react-message' },
