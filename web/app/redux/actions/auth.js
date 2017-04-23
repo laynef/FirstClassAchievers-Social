@@ -66,7 +66,7 @@ export function register(data) {
 export function changePassword(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.CHANGE_PASSWORD_PENDING})
-		axios.post(`/auth/local/change/password`, data)
+		axios.patch(`/auth/local/change/password`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.CHANGE_PASSWORD_SUCCESS,
