@@ -55,6 +55,7 @@ class TestimonialPage extends Component {
                             author={entry.author}
                             message={entry.message}
                             userId={entry.user_id}
+                            image={entry.image}
                         />
                     ))}
                 </div>

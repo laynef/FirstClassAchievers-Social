@@ -8841,25 +8841,14 @@ var PostEntry = function (_Component) {
     }
 
     _createClass(PostEntry, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                userId = _props.userId;
-
-            dispatch((0, _profile.getProfile)(userId));
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var _props2 = this.props,
-                author = _props2.author,
-                message = _props2.message,
-                image = _props2.image,
-                userId = _props2.userId,
-                profile = _props2.profile;
+            var _props = this.props,
+                author = _props.author,
+                message = _props.message,
+                image = _props.image,
+                userId = _props.userId;
 
-            if (!profile) return null;
             return _react2.default.createElement(
                 'div',
                 { className: 'PostEntry' },
@@ -8878,9 +8867,9 @@ var PostEntry = function (_Component) {
                                 { className: 'user-pic' },
                                 _react2.default.createElement('img', { alt: 'Profile Image ' + userId,
                                     width: '122', height: '122',
-                                    'data-src-retina': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
-                                    'data-src': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
-                                    src: profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png" })
+                                    'data-src-retina': image ? image : "http://i.imgur.com/sRbuHxN.png",
+                                    'data-src': image ? image : "http://i.imgur.com/sRbuHxN.png",
+                                    src: image ? image : "http://i.imgur.com/sRbuHxN.png" })
                             ),
                             _react2.default.createElement(
                                 'h5',
@@ -8917,9 +8906,7 @@ var PostEntry = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {
-        profile: state.profile.data
-    };
+    return {};
 })(PostEntry);
 
 /***/ }),
@@ -23405,8 +23392,6 @@ var TestimonialModal = function (_Component) {
                 profile = _props2.profile;
 
             if (!profile) return null;
-            var firstName = profile ? profile.firstName : '';
-            var lastName = profile ? profile.lastName : '';
             return _react2.default.createElement(
                 'div',
                 { id: 'TestimonialModalComponent' },
@@ -23450,8 +23435,34 @@ var TestimonialModal = function (_Component) {
                                         _react2.default.createElement(
                                             _reduxForm.Form,
                                             { onSubmit: handleSubmit(TestimonialModal.formSubmit.bind(this)) },
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: firstName, label: 'First Name', type: 'text', name: 'firstName' }),
-                                            _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, placeholder: lastName, label: 'Last Name', type: 'text', name: 'lastName' }),
+                                            profile.firstName ? _react2.default.createElement(
+                                                'div',
+                                                { className: 'form-group' },
+                                                _react2.default.createElement(
+                                                    'label',
+                                                    null,
+                                                    'First Name'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'span',
+                                                    { className: 'form-control' },
+                                                    profile.firstName
+                                                )
+                                            ) : _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'First Name', type: 'text', name: 'firstName' }),
+                                            profile.lastName ? _react2.default.createElement(
+                                                'div',
+                                                { className: 'form-group' },
+                                                _react2.default.createElement(
+                                                    'label',
+                                                    null,
+                                                    'Last Name'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'span',
+                                                    { className: 'form-control' },
+                                                    profile.lastName
+                                                )
+                                            ) : _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Last Name', type: 'text', name: 'lastName' }),
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderTextArea, label: 'Message', type: 'text', name: 'message' }),
                                             _react2.default.createElement(
                                                 'div',
@@ -23745,7 +23756,7 @@ var DetailPage = function (_Component) {
                                         profile.lastName
                                     )
                                 ),
-                                user && params.userId != user.id ? following.followers.includes(params.userId) ? _react2.default.createElement(
+                                user && params.userId != user.id ? following.followers.includes(profile.user_id) ? _react2.default.createElement(
                                     'div',
                                     { className: 'row' },
                                     _react2.default.createElement(
@@ -23778,7 +23789,7 @@ var DetailPage = function (_Component) {
                     'div',
                     { id: 'SecondaryContact', className: 'col-sm-8' },
                     testimonial.filter(function (e) {
-                        return e.user_id == params.userId;
+                        return e.user_id == profile.user_id;
                     }).map(function (entry, i) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
@@ -24242,7 +24253,8 @@ var TestimonialPage = function (_Component) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
                             message: entry.message,
-                            userId: entry.user_id
+                            userId: entry.user_id,
+                            image: entry.image
                         });
                     })
                 ),
@@ -24608,7 +24620,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.validate = validate;
 function validate(values) {
 	var errors = {};
-	if (!values.email) errors.email = '* Email required';
+	var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (!values.email && !regex.test(values.email)) errors.email = '* Email required';
 	if (!values.password) errors.password = '* Password required';
 	return errors;
 }
@@ -24644,7 +24657,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.validate = validate;
 function validate(values) {
 	var errors = {};
-	if (!values.email) errors.email = '* Email required';
+	var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (!values.email && !regex.test(values.email)) errors.email = '* Email required';
 	if (!values.password) errors.password = '* Password required';
 	if (!values.repassword) errors.repassword = '* Confirm Password';
 	return errors;

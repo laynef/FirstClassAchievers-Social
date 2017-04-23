@@ -72,7 +72,7 @@ class DetailPage extends Component {
                                         <span className="form-control">{profile.lastName}</span>
                                     </div>
                                     {(user && params.userId != user.id) ? 
-                                        following.followers.includes(params.userId) ? (
+                                        following.followers.includes(profile.user_id) ? (
                                             <div className="row">
                                                 <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                     <button type="submit" className="btn btn-complete btn-block m-t-5">Unfollow</button>
@@ -92,7 +92,7 @@ class DetailPage extends Component {
                     </Form>
                     <div id="SecondaryContact" className="col-sm-8">
                         {testimonial
-                            .filter(e => e.user_id == params.userId)
+                            .filter(e => e.user_id == profile.user_id)
                             .map((entry, i) => (
                             <PostEntry key={i}
                                 author={entry.author}

@@ -7,14 +7,8 @@ import { getProfile } from '../../redux/actions/profile'
 
 class PostEntry extends Component {
 
-    componentDidMount() {
-        const { dispatch, userId } = this.props
-        dispatch(getProfile(userId))
-    }
-
     render() {
-        const { author, message, image, userId, profile } = this.props
-        if (!profile) return null
+        const { author, message, image, userId } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -24,9 +18,9 @@ class PostEntry extends Component {
                                 <div className="user-pic">
                                     <img alt={`Profile Image ${userId}`}
                                         width="122" height="122" 
-                                        data-src-retina={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        data-src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"} />
+                                        data-src-retina={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
+                                        data-src={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
+                                        src={image ? image : "http://i.imgur.com/sRbuHxN.png"} />
                                 </div>
                                 <h5>{author}</h5>
                                 <h6>Created posted
@@ -47,5 +41,4 @@ class PostEntry extends Component {
 }
 
 export default connect(state => ({
-    profile: state.profile.data
 }))(PostEntry)
