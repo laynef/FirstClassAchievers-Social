@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { getProfile, setProfile } from '../../redux/actions/profile'
 import { validate }  from '../../redux/validators/profile'
+import ChangePasswordModal from './ChangePasswordModal'
  
 
 class PrimaryContact extends Component {
@@ -89,11 +90,22 @@ class PrimaryContact extends Component {
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                    <button type="button" 
+                                    className="btn btn-primary btn-block m-t-5"
+                                    data-toggle="modal"
+                                    data-target="#change-password-modal">
+                                        Change Password
+                                    </button>
+                                </div>
+                            </div>
                             {this.renderSuccess()}
                         </div>
                     </div>
                 </div>
             </Form>
+            <ChangePasswordModal />
         </div>
         )
     }
