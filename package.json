@@ -16,7 +16,6 @@
     "body-parser": "^1.16.1",
     "bunyan": "^1.8.5",
     "chai": "^3.5.0",
-    "cloudinary": "^1.8.0",
     "concurrently": "^3.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -67,7 +66,7 @@
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1"
   },
-  "author": "laynefaler <laynefaler@gmail.com>",
+  "author": "Layne Faler <laynefaler>",
   "scripts": {
     "test": "mocha ./tests/index.js",
     "start": "node ./api/server/server.js"
