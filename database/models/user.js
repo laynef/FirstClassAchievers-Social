@@ -12,6 +12,8 @@ module.exports = function(sequelize, DataTypes) {
         User.hasOne(models.Profile, {foreignKey: 'user_id'})
         User.hasMany(models.Message, {foreignKey: 'user_id'})
         User.hasOne(models.Following, {foreignKey: 'user_id'})
+        User.hasOne(models.Following, {foreignKey: 'user_id'})
+        User.hasOne(models.Favorite, {foreignKey: 'user_id'})
       }
     }
   });

@@ -23817,7 +23817,8 @@ var DetailEntry = function (_Component) {
         value: function render() {
             var _props = this.props,
                 testimonial = _props.testimonial,
-                params = _props.params;
+                params = _props.params,
+                user = _props.user;
 
             return _react2.default.createElement(
                 'div',
@@ -23890,7 +23891,8 @@ DetailEntry = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        testimonial: state.testimonial.data
+        testimonial: state.testimonial.data,
+        user: state.user.data
     };
 })(DetailEntry);
 

@@ -7,7 +7,7 @@ import { getTestimonials } from '../../redux/actions/testimonial'
 class DetailEntry extends Component {
 
     render() {
-        const { testimonial, params } = this.props
+        const { testimonial, params, user } = this.props
         return (
             <div id="DetailEntry">
                 {testimonial
@@ -49,5 +49,6 @@ DetailEntry = reduxForm({
 })(DetailEntry)
 
 export default connect(state => ({
-    testimonial: state.testimonial.data
+    testimonial: state.testimonial.data,
+    user: state.user.data
 }))(DetailEntry)
