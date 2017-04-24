@@ -1,8 +1,7 @@
 {
   "name": "first-class-achievers",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
-  "main": "index.js",
   "dependencies": {
     "axios": "^0.16.1",
     "babel-core": "^6.10.4",
@@ -17,7 +16,6 @@
     "body-parser": "^1.16.1",
     "bunyan": "^1.8.5",
     "chai": "^3.5.0",
-    "cloudinary": "^1.8.0",
     "concurrently": "^3.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -76,6 +74,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/laynefaler/FirstClassAchievers.git"
+  },
+  "engines": {
+    "node": "7.8.0",
+    "npm": "4.2.0"
   },
   "keywords": [],
   "license": "ISC",
