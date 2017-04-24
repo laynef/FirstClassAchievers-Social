@@ -7,7 +7,7 @@ import Dropzone from 'react-dropzone'
 
 class ProfileImageModal extends Component {
 
-    dropHandler(file) {
+    onDrop(file) {
 		const { dispatch, user } = this.props
         let body = {}
         body.image = file[0].preview
@@ -27,7 +27,7 @@ class ProfileImageModal extends Component {
                                     <button type="button" className="close" data-dismiss="modal" aria-hidden="true"><i className="pg-close fs-14"></i></button>
                                     <h5><span className="semi-bold">Profile Image</span></h5>
                                     <div className="modal-body">
-                                        <Dropzone onDrop={this.dropHandler.bind(this)} multiple={false} className="dropzone-react">
+                                        <Dropzone onDrop={this.onDrop.bind(this)} multiple={false} className="dropzone" activeClassName="active-dropzone">
                                             <div className="dropzone-react-message">
                                                 <span>Drop image to upload or CLICK</span>
                                                 <img src="http://i.imgur.com/u81HFsO.png"

@@ -3,9 +3,18 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { getProfile, setProfile } from '../../redux/actions/profile'
-
+import { validate }  from '../../redux/validators/profile'
+import ChangePasswordModal from './ChangePasswordModal'
+ 
 
 class PrimaryContact extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            success: ''
+        }
+    }
 
     static formSubmit(data) {
         const { dispatch, user, profile } = this.props
@@ -19,11 +28,21 @@ class PrimaryContact extends Component {
         data.position = data.position || profile.position
         data.goals = data.goals || profile.goals
         dispatch(setProfile(data, user.id))
+        this.setState({success: 'Profile Updated'})
     }
 
     componentDidMount() {
         const { dispatch, user } = this.props 
         dispatch(getProfile(user.id))
+    }
+
+    renderSuccess() {
+        if (!this.state.success) return null
+        return (
+            <span style={{color: 'green'}}>
+                {this.state.success}
+            </span>
+        )
     }
 
     render() {
@@ -71,10 +90,22 @@ class PrimaryContact extends Component {
                                     <button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                    <button type="button" 
+                                    className="btn btn-primary btn-block m-t-5"
+                                    data-toggle="modal"
+                                    data-target="#change-password-modal">
+                                        Change Password
+                                    </button>
+                                </div>
+                            </div>
+                            {this.renderSuccess()}
                         </div>
                     </div>
                 </div>
             </Form>
+            <ChangePasswordModal />
         </div>
         )
     }

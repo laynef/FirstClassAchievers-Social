@@ -2,6 +2,7 @@ const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const Profile = require('../../../database/models/index').Profile
+const Following = require('../../../database/models/index').Following
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -21,7 +22,7 @@ router.get('/local/user', (req, res, next) => {
 })
 
 router.post('/local/login', (req, res, next) => {
-    let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (req.body.password.length < 8 && regex.test(req.body.email)) {
         return res.statusCode(404)
     }
@@ -44,7 +45,7 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
-    let regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!req.body.password.length > 0 && regex.test(req.body.email)) {
         return res.statusCode(404)
     }
@@ -55,6 +56,10 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
+            Following.create({
+                followers: [],
+                user_id: response.dataValues.id
+            })
             Profile.create({
                 firstName: null,
                 lastName: null,
@@ -88,20 +93,17 @@ router.patch('/local/change/password', (req, res, next) => {
         where: { email: req.body.email }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response.password, (err, result) => {
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
                 if (result) {
                     User.update({
                         password: hash
                     }, { 
-                        where: { _id: response.id }
+                        where: { id: response[0].dataValues.id }
                     })
                         .then(resp => {
                             req.cookies.user = resp
-                            User.findAll({
-                                where: {_id: response.id }
-                            })
-                            .then(respond => res.status(202).json(respond))
+                            res.status(202).json(resp)
                         })
                         .catch(errs => {
                             console.log(`Update error`, errs)
@@ -135,7 +137,7 @@ router.post('/local/forgot/password', (req, res, next) => {
         // default message fields
 
         // sender info
-        from: 'Pangalink <no-reply@pangalink.net>',
+        from: 'First Class Achievers <no-reply@firstclass.net>',
         headers: {
             'X-Laziness-level': 1000 // just an example header, no need to use this
         }
@@ -147,13 +149,13 @@ router.post('/local/forgot/password', (req, res, next) => {
     let message = {
 
         // Comma separated list of recipients
-        to: 'Andris Reinman <andris.reinman@gmail.com>',
+        to: `${req.body.firstName} ${req.body.lastName} <${req.body.email}>`,
 
         // Subject of the message
         subject: 'Nodemailer is unicode friendly ✔ #', //
 
         // plaintext body
-        text: 'Hello to myself!',
+        text: `Hello ${req.body.firstName} ${req.body.lastName}!`,
 
         // HTML body
         html: '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +

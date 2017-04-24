@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput, renderTextArea } from '../../redux/utils/ReduxForms'
 import { createTestimonials } from '../../redux/actions/testimonial'
 import { getProfile } from '../../redux/actions/profile'
+import { validate } from '../../redux/validators/testimonial'
 
 
 class TestimonialModal extends Component {
@@ -30,8 +31,6 @@ class TestimonialModal extends Component {
     render() {
         const { handleSubmit, profile } = this.props
         if (!profile) return null
-        let firstName = profile ? profile.firstName : ''
-        let lastName = profile ? profile.lastName : ''
         return (
             <div id="TestimonialModalComponent">
                 <div className="modal fade slide-up disable-scroll in" id="testimonial-modal">
@@ -48,8 +47,18 @@ class TestimonialModal extends Component {
                                     <p className="p-b-10">Help others get jobs</p>
                                     <div className="modal-body">
                                         <Form onSubmit={handleSubmit(TestimonialModal.formSubmit.bind(this))}>
-                                            <Field component={renderInput} placeholder={firstName} label="First Name" type="text" name="firstName"/>
-                                            <Field component={renderInput} placeholder={lastName} label="Last Name" type="text" name="lastName"/>
+                                            {profile.firstName ? (
+                                                <div className="form-group">
+                                                    <label>First Name</label>
+                                                    <span className="form-control">{profile.firstName}</span>
+                                                </div>
+                                            ) : <Field component={renderInput} label="First Name" type="text" name="firstName"/>}
+                                            {profile.lastName ? (
+                                                <div className="form-group">
+                                                    <label>Last Name</label>
+                                                    <span className="form-control">{profile.lastName}</span>
+                                                </div>
+                                            ) : <Field component={renderInput} label="Last Name" type="text" name="lastName"/>}
                                             <Field component={renderTextArea} label="Message" type="text" name="message"/>
                                             <div className="row">
                                                 <div className="col-sm-4 m-t-10 sm-m-t-10">
@@ -70,7 +79,8 @@ class TestimonialModal extends Component {
 }
 
 TestimonialModal = reduxForm({
-    form: 'TestimonialModal'
+    form: 'TestimonialModal',
+    validate
 })(TestimonialModal)
 
 export default connect(state => ({

@@ -9,6 +9,8 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         User.hasMany(models.Testimonial, {foreignKey: 'user_id'})
         User.hasOne(models.Profile, {foreignKey: 'user_id'})
+        User.hasMany(models.Message, {foreignKey: 'user_id'})
+        User.hasOne(models.Following, {foreignKey: 'user_id'})
       }
     }
   });

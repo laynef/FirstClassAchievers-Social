@@ -6,7 +6,7 @@ import settings from '../config/settings'
 export function setProfile(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_PROFILE_PENDING})
-		axios.patch(`${settings.API_ROOT}/api/profile/${id}`, data)
+		axios.patch(`/api/profile/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_PROFILE_SUCCESS,
@@ -25,7 +25,7 @@ export function setProfile(data, id) {
 export function getProfile(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_PROFILE_PENDING})
-		axios.get(`${settings.API_ROOT}/api/profile/${id}`)
+		axios.get(`/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_PROFILE_SUCCESS,

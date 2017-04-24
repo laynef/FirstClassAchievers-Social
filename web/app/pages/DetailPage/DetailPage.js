@@ -1,22 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, Form } from 'redux-form'
 import { getProfile } from '../../redux/actions/profile'
 import { getTestimonials } from '../../redux/actions/testimonial'
+import { getFollowers, setFollowers } from '../../redux/actions/following'
 import PostEntry from '../../components/Testimonial/PostEntry'
+import pull from 'lodash/pull'
 
 
 class DetailPage extends Component {
 
     componentDidMount() {
-        const { dispatch, params } = this.props 
+        const { dispatch, params, user } = this.props 
         dispatch(getProfile(params.userId))
         dispatch(getTestimonials())
+        if (user) {
+            dispatch(getFollowers(user.id))
+        }
+    }
+
+    static formSubmit() {
+        const { dispatch, following, user, profile } = this.props
+        let body = {};
+        let array = following.followers.slice()
+        if (array.includes(profile.user_id)) {
+             pull(array, profile.user_id)
+        } else {
+            array.push(profile.user_id)
+        }
+        body.followers = array
+        dispatch(setFollowers(body, user.id))
     }
 
     render() {
-        const { profile, params, testimonial } = this.props;
+        const { profile, params, testimonial, handleSubmit, user, following } = this.props;
         if (!profile) return null
+        if (user) { if (!following) return null }
         return (
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
@@ -28,35 +47,52 @@ class DetailPage extends Component {
                         width="320"
                         height="320"/>
                 </span>
-                <div id="PrimaryContact" className="col-md-4">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <div className="panel-title">
-                                About Them
-                            </div>
-                        </div>
-                        <div className="panel-body">
-                            <h5>
-                                Traditional Standard Style
-                            </h5>
-                                <div className="form-group">
-                                    <label>First Name</label>
-                                    <span className="form-control">{profile.firstName}</span>
-                                </div>
-                                <div className="form-group">
-                                    <label>Nick Name</label>
-                                    <span className="form-control">{profile.nickname}</span>
-                                </div>
-                                <div className="form-group">
-                                    <label>Last Name</label>
-                                    <span className="form-control">{profile.lastName}</span>
+                <Form onSubmit={handleSubmit(DetailPage.formSubmit.bind(this))}>
+                    <div id="PrimaryContact" className="col-md-4">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <div className="panel-title">
+                                    About Them
                                 </div>
                             </div>
+                            <div className="panel-body">
+                                <h5>
+                                    Traditional Standard Style
+                                </h5>
+                                    <div className="form-group">
+                                        <label>First Name</label>
+                                        <span className="form-control">{profile.firstName}</span>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Nick Name</label>
+                                        <span className="form-control">{profile.nickname}</span>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Last Name</label>
+                                        <span className="form-control">{profile.lastName}</span>
+                                    </div>
+                                    {(user && params.userId != user.id) ? 
+                                        following.followers.includes(profile.user_id) ? (
+                                            <div className="row">
+                                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-complete btn-block m-t-5">Unfollow</button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="row">
+                                                <div className="col-sm-12 m-t-10 sm-m-t-10">
+                                                    <button type="submit" className="btn btn-complete btn-block m-t-5">Follow</button>
+                                                </div>
+                                            </div>
+                                        )
+                                     : null }
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </Form>
                     <div id="SecondaryContact" className="col-sm-8">
                         {testimonial
-                            .filter(e => e.user_id == params.userId)
+                            .filter(e => e.user_id == profile.user_id)
                             .map((entry, i) => (
                             <PostEntry key={i}
                                 author={entry.author}
@@ -77,6 +113,8 @@ DetailPage = reduxForm({
 })(DetailPage)
 
 export default connect(state => ({
+    user: state.user.data,
     profile: state.profile.data,
-    testimonial: state.testimonial.data
+    testimonial: state.testimonial.data,
+    following: state.following.data
 }))(DetailPage)

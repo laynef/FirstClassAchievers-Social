@@ -74,14 +74,14 @@ export default function (state = INITIAL_STATE, action) {
 				error: action.payload
 			}
 
-		case actionTypes.GET_USER_PENDING:
+		case actionTypes.CHANGE_PASSWORD_PENDING:
 			return {
 				...state,
 				pending: true,
 				error: null
 			}
 
-		case actionTypes.GET_USER_SUCCESS:
+		case actionTypes.CHANGE_PASSWORD_SUCCESS:
 			return {
 				...state,
 				pending: null,
@@ -89,7 +89,7 @@ export default function (state = INITIAL_STATE, action) {
 				data: action.payload
 			}
 
-		case actionTypes.GET_USER_ERROR:
+		case actionTypes.CHANGE_PASSWORD_ERROR:
 			return {
 				...state,
 				pending: null,

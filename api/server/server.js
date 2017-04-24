@@ -12,6 +12,7 @@ const favicon = require('express-favicon')
 const fs = require('fs')
 const config = require('../config/config')
 const flash = require('express-flash')
+const cloudinary = require('cloudinary')
 
 
 // port settings

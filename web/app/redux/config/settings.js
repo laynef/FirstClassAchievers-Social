@@ -1,5 +1,5 @@
 const settings = {
-	API_ROOT: 'http://localhost:3214'
+	API_ROOT: ''
 }
 
 export default settings

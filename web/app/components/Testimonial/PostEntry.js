@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { getProfile } from '../../redux/actions/profile'
 
 
-export default class PostEntry extends Component {
+class PostEntry extends Component {
 
     render() {
         const { author, message, image, userId } = this.props
@@ -38,3 +39,6 @@ export default class PostEntry extends Component {
     }
 
 }
+
+export default connect(state => ({
+}))(PostEntry)

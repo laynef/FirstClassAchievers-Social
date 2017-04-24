@@ -1,17 +1,19 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 import settings from '../config/settings'
-
+import { getFollowers } from './following'
+import { getProfile } from './profile'
 
 export function login(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGIN_PENDING})
-		axios.post(`${settings.API_ROOT}/auth/local/login`, data)
+		axios.post(`/auth/local/login`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getFollowers(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
@@ -25,7 +27,7 @@ export function login(data) {
 export function logout() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGOUT_PENDING})
-		axios.get(`${settings.API_ROOT}/auth/local/logout`)
+		axios.get(`/auth/local/logout`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGOUT_SUCCESS,
@@ -44,7 +46,7 @@ export function logout() {
 export function register(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.REGISTER_PENDING})
-		axios.post(`${settings.API_ROOT}/auth/local/register`, data)
+		axios.post(`/auth/local/register`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.REGISTER_SUCCESS,
@@ -61,21 +63,22 @@ export function register(data) {
 	}
 }
 
-export function getUser() {
+export function changePassword(data) {
 	return function(dispatch) {
-		dispatch({type: actionTypes.GET_USER_PENDING})
-		axios.get(`${settings.API_ROOT}/auth/local/user`)
+		dispatch({type: actionTypes.CHANGE_PASSWORD_PENDING})
+		axios.patch(`/auth/local/change/password`, data)
 			.then((response) => {
 					dispatch({
-						type: actionTypes.GET_USER_SUCCESS,
-						payload: response
+						type: actionTypes.CHANGE_PASSWORD_SUCCESS,
+						payload: response.data
 					})
 				})
 				.catch((err) => {
 					dispatch({
-						type: actionTypes.GET_USER_ERROR,
+						type: actionTypes.CHANGE_PASSWORD_ERROR,
 						payload: err
 					})
 				})
 	}
 }
+

@@ -8,11 +8,8 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
-} else {
-  var sequelize = new Sequelize(config.url);
-}
+var url = process.env.dbUrl || config.url
+var sequelize = new Sequelize(url);
 
 fs
   .readdirSync(__dirname)
