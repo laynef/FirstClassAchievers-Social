@@ -30,7 +30,6 @@ export function setFavorites(data, id) {
 						type: actionTypes.SET_FAVORITES_SUCCESS,
 						payload: response.data
 					})
-                    dispatch(getFavorites(id))
 				})
 				.catch((err) => {
 					dispatch({

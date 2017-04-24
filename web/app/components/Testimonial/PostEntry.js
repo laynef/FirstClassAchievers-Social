@@ -8,10 +8,11 @@ import pull from 'lodash/pull'
 
 class PostEntry extends Component {
 
-    submitFavorite() {
+    static submitFavorite() {
         const { dispatch, user, favorites, entryId } = this.props
         let body = {}
         let array = favorites.entries.slice()
+        body.user_id = user.id
         body.entries = array.includes(entryId) ?
             pull(array, entryId) :
             array.push(entryId)
@@ -41,10 +42,13 @@ class PostEntry extends Component {
                                 </h6>
                             </div>
                         </Link>
-                        {favorites ? favorites.entries.includes(entryId) ? 
-                            (<button onClick={() => this.submitFavorite()} className="btn"><i className="fa fa-heart-o"></i></button>) 
-                            : (<button onClick={() => this.submitFavorite()} className="btn"><i className="fa fa-heart"></i></button>)
+                        <Form onSubmit={handleSubmit(PostEntry.submitFavorite.bind(this))}>
+                        {favorites && favorites.entries ? 
+                            favorites.entries.includes(entryId) ? 
+                            (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
+                            : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
                         : null}
+                    </Form>
                     <div className="card-description">
                         <p>{message}</p>
                     </div>

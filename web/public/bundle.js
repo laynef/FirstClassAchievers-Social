@@ -6971,33 +6971,17 @@ var PostEntry = function (_Component) {
     }
 
     _createClass(PostEntry, [{
-        key: 'submitFavorite',
-        value: function submitFavorite() {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                user = _props.user,
-                favorites = _props.favorites,
-                entryId = _props.entryId;
-
-            var body = {};
-            var array = favorites.entries.slice();
-            body.entries = array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
-            dispatch((0, _favorite.setFavorites)(body, user.id));
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var _props2 = this.props,
-                author = _props2.author,
-                message = _props2.message,
-                image = _props2.image,
-                userId = _props2.userId,
-                detail = _props2.detail,
-                entryId = _props2.entryId,
-                handleSubmit = _props2.handleSubmit,
-                favorites = _props2.favorites;
+            var _props = this.props,
+                author = _props.author,
+                message = _props.message,
+                image = _props.image,
+                userId = _props.userId,
+                detail = _props.detail,
+                entryId = _props.entryId,
+                handleSubmit = _props.handleSubmit,
+                favorites = _props.favorites;
 
             return _react2.default.createElement(
                 'div',
@@ -7038,19 +7022,19 @@ var PostEntry = function (_Component) {
                             )
                         )
                     ),
-                    favorites ? favorites.entries.includes(entryId) ? _react2.default.createElement(
-                        'button',
-                        { onClick: function onClick() {
-                                return _this2.submitFavorite();
-                            }, className: 'btn' },
-                        _react2.default.createElement('i', { className: 'fa fa-heart-o' })
-                    ) : _react2.default.createElement(
-                        'button',
-                        { onClick: function onClick() {
-                                return _this2.submitFavorite();
-                            }, className: 'btn' },
-                        _react2.default.createElement('i', { className: 'fa fa-heart' })
-                    ) : null,
+                    _react2.default.createElement(
+                        _reduxForm.Form,
+                        { onSubmit: handleSubmit(PostEntry.submitFavorite.bind(this)) },
+                        favorites && favorites.entries ? favorites.entries.includes(entryId) ? _react2.default.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn' },
+                            _react2.default.createElement('i', { className: 'fa fa-heart-o' })
+                        ) : _react2.default.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn' },
+                            _react2.default.createElement('i', { className: 'fa fa-heart' })
+                        ) : null
+                    ),
                     _react2.default.createElement(
                         'div',
                         { className: 'card-description' },
@@ -7062,6 +7046,21 @@ var PostEntry = function (_Component) {
                     )
                 )
             );
+        }
+    }], [{
+        key: 'submitFavorite',
+        value: function submitFavorite() {
+            var _props2 = this.props,
+                dispatch = _props2.dispatch,
+                user = _props2.user,
+                favorites = _props2.favorites,
+                entryId = _props2.entryId;
+
+            var body = {};
+            var array = favorites.entries.slice();
+            body.user_id = user.id;
+            body.entries = array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
+            dispatch((0, _favorite.setFavorites)(body, user.id));
         }
     }]);
 
@@ -13831,7 +13830,6 @@ function setFavorites(data, id) {
 				type: _actionTypes2.default.SET_FAVORITES_SUCCESS,
 				payload: response.data
 			});
-			dispatch(getFavorites(id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.SET_FAVORITES_ERROR,
