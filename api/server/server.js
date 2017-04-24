@@ -23,7 +23,6 @@ server.listen(port, () => {
 
 // Middleware
 // Body Parser, Morgan, and Public Compiled folder
-app.set('volume', config.volume)
 app.use(favicon(__dirname + '/../../web/public/favicon.ico'))
 app.use(express.static(__dirname + '/../../web/public'))
 app.use(cors({origin: '*'}))
