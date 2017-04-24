@@ -12,9 +12,7 @@ export function setProfile(data, id) {
 						type: actionTypes.SET_PROFILE_SUCCESS,
 						payload: response.data
 					})
-					let body = {}
-					body.id = response.data.user_id
-					dispatch(getUser(body))
+					dispatch(getUser(response.data.user_id))
 				})
 				.catch((err) => {
 					dispatch({

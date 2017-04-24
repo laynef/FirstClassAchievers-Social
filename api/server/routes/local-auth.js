@@ -9,8 +9,8 @@ const bunyan = require('bunyan')
 
 
 // local auth
-router.get('/local/user', (req, res, next) => {
-    User.findById(req.body.id)
+router.get('/local/user/:id', (req, res, next) => {
+    User.findAll({ where: {id: req.params.id} })
         .then(response => {
             res.status(200).send(response[0].dataValues)
         })

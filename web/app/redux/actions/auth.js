@@ -82,10 +82,10 @@ export function changePassword(data) {
 	}
 }
 
-export function getUser() {
+export function getUser(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_USER_PENDING})
-		axios.get(`/auth/local/user`)
+		axios.get(`/auth/local/user/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_USER_SUCCESS,
