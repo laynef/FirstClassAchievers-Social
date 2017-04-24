@@ -1,8 +1,7 @@
 {
   "name": "first-class-achievers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
-  "main": "index.js",
   "dependencies": {
     "axios": "^0.16.1",
     "babel-core": "^6.10.4",
@@ -68,7 +67,7 @@
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1"
   },
-  "author": "Layne Faler <laynefaler>",
+  "author": "laynefaler <laynefaler@gmail.com>",
   "scripts": {
     "test": "mocha ./tests/index.js",
     "start": "node ./api/server/server.js"
