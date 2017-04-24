@@ -58,6 +58,12 @@ class Header extends Component {
                                             Settings
                                           </Link>
                                         </li>
+                                        <li>
+                                          <Link to="/favorites">
+                                            <i className="fs-14 fa fa-heart"></i> 
+                                            Favorites
+                                          </Link>
+                                        </li>
                                         <li className="bg-master-lighter" onClick={() => {dispatch(logout());window.location.reload()}}>
                                           <Link to="/" className="clearfix">
                                             <span className="pull-left">Logout</span>

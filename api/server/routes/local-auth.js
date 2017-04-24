@@ -3,6 +3,7 @@ const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const Profile = require('../../../database/models/index').Profile
 const Following = require('../../../database/models/index').Following
+const Favorite = require('../../../database/models/index').Favorite
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -58,6 +59,10 @@ router.post('/local/register', (req, res, next) => {
             Following.create({
                 followers: [],
                 user_id: response.dataValues.id
+            })
+            Favorite.create({
+                user_id: response.dataValues.id,
+                entries: []
             })
             Profile.create({
                 firstName: null,

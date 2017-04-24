@@ -109,3 +109,10 @@
       margin-left: 80px; } }
   #DetailEntry h1 {
     text-align: center; }
+
+@media screen and (min-width: 992px) {
+  #FavoritesPage {
+    margin-left: 80px; } }
+
+#FavoritesPage h1 {
+  text-align: center; }
