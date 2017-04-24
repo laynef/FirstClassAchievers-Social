@@ -3473,6 +3473,11 @@ var actionTypes = {
 	CHANGE_PASSWORD_PENDING: 'CHANGE_PASSWORD_PENDING',
 	CHANGE_PASSWORD_ERROR: 'CHANGE_PASSWORD_ERROR',
 
+	// Get User
+	GET_USER_SUCCESS: 'GET_USER_SUCCESS',
+	GET_USER_PENDING: 'GET_USER_PENDING',
+	GET_USER_ERROR: 'GET_USER_ERROR',
+
 	// Followings
 	GET_FOLLOWERS_SUCCESS: 'GET_FOLLOWERS_SUCCESS',
 	GET_FOLLOWERS_PENDING: 'GET_FOLLOWERS_PENDING',
@@ -4931,9 +4936,7 @@ var _actionTypes = __webpack_require__(51);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
-var _settings = __webpack_require__(139);
-
-var _settings2 = _interopRequireDefault(_settings);
+var _auth = __webpack_require__(103);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4945,6 +4948,9 @@ function setProfile(data, id) {
 				type: _actionTypes2.default.SET_PROFILE_SUCCESS,
 				payload: response.data
 			});
+			var body = {};
+			body.id = response.data.user_id;
+			dispatch((0, _auth.getUser)(body));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.SET_PROFILE_ERROR,
@@ -6747,6 +6753,7 @@ exports.login = login;
 exports.logout = logout;
 exports.register = register;
 exports.changePassword = changePassword;
+exports.getUser = getUser;
 
 var _axios = __webpack_require__(102);
 
@@ -6755,10 +6762,6 @@ var _axios2 = _interopRequireDefault(_axios);
 var _actionTypes = __webpack_require__(51);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
-
-var _settings = __webpack_require__(139);
-
-var _settings2 = _interopRequireDefault(_settings);
 
 var _following = __webpack_require__(138);
 
@@ -6837,6 +6840,23 @@ function changePassword(data) {
 	};
 }
 
+function getUser() {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.GET_USER_PENDING });
+		_axios2.default.get('/auth/local/user').then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.GET_USER_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.GET_USER_ERROR,
+				payload: err
+			});
+		});
+	};
+}
+
 /***/ }),
 /* 104 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6857,10 +6877,6 @@ var _axios2 = _interopRequireDefault(_axios);
 var _actionTypes = __webpack_require__(51);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
-
-var _settings = __webpack_require__(139);
-
-var _settings2 = _interopRequireDefault(_settings);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9076,22 +9092,7 @@ function setFollowers(data, id) {
 }
 
 /***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var settings = {
-	API_ROOT: ''
-};
-
-exports.default = settings;
-
-/***/ }),
+/* 139 */,
 /* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24551,6 +24552,26 @@ exports.default = function () {
 				pending: null,
 				error: action.payload
 			});
+
+		case _actionTypes2.default.GET_USER_PENDING:
+			return _extends({}, state, {
+				pending: true,
+				error: null
+			});
+
+		case _actionTypes2.default.GET_USER_SUCCESS:
+			return _extends({}, state, {
+				pending: null,
+				error: null,
+				data: action.payload
+			});
+
+		case _actionTypes2.default.GET_USER_ERROR:
+			return _extends({}, state, {
+				pending: null,
+				error: action.payload
+			});
+
 	}
 
 	return state;

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
-import settings from '../config/settings'
 import { getFollowers } from './following'
 import { getProfile } from './profile'
 
@@ -77,6 +76,25 @@ export function changePassword(data) {
 				.catch((err) => {
 					dispatch({
 						type: actionTypes.CHANGE_PASSWORD_ERROR,
+						payload: err
+					})
+				})
+	}
+}
+
+export function getUser() {
+	return function(dispatch) {
+		dispatch({type: actionTypes.GET_USER_PENDING})
+		axios.get(`/auth/local/user`)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.GET_USER_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.GET_USER_ERROR,
 						payload: err
 					})
 				})
