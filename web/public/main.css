@@ -1,1 +1,103 @@
-@media screen and (min-width:992px){#mainPage{margin-left:80px}}#mainPage h1{text-align:center}#mainPage #mainContainer{height:77.5vh}#mainPage #testimonial-background{margin:40px 15px;height:580px;width:97.5%;background-color:#fff;overflow:scroll}#SideMenuComponent #sideMenu:hover{transform:translate(210px)}@media screen and (min-width:992px){#TestimonialPage{margin-left:80px}}#TestimonialPage h1{text-align:center}#TestimonialPage #testimonial-background{margin:40px 15px;height:580px;width:97.5%;background-color:#fff;overflow:scroll}@media screen and (min-width:992px){#AboutUsPage{margin-left:80px}}#AboutUsPage h1{text-align:center}#AboutUsPage .aboutPanel{height:375px;margin:0}@media screen and (min-width:992px){#ProfilePage{margin-left:80px}}#ProfilePage h1{text-align:center}#ProfilePage #profileImage{transform:scale(10)}@media screen and (min-width:992px){#ProfilePage #profileImage{margin-left:200px;margin-top:150px}}@media screen and (min-width:992px){#ProfilePage #PrimaryContact{margin-left:-230px;margin-top:350px}}@media screen and (min-width:992px){#ProfilePage #SecondaryContact{margin-left:400px;margin-top:-680px}}#ProfilePage #SecondaryContact #panelSecondary{height:660px}#ProfilePage #SecondaryContact textarea{height:100px}@media screen and (min-width:992px){#DetailPage{margin-left:80px}}#DetailPage h1{text-align:center}#DetailPage #profileImage{transform:scale(10)}@media screen and (min-width:992px){#DetailPage #profileImage{margin-left:200px;margin-top:150px}}@media screen and (min-width:992px){#DetailPage #PrimaryContact{margin-left:-230px;margin-top:350px}}#DetailPage #SecondaryContact{margin:40px;height:700px;background-color:#fff;overflow:scroll}@media screen and (min-width:992px){#DetailPage #SecondaryContact{margin-left:400px;margin-top:-680px}}
+@media screen and (min-width: 992px) {
+  #mainPage {
+    margin-left: 80px; } }
+
+#mainPage h1 {
+  text-align: center; }
+
+#mainPage #mainContainer {
+  height: 77.5vh; }
+
+#mainPage #testimonial-background {
+  margin: 40px 15px;
+  height: 580px;
+  width: 97.5%;
+  background-color: white;
+  overflow: scroll; }
+
+#SideMenuComponent #sideMenu:hover {
+  transform: translate(210px, 0px); }
+
+@media screen and (min-width: 992px) {
+  #TestimonialPage {
+    margin-left: 80px; } }
+
+#TestimonialPage h1 {
+  text-align: center; }
+
+#TestimonialPage #testimonial-background {
+  margin: 40px 15px;
+  height: 580px;
+  width: 97.5%;
+  background-color: white;
+  overflow: scroll; }
+
+@media screen and (min-width: 992px) {
+  #AboutUsPage {
+    margin-left: 80px; } }
+
+#AboutUsPage h1 {
+  text-align: center; }
+
+#AboutUsPage .aboutPanel {
+  height: 375px;
+  margin: 0; }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage {
+    margin-left: 80px; } }
+
+#ProfilePage h1 {
+  text-align: center; }
+
+#ProfilePage #profileImage {
+  transform: scale(10); }
+  @media screen and (min-width: 992px) {
+    #ProfilePage #profileImage {
+      margin-left: 200px;
+      margin-top: 150px; } }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #PrimaryContact {
+    margin-left: -230px;
+    margin-top: 350px; } }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #SecondaryContact {
+    margin-left: 400px;
+    margin-top: -680px; } }
+
+#ProfilePage #SecondaryContact #panelSecondary {
+  height: 700px; }
+
+#ProfilePage #SecondaryContact textarea {
+  height: 100px; }
+
+@media screen and (min-width: 992px) {
+  #DetailPage {
+    margin-left: 80px; } }
+
+#DetailPage h1 {
+  text-align: center; }
+
+#DetailPage #profileImage {
+  transform: scale(10); }
+  @media screen and (min-width: 992px) {
+    #DetailPage #profileImage {
+      margin-left: 200px;
+      margin-top: 150px; } }
+
+@media screen and (min-width: 992px) {
+  #DetailPage #PrimaryContact {
+    margin-left: -230px;
+    margin-top: 350px; } }
+
+#DetailPage #SecondaryContact {
+  margin: 40px;
+  height: 700px;
+  background-color: white;
+  overflow: scroll; }
+  @media screen and (min-width: 992px) {
+    #DetailPage #SecondaryContact {
+      margin-left: 400px;
+      margin-top: -680px; } }
