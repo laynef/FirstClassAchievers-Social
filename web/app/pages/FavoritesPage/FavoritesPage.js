@@ -6,9 +6,17 @@ import PostEntry from '../../components/Testimonial/PostEntry'
 
 class FavoritesPage extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchTerm: ''
+        }
+    }
+
     render() {
         const { testimonial, favorites } = this.props
         if (!testimonial && !favorites) return null
+        let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="FavoritesPage">
                 <h1>Favorites</h1>
