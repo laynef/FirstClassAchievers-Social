@@ -7,10 +7,12 @@ import { getTestimonials } from '../../redux/actions/testimonial'
 class DetailEntry extends Component {
 
     render() {
-        const { testimonial } = this.props
+        const { testimonial, params } = this.props
         return (
             <div id="DetailEntry">
-                {testimonial.map(e => (
+                {testimonial
+                    .filter(e => e.id == params.entryId)
+                    .map(e => (
                     <div className="PostEntry">
                     <h1>{e.author + `'s Testimonial`}</h1>
                         <div className="card share col1" data-social="item" style={{width: '100%'}}>

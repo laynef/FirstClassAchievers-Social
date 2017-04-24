@@ -23815,12 +23815,16 @@ var DetailEntry = function (_Component) {
     _createClass(DetailEntry, [{
         key: 'render',
         value: function render() {
-            var testimonial = this.props.testimonial;
+            var _props = this.props,
+                testimonial = _props.testimonial,
+                params = _props.params;
 
             return _react2.default.createElement(
                 'div',
                 { id: 'DetailEntry' },
-                testimonial.map(function (e) {
+                testimonial.filter(function (e) {
+                    return e.id == params.entryId;
+                }).map(function (e) {
                     return _react2.default.createElement(
                         'div',
                         { className: 'PostEntry' },
