@@ -137,7 +137,7 @@ router.post('/local/forgot/password', (req, res, next) => {
         // default message fields
 
         // sender info
-        from: 'Pangalink <no-reply@pangalink.net>',
+        from: 'First Class Achievers <no-reply@firstclass.net>',
         headers: {
             'X-Laziness-level': 1000 // just an example header, no need to use this
         }
@@ -149,13 +149,13 @@ router.post('/local/forgot/password', (req, res, next) => {
     let message = {
 
         // Comma separated list of recipients
-        to: 'Andris Reinman <andris.reinman@gmail.com>',
+        to: `${req.body.firstName} ${req.body.lastName} <${req.body.email}>`,
 
         // Subject of the message
         subject: 'Nodemailer is unicode friendly ✔ #', //
 
         // plaintext body
-        text: 'Hello to myself!',
+        text: `Hello ${req.body.firstName} ${req.body.lastName}!`,
 
         // HTML body
         html: '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
