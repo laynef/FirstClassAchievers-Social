@@ -11,9 +11,10 @@ class PostEntry extends Component {
     submitFavorite() {
         const { dispatch, user, favorites, entryId } = this.props
         let body = {}
-        body.entries = favorites.entries.includes(entryId) ?
-            pull(favorites.entries, entryId) :            
-            favorites.entries.push(entryId)
+        let array = favorites.entries.slice()
+        body.entries = array.includes(entryId) ?
+            pull(array, entryId) :
+            array.push(entryId)
         dispatch(setFavorites(body, user.id))
     }
 

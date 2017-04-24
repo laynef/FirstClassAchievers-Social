@@ -6980,7 +6980,8 @@ var PostEntry = function (_Component) {
                 entryId = _props.entryId;
 
             var body = {};
-            body.entries = favorites.entries.includes(entryId) ? (0, _pull2.default)(favorites.entries, entryId) : favorites.entries.push(entryId);
+            var array = favorites.entries.slice();
+            body.entries = array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
             dispatch((0, _favorite.setFavorites)(body, user.id));
         }
     }, {
