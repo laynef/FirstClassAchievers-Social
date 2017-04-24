@@ -3485,7 +3485,16 @@ var actionTypes = {
 
 	SET_FOLLOWERS_SUCCESS: 'SET_FOLLOWERS_SUCCESS',
 	SET_FOLLOWERS_PENDING: 'SET_FOLLOWERS_PENDING',
-	SET_FOLLOWERS_ERROR: 'SET_FOLLOWERS_ERROR'
+	SET_FOLLOWERS_ERROR: 'SET_FOLLOWERS_ERROR',
+
+	// Favorites
+	GET_FAVORITES_SUCCESS: 'GET_FAVORITES_SUCCESS',
+	GET_FAVORITES_PENDING: 'GET_FAVORITES_PENDING',
+	GET_FAVORITES_ERROR: 'GET_FAVORITES_ERROR',
+
+	SET_FAVORITES_SUCCESS: 'SET_FAVORITES_SUCCESS',
+	SET_FAVORITES_PENDING: 'SET_FAVORITES_PENDING',
+	SET_FAVORITES_ERROR: 'SET_FAVORITES_ERROR'
 
 };
 
@@ -9031,7 +9040,9 @@ var PostEntry = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        user: state.user.data
+    };
 })(PostEntry);
 
 /***/ }),

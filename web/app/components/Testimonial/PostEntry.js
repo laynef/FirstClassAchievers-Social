@@ -41,4 +41,5 @@ class PostEntry extends Component {
 }
 
 export default connect(state => ({
+    user: state.user.data
 }))(PostEntry)
