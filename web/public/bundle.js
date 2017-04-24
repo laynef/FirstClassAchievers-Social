@@ -21145,17 +21145,22 @@ var _following = __webpack_require__(372);
 
 var _following2 = _interopRequireDefault(_following);
 
+var _favorite = __webpack_require__(889);
+
+var _favorite2 = _interopRequireDefault(_favorite);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// reducers
 var reducers = (0, _redux.combineReducers)({
     form: _reduxForm.reducer,
     user: _auth2.default,
     profile: _profile2.default,
     testimonial: _testimonial2.default,
-    following: _following2.default
+    following: _following2.default,
+    favorites: _favorite2.default
 });
 
+// reducers
 exports.default = reducers;
 
 /***/ }),
@@ -58537,6 +58542,79 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 889 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+	var action = arguments[1];
+
+	switch (action.type) {
+		case _actionTypes2.default.GET_FAVORITES_PENDING:
+			return _extends({}, state, {
+				pending: true,
+				error: null
+			});
+
+		case _actionTypes2.default.GET_FAVORITES_SUCCESS:
+			return _extends({}, state, {
+				pending: null,
+				error: null,
+				data: action.payload
+			});
+
+		case _actionTypes2.default.GET_FAVORITES_ERROR:
+			return _extends({}, state, {
+				pending: null,
+				error: action.payload
+			});
+
+		case _actionTypes2.default.SET_FAVORITES_PENDING:
+			return _extends({}, state, {
+				pending: true,
+				error: null
+			});
+
+		case _actionTypes2.default.SET_FAVORITES_SUCCESS:
+			return _extends({}, state, {
+				pending: null,
+				error: null,
+				data: action.payload
+			});
+
+		case _actionTypes2.default.SET_FAVORITES_ERROR:
+			return _extends({}, state, {
+				pending: null,
+				error: action.payload
+			});
+
+	}
+
+	return state;
+};
+
+var _actionTypes = __webpack_require__(51);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+	pending: null,
+	error: null,
+	data: null
+};
 
 /***/ })
 /******/ ]);
