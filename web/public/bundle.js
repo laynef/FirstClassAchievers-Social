@@ -22459,8 +22459,7 @@ var Header = function (_Component) {
     value: function render() {
       var _props = this.props,
           dispatch = _props.dispatch,
-          user = _props.user,
-          profile = _props.profile;
+          user = _props.user;
 
       return _react2.default.createElement(
         'div',
@@ -22524,10 +22523,10 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'span',
                         { className: 'thumbnail-wrapper d32 circular inline m-t-5' },
-                        _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                        _react2.default.createElement('img', { src: user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
                           alt: '',
-                          'data-src': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
-                          'data-src-retina': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                          'data-src': user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
+                          'data-src-retina': user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
                           width: '32',
                           height: '32' })
                       )
@@ -22596,8 +22595,7 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(function (state) {
   return {
-    user: state.user.data,
-    profile: state.profile.data
+    user: state.user.data
   };
 })(Header);
 

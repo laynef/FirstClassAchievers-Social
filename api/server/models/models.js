@@ -2,6 +2,7 @@
 const Profile = require('../../../database/models/index').Profile
 const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
+const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -21,6 +22,11 @@ module.exports = {
         },
         patch: (req, res, next) => {
             let image = req.body.image
+            User.update({
+                image: image
+            }, {
+                where: { id: req.params.userId }
+            })
             Testimonial.update({
                 image: image
             }, {

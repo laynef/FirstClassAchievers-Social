@@ -10,7 +10,7 @@ import SignUpModal from './SignUpModal'
 class Header extends Component {
 
     render() {
-        const { dispatch, user, profile } = this.props
+        const { dispatch, user } = this.props
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
@@ -43,10 +43,10 @@ class Header extends Component {
                                     <div>
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
-                                            <img src={(profile && profile.image) ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                            <img src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               alt="" 
-                                              data-src={(profile && profile.image) ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                              data-src-retina={(profile && profile.image) ? profile.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src-retina={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               width="32" 
                                               height="32"/>
                                         </span>
@@ -87,6 +87,5 @@ class Header extends Component {
 }
 
 export default connect(state => ({
-  user: state.user.data,
-  profile: state.profile.data
+  user: state.user.data
 }))(Header)
