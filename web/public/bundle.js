@@ -5995,6 +5995,8 @@ var _following = __webpack_require__(138);
 
 var _profile = __webpack_require__(76);
 
+var _favorite = __webpack_require__(890);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function login(data) {
@@ -6006,6 +6008,7 @@ function login(data) {
 				payload: response.data
 			});
 			dispatch((0, _following.getFollowers)(response.data.id));
+			dispatch((0, _favorite.getFavorites)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -8953,7 +8956,11 @@ var _reduxForm = __webpack_require__(18);
 
 var _reactRouter = __webpack_require__(75);
 
-var _profile = __webpack_require__(76);
+var _favorite = __webpack_require__(890);
+
+var _pull = __webpack_require__(715);
+
+var _pull2 = _interopRequireDefault(_pull);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8973,15 +8980,32 @@ var PostEntry = function (_Component) {
     }
 
     _createClass(PostEntry, [{
+        key: 'submitFavorite',
+        value: function submitFavorite() {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                user = _props.user,
+                favorites = _props.favorites,
+                entryId = _props.entryId;
+
+            var body = {};
+            body.entries = favorites.entries.includes(entryId) ? (0, _pull2.default)(favorites.entries, entryId) : favorites.entries.push(entryId);
+            dispatch((0, _favorite.setFavorites)(body, user.id));
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _props = this.props,
-                author = _props.author,
-                message = _props.message,
-                image = _props.image,
-                userId = _props.userId,
-                detail = _props.detail,
-                entryId = _props.entryId;
+            var _this2 = this;
+
+            var _props2 = this.props,
+                author = _props2.author,
+                message = _props2.message,
+                image = _props2.image,
+                userId = _props2.userId,
+                detail = _props2.detail,
+                entryId = _props2.entryId,
+                handleSubmit = _props2.handleSubmit,
+                favorites = _props2.favorites;
 
             return _react2.default.createElement(
                 'div',
@@ -9022,6 +9046,19 @@ var PostEntry = function (_Component) {
                             )
                         )
                     ),
+                    favorites ? favorites.entries.includes(entryId) ? _react2.default.createElement(
+                        'button',
+                        { onClick: function onClick() {
+                                return _this2.submitFavorite();
+                            }, className: 'btn' },
+                        _react2.default.createElement('i', { className: 'fa fa-heart-o' })
+                    ) : _react2.default.createElement(
+                        'button',
+                        { onClick: function onClick() {
+                                return _this2.submitFavorite();
+                            }, className: 'btn' },
+                        _react2.default.createElement('i', { className: 'fa fa-heart' })
+                    ) : null,
                     _react2.default.createElement(
                         'div',
                         { className: 'card-description' },
@@ -9039,8 +9076,13 @@ var PostEntry = function (_Component) {
     return PostEntry;
 }(_react.Component);
 
+PostEntry = (0, _reduxForm.reduxForm)({
+    form: 'PostEntry'
+})(PostEntry);
+
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
+        favorites: state.favorites.data,
         user: state.user.data
     };
 })(PostEntry);
@@ -24198,6 +24240,10 @@ var _reactRedux = __webpack_require__(10);
 
 var _reduxForm = __webpack_require__(18);
 
+var _PostEntry = __webpack_require__(137);
+
+var _PostEntry2 = _interopRequireDefault(_PostEntry);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24209,18 +24255,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FavoritesPage = function (_Component) {
     _inherits(FavoritesPage, _Component);
 
-    function FavoritesPage(props, context) {
+    function FavoritesPage() {
         _classCallCheck(this, FavoritesPage);
 
-        var _this = _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).call(this, props, context));
-
-        _this.state = {};
-        return _this;
+        return _possibleConstructorReturn(this, (FavoritesPage.__proto__ || Object.getPrototypeOf(FavoritesPage)).apply(this, arguments));
     }
 
     _createClass(FavoritesPage, [{
         key: 'render',
         value: function render() {
+            var _props = this.props,
+                testimonial = _props.testimonial,
+                favorites = _props.favorites;
+
+            if (!testimonial && !favorites) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'FavoritesPage' },
@@ -24228,6 +24276,24 @@ var FavoritesPage = function (_Component) {
                     'h1',
                     null,
                     'Favorites'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'testimonial-background', className: 'col-sm-12' },
+                    testimonial.filter(function (e) {
+                        return favorites.entries.includes(e.id);
+                    }).filter(function (e) {
+                        return regex.test(e.author) || regex.test(e.message);
+                    }).map(function (entry, i) {
+                        return _react2.default.createElement(_PostEntry2.default, { key: i,
+                            author: entry.author,
+                            message: entry.message,
+                            userId: entry.user_id,
+                            image: entry.image,
+                            entryId: entry.id,
+                            detail: false
+                        });
+                    })
                 )
             );
         }
@@ -24241,7 +24307,10 @@ FavoritesPage = (0, _reduxForm.reduxForm)({
 })(FavoritesPage);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        testimonial: state.testimonial.data,
+        favorites: state.favorites.data
+    };
 })(FavoritesPage);
 
 /***/ }),
@@ -24664,7 +24733,7 @@ var TestimonialPage = function (_Component) {
                             message: entry.message,
                             userId: entry.user_id,
                             image: entry.image,
-                            entryId: null,
+                            entryId: entry.id,
                             detail: false
                         });
                     })
@@ -58615,6 +58684,64 @@ var INITIAL_STATE = {
 	error: null,
 	data: null
 };
+
+/***/ }),
+/* 890 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getFavorites = getFavorites;
+exports.setFavorites = setFavorites;
+
+var _axios = __webpack_require__(104);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actionTypes = __webpack_require__(51);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getFavorites(id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.GET_FAVORITES_PENDING });
+		_axios2.default.get('/api/favorites/' + id).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.GET_FAVORITES_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.GET_FAVORITES_ERROR,
+				payload: err
+			});
+		});
+	};
+}
+
+function setFavorites(data, id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.SET_FAVORITES_PENDING });
+		_axios2.default.patch('/api/favorites/' + id, data).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.SET_FAVORITES_SUCCESS,
+				payload: response.data
+			});
+			dispatch(getFavorites(id));
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.SET_FAVORITES_ERROR,
+				payload: err
+			});
+		});
+	};
+}
 
 /***/ })
 /******/ ]);
