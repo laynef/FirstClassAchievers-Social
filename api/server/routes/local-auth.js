@@ -6,7 +6,6 @@ const Following = require('../../../database/models/index').Following
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
-const jwt = require('jsonwebtoken')
 
 
 // local auth

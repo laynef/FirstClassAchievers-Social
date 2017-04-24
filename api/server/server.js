@@ -10,7 +10,6 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const favicon = require('express-favicon')
 const fs = require('fs')
-const config = require('../config/config')
 const flash = require('express-flash')
 
 

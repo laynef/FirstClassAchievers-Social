@@ -1,6 +1,5 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
-import settings from '../config/settings'
 
 
 export function getTestimonials() {
