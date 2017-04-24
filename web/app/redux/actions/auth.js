@@ -72,6 +72,7 @@ export function changePassword(data) {
 						type: actionTypes.CHANGE_PASSWORD_SUCCESS,
 						payload: response.data
 					})
+					dispatch(login(response.data))
 				})
 				.catch((err) => {
 					dispatch({

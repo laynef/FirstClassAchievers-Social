@@ -6827,6 +6827,7 @@ function changePassword(data) {
 				type: _actionTypes2.default.CHANGE_PASSWORD_SUCCESS,
 				payload: response.data
 			});
+			dispatch(login(response.data));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.CHANGE_PASSWORD_ERROR,
