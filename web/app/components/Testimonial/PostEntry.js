@@ -8,11 +8,11 @@ import { getProfile } from '../../redux/actions/profile'
 class PostEntry extends Component {
 
     render() {
-        const { author, message, image, userId } = this.props
+        const { author, message, image, userId, detail, entryId } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
-                    <Link to={`/profile/${userId}`}>
+                    <Link to={detail ? `/testimonials/${entryId}` : `/profile/${userId}`}>
                         <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                             <div className="card-header clearfix">
                                 <div className="user-pic">

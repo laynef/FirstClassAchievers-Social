@@ -99,6 +99,8 @@ class DetailPage extends Component {
                                 message={entry.message}
                                 image={entry.image}
                                 userId={entry.user_id}
+                                entryId={entry.id}
+                                detail={true}
                             />
                         ))}
                 </div>

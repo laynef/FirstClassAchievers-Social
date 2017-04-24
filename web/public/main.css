@@ -101,3 +101,11 @@
     #DetailPage #SecondaryContact {
       margin-left: 400px;
       margin-top: -680px; } }
+
+#DetailEntry {
+  height: 60vw; }
+  @media screen and (min-width: 992px) {
+    #DetailEntry {
+      margin-left: 80px; } }
+  #DetailEntry h1 {
+    text-align: center; }
