@@ -2,6 +2,8 @@
 const Profile = require('../../../database/models/index').Profile
 const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
+const Favorite = require('../../../database/models/index').Favorite
+const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -21,6 +23,11 @@ module.exports = {
         },
         patch: (req, res, next) => {
             let image = req.body.image
+            User.update({
+                image: image
+            }, {
+                where: { id: req.params.userId }
+            })
             Testimonial.update({
                 image: image
             }, {
@@ -90,6 +97,31 @@ module.exports = {
             })
             .then(response => {
                 Following.findAll({
+                    where: { user_id: req.params.userId }
+                })
+                .then(resp => {
+                    res.status(200).send(resp[0])
+                })
+            })
+        }
+    },
+    favorites: {
+        get: (req, res, next) => {
+            Favorite.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                res.status(200).send(response[0])
+            })
+        },
+        patch: (req, res, next) => {
+            Favorite.update({
+                entries: req.body.entries
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                Favorite.findAll({
                     where: { user_id: req.params.userId }
                 })
                 .then(resp => {

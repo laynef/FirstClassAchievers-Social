@@ -2,6 +2,7 @@ import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 import { getFollowers } from './following'
 import { getProfile } from './profile'
+import { getFavorites } from './favorite'
 
 export function login(data) {
 	return function(dispatch) {
@@ -12,7 +13,9 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getProfile(response.data.id))
 					dispatch(getFollowers(response.data.id))
+					dispatch(getFavorites(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
@@ -71,10 +74,30 @@ export function changePassword(data) {
 						type: actionTypes.CHANGE_PASSWORD_SUCCESS,
 						payload: response.data
 					})
+					dispatch(login(response.data))
 				})
 				.catch((err) => {
 					dispatch({
 						type: actionTypes.CHANGE_PASSWORD_ERROR,
+						payload: err
+					})
+				})
+	}
+}
+
+export function getUser(id) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.GET_USER_PENDING})
+		axios.get(`/auth/local/user/${id}`)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.GET_USER_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.GET_USER_ERROR,
 						payload: err
 					})
 				})

@@ -33,9 +33,9 @@ class DetailPage extends Component {
     }
 
     render() {
-        const { profile, params, testimonial, handleSubmit, user, following } = this.props;
+        const { profile, params, testimonial, handleSubmit, user, following, favorites } = this.props;
         if (!profile) return null
-        if (user) { if (!following) return null }
+        if (user) { if (!following || !favorites) return null }
         return (
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
@@ -98,7 +98,11 @@ class DetailPage extends Component {
                                 author={entry.author}
                                 message={entry.message}
                                 image={entry.image}
-                                userId={entry.user_id}
+                                profileId={entry.user_id}
+                                entryId={entry.id}
+                                userId={user ? user.id : null}
+                                favorites={favorites && user.id != profile.user_id ? favorites.entries : null}
+                                detail={true}
                             />
                         ))}
                 </div>
@@ -116,5 +120,6 @@ export default connect(state => ({
     user: state.user.data,
     profile: state.profile.data,
     testimonial: state.testimonial.data,
-    following: state.following.data
+    following: state.following.data,
+    favorites: state.favorites.data
 }))(DetailPage)

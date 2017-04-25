@@ -3,14 +3,15 @@ const router = require('express').Router()
 const User = require('../../../database/models/index').User
 const Profile = require('../../../database/models/index').Profile
 const Following = require('../../../database/models/index').Following
+const Favorite = require('../../../database/models/index').Favorite
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 
 
 // local auth
-router.get('/local/user', (req, res, next) => {
-    User.findById(req.body.id)
+router.get('/local/user/:id', (req, res, next) => {
+    User.findAll({ where: {id: req.params.id} })
         .then(response => {
             res.status(200).send(response[0].dataValues)
         })
@@ -45,7 +46,7 @@ router.post('/local/login', (req, res, next) => {
 
 router.post('/local/register', (req, res, next) => {
     let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!req.body.password.length > 0 && regex.test(req.body.email)) {
+    if (req.body.password.length < 8 && regex.test(req.body.email)) {
         return res.statusCode(404)
     }
     let salt = bcrypt.genSaltSync(10)
@@ -58,6 +59,10 @@ router.post('/local/register', (req, res, next) => {
             Following.create({
                 followers: [],
                 user_id: response.dataValues.id
+            })
+            Favorite.create({
+                user_id: response.dataValues.id,
+                entries: []
             })
             Profile.create({
                 firstName: null,

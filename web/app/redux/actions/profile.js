@@ -1,6 +1,6 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
-
+import { getUser } from './auth'
 
 export function setProfile(data, id) {
 	return function(dispatch) {
@@ -11,6 +11,7 @@ export function setProfile(data, id) {
 						type: actionTypes.SET_PROFILE_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getUser(response.data.user_id))
 				})
 				.catch((err) => {
 					dispatch({

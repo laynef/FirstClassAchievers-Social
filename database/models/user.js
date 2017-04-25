@@ -2,7 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    image: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
@@ -11,6 +12,8 @@ module.exports = function(sequelize, DataTypes) {
         User.hasOne(models.Profile, {foreignKey: 'user_id'})
         User.hasMany(models.Message, {foreignKey: 'user_id'})
         User.hasOne(models.Following, {foreignKey: 'user_id'})
+        User.hasOne(models.Following, {foreignKey: 'user_id'})
+        User.hasOne(models.Favorite, {foreignKey: 'user_id'})
       }
     }
   });
