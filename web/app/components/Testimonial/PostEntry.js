@@ -48,8 +48,8 @@ class PostEntry extends Component {
                         <Form onSubmit={handleSubmit(PostEntry.formSubmit.bind(this))}>
                             {favorites  ? 
                                 (favorites.includes(entryId) && profileId != userId) ? 
-                                (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
-                                : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
+                                (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>) 
+                                : (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>)
                             : null}
                         </Form>
                     <div className="card-description">

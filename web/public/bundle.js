@@ -7030,11 +7030,11 @@ var PostEntry = function (_Component) {
                         favorites ? favorites.includes(entryId) && profileId != userId ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
-                            _react2.default.createElement('i', { className: 'fa fa-heart-o' })
+                            _react2.default.createElement('i', { className: 'fa fa-heart' })
                         ) : _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
-                            _react2.default.createElement('i', { className: 'fa fa-heart' })
+                            _react2.default.createElement('i', { className: 'fa fa-heart-o' })
                         ) : null
                     ),
                     _react2.default.createElement(
@@ -24687,11 +24687,11 @@ var DetailEntry = function (_Component) {
                                 favorites ? favorites.entries.includes(e.user_id) && e.user_id != user.id ? _react2.default.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn' },
-                                    _react2.default.createElement('i', { className: 'fa fa-heart-o' })
+                                    _react2.default.createElement('i', { className: 'fa fa-heart' })
                                 ) : _react2.default.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn' },
-                                    _react2.default.createElement('i', { className: 'fa fa-heart' })
+                                    _react2.default.createElement('i', { className: 'fa fa-heart-o' })
                                 ) : null
                             ),
                             _react2.default.createElement(
