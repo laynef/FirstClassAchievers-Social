@@ -6905,7 +6905,7 @@ var PostEntry = function (_Component) {
                     _react2.default.createElement(
                         _reduxForm.Form,
                         { onSubmit: handleSubmit(PostEntry.formSubmit.bind(this)) },
-                        favorites ? favorites.includes(entryId) && profileId != userId ? _react2.default.createElement(
+                        favorites && profileId != userId ? favorites.includes(entryId) ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
                             _react2.default.createElement('i', { className: 'fa fa-heart' })
@@ -23881,7 +23881,7 @@ var DetailEntry = function (_Component) {
                             _react2.default.createElement(
                                 _reduxForm.Form,
                                 { onSubmit: handleSubmit(DetailEntry.formSubmit.bind(_this2)) },
-                                favorites ? favorites.entries.includes(e.user_id) && e.user_id != user.id ? _react2.default.createElement(
+                                favorites && e.user_id != user.id ? favorites.entries.includes(e.user_id) ? _react2.default.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn' },
                                     _react2.default.createElement('i', { className: 'fa fa-heart' })
