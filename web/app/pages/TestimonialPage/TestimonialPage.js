@@ -21,7 +21,7 @@ class TestimonialPage extends Component {
     }
 
     render() {
-        const { user, testimonial, favorites } = this.props;
+        const { user, testimonial, favorites, profile } = this.props;
         if (!testimonial) return null
         if (user) { if (!favorites) return null }
         let regex = new RegExp(this.state.searchTerm, 'ig')
@@ -60,7 +60,7 @@ class TestimonialPage extends Component {
                             image={entry.image}
                             entryId={entry.id}
                             detail={false}
-                            favorites={favorites ? favorites.entries : null}
+                            favorites={favorites && user.id != profile.user_id ? favorites.entries : null}
                         />
                     ))}
                 </div>
@@ -79,5 +79,6 @@ export default connect(state => ({
     user: state.user.data,
     testimonial: state.testimonial.data,
     search: state.testimonial.search,
-    favorites: state.favorites.data
+    favorites: state.favorites.data,
+    profile: state.profile.data
 }))(TestimonialPage)

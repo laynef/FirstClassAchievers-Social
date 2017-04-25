@@ -13,6 +13,7 @@ export function login(data) {
 						type: actionTypes.LOGIN_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getProfile(response.data.id))
 					dispatch(getFollowers(response.data.id))
 					dispatch(getFavorites(response.data.id))
 				})

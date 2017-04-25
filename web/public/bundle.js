@@ -5953,6 +5953,7 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
 			});
+			dispatch((0, _profile.getProfile)(response.data.id));
 			dispatch((0, _following.getFollowers)(response.data.id));
 			dispatch((0, _favorite.getFavorites)(response.data.id));
 		}).catch(function (err) {
@@ -26861,7 +26862,8 @@ var TestimonialPage = function (_Component) {
             var _props = this.props,
                 user = _props.user,
                 testimonial = _props.testimonial,
-                favorites = _props.favorites;
+                favorites = _props.favorites,
+                profile = _props.profile;
 
             if (!testimonial) return null;
             if (user) {
@@ -26914,7 +26916,7 @@ var TestimonialPage = function (_Component) {
                             image: entry.image,
                             entryId: entry.id,
                             detail: false,
-                            favorites: favorites ? favorites.entries : null
+                            favorites: favorites && user.id != profile.user_id ? favorites.entries : null
                         });
                     })
                 ),
@@ -26935,7 +26937,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         user: state.user.data,
         testimonial: state.testimonial.data,
         search: state.testimonial.search,
-        favorites: state.favorites.data
+        favorites: state.favorites.data,
+        profile: state.profile.data
     };
 })(TestimonialPage);
 
