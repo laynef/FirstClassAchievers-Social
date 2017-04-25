@@ -11,8 +11,8 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
-      log: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
+      message: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

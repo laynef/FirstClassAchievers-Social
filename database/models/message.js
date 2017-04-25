@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Message = sequelize.define('Message', {
     user_id: DataTypes.INTEGER,
-    log: DataTypes.ARRAY(DataTypes.TEXT)
+    message: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
