@@ -72,7 +72,7 @@ describe('Auth', function() {
     })   
     
     it('No password', function(done) {
-      let data ={email: '', password:'pass1234'}
+      let data ={email: 'test@test.com', password:''}
       axios.post(`/auth/local/register`, data)
         .then(response => {
           assert.equal(false).to.be.true
