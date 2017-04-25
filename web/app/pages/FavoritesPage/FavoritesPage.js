@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import PostEntry from '../../components/Testimonial/PostEntry'
+import { getFavorites } from '../../redux/actions/favorite'
 
 
 class FavoritesPage extends Component {
@@ -13,9 +14,14 @@ class FavoritesPage extends Component {
         }
     }
 
+    componentDidMount() {
+        const { dispatch, user } = this.props
+        dispatch(getFavorites(user.id))
+    }
+
     render() {
-        const { testimonial, favorites } = this.props
-        if (!testimonial && !favorites) return null
+        const { testimonial, favorites, user } = this.props
+        if (!testimonial || !favorites || !user) return null
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="FavoritesPage">
@@ -28,9 +34,11 @@ class FavoritesPage extends Component {
                         <PostEntry key={i}
                             author={entry.author}
                             message={entry.message}
-                            userId={entry.user_id}
                             image={entry.image}
+                            profileId={entry.user_id}
                             entryId={entry.id}
+                            userId={user ? user.id : null}
+                            favorites={favorites ? favorites.entries : null}
                             detail={false}
                         />
                     ))}
@@ -47,5 +55,7 @@ FavoritesPage = reduxForm({
 
 export default connect(state => ({
     testimonial: state.testimonial.data,
-    favorites: state.favorites.data
+    favorites: state.favorites.data,
+    profile: state.profile.data,
+    user: state.user.data
 }))(FavoritesPage)
