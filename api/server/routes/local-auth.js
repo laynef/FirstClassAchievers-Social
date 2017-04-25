@@ -46,7 +46,7 @@ router.post('/local/login', (req, res, next) => {
 
 router.post('/local/register', (req, res, next) => {
     let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!req.body.password.length > 0 && regex.test(req.body.email)) {
+    if (!req.body.password.length < 8 && regex.test(req.body.email)) {
         return res.statusCode(404)
     }
     let salt = bcrypt.genSaltSync(10)
