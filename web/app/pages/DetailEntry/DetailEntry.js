@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm, FormReducer } from 'redux-form'
+import { Field, reduxForm, FormReducer, Form } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
 import { setFavorites } from '../../redux/actions/favorite'
 import pull from 'lodash/pull'
@@ -23,13 +23,13 @@ class DetailEntry extends Component {
     }
 
     render() {
-        const { testimonial, params, user, favorites } = this.props
+        const { testimonial, params, user, favorites, handleSubmit } = this.props
         return (
             <div id="DetailEntry">
                 {testimonial
                     .filter(e => e.id == params.entryId)
-                    .map(e => (
-                    <div className="PostEntry">
+                    .map((e, i)=> (
+                    <div className="PostEntry" key={i}>
                     <h1>{e.author + `'s Testimonial`}</h1>
                         <div className="card share col1" data-social="item" style={{width: '100%'}}>
                             <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
@@ -50,7 +50,7 @@ class DetailEntry extends Component {
                                 </div>
                             <Form onSubmit={handleSubmit(DetailEntry.formSubmit.bind(this))}>
                                 {favorites  ? 
-                                    (favorites.includes(e.user_id) && e.user_id != user.id) ? 
+                                    (favorites.entries.includes(e.user_id) && e.user_id != user.id) ? 
                                     (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
                                     : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
                                 : null}
