@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import { logout } from '../../../redux/actions/auth'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
+import ChatNotifications  from './ChatNotifications'
 
 
 class Header extends Component {
@@ -91,6 +92,7 @@ class Header extends Component {
                     </div>
                     <LoginModal />
                     <SignUpModal />
+                    <ChatNotifications />
                 </div>
         )
     }

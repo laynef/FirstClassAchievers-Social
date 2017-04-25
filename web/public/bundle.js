@@ -22597,6 +22597,10 @@ var _SignUpModal = __webpack_require__(359);
 
 var _SignUpModal2 = _interopRequireDefault(_SignUpModal);
 
+var _ChatNotifications = __webpack_require__(891);
+
+var _ChatNotifications2 = _interopRequireDefault(_ChatNotifications);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22759,7 +22763,8 @@ var Header = function (_Component) {
           )
         ),
         _react2.default.createElement(_LoginModal2.default, null),
-        _react2.default.createElement(_SignUpModal2.default, null)
+        _react2.default.createElement(_SignUpModal2.default, null),
+        _react2.default.createElement(_ChatNotifications2.default, null)
       );
     }
   }]);
@@ -58751,6 +58756,2342 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 891 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(10);
+
+var _reduxForm = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ChatNotifications = function (_Component) {
+  _inherits(ChatNotifications, _Component);
+
+  function ChatNotifications(props, context) {
+    _classCallCheck(this, ChatNotifications);
+
+    var _this = _possibleConstructorReturn(this, (ChatNotifications.__proto__ || Object.getPrototypeOf(ChatNotifications)).call(this, props, context));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(ChatNotifications, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'ChatNotifications' },
+        _react2.default.createElement(
+          'div',
+          { id: 'quickview', className: 'quickview-wrapper open', 'data-pages': 'quickview' },
+          _react2.default.createElement(
+            'ul',
+            { className: 'nav nav-tabs' },
+            _react2.default.createElement(
+              'li',
+              { className: '' },
+              _react2.default.createElement(
+                'a',
+                { href: '#quickview-notes', 'data-toggle': 'tab' },
+                'Notes'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#quickview-alerts', 'data-toggle': 'tab' },
+                'Alerts'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'active' },
+              _react2.default.createElement(
+                'a',
+                { href: '#quickview-chat', 'data-toggle': 'tab' },
+                'Chat'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'a',
+            { className: 'btn-link quickview-toggle', 'data-toggle-element': '#quickview', 'data-toggle': 'quickview' },
+            _react2.default.createElement('i', { className: 'pg-close' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'tab-content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'tab-pane fade  in no-padding', id: 'quickview-notes' },
+              _react2.default.createElement(
+                'div',
+                { className: 'view-port clearfix quickview-notes', id: 'note-views' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'view list', id: 'quick-note-list' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'toolbar clearfix' },
+                    _react2.default.createElement(
+                      'ul',
+                      { className: 'pull-right ' },
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: 'delete-note-link' },
+                          _react2.default.createElement('i', { className: 'fa fa-trash-o' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: 'new-note-link', 'data-navigate': 'view', 'data-view-port': '#note-views', 'data-view-animation': 'push' },
+                          _react2.default.createElement('i', { className: 'fa fa-plus' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'button',
+                      { className: 'btn-remove-notes btn btn-xs btn-block hide' },
+                      _react2.default.createElement('i', { className: 'fa fa-times' }),
+                      ' Delete'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'ul',
+                    null,
+                    _react2.default.createElement(
+                      'li',
+                      { 'data-noteid': '1' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'left' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'checkbox check-warning no-margin' },
+                          _react2.default.createElement('input', { id: 'qncheckbox1', type: 'checkbox', value: '1' }),
+                          _react2.default.createElement('label', { htmlFor: 'qncheckbox1' })
+                        ),
+                        _react2.default.createElement(
+                          'p',
+                          { className: 'note-preview' },
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'right pull-right' },
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'date' },
+                          '12/12/14'
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', 'data-navigate': 'view', 'data-view-port': '#note-views', 'data-view-animation': 'push' },
+                          _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { 'data-noteid': '2' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'left' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'checkbox check-warning no-margin' },
+                          _react2.default.createElement('input', { id: 'qncheckbox2', type: 'checkbox', value: '1' }),
+                          _react2.default.createElement('label', { htmlFor: 'qncheckbox2' })
+                        ),
+                        _react2.default.createElement(
+                          'p',
+                          { className: 'note-preview' },
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'right pull-right' },
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'date' },
+                          '12/12/14'
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#' },
+                          _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { 'data-noteid': '2' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'left' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'checkbox check-warning no-margin' },
+                          _react2.default.createElement('input', { id: 'qncheckbox3', type: 'checkbox', value: '1' }),
+                          _react2.default.createElement('label', { htmlFor: 'qncheckbox3' })
+                        ),
+                        _react2.default.createElement(
+                          'p',
+                          { className: 'note-preview' },
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'right pull-right' },
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'date' },
+                          '12/12/14'
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#' },
+                          _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { 'data-noteid': '3' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'left' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'checkbox check-warning no-margin' },
+                          _react2.default.createElement('input', { id: 'qncheckbox4', type: 'checkbox', value: '1' }),
+                          _react2.default.createElement('label', { htmlFor: 'qncheckbox4' })
+                        ),
+                        _react2.default.createElement(
+                          'p',
+                          { className: 'note-preview' },
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'right pull-right' },
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'date' },
+                          '12/12/14'
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#' },
+                          _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      { 'data-noteid': '4' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'left' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'checkbox check-warning no-margin' },
+                          _react2.default.createElement('input', { id: 'qncheckbox5', type: 'checkbox', value: '1' }),
+                          _react2.default.createElement('label', { htmlFor: 'qncheckbox5' })
+                        ),
+                        _react2.default.createElement(
+                          'p',
+                          { className: 'note-preview' },
+                          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'right pull-right' },
+                        _react2.default.createElement(
+                          'span',
+                          { className: 'date' },
+                          '12/12/14'
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#' },
+                          _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
+                      )
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'view note', id: 'quick-note' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'ul',
+                      { className: 'toolbar' },
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: 'close-note-link' },
+                          _react2.default.createElement('i', { className: 'pg-arrow_left' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', 'data-action': 'Bold' },
+                          _react2.default.createElement('i', { className: 'fa fa-bold' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', 'data-action': 'Italic' },
+                          _react2.default.createElement('i', { className: 'fa fa-italic' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: '' },
+                          _react2.default.createElement('i', { className: 'fa fa-link' })
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'body' },
+                      _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'top' },
+                          _react2.default.createElement(
+                            'span',
+                            null,
+                            '21st april 2014 2:13am'
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'content' },
+                          _react2.default.createElement('div', { className: 'quick-note-editor full-width full-height js-input', contenteditable: 'true' })
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'tab-pane fade no-padding', id: 'quickview-alerts' },
+              _react2.default.createElement(
+                'div',
+                { className: 'view-port clearfix', id: 'alerts' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'view bg-white' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'navbar navbar-default navbar-sm' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'navbar-inner' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'javascript:;', className: 'inline action p-l-10 link text-master', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                        _react2.default.createElement('i', { className: 'pg-more' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'view-heading' },
+                        'Notications'
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#', className: 'inline action p-r-10 pull-right link text-master' },
+                        _react2.default.createElement('i', { className: 'pg-search' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
+                    _react2.default.createElement(
+                      'h2',
+                      { className: 'list-view-fake-header' },
+                      'Sever Status'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'scroll-wrapper list-view-wrapper', style: 'position: absolute;' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'list-view-wrapper scroll-content', 'data-ios': 'false', style: 'height: 100px; margin-bottom: 0px; margin-right: 0px; max-height: none;' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'Calendar'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'alert-list' },
+                              _react2.default.createElement(
+                                'a',
+                                { href: 'javascript:;', className: '', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-warning fs-10' },
+                                    _react2.default.createElement('i', { className: 'fa fa-circle' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-9 overflow-ellipsis fs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'David Nester Birthday'
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-r-10 col-xs-height col-middle fs-12 text-right' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-warning' },
+                                    'Today ',
+                                    _react2.default.createElement('br', null)
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'All Day'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'alert-list' },
+                              _react2.default.createElement(
+                                'a',
+                                { href: '#', className: '', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-warning fs-10' },
+                                    _react2.default.createElement('i', { className: 'fa fa-circle' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-9 overflow-ellipsis fs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'Meeting at 2:30'
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-r-10 col-xs-height col-middle fs-12 text-right' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-warning' },
+                                    'Today'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'Social'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'alert-list' },
+                              _react2.default.createElement(
+                                'a',
+                                { href: 'javascript:;', className: 'p-t-10 p-b-10', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-complete fs-10' },
+                                    _react2.default.createElement('i', { className: 'fa fa-circle' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12 overflow-ellipsis fs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master link' },
+                                    'Jame Smith commented on your status',
+                                    _react2.default.createElement('br', null)
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    '\u201CPerfection Simplified - Company Revox"'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'alert-list' },
+                              _react2.default.createElement(
+                                'a',
+                                { href: 'javascript:;', className: 'p-t-10 p-b-10', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-complete fs-10' },
+                                    _react2.default.createElement('i', { className: 'fa fa-circle' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12 overflow-ellipsis fs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master link' },
+                                    'Jame Smith commented on your status',
+                                    _react2.default.createElement('br', null)
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    '\u201CPerfection Simplified - Company Revox"'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'Sever Status'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'alert-list' },
+                              _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'p-t-10 p-b-10', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-danger fs-10' },
+                                    _react2.default.createElement('i', { className: 'fa fa-circle' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12 overflow-ellipsis fs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master link' },
+                                    '12:13AM GTM, 10230, ID:WR174s',
+                                    _react2.default.createElement('br', null)
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'Server Load Exceeted. Take action'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'scroll-element scroll-x' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'scroll-element_outer' },
+                          _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                          _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                          _react2.default.createElement('div', { className: 'scroll-bar' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'scroll-element scroll-y' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'scroll-element_outer' },
+                          _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                          _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                          _react2.default.createElement('div', { className: 'scroll-bar' })
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'tab-pane fade in active no-padding', id: 'quickview-chat' },
+              _react2.default.createElement(
+                'div',
+                { className: 'view-port clearfix', id: 'chat' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'view bg-white' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'navbar navbar-default' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'navbar-inner' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'javascript:;', className: 'inline action p-l-10 link text-master', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                        _react2.default.createElement('i', { className: 'pg-plus' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'view-heading' },
+                        'Chat List',
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'fs-11' },
+                          'Show All'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#', className: 'inline action p-r-10 pull-right link text-master' },
+                        _react2.default.createElement('i', { className: 'pg-more' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
+                    _react2.default.createElement(
+                      'h2',
+                      { className: 'list-view-fake-header' },
+                      'a'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'scroll-wrapper list-view-wrapper', style: 'position: absolute;' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'list-view-wrapper scroll-content scroll-scrolly_visible', 'data-ios': 'false', style: 'height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 808px;' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'a'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'ava flores'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'b'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/2x.jpg', 'data-src': 'theme/assets/img/profiles/2.jpg', src: 'theme/assets/img/profiles/2.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'bella mccoy'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/3x.jpg', 'data-src': 'theme/assets/img/profiles/3.jpg', src: 'theme/assets/img/profiles/3.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'bob stephens'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'c'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/4x.jpg', 'data-src': 'theme/assets/img/profiles/4.jpg', src: 'theme/assets/img/profiles/4.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'carole roberts'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/5x.jpg', 'data-src': 'theme/assets/img/profiles/5.jpg', src: 'theme/assets/img/profiles/5.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'christopher perez'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'd'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/6x.jpg', 'data-src': 'theme/assets/img/profiles/6.jpg', src: 'theme/assets/img/profiles/6.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'danielle fletcher'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/7x.jpg', 'data-src': 'theme/assets/img/profiles/7.jpg', src: 'theme/assets/img/profiles/7.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'david sutton'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'e'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/8x.jpg', 'data-src': 'theme/assets/img/profiles/8.jpg', src: 'theme/assets/img/profiles/8.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'earl hamilton'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/9x.jpg', 'data-src': 'theme/assets/img/profiles/9.jpg', src: 'theme/assets/img/profiles/9.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'elaine lawrence'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'ellen grant'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/2x.jpg', 'data-src': 'theme/assets/img/profiles/2.jpg', src: 'theme/assets/img/profiles/2.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'erik taylor'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/3x.jpg', 'data-src': 'theme/assets/img/profiles/3.jpg', src: 'theme/assets/img/profiles/3x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'everett wagner'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'f'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/4x.jpg', 'data-src': 'theme/assets/img/profiles/4.jpg', src: 'theme/assets/img/profiles/4x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'freddie gomez'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'g'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/5x.jpg', 'data-src': 'theme/assets/img/profiles/5.jpg', src: 'theme/assets/img/profiles/5x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'glen jensen'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/6x.jpg', 'data-src': 'theme/assets/img/profiles/6.jpg', src: 'theme/assets/img/profiles/6x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'gwendolyn walker'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'j'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/7x.jpg', 'data-src': 'theme/assets/img/profiles/7.jpg', src: 'theme/assets/img/profiles/7x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'janet romero'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'k'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/8x.jpg', 'data-src': 'theme/assets/img/profiles/8.jpg', src: 'theme/assets/img/profiles/8x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'kim martinez'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'l'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/9x.jpg', 'data-src': 'theme/assets/img/profiles/9.jpg', src: 'theme/assets/img/profiles/9x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'lawrence white'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'leroy bell'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/2x.jpg', 'data-src': 'theme/assets/img/profiles/2.jpg', src: 'theme/assets/img/profiles/2x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'letitia carr'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/3x.jpg', 'data-src': 'theme/assets/img/profiles/3.jpg', src: 'theme/assets/img/profiles/3x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'lucy castro'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'm'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/4x.jpg', 'data-src': 'theme/assets/img/profiles/4.jpg', src: 'theme/assets/img/profiles/4x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'mae hayes'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/5x.jpg', 'data-src': 'theme/assets/img/profiles/5.jpg', src: 'theme/assets/img/profiles/5x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'marilyn owens'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/6x.jpg', 'data-src': 'theme/assets/img/profiles/6.jpg', src: 'theme/assets/img/profiles/6x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'marlene cole'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/7x.jpg', 'data-src': 'theme/assets/img/profiles/7.jpg', src: 'theme/assets/img/profiles/7x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'marsha warren'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/8x.jpg', 'data-src': 'theme/assets/img/profiles/8.jpg', src: 'theme/assets/img/profiles/8x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'marsha dean'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/9x.jpg', 'data-src': 'theme/assets/img/profiles/9.jpg', src: 'theme/assets/img/profiles/9x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'mia diaz'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'n'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'noah elliott'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'p'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/2x.jpg', 'data-src': 'theme/assets/img/profiles/2.jpg', src: 'theme/assets/img/profiles/2x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'phyllis hamilton'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'r'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/3x.jpg', 'data-src': 'theme/assets/img/profiles/3.jpg', src: 'theme/assets/img/profiles/3x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'raul rodriquez'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/4x.jpg', 'data-src': 'theme/assets/img/profiles/4.jpg', src: 'theme/assets/img/profiles/4x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'rhonda barnett'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/5x.jpg', 'data-src': 'theme/assets/img/profiles/5.jpg', src: 'theme/assets/img/profiles/5x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'roberta king'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            's'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/6x.jpg', 'data-src': 'theme/assets/img/profiles/6.jpg', src: 'theme/assets/img/profiles/6x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'scott armstrong'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/7x.jpg', 'data-src': 'theme/assets/img/profiles/7.jpg', src: 'theme/assets/img/profiles/7x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'sebastian austin'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/8x.jpg', 'data-src': 'theme/assets/img/profiles/8.jpg', src: 'theme/assets/img/profiles/8x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'sofia davis'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            't'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/9x.jpg', 'data-src': 'theme/assets/img/profiles/9.jpg', src: 'theme/assets/img/profiles/9x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'terrance young'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'theodore woods'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/2x.jpg', 'data-src': 'theme/assets/img/profiles/2.jpg', src: 'theme/assets/img/profiles/2x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'todd wood'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            ),
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/3x.jpg', 'data-src': 'theme/assets/img/profiles/3.jpg', src: 'theme/assets/img/profiles/3x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'tommy jenkins'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'list-view-group-container' },
+                          _react2.default.createElement(
+                            'div',
+                            { className: 'list-view-group-header text-uppercase' },
+                            'w'
+                          ),
+                          _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                              'li',
+                              { className: 'chat-user-list clearfix' },
+                              _react2.default.createElement(
+                                'a',
+                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                _react2.default.createElement(
+                                  'span',
+                                  { className: 'col-xs-height col-middle' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/4x.jpg', 'data-src': 'theme/assets/img/profiles/4.jpg', src: 'theme/assets/img/profiles/4x.jpg', className: 'col-top' })
+                                  )
+                                ),
+                                _react2.default.createElement(
+                                  'p',
+                                  { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-master' },
+                                    'wilma hicks'
+                                  ),
+                                  _react2.default.createElement(
+                                    'span',
+                                    { className: 'block text-master hint-text fs-12' },
+                                    'Hello there'
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'scroll-element scroll-x scroll-scrolly_visible' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'scroll-element_outer' },
+                          _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                          _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                          _react2.default.createElement('div', { className: 'scroll-bar', style: 'width: 89px;' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'scroll-element scroll-y scroll-scrolly_visible' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'scroll-element_outer' },
+                          _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                          _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                          _react2.default.createElement('div', { className: 'scroll-bar', style: 'height: 227px; top: 0px;' })
+                        )
+                      )
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'view chat-view bg-white clearfix' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'navbar navbar-default' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'navbar-inner' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'javascript:;', className: 'link text-master inline action p-l-10 p-r-10', 'data-navigate': 'view', 'data-view-port': '#chat', 'data-view-animation': 'push-parrallax' },
+                        _react2.default.createElement('i', { className: 'pg-arrow_left' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'view-heading' },
+                        'John Smith',
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'fs-11 hint-text' },
+                          'Online'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#', className: 'link text-master inline action p-r-10 pull-right ' },
+                        _react2.default.createElement('i', { className: 'pg-more' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'chat-inner', id: 'my-conversation' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'message clearfix' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'chat-bubble from-me' },
+                        'Hello there'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'message clearfix' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'profile-img-wrapper m-t-5 inline' },
+                        _react2.default.createElement('img', { className: 'col-top', width: '30', height: '30', src: 'theme/assets/img/profiles/avatar_small.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/avatar_small.jpg', 'data-src-retina': 'theme/assets/img/profiles/avatar_small2x.jpg' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'chat-bubble from-them' },
+                        'Hey'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'message clearfix' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'chat-bubble from-me' },
+                        'Did you check out Pages framework ?'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'message clearfix' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'chat-bubble from-me' },
+                        'Its an awesome chat'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'message clearfix' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'profile-img-wrapper m-t-5 inline' },
+                        _react2.default.createElement('img', { className: 'col-top', width: '30', height: '30', src: 'theme/assets/img/profiles/avatar_small.jpg', alt: '', 'data-src': 'theme/assets/img/profiles/avatar_small.jpg', 'data-src-retina': 'theme/assets/img/profiles/avatar_small2x.jpg' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'chat-bubble from-them' },
+                        'Yea'
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'b-t b-grey bg-white clearfix p-l-10 p-r-10' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'row' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'col-xs-1 p-t-15' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: 'link text-master' },
+                          _react2.default.createElement('i', { className: 'fa fa-plus-circle' })
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'col-xs-8 no-padding' },
+                        _react2.default.createElement('input', { type: 'text', className: 'form-control chat-input', 'data-chat-input': '', 'data-chat-conversation': '#my-conversation', placeholder: 'Say something' })
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'col-xs-2 link text-master m-l-10 m-t-15 p-l-10 b-l b-grey col-top' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#', className: 'link text-master' },
+                          _react2.default.createElement('i', { className: 'pg-camera' })
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ChatNotifications;
+}(_react.Component);
+
+ChatNotifications = (0, _reduxForm.reduxForm)({
+  form: 'ChatNotifications'
+})(ChatNotifications);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {};
+})(ChatNotifications);
 
 /***/ })
 /******/ ]);
