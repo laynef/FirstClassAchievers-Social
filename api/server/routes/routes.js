@@ -15,5 +15,6 @@ router.patch('/following/:userId', models.following.patch)
 router.get('/favorites/:userId', models.favorites.get)
 router.patch('/favorites/:userId', models.favorites.patch)
 
+
 // export router for server.js
 module.exports = router
