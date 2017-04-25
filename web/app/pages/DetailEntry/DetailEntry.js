@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, FormReducer } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
+import { setFavorites } from '../../redux/actions/favorite'
+import pull from 'lodash/pull'
 
 
 class DetailEntry extends Component {
 
+    static formSubmit() {
+        const { dispatch, favorites, user, params } = this.props
+        let body = {}
+        let array = favorites.entries.slice()
+        if (array.includes(params.entryId)) {
+             pull(array, params.entryId)
+        } else {
+            array.push(params.entryId)
+        }
+        body.user_id = user.id
+        body.entries = array
+        dispatch(setFavorites(body, user.id))
+    }
+
     render() {
-        const { testimonial, params, user } = this.props
+        const { testimonial, params, user, favorites } = this.props
         return (
             <div id="DetailEntry">
                 {testimonial
@@ -32,6 +48,13 @@ class DetailEntry extends Component {
                                         </span>
                                     </h6>
                                 </div>
+                            <Form onSubmit={handleSubmit(DetailEntry.formSubmit.bind(this))}>
+                                {favorites  ? 
+                                    (favorites.includes(e.user_id) && e.user_id != user.id) ? 
+                                    (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
+                                    : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
+                                : null}
+                            </Form>
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>
@@ -50,5 +73,6 @@ DetailEntry = reduxForm({
 
 export default connect(state => ({
     testimonial: state.testimonial.data,
-    user: state.user.data
+    user: state.user.data,
+    favorites: state.favorites.data
 }))(DetailEntry)
