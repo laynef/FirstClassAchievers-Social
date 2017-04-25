@@ -9,18 +9,21 @@ import pull from 'lodash/pull'
 class PostEntry extends Component {
 
     static formSubmit() {
-        const { dispatch, user, favorites, entryId, userId } = this.props
+        const { dispatch, favorites, entryId, userId } = this.props
         let body = {}
         let array = favorites.slice()
-        body.user_id = user.id
-        body.entries = array.includes(entryId) ?
-            pull(array, entryId) :
+        if (array.includes(entryId)) {
+             pull(array, entryId)
+        } else {
             array.push(entryId)
+        }
+        body.user_id = userId
+        body.entries = array
         dispatch(setFavorites(body, userId))
     }
 
     render() {
-        const { author, message, image, profileId, detail, entryId, handleSubmit, favorites } = this.props
+        const { author, message, image, profileId, detail, entryId, handleSubmit, favorites, userId } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -44,7 +47,7 @@ class PostEntry extends Component {
                         </Link>
                         <Form onSubmit={handleSubmit(PostEntry.formSubmit.bind(this))}>
                         {favorites  ? 
-                            favorites.includes(entryId) ? 
+                            (favorites.includes(entryId) && profileId != userId) ? 
                             (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
                             : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
                         : null}

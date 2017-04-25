@@ -23,6 +23,7 @@ class TestimonialPage extends Component {
     render() {
         const { user, testimonial, favorites } = this.props;
         if (!testimonial) return null
+        if (user) { if (!favorites) return null }
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="TestimonialPage">

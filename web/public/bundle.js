@@ -6981,7 +6981,8 @@ var PostEntry = function (_Component) {
                 detail = _props.detail,
                 entryId = _props.entryId,
                 handleSubmit = _props.handleSubmit,
-                favorites = _props.favorites;
+                favorites = _props.favorites,
+                userId = _props.userId;
 
             return _react2.default.createElement(
                 'div',
@@ -7025,7 +7026,7 @@ var PostEntry = function (_Component) {
                     _react2.default.createElement(
                         _reduxForm.Form,
                         { onSubmit: handleSubmit(PostEntry.formSubmit.bind(this)) },
-                        favorites ? favorites.includes(entryId) ? _react2.default.createElement(
+                        favorites ? favorites.includes(entryId) && profileId != userId ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
                             _react2.default.createElement('i', { className: 'fa fa-heart-o' })
@@ -7052,14 +7053,13 @@ var PostEntry = function (_Component) {
         value: function formSubmit() {
             var _props2 = this.props,
                 dispatch = _props2.dispatch,
-                user = _props2.user,
                 favorites = _props2.favorites,
                 entryId = _props2.entryId,
                 userId = _props2.userId;
 
             var body = {};
             var array = favorites.slice();
-            body.user_id = user.id;
+            body.user_id = userId;
             body.entries = array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
             dispatch((0, _favorite.setFavorites)(body, userId));
         }
@@ -26843,6 +26843,9 @@ var TestimonialPage = function (_Component) {
                 favorites = _props.favorites;
 
             if (!testimonial) return null;
+            if (user) {
+                if (!favorites) return null;
+            }
             var regex = new RegExp(this.state.searchTerm, 'ig');
             return _react2.default.createElement(
                 'div',
