@@ -53,11 +53,13 @@ class ChatNotifications extends Component {
                 </div>
                 {/* END View Header  */}
                 {/* BEGIN Alert List  */}
-                <div data-init-list-view="ioslist" className="list-view boreded no-top-border"><h2 className="list-view-fake-header">
+                <div data-init-list-view="ioslist" className="list-view boreded no-top-border">
+                    <h2 className="list-view-fake-header">
                         Sever Status
                     </h2>
                     {/* BEGIN List Group  */}
-                    <div className="scroll-wrapper list-view-wrapper" style={{position: "absolute"}}><div className="list-view-wrapper scroll-content" data-ios="false" style={{height: '100px', marginBottom: '0px', marginRight: '0px', maxHeight: 'none'}}><div className="list-view-group-container">
+                    <div className="scroll-wrapper list-view-wrapper" style={{position: "absolute"}}>
+                    <div className="list-view-wrapper scroll-content" data-ios="false" style={{height: '100px', marginBottom: '0px', marginRight: '0px', maxHeight: 'none'}}><div className="list-view-group-container">
                     {/* BEGIN List Group Header */}
                     <div className="list-view-group-header text-uppercase">
                         Calendar
@@ -82,6 +84,7 @@ class ChatNotifications extends Component {
                         {/* END Alert Item */}
                         {/* BEGIN List Group Item */}
                         </li>
+                        
                         {/* END List Group Item */}
                         {/* BEGIN List Group Item */}
                         <li className="alert-list">
