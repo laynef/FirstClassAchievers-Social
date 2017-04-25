@@ -49,8 +49,8 @@ class DetailEntry extends Component {
                                     </h6>
                                 </div>
                             <Form onSubmit={handleSubmit(DetailEntry.formSubmit.bind(this))}>
-                                {favorites  ? 
-                                    (favorites.entries.includes(e.user_id) && e.user_id != user.id) ? 
+                                {(favorites && e.user_id != user.id)  ? 
+                                    (favorites.entries.includes(e.user_id)) ? 
                                     (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>) 
                                     : (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>)
                                 : null}
