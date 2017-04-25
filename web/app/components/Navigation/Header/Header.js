@@ -35,12 +35,12 @@ class Header extends Component {
                             </Link>
                           </div>
                         </div>
-                          <div className=" pull-right rightSpacing">
-                            <div className="visible-lg visible-md">
+                          <div className=" pull-right">
+                            <div className="header-inner visible-lg visible-md">
                               <div className="pull-left p-r-10 p-t-10 fs-16 font-heading">
-                                <div className="dropdown pull-right rightSpacing">
+                                <div className="dropdown pull-right">
                                   {(user && user.id) ? (
-                                    <div>
+                                    <div className="rightSpacing">
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
                                             <img src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
@@ -51,7 +51,7 @@ class Header extends Component {
                                               height="32"/>
                                         </span>
                                       </button>
-                                      <ul className="dropdown-menu profile-dropdown" role="menu">
+                                      <ul className="drops dropdown-menu profile-dropdown" role="menu">
                                         <li>
                                           <Link to="/profile">
                                             <i className="pg-settings_small"></i> 
@@ -71,6 +71,11 @@ class Header extends Component {
                                           </Link>
                                         </li>
                                       </ul>
+                                      <a href="#" 
+                                        className="chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" 
+                                        data-toggle="quickview" 
+                                        data-toggle-element="#quickview">
+                                      </a>
                                     </div>
                                     ) : (
                                       <div>

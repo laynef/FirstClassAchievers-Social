@@ -22664,19 +22664,19 @@ var Header = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: ' pull-right rightSpacing' },
+            { className: ' pull-right' },
             _react2.default.createElement(
               'div',
-              { className: 'visible-lg visible-md' },
+              { className: 'header-inner visible-lg visible-md' },
               _react2.default.createElement(
                 'div',
                 { className: 'pull-left p-r-10 p-t-10 fs-16 font-heading' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'dropdown pull-right rightSpacing' },
+                  { className: 'dropdown pull-right' },
                   user && user.id ? _react2.default.createElement(
                     'div',
-                    null,
+                    { className: 'rightSpacing' },
                     _react2.default.createElement(
                       'button',
                       { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
@@ -22693,7 +22693,7 @@ var Header = function (_Component) {
                     ),
                     _react2.default.createElement(
                       'ul',
-                      { className: 'dropdown-menu profile-dropdown', role: 'menu' },
+                      { className: 'drops dropdown-menu profile-dropdown', role: 'menu' },
                       _react2.default.createElement(
                         'li',
                         null,
@@ -22734,7 +22734,11 @@ var Header = function (_Component) {
                           )
                         )
                       )
-                    )
+                    ),
+                    _react2.default.createElement('a', { href: '#',
+                      className: 'chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs',
+                      'data-toggle': 'quickview',
+                      'data-toggle-element': '#quickview' })
                   ) : _react2.default.createElement(
                     'div',
                     null,

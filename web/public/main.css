@@ -123,3 +123,14 @@
   width: 97.5%;
   background-color: white;
   overflow: scroll; }
+
+#HeaderComponent .rightSpacing {
+  width: 85px; }
+
+#HeaderComponent .chatLink {
+  float: right;
+  margin-top: 12px;
+  transform: scale(1.1); }
+
+#HeaderComponent .drops {
+  margin-right: 60px; }
