@@ -8,27 +8,27 @@ import pull from 'lodash/pull'
 
 class PostEntry extends Component {
 
-    static submitFavorite() {
-        const { dispatch, user, favorites, entryId } = this.props
+    static formSubmit() {
+        const { dispatch, user, favorites, entryId, userId } = this.props
         let body = {}
-        let array = favorites.entries.slice()
+        let array = favorites.slice()
         body.user_id = user.id
         body.entries = array.includes(entryId) ?
             pull(array, entryId) :
             array.push(entryId)
-        dispatch(setFavorites(body, user.id))
+        dispatch(setFavorites(body, userId))
     }
 
     render() {
-        const { author, message, image, userId, detail, entryId, handleSubmit, favorites } = this.props
+        const { author, message, image, profileId, detail, entryId, handleSubmit, favorites } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
-                    <Link to={detail ? `/testimonials/${entryId}` : `/profile/${userId}`}>
+                    <Link to={detail ? `/testimonials/${entryId}` : `/profile/${profileId}`}>
                         <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                             <div className="card-header clearfix">
                                 <div className="user-pic">
-                                    <img alt={`Profile Image ${userId}`}
+                                    <img alt={`Profile Image ${profileId}`}
                                         width="122" height="122" 
                                         data-src-retina={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
                                         data-src={image ? image : "http://i.imgur.com/sRbuHxN.png"} 
@@ -42,9 +42,9 @@ class PostEntry extends Component {
                                 </h6>
                             </div>
                         </Link>
-                        <Form onSubmit={handleSubmit(PostEntry.submitFavorite.bind(this))}>
-                        {favorites && favorites.entries ? 
-                            favorites.entries.includes(entryId) ? 
+                        <Form onSubmit={handleSubmit(PostEntry.formSubmit.bind(this))}>
+                        {favorites  ? 
+                            favorites.includes(entryId) ? 
                             (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>) 
                             : (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>)
                         : null}
@@ -64,6 +64,4 @@ PostEntry = reduxForm({
 })(PostEntry)
 
 export default connect(state => ({
-    favorites: state.favorites.data,
-    user: state.user.data
 }))(PostEntry)

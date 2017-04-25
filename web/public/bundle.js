@@ -6977,7 +6977,7 @@ var PostEntry = function (_Component) {
                 author = _props.author,
                 message = _props.message,
                 image = _props.image,
-                userId = _props.userId,
+                profileId = _props.profileId,
                 detail = _props.detail,
                 entryId = _props.entryId,
                 handleSubmit = _props.handleSubmit,
@@ -6991,7 +6991,7 @@ var PostEntry = function (_Component) {
                     { className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
                     _react2.default.createElement(
                         _reactRouter.Link,
-                        { to: detail ? '/testimonials/' + entryId : '/profile/' + userId },
+                        { to: detail ? '/testimonials/' + entryId : '/profile/' + profileId },
                         _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
                         _react2.default.createElement(
                             'div',
@@ -6999,7 +6999,7 @@ var PostEntry = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'user-pic' },
-                                _react2.default.createElement('img', { alt: 'Profile Image ' + userId,
+                                _react2.default.createElement('img', { alt: 'Profile Image ' + profileId,
                                     width: '122', height: '122',
                                     'data-src-retina': image ? image : "http://i.imgur.com/sRbuHxN.png",
                                     'data-src': image ? image : "http://i.imgur.com/sRbuHxN.png",
@@ -7024,8 +7024,8 @@ var PostEntry = function (_Component) {
                     ),
                     _react2.default.createElement(
                         _reduxForm.Form,
-                        { onSubmit: handleSubmit(PostEntry.submitFavorite.bind(this)) },
-                        favorites && favorites.entries ? favorites.entries.includes(entryId) ? _react2.default.createElement(
+                        { onSubmit: handleSubmit(PostEntry.formSubmit.bind(this)) },
+                        favorites ? favorites.includes(entryId) ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
                             _react2.default.createElement('i', { className: 'fa fa-heart-o' })
@@ -7048,19 +7048,20 @@ var PostEntry = function (_Component) {
             );
         }
     }], [{
-        key: 'submitFavorite',
-        value: function submitFavorite() {
+        key: 'formSubmit',
+        value: function formSubmit() {
             var _props2 = this.props,
                 dispatch = _props2.dispatch,
                 user = _props2.user,
                 favorites = _props2.favorites,
-                entryId = _props2.entryId;
+                entryId = _props2.entryId,
+                userId = _props2.userId;
 
             var body = {};
-            var array = favorites.entries.slice();
+            var array = favorites.slice();
             body.user_id = user.id;
             body.entries = array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
-            dispatch((0, _favorite.setFavorites)(body, user.id));
+            dispatch((0, _favorite.setFavorites)(body, userId));
         }
     }]);
 
@@ -7072,10 +7073,7 @@ PostEntry = (0, _reduxForm.reduxForm)({
 })(PostEntry);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {
-        favorites: state.favorites.data,
-        user: state.user.data
-    };
+    return {};
 })(PostEntry);
 
 /***/ }),
@@ -26188,11 +26186,12 @@ var DetailPage = function (_Component) {
                 testimonial = _props2.testimonial,
                 handleSubmit = _props2.handleSubmit,
                 user = _props2.user,
-                following = _props2.following;
+                following = _props2.following,
+                favorites = _props2.favorites;
 
             if (!profile) return null;
             if (user) {
-                if (!following) return null;
+                if (!following || !favorites) return null;
             }
             return _react2.default.createElement(
                 'div',
@@ -26319,8 +26318,10 @@ var DetailPage = function (_Component) {
                             author: entry.author,
                             message: entry.message,
                             image: entry.image,
-                            userId: entry.user_id,
+                            profileId: entry.user_id,
                             entryId: entry.id,
+                            userId: user ? user.id : null,
+                            favorites: favorites ? favorites.entries : null,
                             detail: true
                         });
                     })
@@ -26360,7 +26361,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         user: state.user.data,
         profile: state.profile.data,
         testimonial: state.testimonial.data,
-        following: state.following.data
+        following: state.following.data,
+        favorites: state.favorites.data
     };
 })(DetailPage);
 
@@ -26837,7 +26839,8 @@ var TestimonialPage = function (_Component) {
 
             var _props = this.props,
                 user = _props.user,
-                testimonial = _props.testimonial;
+                testimonial = _props.testimonial,
+                favorites = _props.favorites;
 
             if (!testimonial) return null;
             var regex = new RegExp(this.state.searchTerm, 'ig');
@@ -26882,10 +26885,12 @@ var TestimonialPage = function (_Component) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
                             message: entry.message,
-                            userId: entry.user_id,
+                            profileId: entry.user_id,
+                            userId: user ? user.id : null,
                             image: entry.image,
                             entryId: entry.id,
-                            detail: false
+                            detail: false,
+                            favorites: favorites ? favorites.entries : null
                         });
                     })
                 ),
@@ -26905,7 +26910,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     return {
         user: state.user.data,
         testimonial: state.testimonial.data,
-        search: state.testimonial.search
+        search: state.testimonial.search,
+        favorites: state.favorites.data
     };
 })(TestimonialPage);
 

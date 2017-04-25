@@ -21,7 +21,7 @@ class TestimonialPage extends Component {
     }
 
     render() {
-        const { user, testimonial } = this.props;
+        const { user, testimonial, favorites } = this.props;
         if (!testimonial) return null
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
@@ -54,10 +54,12 @@ class TestimonialPage extends Component {
                         <PostEntry key={i}
                             author={entry.author}
                             message={entry.message}
-                            userId={entry.user_id}
+                            profileId={entry.user_id}
+                            userId={user ? user.id : null}
                             image={entry.image}
                             entryId={entry.id}
                             detail={false}
+                            favorites={favorites ? favorites.entries : null}
                         />
                     ))}
                 </div>
@@ -75,5 +77,6 @@ TestimonialPage = reduxForm({
 export default connect(state => ({
     user: state.user.data,
     testimonial: state.testimonial.data,
-    search: state.testimonial.search
+    search: state.testimonial.search,
+    favorites: state.favorites.data
 }))(TestimonialPage)
