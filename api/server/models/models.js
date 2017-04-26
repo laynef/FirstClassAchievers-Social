@@ -7,14 +7,9 @@ const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
-const cloudinary = require('cloudinary')
-const config = require('../../config/config')
+const multer = require('multer')
+let upload = multer({dest: '../../../web/public/images'})
 
-cloudinary.config({
-    cloud_name: config.cloud_name,
-    api_key: config.cloud_api_key,
-    api_secret: config.cloud_api_secret
-})
 
 module.exports = {
     profile: {
@@ -128,25 +123,23 @@ module.exports = {
     },
     image: {
         patch: (req, res, next) => {
-            cloudinary.uploader.upload(req.body.name, (result) => {
-                let imagePath = result.url
-            })
+            console.log(`REQUEST`, req.file)
+            let imgPath = `images/${req.file.filename}`
             Profile.update({
-                image: imagePath
+                image: imgPath
             }, {
                 where: { user_id: req.params.userId }
             })
             Testimonial.update({
-                image: imagePath
+                image: imgPath
             }, {
                 where: { user_id: req.params.userId }
             })
             User.update({
-                image: imagePath
+                image: imgPath
             }, {
                 where: { id: req.params.userId }
             })
-            .then(response => res.sendStatus(202))
         }
     }
 }

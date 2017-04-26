@@ -1,6 +1,8 @@
 // calling controller functions when routes are hit
 const router = require('express').Router()
 const models = require('../models/models')
+const multer = require('multer')
+const upload = multer({dest: '../web/public/images'})
 
 
 router.get('/profile/:userId', models.profile.get)
@@ -15,7 +17,7 @@ router.patch('/following/:userId', models.following.patch)
 router.get('/favorites/:userId', models.favorites.get)
 router.patch('/favorites/:userId', models.favorites.patch)
 
-router.patch('/image/:userId', models.image.patch)
+router.patch('/image/:userId', upload.single('image'), models.image.patch)
 
 
 // export router for server.js

@@ -45,8 +45,10 @@ export function getProfile(id) {
 
 export function setImage(data, id) {
 	return function(dispatch) {
+		let body = new FormData()
+		body.append('image', data)
 		dispatch({type: actionTypes.SET_IMAGE_PENDING})
-		axios.patch(`/api/image/${id}`, data)
+		axios.patch(`/api/image/${id}`, body)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_IMAGE_SUCCESS,

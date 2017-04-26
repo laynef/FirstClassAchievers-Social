@@ -4993,8 +4993,10 @@ function getProfile(id) {
 
 function setImage(data, id) {
 	return function (dispatch) {
+		var body = new FormData();
+		body.append('image', data);
 		dispatch({ type: _actionTypes2.default.SET_IMAGE_PENDING });
-		_axios2.default.patch('/api/image/' + id, data).then(function (response) {
+		_axios2.default.patch('/api/image/' + id, body).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_IMAGE_SUCCESS,
 				payload: response.data
