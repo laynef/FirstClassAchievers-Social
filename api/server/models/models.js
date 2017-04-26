@@ -123,7 +123,6 @@ module.exports = {
     },
     image: {
         patch: (req, res, next) => {
-            console.log(`REQUEST`, req.file)
             let imgPath = `images/${req.file.filename}`
             Profile.update({
                 image: imgPath
