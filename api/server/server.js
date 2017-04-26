@@ -14,7 +14,7 @@ const flash = require('express-flash')
 
 
 // port settings
-let port = process.env.PORT || 3214
+let port = process.env.PORT
 
 // web socket protocol on localhost on port 3214
 server.listen(port, () => {
