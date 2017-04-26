@@ -6096,6 +6096,8 @@ var _profile = __webpack_require__(76);
 
 var _favorite = __webpack_require__(106);
 
+var _friends = __webpack_require__(893);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function login(data) {
@@ -6108,6 +6110,7 @@ function login(data) {
 			});
 			dispatch((0, _following.getFollowers)(response.data.id));
 			dispatch((0, _favorite.getFavorites)(response.data.id));
+			dispatch((0, _friends.getFriends)(response.data.id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.LOGIN_ERROR,
@@ -9204,6 +9207,8 @@ var _actionTypes = __webpack_require__(37);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
+var _friends = __webpack_require__(893);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getFollowers(id) {
@@ -9231,6 +9236,7 @@ function setFollowers(data, id) {
 				type: _actionTypes2.default.SET_FOLLOWERS_SUCCESS,
 				payload: response.data
 			});
+			dispatch((0, _friends.getFriends)(id));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.SET_FOLLOWERS_ERROR,
@@ -59588,6 +59594,45 @@ var INITIAL_STATE = {
     error: null,
     data: null
 };
+
+/***/ }),
+/* 893 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.getFriends = getFriends;
+
+var _axios = __webpack_require__(92);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actionTypes = __webpack_require__(37);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getFriends(id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.GET_FRIENDS_PENDING });
+		_axios2.default.get('/api/friends/' + id).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.GET_FRIENDS_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.GET_FRIENDS_ERROR,
+				payload: err
+			});
+		});
+	};
+}
 
 /***/ })
 /******/ ]);
