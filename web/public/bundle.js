@@ -22730,18 +22730,18 @@ var ContactListAlphabet = function (_Component) {
             return array.map(function (ele, i) {
                 return _react2.default.createElement(
                     'div',
-                    { className: 'list-view-group-container' },
+                    { key: i, className: 'list-view-group-container' },
                     _react2.default.createElement(
                         'div',
                         { className: 'list-view-group-header text-uppercase' },
                         ' ',
                         ele[0].firstName[0]
                     ),
-                    ele.map(function (e, idx) {
-                        return _react2.default.createElement(
-                            'ul',
-                            null,
-                            _react2.default.createElement(
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        ele.map(function (e, idx) {
+                            return _react2.default.createElement(
                                 'li',
                                 { key: '' + i + idx, className: 'chat-user-list clearfix' },
                                 _react2.default.createElement(
@@ -22766,9 +22766,9 @@ var ContactListAlphabet = function (_Component) {
                                         )
                                     )
                                 )
-                            )
-                        );
-                    })
+                            );
+                        })
+                    )
                 );
             });
         }
@@ -22783,7 +22783,7 @@ var ContactListAlphabet = function (_Component) {
                 { id: 'ContactListAlphabet' },
                 _react2.default.createElement(
                     'div',
-                    { key: i, 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
+                    { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
                     this.renderContactList()
                 ),
                 _react2.default.createElement(

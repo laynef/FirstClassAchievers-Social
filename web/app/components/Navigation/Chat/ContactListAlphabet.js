@@ -22,10 +22,10 @@ class ContactListAlphabet extends Component {
         })
         return array.map((ele, i) => {
             return (
-                <div className="list-view-group-container">
+                <div key={i} className="list-view-group-container">
                     <div className="list-view-group-header text-uppercase"> {ele[0].firstName[0]}</div>
+                        <ul>
                             {ele.map((e, idx) => (
-                                <ul>
                                     <li key={`${i}${idx}`} className="chat-user-list clearfix">
                                         <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
                                             <span className="col-xs-height col-middle">
@@ -38,8 +38,9 @@ class ContactListAlphabet extends Component {
                                             </p>
                                         </a>
                                     </li>
-                                </ul>
+                                
                             ))}
+                        </ul>
                     </div>
                 )
             })
@@ -50,7 +51,7 @@ class ContactListAlphabet extends Component {
         if (!friends) return null
         return (
         <div id="ContactListAlphabet">
-            <div key={i} data-init-list-view="ioslist" className="list-view boreded no-top-border">
+            <div data-init-list-view="ioslist" className="list-view boreded no-top-border">
                 {this.renderContactList()}
             </div>
             <div className="scroll-element scroll-x scroll-scrolly_visible">
