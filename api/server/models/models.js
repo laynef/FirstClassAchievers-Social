@@ -7,8 +7,6 @@ const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
-const multer = require('multer')
-let upload = multer({dest: '../../../web/public/images'})
 
 
 module.exports = {
