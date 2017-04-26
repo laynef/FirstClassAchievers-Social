@@ -22705,95 +22705,120 @@ var ContactListAlphabet = function (_Component) {
     }
 
     _createClass(ContactListAlphabet, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { id: 'ContactListAlphabet' },
-                _react2.default.createElement(
-                    'div',
-                    { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
-                    _react2.default.createElement(
-                        'h2',
-                        { className: 'list-view-fake-header' },
-                        ' b'
-                    ),
-                    _react2.default.createElement(
+        key: 'renderContactList',
+        value: function renderContactList() {
+            var friends = this.props.friends;
+
+            var sorted = friends.sort(function (a, b) {
+                return a.firstName - b.firstName;
+            });
+            var alphabet = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [], j: [], k: [], l: [], m: [], n: [], o: [], p: [], q: [], r: [], s: [], t: [], u: [], v: [], w: [], x: [], y: [], z: [] };
+            sorted.forEach(function (e) {
+                var key = e.firstName[0].toLowerCase();
+                alphabet[key].push(e);
+            });
+            var array = [];
+            Object.keys(alphabet).forEach(function (e) {
+                if (alphabet[e].length > 0) {
+                    array.push(alphabet[e]);
+                }
+            });
+            return array.map(function (ele) {
+                return ele.map(function (e) {
+                    console.log('E', e);
+                    return _react2.default.createElement(
                         'div',
-                        { className: 'scroll-wrapper list-view-wrapper', style: { position: "absolute" } },
+                        { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
+                        _react2.default.createElement(
+                            'h2',
+                            { className: 'list-view-fake-header' },
+                            e.firstName[0]
+                        ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'list-view-wrapper scroll-content scroll-scrolly_visible', 'data-ios': 'false', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px" } },
+                            { className: 'scroll-wrapper list-view-wrapper', style: { position: "absolute" } },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'list-view-group-container' },
+                                { className: 'list-view-wrapper scroll-content scroll-scrolly_visible', 'data-ios': 'false', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px" } },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'list-view-group-header text-uppercase' },
-                                    ' b'
-                                ),
-                                _react2.default.createElement(
-                                    'ul',
-                                    null,
+                                    { className: 'list-view-group-container' },
                                     _react2.default.createElement(
-                                        'li',
-                                        { className: 'chat-user-list clearfix' },
+                                        'div',
+                                        { className: 'list-view-group-header text-uppercase' },
+                                        ' ',
+                                        e.firstName[0]
+                                    ),
+                                    _react2.default.createElement(
+                                        'ul',
+                                        null,
                                         _react2.default.createElement(
-                                            'a',
-                                            { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
+                                            'li',
+                                            { className: 'chat-user-list clearfix' },
                                             _react2.default.createElement(
-                                                'span',
-                                                { className: 'col-xs-height col-middle' },
+                                                'a',
+                                                { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
                                                 _react2.default.createElement(
                                                     'span',
-                                                    { className: 'thumbnail-wrapper d32 circular bg-success' },
-                                                    _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': 'theme/assets/img/profiles/1x.jpg', 'data-src': 'theme/assets/img/profiles/1.jpg', src: 'theme/assets/img/profiles/1.jpg', className: 'col-top' })
-                                                )
-                                            ),
-                                            _react2.default.createElement(
-                                                'p',
-                                                { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'text-master' },
-                                                    'ava flores'
+                                                    { className: 'col-xs-height col-middle' },
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: 'thumbnail-wrapper d32 circular bg-success' },
+                                                        _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': e.image, 'data-src': e.image, src: e.image, className: 'col-top' })
+                                                    )
                                                 ),
                                                 _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'block text-master hint-text fs-12' },
-                                                    'Hello there'
+                                                    'p',
+                                                    { className: 'p-l-10 col-xs-height col-middle col-xs-12' },
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: 'text-master' },
+                                                        e.firstName + ' ' + e.lastName
+                                                    )
                                                 )
                                             )
                                         )
                                     )
+                                ),
+                                _react2.default.createElement('div', { className: 'list-view-group-container' })
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'scroll-element scroll-x scroll-scrolly_visible' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'scroll-element_outer' },
+                                    _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                                    _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                                    _react2.default.createElement('div', { className: 'scroll-bar', style: { width: "89px" } })
                                 )
                             ),
-                            _react2.default.createElement('div', { className: 'list-view-group-container' })
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'scroll-element scroll-x scroll-scrolly_visible' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'scroll-element_outer' },
-                                _react2.default.createElement('div', { className: 'scroll-element_size' }),
-                                _react2.default.createElement('div', { className: 'scroll-element_track' }),
-                                _react2.default.createElement('div', { className: 'scroll-bar', style: { width: "89px" } })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'scroll-element scroll-y scroll-scrolly_visible' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'scroll-element_outer' },
-                                _react2.default.createElement('div', { className: 'scroll-element_size' }),
-                                _react2.default.createElement('div', { className: 'scroll-element_track' }),
-                                _react2.default.createElement('div', { className: 'scroll-bar', style: { height: "227px", top: "0px" } })
+                                { className: 'scroll-element scroll-y scroll-scrolly_visible' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'scroll-element_outer' },
+                                    _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                                    _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                                    _react2.default.createElement('div', { className: 'scroll-bar', style: { height: "227px", top: "0px" } })
+                                )
                             )
                         )
-                    )
-                )
+                    );
+                });
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var friends = this.props.friends;
+
+            if (!friends) return null;
+            return _react2.default.createElement(
+                'div',
+                { id: 'ContactListAlphabet' },
+                this.renderContactList()
             );
         }
     }]);
@@ -23560,7 +23585,7 @@ var Header = function (_Component) {
                 } },
               _react2.default.createElement(
                 'a',
-                { href: '#', 'class': 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5', 'data-toggle': 'sidebar' },
+                { href: '#', className: 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5', 'data-toggle': 'sidebar' },
                 _react2.default.createElement('span', { className: 'icon-set menu-hambuger' })
               )
             )

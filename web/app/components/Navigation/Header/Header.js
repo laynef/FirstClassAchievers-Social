@@ -25,7 +25,7 @@ class Header extends Component {
                     <div className="header ">
                         <div className="pull-left full-height visible-sm visible-xs">
                           <div className="sm-action-bar" onHover={() => this.setState({sideMenu: true})}>
-                            <a href="#" class="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5" data-toggle="sidebar">
+                            <a href="#" className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5" data-toggle="sidebar">
                               <span className="icon-set menu-hambuger"></span>
                             </a>
                           </div>
