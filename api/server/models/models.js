@@ -23,6 +23,14 @@ module.exports = {
         },
         patch: (req, res, next) => {
             let image = req.body.image
+            let arr = req.body.image.split('')
+            let file = arr[req.body.image.length - 1] + arr[req.body.image.length - 2] + arr[req.body.image.length - 3]
+            let imgPath = `images/${req.params.userId}.${file}`
+            let buff = Buffer.from(req.body.image)
+            if (image != imgPath) {
+                let buff = Buffer.from(req.body.image)
+                fs.writeFileSync(__dirname + `/../../../web/public/images/${req.params.userId}.${file}`, buff) 
+            }
             User.update({
                 image: image
             }, {
@@ -40,7 +48,7 @@ module.exports = {
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
-                image: image,
+                image: imgPath,
                 zipCode: req.body.zipCode,
                 state: req.body.state,
                 country: req.body.country
