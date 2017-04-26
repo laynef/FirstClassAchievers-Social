@@ -15,7 +15,7 @@ class ProfilePage extends Component {
 
     render() {
         const { profile, params } = this.props
-        if (!profile && profile.user_id != params.userId) return null;
+        if (!profile) return null;
         return (
             <div id="ProfilePage" className="col-md-12">
                 <h1>My Profile</h1>
