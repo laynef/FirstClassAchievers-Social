@@ -23,13 +23,12 @@ module.exports = {
         },
         patch: (req, res, next) => {
             let image = req.body.image
+            console.log(`IMAGE`, image)
             let arr = req.body.image.split('')
-            let file = arr[req.body.image.length - 1] + arr[req.body.image.length - 2] + arr[req.body.image.length - 3]
-            let imgPath = `images/${req.params.userId}.${file}`
-            let buff = Buffer.from(req.body.image)
+            let imgPath = `images/${req.params.userId}.png`
             if (image != imgPath) {
                 let buff = Buffer.from(req.body.image)
-                fs.writeFileSync(__dirname + `/../../../web/public/images/${req.params.userId}.${file}`, buff) 
+                fs.writeFileSync(__dirname + `/../../../web/public/images/${req.params.userId}.png`, buff) 
             }
             User.update({
                 image: image

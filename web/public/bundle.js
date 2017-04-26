@@ -25389,9 +25389,9 @@ var ProfilePage = function (_Component) {
         value: function componentDidMount() {
             var _props = this.props,
                 dispatch = _props.dispatch,
-                params = _props.params;
+                user = _props.user;
 
-            dispatch((0, _profile.getProfile)(params.userId));
+            dispatch((0, _profile.getProfile)(user.id));
         }
     }, {
         key: 'render',
@@ -25400,7 +25400,7 @@ var ProfilePage = function (_Component) {
                 profile = _props2.profile,
                 params = _props2.params;
 
-            if (!profile && profile.user_id != params.userId) return null;
+            if (!profile) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'ProfilePage', className: 'col-md-12' },
@@ -25437,7 +25437,8 @@ ProfilePage = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        profile: state.profile.data
+        profile: state.profile.data,
+        user: state.user.data
     };
 })(ProfilePage);
 

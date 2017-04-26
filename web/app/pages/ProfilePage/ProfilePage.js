@@ -9,13 +9,13 @@ import { getProfile } from '../../redux/actions/profile'
 class ProfilePage extends Component {
 
     componentDidMount() {
-        const { dispatch, params } = this.props
-        dispatch(getProfile(params.userId))
+        const { dispatch, user } = this.props
+        dispatch(getProfile(user.id))
     }
 
     render() {
         const { profile, params } = this.props
-        if (!profile && profile.user_id != params.userId) return null;
+        if (!profile) return null;
         return (
             <div id="ProfilePage" className="col-md-12">
                 <h1>My Profile</h1>
@@ -43,5 +43,6 @@ ProfilePage = reduxForm({
 })(ProfilePage)
 
 export default connect(state => ({
-    profile: state.profile.data
+    profile: state.profile.data,
+    user: state.user.data
 }))(ProfilePage)
