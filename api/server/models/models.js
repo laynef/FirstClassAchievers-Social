@@ -149,5 +149,20 @@ module.exports = {
                 .then(response => res.sendStatus(202))
             })
         }
+    },
+    friends: {
+        get: (req, res, next) => {
+            let friends = []
+            Following.findAll({ where: {user_id: req.params.userId} })
+                .then(response => {
+                    response[0].dataValues.followers.forEach(e => {
+                        Profile.findAll({ where: {user_id: e} })
+                            .then(resp => {
+                                friends.push(resp[0])
+                            })
+                        res.status(200).send(friends)
+                    })
+                })
+        }
     }
 }

@@ -19,6 +19,8 @@ router.patch('/favorites/:userId', models.favorites.patch)
 
 router.patch('/image/:userId', upload.single('image'), models.image.patch)
 
+router.get('/friends/:userId', models.friends.get)
+
 
 // export router for server.js
 module.exports = router

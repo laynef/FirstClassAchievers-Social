@@ -9,7 +9,7 @@ class SideMenu extends Component {
     render() {
         return (
             <div id="SideMenuComponent">
-                <div id="sideMenu" className="page-sidebar" data-pages="sidebar">
+                <nav id="sideMenu" className="page-sidebar" data-pages="sidebar">
                   <div id="appMenu" className="sidebar-overlay-slide from-top"></div>
                   <div className="sidebar-header">
                     <img src="theme/assets/img/logo_white.png" alt="logo" className="brand" data-src="theme/assets/img/logo_white.png" data-src-retina="theme/assets/img/logo_white_2x.png" width="93" height="25"/>
@@ -36,7 +36,7 @@ class SideMenu extends Component {
                     </ul>
                     <div className="clearfix"></div>
                   </div>
-                </div>
+                </nav>
             </div>
         )
     }
