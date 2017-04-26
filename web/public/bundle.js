@@ -25426,7 +25426,8 @@ var ProfilePage = function (_Component) {
         value: function render() {
             var _props2 = this.props,
                 profile = _props2.profile,
-                params = _props2.params;
+                params = _props2.params,
+                user = _props2.user;
 
             if (!profile) return null;
             return _react2.default.createElement(
@@ -25443,10 +25444,10 @@ var ProfilePage = function (_Component) {
                         className: 'thumbnail-wrapper d32 circular inline m-t-5',
                         'data-toggle': 'modal',
                         'data-target': '#profile-image-modal' },
-                    _react2.default.createElement('img', { src: profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                    _react2.default.createElement('img', { src: user && user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
                         alt: '',
-                        'data-src': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
-                        'data-src-retina': profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
+                        'data-src': user && user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
+                        'data-src-retina': user && user.image ? user.image : "http://i.imgur.com/sRbuHxN.png",
                         width: '320',
                         height: '320' })
                 ),
