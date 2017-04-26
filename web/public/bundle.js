@@ -24854,6 +24854,7 @@ var DetailPage = function (_Component) {
             if (user) {
                 if (!following || !favorites) return null;
             }
+            if (profile.id != params.userId) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'DetailPage' },
