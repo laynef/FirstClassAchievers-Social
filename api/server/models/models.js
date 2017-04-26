@@ -4,7 +4,6 @@ const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
-const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 
