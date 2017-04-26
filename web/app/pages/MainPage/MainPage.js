@@ -21,7 +21,7 @@ class MainPage extends Component {
     }
 
     render() {
-        const { user, testimonial, following } = this.props
+        const { user, testimonial, following, favorites } = this.props
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="mainPage">
@@ -49,7 +49,11 @@ class MainPage extends Component {
                                         author={entry.author}
                                         message={entry.message}
                                         image={entry.image}
-                                        userId={entry.user_id}
+                                        profileId={entry.user_id}
+                                        entryId={entry.id}
+                                        userId={user ? user.id : null}
+                                        favorites={favorites ? favorites.entries : null}
+                                        detail={true}
                                     />
                                 ))}
                             </div>
@@ -68,5 +72,6 @@ MainPage = reduxForm({
 export default connect(state => ({
     user: state.user.data,
     testimonial: state.testimonial.data,
-    following: state.following.data
+    following: state.following.data,
+    favorites: state.favorites.data
 }))(MainPage)
