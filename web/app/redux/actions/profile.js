@@ -1,6 +1,7 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 import { getUser } from './auth'
+import { getTestimonials } from './testimonial'
 
 export function setProfile(data, id) {
 	return function(dispatch) {
@@ -53,6 +54,9 @@ export function setImage(data, id) {
 						type: actionTypes.SET_IMAGE_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getProfile(id))
+					dispatch(getUser(id))
+					dispatch(getTestimonials())
 				})
 				.catch((err) => {
 					dispatch({
