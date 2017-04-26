@@ -25092,7 +25092,7 @@ var FavoritesPage = function (_Component) {
                             entryId: entry.id,
                             userId: user ? user.id : null,
                             favorites: favorites ? favorites.entries : null,
-                            detail: false
+                            detail: true
                         });
                     })
                 )
