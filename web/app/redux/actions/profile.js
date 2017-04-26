@@ -1,7 +1,6 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 import { getUser } from './auth'
-import each from 'lodash/each'
 
 
 export function setProfile(data, id) {
@@ -46,10 +45,8 @@ export function getProfile(id) {
 
 export function setImage(data, id) {
 	return function(dispatch) {
-		let formData = new FormData()
-		formData.append('image', data.image)
 		dispatch({type: actionTypes.SET_IMAGE_PENDING})
-		axios.patch(`/api/image/${id}`, formData)
+		axios.patch(`/api/image/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_IMAGE_SUCCESS,

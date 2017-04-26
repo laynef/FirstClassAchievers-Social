@@ -7,7 +7,14 @@ const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
+const cloudinary = require('cloudinary')
+const config = require('../../config/config')
 
+cloudinary.config({
+    cloud_name: config.cloud_name,
+    api_key: config.cloud_api_key,
+    api_secret: config.cloud_api_secret
+})
 
 module.exports = {
     profile: {
@@ -121,19 +128,21 @@ module.exports = {
     },
     image: {
         patch: (req, res, next) => {
-            console.log(`\n\n\n\n\nIMAGE`, req.body.image, `\n\n\n\n`)
+            cloudinary.uploader.upload(req.body, (result) => {
+                let imagePath = result.url
+            })
             Profile.update({
-                image: req.body.image
+                image: imagePath
             }, {
                 where: { user_id: req.params.userId }
             })
             Testimonial.update({
-                image: req.body.image
+                image: imagePath
             }, {
                 where: { user_id: req.params.userId }
             })
             User.update({
-                image: req.body.image
+                image: imagePath
             }, {
                 where: { id: req.params.userId }
             })
