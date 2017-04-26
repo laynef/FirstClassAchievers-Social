@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import ContactListAlphabet  from '../../Navigation/Chat/ContactListAlphabet'
-import ConversionView  from '../../Navigation/Chat/ConversionView'
 
 
 class ChatNotifications extends Component {
@@ -25,21 +24,13 @@ class ChatNotifications extends Component {
                                 <div className="view bg-white">
                                     <div className="navbar navbar-default">
                                         <div className="navbar-inner">
-                                            <a href="javascript:" className="inline action p-l-10 link text-master" data-navigate="view" data-view-port="#chat" data-view-animation="push-parrallax">
-                                                <i className="pg-plus"></i>
-                                            </a>
                                             <div className="view-heading">
                                                 Chat List
-                                                <div className="fs-11">Show All</div>
                                             </div>
-                                            <a href="#" className="inline action p-r-10 pull-right link text-master">
-                                                <i className="pg-more"></i>
-                                            </a>
                                         </div>
                                     </div>
                                     <ContactListAlphabet />
                                 </div>
-                            <ConversionView />
                             </div>
                         </div>
                     </div>

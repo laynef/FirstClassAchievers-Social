@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import ConversionView from './ConversionView'
+import { Link } from 'react-router'
 
 
 class ContactListAlphabet extends Component {
@@ -26,7 +26,8 @@ class ContactListAlphabet extends Component {
                     <div className="list-view-group-header text-uppercase"> {ele[0].firstName[0]}</div>
                         <ul>
                             {ele.map((e, idx) => (
-                                    <li key={`${i}${idx}`} className="chat-user-list clearfix">
+                                <Link key={`${i}${idx}`} to={`/chat/${e.user_id}/${e.id}`}>
+                                    <li className="chat-user-list clearfix">
                                         <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
                                             <span className="col-xs-height col-middle">
                                                 <span className="thumbnail-wrapper d32 circular bg-success">
@@ -38,7 +39,7 @@ class ContactListAlphabet extends Component {
                                             </p>
                                         </a>
                                     </li>
-                                
+                                </Link>
                             ))}
                         </ul>
                     </div>
@@ -53,19 +54,19 @@ class ContactListAlphabet extends Component {
         <div id="ContactListAlphabet">
             <div data-init-list-view="ioslist" className="list-view boreded no-top-border">
                 {this.renderContactList()}
-            </div>
-            <div className="scroll-element scroll-x scroll-scrolly_visible">
-                <div className="scroll-element_outer">
-                    <div className="scroll-element_size"></div>
-                    <div className="scroll-element_track"></div>
-                    <div className="scroll-bar" style={{width: "89px"}}></div>
+                <div className="scroll-element scroll-x scroll-scrolly_visible">
+                    <div className="scroll-element_outer">
+                        <div className="scroll-element_size"></div>
+                        <div className="scroll-element_track"></div>
+                        <div className="scroll-bar" style={{width: "89px"}}></div>
+                    </div>
                 </div>
-            </div>
-            <div className="scroll-element scroll-y scroll-scrolly_visible">
-                <div className="scroll-element_outer">
-                    <div className="scroll-element_size"></div>
-                    <div className="scroll-element_track"></div>
-                    <div className="scroll-bar" style={{height: "227px", top: "0px"}}></div>
+                <div className="scroll-element scroll-y scroll-scrolly_visible">
+                    <div className="scroll-element_outer">
+                        <div className="scroll-element_size"></div>
+                        <div className="scroll-element_track"></div>
+                        <div className="scroll-bar" style={{height: "227px", top: "0px"}}></div>
+                    </div>
                 </div>
             </div>
         </div>

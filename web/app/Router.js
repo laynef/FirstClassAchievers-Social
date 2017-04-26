@@ -10,6 +10,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage'
 import DetailPage from './pages/DetailPage/DetailPage'
 import DetailEntry from './pages/DetailEntry/DetailEntry'
+import ChatPage from './pages/ChatPage/ChatPage'
 
 
 export default (
@@ -23,6 +24,7 @@ export default (
             <Route path="profile" component={ProfilePage} />
             <Route path="favorites" component={FavoritesPage} />
             <Route path="profile/:userId" component={DetailPage} />
+            <Route path="chat/:userId/:chatId" component={ChatPage} />
         </Route>
 
     </Route>

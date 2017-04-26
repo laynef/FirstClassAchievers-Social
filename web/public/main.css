@@ -124,6 +124,14 @@
   background-color: white;
   overflow: scroll; }
 
+#ChatPage {
+  height: 65vw; }
+  @media screen and (min-width: 992px) {
+    #ChatPage {
+      margin-left: 80px; } }
+  #ChatPage h1 {
+    text-align: center; }
+
 #HeaderComponent .rightSpacing {
   width: 85px; }
 
