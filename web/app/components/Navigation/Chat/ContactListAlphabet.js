@@ -5,23 +5,16 @@ import { Field, reduxForm } from 'redux-form'
 
 class ContactListAlphabet extends Component {
 
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
-    }
-
     render() {
         return (
         <div id="ContactListAlphabet">
         {/* Alphabet map */}
             <div data-init-list-view="ioslist" className="list-view boreded no-top-border">
-                <h2 className="list-view-fake-header"> a</h2>
+                <h2 className="list-view-fake-header"> b</h2>
                 <div className="scroll-wrapper list-view-wrapper" style={{position: "absolute"}}>
                     <div className="list-view-wrapper scroll-content scroll-scrolly_visible" data-ios="false" style={{height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px"}}>
                             <div className="list-view-group-container">
-                                <div className="list-view-group-header text-uppercase"> a</div>
+                                <div className="list-view-group-header text-uppercase"> b</div>
                                 <ul>
                                     <li className="chat-user-list clearfix">
                                         <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
@@ -67,4 +60,5 @@ ContactListAlphabet = reduxForm({
 })(ContactListAlphabet)
 
 export default connect(state => ({
+    friends: state.friends.data
 }))(ContactListAlphabet)

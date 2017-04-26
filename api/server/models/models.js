@@ -158,8 +158,13 @@ module.exports = {
                     response[0].dataValues.followers.forEach(e => {
                         Profile.findAll({ where: {user_id: e} })
                             .then(resp => {
-                                friends.push(resp[0])
+                                friends.push(resp[0].dataValues)
                             })
+                    })
+                    let promise = new Promise((resolve) => {
+                        setTimeout(() => resolve(), 250)
+                    })
+                    promise.then(success => { 
                         res.status(200).send(friends)
                     })
                 })
