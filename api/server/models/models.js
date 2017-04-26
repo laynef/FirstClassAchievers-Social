@@ -22,24 +22,6 @@ module.exports = {
             })
         },
         patch: (req, res, next) => {
-            let image = req.body.image
-            // console.log(`IMAGE`, image)
-            // let arr = req.body.image.split('')
-            // let imgPath = `images/${req.params.userId}.png`
-            // if (image != imgPath) {
-            //     let buff = Buffer.from(req.body.image)
-            //     fs.writeFileSync(__dirname + `/../../../web/public/images/${req.params.userId}.png`, buff) 
-            // }
-            User.update({
-                image: image
-            }, {
-                where: { id: req.params.userId }
-            })
-            Testimonial.update({
-                image: image
-            }, {
-                where: { user_id: req.params.userId }
-            })
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -47,7 +29,7 @@ module.exports = {
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
-                image: image,
+                image: req.body.image,
                 zipCode: req.body.zipCode,
                 state: req.body.state,
                 country: req.body.country
@@ -135,6 +117,27 @@ module.exports = {
                     res.status(200).send(resp[0])
                 })
             })
+        }
+    },
+    image: {
+        patch: (req, res, next) => {
+            console.log(`\n\n\n\n\nIMAGE`, req.body.image, `\n\n\n\n`)
+            Profile.update({
+                image: req.body.image
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            Testimonial.update({
+                image: req.body.image
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            User.update({
+                image: req.body.image
+            }, {
+                where: { id: req.params.userId }
+            })
+            .then(response => res.sendStatus(202))
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { setProfile } from '../../redux/actions/profile'
+import { setImage } from '../../redux/actions/profile'
 import Dropzone from 'react-dropzone'
 
 
@@ -9,10 +9,7 @@ class ProfileImageModal extends Component {
 
     onDrop(file) {
 		const { dispatch, user } = this.props
-        let body = {}
-        body.image = file[0].preview
-        body.user = user.id
-		dispatch(setProfile(body, user.id))
+		dispatch(setImage(file[0], user.id))
 	}
 
     render() {
