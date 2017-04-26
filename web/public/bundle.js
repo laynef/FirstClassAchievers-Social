@@ -5953,7 +5953,6 @@ function login(data) {
 				type: _actionTypes2.default.LOGIN_SUCCESS,
 				payload: response.data
 			});
-			dispatch((0, _profile.getProfile)(response.data.id));
 			dispatch((0, _following.getFollowers)(response.data.id));
 			dispatch((0, _favorite.getFavorites)(response.data.id));
 		}).catch(function (err) {
@@ -25360,6 +25359,8 @@ var _ProfileImageModal = __webpack_require__(364);
 
 var _ProfileImageModal2 = _interopRequireDefault(_ProfileImageModal);
 
+var _profile = __webpack_require__(92);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25378,10 +25379,22 @@ var ProfilePage = function (_Component) {
     }
 
     _createClass(ProfilePage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                params = _props.params;
+
+            dispatch((0, _profile.getProfile)(params.userId));
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var profile = this.props.profile;
+            var _props2 = this.props,
+                profile = _props2.profile,
+                params = _props2.params;
 
+            if (!profile && profile.user_id != params.userId) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'ProfilePage', className: 'col-md-12' },

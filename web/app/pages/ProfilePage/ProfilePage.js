@@ -3,12 +3,19 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import PrimaryContact from '../../components/Profile/PrimaryContact'
 import ProfileImageModal  from '../../components/Profile/ProfileImageModal'
+import { getProfile } from '../../redux/actions/profile'
 
 
 class ProfilePage extends Component {
 
+    componentDidMount() {
+        const { dispatch, params } = this.props
+        dispatch(getProfile(params.userId))
+    }
+
     render() {
-        const { profile } = this.props
+        const { profile, params } = this.props
+        if (!profile && profile.user_id != params.userId) return null;
         return (
             <div id="ProfilePage" className="col-md-12">
                 <h1>My Profile</h1>
