@@ -10,7 +10,7 @@ import pull from 'lodash/pull'
 
 class DetailPage extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         const { dispatch, params, user } = this.props 
         dispatch(getProfile(params.userId))
         dispatch(getTestimonials())
