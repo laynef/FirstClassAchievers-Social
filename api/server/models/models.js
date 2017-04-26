@@ -7,6 +7,8 @@ const User = require('../../../database/models/index').User
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
+const multer = require('multer')
+let upload = multer({dest: '../../../web/public/images'})
 
 
 module.exports = {
@@ -22,17 +24,6 @@ module.exports = {
             })
         },
         patch: (req, res, next) => {
-            let image = req.body.image
-            User.update({
-                image: image
-            }, {
-                where: { id: req.params.userId }
-            })
-            Testimonial.update({
-                image: image
-            }, {
-                where: { user_id: req.params.userId }
-            })
             Profile.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -40,7 +31,7 @@ module.exports = {
                 goals: req.body.goals,
                 position: req.body.position,
                 nickname: req.body.nickname,
-                image: image,
+                image: req.body.image,
                 zipCode: req.body.zipCode,
                 state: req.body.state,
                 country: req.body.country
@@ -127,6 +118,26 @@ module.exports = {
                 .then(resp => {
                     res.status(200).send(resp[0])
                 })
+            })
+        }
+    },
+    image: {
+        patch: (req, res, next) => {
+            let imgPath = `images/${req.file.filename}`
+            Profile.update({
+                image: imgPath
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            Testimonial.update({
+                image: imgPath
+            }, {
+                where: { user_id: req.params.userId }
+            })
+            User.update({
+                image: imgPath
+            }, {
+                where: { id: req.params.userId }
             })
         }
     }

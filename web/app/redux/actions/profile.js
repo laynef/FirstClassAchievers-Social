@@ -4,6 +4,7 @@ import { getUser } from './auth'
 
 export function setProfile(data, id) {
 	return function(dispatch) {
+		let formData = new FormData()
 		dispatch({type: actionTypes.SET_PROFILE_PENDING})
 		axios.patch(`/api/profile/${id}`, data)
 			.then((response) => {
@@ -35,6 +36,27 @@ export function getProfile(id) {
 				.catch((err) => {
 					dispatch({
 						type: actionTypes.GET_PROFILE_ERROR,
+						payload: err
+					})
+				})			
+	}
+}
+
+export function setImage(data, id) {
+	return function(dispatch) {
+		let body = new FormData()
+		body.append('image', data)
+		dispatch({type: actionTypes.SET_IMAGE_PENDING})
+		axios.patch(`/api/image/${id}`, body)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.SET_IMAGE_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.SET_IMAGE_ERROR,
 						payload: err
 					})
 				})			
