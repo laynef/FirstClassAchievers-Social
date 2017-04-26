@@ -22723,38 +22723,37 @@ var ContactListAlphabet = function (_Component) {
                     array.push(alphabet[e]);
                 }
             });
-            return array.map(function (ele) {
-                return ele.map(function (e) {
-                    console.log('E', e);
-                    return _react2.default.createElement(
+            return array.map(function (ele, i) {
+                return _react2.default.createElement(
+                    'div',
+                    { key: i, 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
+                    _react2.default.createElement(
+                        'h2',
+                        { className: 'list-view-fake-header' },
+                        ele[0].firstName[0]
+                    ),
+                    _react2.default.createElement(
                         'div',
-                        { 'data-init-list-view': 'ioslist', className: 'list-view boreded no-top-border' },
-                        _react2.default.createElement(
-                            'h2',
-                            { className: 'list-view-fake-header' },
-                            e.firstName[0]
-                        ),
+                        { className: 'scroll-wrapper list-view-wrapper', style: { position: "absolute" } },
                         _react2.default.createElement(
                             'div',
-                            { className: 'scroll-wrapper list-view-wrapper', style: { position: "absolute" } },
+                            { className: 'list-view-wrapper scroll-content scroll-scrolly_visible', 'data-ios': 'false', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px" } },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'list-view-wrapper scroll-content scroll-scrolly_visible', 'data-ios': 'false', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px" } },
+                                { className: 'list-view-group-container' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'list-view-group-container' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'list-view-group-header text-uppercase' },
-                                        ' ',
-                                        e.firstName[0]
-                                    ),
-                                    _react2.default.createElement(
-                                        'ul',
-                                        null,
-                                        _react2.default.createElement(
+                                    { className: 'list-view-group-header text-uppercase' },
+                                    ' ',
+                                    ele[0].firstName[0]
+                                ),
+                                _react2.default.createElement(
+                                    'ul',
+                                    null,
+                                    ele.map(function (e, idx) {
+                                        return _react2.default.createElement(
                                             'li',
-                                            { className: 'chat-user-list clearfix' },
+                                            { key: '' + i + idx, className: 'chat-user-list clearfix' },
                                             _react2.default.createElement(
                                                 'a',
                                                 { 'data-view-animation': 'push-parrallax', 'data-view-port': '#chat', 'data-navigate': 'view', className: '', href: '#' },
@@ -22777,36 +22776,36 @@ var ContactListAlphabet = function (_Component) {
                                                     )
                                                 )
                                             )
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement('div', { className: 'list-view-group-container' })
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'scroll-element scroll-x scroll-scrolly_visible' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'scroll-element_outer' },
-                                    _react2.default.createElement('div', { className: 'scroll-element_size' }),
-                                    _react2.default.createElement('div', { className: 'scroll-element_track' }),
-                                    _react2.default.createElement('div', { className: 'scroll-bar', style: { width: "89px" } })
+                                        );
+                                    })
                                 )
                             ),
+                            _react2.default.createElement('div', { className: 'list-view-group-container' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'scroll-element scroll-x scroll-scrolly_visible' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'scroll-element scroll-y scroll-scrolly_visible' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'scroll-element_outer' },
-                                    _react2.default.createElement('div', { className: 'scroll-element_size' }),
-                                    _react2.default.createElement('div', { className: 'scroll-element_track' }),
-                                    _react2.default.createElement('div', { className: 'scroll-bar', style: { height: "227px", top: "0px" } })
-                                )
+                                { className: 'scroll-element_outer' },
+                                _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                                _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                                _react2.default.createElement('div', { className: 'scroll-bar', style: { width: "89px" } })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'scroll-element scroll-y scroll-scrolly_visible' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'scroll-element_outer' },
+                                _react2.default.createElement('div', { className: 'scroll-element_size' }),
+                                _react2.default.createElement('div', { className: 'scroll-element_track' }),
+                                _react2.default.createElement('div', { className: 'scroll-bar', style: { height: "227px", top: "0px" } })
                             )
                         )
-                    );
-                });
+                    )
+                );
             });
         }
     }, {

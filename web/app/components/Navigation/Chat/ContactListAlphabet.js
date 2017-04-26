@@ -19,32 +19,32 @@ class ContactListAlphabet extends Component {
                 array.push(alphabet[e])
             }
         })
-            return array.map(ele => {
-                return ele.map(e => {
-                console.log(`E`, e)
+            return array.map((ele, i) => {
                 return (
-                    <div data-init-list-view="ioslist" className="list-view boreded no-top-border">
-                    <h2 className="list-view-fake-header">{e.firstName[0]}</h2>
+                    <div key={i} data-init-list-view="ioslist" className="list-view boreded no-top-border">
+                        <h2 className="list-view-fake-header">{ele[0].firstName[0]}</h2>
                     <div className="scroll-wrapper list-view-wrapper" style={{position: "absolute"}}>
                         <div className="list-view-wrapper scroll-content scroll-scrolly_visible" data-ios="false" style={{height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: "808px"}}>
-                                <div className="list-view-group-container">
-                                    <div className="list-view-group-header text-uppercase"> {e.firstName[0]}</div>
+                            <div className="list-view-group-container">
+                                <div className="list-view-group-header text-uppercase"> {ele[0].firstName[0]}</div>
                                     <ul>
-                                        <li className="chat-user-list clearfix">
-                                            <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
-                                                <span className="col-xs-height col-middle">
-                                                    <span className="thumbnail-wrapper d32 circular bg-success">
-                                                        <img width="34" height="34" alt="" data-src-retina={e.image} data-src={e.image} src={e.image} className="col-top"/>
+                                    {ele.map((e, idx) => (
+                                            <li key={`${i}${idx}`} className="chat-user-list clearfix">
+                                                <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
+                                                    <span className="col-xs-height col-middle">
+                                                        <span className="thumbnail-wrapper d32 circular bg-success">
+                                                            <img width="34" height="34" alt="" data-src-retina={e.image} data-src={e.image} src={e.image} className="col-top"/>
+                                                        </span>
                                                     </span>
-                                                </span>
-                                                <p className="p-l-10 col-xs-height col-middle col-xs-12">
-                                                    <span className="text-master">{e.firstName + ' ' + e.lastName}</span>
-                                                </p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <div className="list-view-group-container"></div>
+                                                    <p className="p-l-10 col-xs-height col-middle col-xs-12">
+                                                        <span className="text-master">{e.firstName + ' ' + e.lastName}</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                    ))}
+                                </ul>
+                             </div>
+                    <div className="list-view-group-container"></div>
                         </div>
                             <div className="scroll-element scroll-x scroll-scrolly_visible">
                                 <div className="scroll-element_outer">
@@ -64,7 +64,6 @@ class ContactListAlphabet extends Component {
                     </div>
                 )
             })
-        })
     }
 
     render() {
