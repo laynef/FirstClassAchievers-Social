@@ -16,6 +16,7 @@
     "body-parser": "^1.16.1",
     "bunyan": "^1.8.5",
     "chai": "^3.5.0",
+    "cloudinary": "^1.8.0",
     "concurrently": "^3.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -73,8 +74,8 @@
     "start": "node ./api/server/server.js"
   },
   "engines": {
-      "node": "7.8.0",
-      "npm": "4.2.0"
+    "node": "7.8.0",
+    "npm": "4.2.0"
   },
   "repository": {
     "type": "git",
