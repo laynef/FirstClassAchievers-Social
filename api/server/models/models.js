@@ -128,7 +128,7 @@ module.exports = {
     },
     image: {
         patch: (req, res, next) => {
-            cloudinary.uploader.upload(req.body, (result) => {
+            cloudinary.uploader.upload(req.body.name, (result) => {
                 let imagePath = result.url
             })
             Profile.update({
