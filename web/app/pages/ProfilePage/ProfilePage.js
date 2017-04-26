@@ -14,7 +14,7 @@ class ProfilePage extends Component {
     }
 
     render() {
-        const { profile, params } = this.props
+        const { profile, params, user } = this.props
         if (!profile) return null;
         return (
             <div id="ProfilePage" className="col-md-12">
@@ -23,10 +23,10 @@ class ProfilePage extends Component {
                     className="thumbnail-wrapper d32 circular inline m-t-5"
                     data-toggle="modal"
                     data-target="#profile-image-modal">
-                    <img src={(profile && profile.image) ?profile.image : "http://i.imgur.com/sRbuHxN.png"}
+                    <img src={(user && user.image) ?user.image : "http://i.imgur.com/sRbuHxN.png"}
                         alt=""
-                        data-src={(profile && profile.image) ?profile.image : "http://i.imgur.com/sRbuHxN.png"}
-                        data-src-retina={(profile && profile.image) ?profile.image : "http://i.imgur.com/sRbuHxN.png"}
+                        data-src={(user && user.image) ?user.image : "http://i.imgur.com/sRbuHxN.png"}
+                        data-src-retina={(user && user.image) ?user.image : "http://i.imgur.com/sRbuHxN.png"}
                         width="320"
                         height="320"/>
                 </span>

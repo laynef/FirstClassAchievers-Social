@@ -36,6 +36,7 @@ class DetailPage extends Component {
         const { profile, params, testimonial, handleSubmit, user, following, favorites } = this.props;
         if (!profile ) return null
         if (user) { if (!following || !favorites) return null }
+        if (profile.id != params.userId) return null
         return (
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
