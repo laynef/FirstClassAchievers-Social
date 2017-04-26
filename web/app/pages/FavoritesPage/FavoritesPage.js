@@ -56,6 +56,5 @@ FavoritesPage = reduxForm({
 export default connect(state => ({
     testimonial: state.testimonial.data,
     favorites: state.favorites.data,
-    profile: state.profile.data,
     user: state.user.data
 }))(FavoritesPage)

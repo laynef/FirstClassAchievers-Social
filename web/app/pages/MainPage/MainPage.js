@@ -21,7 +21,7 @@ class MainPage extends Component {
     }
 
     render() {
-        const { user, testimonial, following } = this.props
+        const { user, testimonial, following, favorites } = this.props
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="mainPage">
