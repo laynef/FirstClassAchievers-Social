@@ -25260,7 +25260,7 @@ var MainPage = function (_Component) {
                                     entryId: entry.id,
                                     userId: user ? user.id : null,
                                     favorites: favorites ? favorites.entries : null,
-                                    detail: true
+                                    detail: false
                                 });
                             })
                         )
