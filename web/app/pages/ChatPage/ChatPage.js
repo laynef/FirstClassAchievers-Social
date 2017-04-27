@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { getMessages, createMessage } from '../../redux/actions/message'
+import { getMessages, createMessage, inviteFriends } from '../../redux/actions/message'
 import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
@@ -17,6 +17,7 @@ class ChatPage extends Component {
 
     static formSubmit(data) {
         const { dispatch, params, reset, messages } = this.props
+        this.favoriteOnInit()
         let socket = io()
         dispatch(createMessage({
             message: data.message,
@@ -36,8 +37,22 @@ class ChatPage extends Component {
         dispatch(reset('ChatPage'))
     }
 
+    favoriteOnInit() {
+        const { messages, dispatch, params } = this.props
+        let showing = []
+        if (!messages) {
+           showing = localStorage[`to_${profile.user_id}`] ? localStorage.getItem(`to_${profile.user_id}`) : showing
+        } else {
+            showing = messages
+        }
+        if (showing.length == 0) {
+            dispatch(inviteFriends({ friend: params.otherId }, params.otherId))
+        }
+    }
+
     renderConversion() {
         const { messages, user, profile } = this.props
+        let showing = []
         if (!messages) {
            showing = localStorage[`to_${profile.user_id}`] ? localStorage.getItem(`to_${profile.user_id}`) : showing
         } else {

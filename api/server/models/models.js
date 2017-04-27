@@ -205,5 +205,23 @@ module.exports = {
                 to: req.body.to
             })
         }
+    },
+    invite: {
+        post: (req, res, next) => {
+            Following.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                let array = response[0].dataValues.followers
+                if (!array.includes(req.body.friend)) {
+                    array.push(req.body.friend)
+                    Following.update({
+                        followers: array
+                    }, {
+                        where: { user_id: req.params.userId }
+                    })
+                }
+            })
+        }
     }
 }

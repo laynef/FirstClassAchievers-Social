@@ -39,3 +39,22 @@ export function createMessage(data) {
 				})			
 	}
 }
+
+export function inviteFriends(data, id) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.INVITE_FRIEND_PENDING})
+		axios.post(`/api/invite/${id}`, data)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.INVITE_FRIEND_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.INVITE_FRIEND_ERROR,
+						payload: err
+					})
+				})			
+	}
+}

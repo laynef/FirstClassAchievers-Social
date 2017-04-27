@@ -24,6 +24,8 @@ router.get('/friends/:userId', models.friends.get)
 router.get('/messages/:userId/:otherId', models.messages.get)
 router.post('/messages', models.messages.post)
 
+router.post('/invite/:userId', models.invite.post)
+
 
 // export router for server.js
 module.exports = router
