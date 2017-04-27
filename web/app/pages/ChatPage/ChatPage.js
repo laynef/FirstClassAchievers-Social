@@ -10,6 +10,9 @@ class ChatPage extends Component {
 
     constructor(props, context) {
         super(props)
+        this.state = {
+            count: 0
+        }
     }
 
     componentWillMount() {
@@ -61,9 +64,12 @@ class ChatPage extends Component {
         let array = messages || []
         if (pending && user && profile && array.length == 0) {
             array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
+            console.log(`PENDING`, array)
         } else if (messages) {
             array = messages
+            console.log(`ARRAY MESSAGE`, array)
         }
+        console.log(`ARRAY`, array)
         return array
             .map((e, i) => (
                 <div key={i} className="message clearfix">
@@ -117,7 +123,6 @@ class ChatPage extends Component {
     componentWillUpdate(nextProps, nextState) {
         const { dispatch, params } = this.props
         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
-        this.renderConversion()
     }
 
     componentDidUpdate(nextProps, nextState) {

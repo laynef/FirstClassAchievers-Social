@@ -27863,7 +27863,12 @@ var ChatPage = function (_Component) {
     function ChatPage(props, context) {
         _classCallCheck(this, ChatPage);
 
-        return _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
+
+        _this.state = {
+            count: 0
+        };
+        return _this;
     }
 
     _createClass(ChatPage, [{
@@ -27917,9 +27922,12 @@ var ChatPage = function (_Component) {
             var array = messages || [];
             if (pending && user && profile && array.length == 0) {
                 array = localStorage['to_' + params.otherId] ? JSON.parse(localStorage.getItem('to_' + params.otherId)) : [];
+                console.log('PENDING', array);
             } else if (messages) {
                 array = messages;
+                console.log('ARRAY MESSAGE', array);
             }
+            console.log('ARRAY', array);
             return array.map(function (e, i) {
                 return _react2.default.createElement(
                     'div',
@@ -27988,7 +27996,6 @@ var ChatPage = function (_Component) {
                 params = _props6.params;
 
             dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
-            this.renderConversion();
         }
     }, {
         key: 'componentDidUpdate',
