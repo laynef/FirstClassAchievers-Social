@@ -4,6 +4,11 @@ const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
+<<<<<<< HEAD
+=======
+const Message = require('../../../database/models/index').Message
+const fs = require('fs')
+>>>>>>> feat
 const path = require('path')
 const _ = require('lodash')
 const cloudinary = require('cloudinary')
@@ -145,6 +150,79 @@ module.exports = {
                     where: { id: req.params.userId }
                 })
                 .then(response => res.sendStatus(202))
+            })
+        }
+    },
+    friends: {
+        get: (req, res, next) => {
+            let friends = []
+            Following.findAll({ where: {user_id: req.params.userId} })
+                .then(response => {
+                    response[0].dataValues.followers.forEach(e => {
+                        Profile.findAll({ where: {user_id: e} })
+                            .then(resp => {
+                                friends.push(resp[0].dataValues)
+                            })
+                    })
+                })
+            let promise = new Promise((resolve) => {
+                setTimeout(() => resolve(), 500)
+            })
+            promise.then(success => { 
+                let array = _.uniq(friends)
+                res.status(200).send(array)
+            })
+        }
+    },
+    messages: {
+        get: (req, res, next) => {
+            let array1 = []
+            let array2 = []
+            Message.findAll({
+                where: { room_name: `_${req.params.userId}-${req.params.otherId}_` }
+            })
+            .then(resp => {
+                array1 = resp.map(e => e.dataValues)
+                Message.findAll({
+                    where: { room_name: `_${req.params.otherId}-${req.params.userId}_` }
+                })
+                .then(response => {
+                    array2 = response.map(e => e.dataValues)
+                })
+                let promise = new Promise((resolve) => {
+                    setTimeout(() => resolve(), 500)
+                })
+                promise.then(success => { 
+                    let array = _.uniq(array1.concat(array2))
+                        .sort((a, b) => a.id - b.id)
+                    res.status(200).send(array)
+                })
+            })
+        },
+        post: (req, res, next) => {
+            Message.create({
+                message: req.body.message,
+                user_id: req.body.user_id,
+                room_name: req.body.roomNameId,
+                to: req.body.to
+            })
+        }
+    },
+    invite: {
+        post: (req, res, next) => {
+            Following.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(response => {
+                let array = response[0].dataValues.followers
+                if (!array.includes(req.body.friend)) {
+                    array.push(req.body.friend)
+                    Following.update({
+                        followers: array
+                    }, {
+                        where: { user_id: req.params.userId }
+                    })
+                }
             })
         }
     }

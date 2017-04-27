@@ -210,5 +210,58 @@ router.post('/local/forgot/password', (req, res, next) => {
     })
 })
 
+
+router.post('/local/fixtures', (req, res, next) => {
+    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (req.body.password.length < 8 && regex.test(req.body.email)) {
+        return res.statusCode(404)
+    }
+    let salt = bcrypt.genSaltSync(10)
+    bcrypt.hash(req.body.password, salt, null, (err, hash) => {
+        User.create({
+            email: req.body.email,
+            password: hash,
+            image: req.body.image,
+            id: req.body.id
+        })
+        .then(response => {
+            if (req.body.id == 1) {
+                Following.create({
+                    followers: [2],
+                    user_id: req.body.id
+                })
+            } else {
+                Following.create({
+                    followers: [],
+                    user_id: req.body.id
+                })
+            }
+            Favorite.create({
+                user_id: req.body.id,
+                entries: []
+            })
+            Profile.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                city: null,
+                goals: null,
+                position: null,
+                nickname: null,
+                image: req.body.image,
+                zipCode: null,
+                state: null,
+                country: null,
+                user_id: req.body.id
+            })
+            res.sendStatus(201)
+            console.log(`sign up successful`)
+        })
+        .catch(error => {
+            console.log(`sign up post call error: `, error)
+            res.sendStatus(400)
+        })
+    })
+})
+
 // export router for server.js
 module.exports = router

@@ -5,6 +5,11 @@ import { Link } from 'react-router'
 import { logout } from '../../../redux/actions/auth'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
+<<<<<<< HEAD
+=======
+import ChatNotifications  from './ChatNotifications'
+import SideMenu  from '../SideMenu/SideMenu'
+>>>>>>> feat
 
 
 class Header extends Component {
@@ -16,7 +21,7 @@ class Header extends Component {
                     <div className="header ">
                         <div className="pull-left full-height visible-sm visible-xs">
                           <div className="sm-action-bar">
-                            <a href="#" className="btn-link toggle-sidebar" data-toggle="sidebar">
+                            <a href="#" className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5" data-toggle="sidebar">
                               <span className="icon-set menu-hambuger"></span>
                             </a>
                           </div>

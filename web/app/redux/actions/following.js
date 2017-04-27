@@ -1,5 +1,6 @@
 import axios from 'axios'
 import actionTypes from '../store/actionTypes'
+import { getFriends } from './friends'
 
 
 export function getFollowers(id) {
@@ -30,6 +31,7 @@ export function setFollowers(data, id) {
 						type: actionTypes.SET_FOLLOWERS_SUCCESS,
 						payload: response.data
 					})
+					dispatch(getFriends(id))
 				})
 				.catch((err) => {
 					dispatch({

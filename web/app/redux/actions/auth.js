@@ -3,6 +3,7 @@ import actionTypes from '../store/actionTypes'
 import { getFollowers } from './following'
 import { getProfile } from './profile'
 import { getFavorites } from './favorite'
+import { getFriends } from './friends'
 
 export function login(data) {
 	return function(dispatch) {
@@ -15,6 +16,7 @@ export function login(data) {
 					})
 					dispatch(getFollowers(response.data.id))
 					dispatch(getFavorites(response.data.id))
+					dispatch(getFriends(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({

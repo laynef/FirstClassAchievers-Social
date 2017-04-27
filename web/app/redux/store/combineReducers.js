@@ -7,6 +7,8 @@ import profileReducer from '../reducers/profile'
 import testimonialReducer from '../reducers/testimonial'
 import followingReducer from '../reducers/following'
 import favoritesReducer from '../reducers/favorite'
+import friendsReducer from '../reducers/friends'
+import messagesReducer from '../reducers/message'
 
 
 const reducers = combineReducers({
@@ -15,7 +17,9 @@ const reducers = combineReducers({
     profile: profileReducer,
     testimonial: testimonialReducer,
     following: followingReducer,
-    favorites: favoritesReducer
+    favorites: favoritesReducer,
+    friends: friendsReducer,
+    messages: messagesReducer
 })
 
 export default reducers

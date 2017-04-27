@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
+const io = require('socket.io')(server)
 const parser = require('body-parser')
 const morgan = require('morgan')
 const routes = require('./routes/routes')
@@ -11,7 +12,10 @@ const session = require('express-session')
 const favicon = require('express-favicon')
 const fs = require('fs')
 const flash = require('express-flash')
+const _ = require('lodash')
 
+
+let clients = []
 
 // port settings
 let port = process.env.PORT
@@ -47,4 +51,16 @@ app.get('/', (req, res) => {
 
 app.get('*', (req, res) => {
     res.redirect('/')
+})
+
+io.on('connection', (socket) => {
+
+    socket.broadcast.on('message', (data) => {
+         socket.emit('message', data)
+         socket.broadcast.emit('message', data)
+    })
+
+    socket.on('disconnect', function(){
+
+    });
 })
