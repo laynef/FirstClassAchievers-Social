@@ -5,12 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "fixtures": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/index.js",
-    "fixtures:pro": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/index.js"
+    "fixtures:pro": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/production.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
     "dotenv": "^4.0.0",
     "nodemon": "^1.11.0",
     "pg": "^6.1.2",

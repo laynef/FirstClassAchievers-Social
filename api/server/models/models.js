@@ -4,11 +4,8 @@ const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
-<<<<<<< HEAD
-=======
 const Message = require('../../../database/models/index').Message
 const fs = require('fs')
->>>>>>> feat
 const path = require('path')
 const _ = require('lodash')
 const cloudinary = require('cloudinary')

@@ -18,7 +18,7 @@ const _ = require('lodash')
 let clients = []
 
 // port settings
-let port = process.env.PORT
+let port = process.env.PORT || 3214
 
 // web socket protocol on localhost on port 3214
 server.listen(port, () => {
