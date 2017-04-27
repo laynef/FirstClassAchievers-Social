@@ -6,7 +6,6 @@ import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
 
-
 class ChatPage extends Component {
 
     componentWillMount() {
@@ -18,7 +17,7 @@ class ChatPage extends Component {
     static formSubmit(data) {
         const { dispatch, params, reset, messages } = this.props
         this.favoriteOnInit()
-        let socket = io('http://localhost:3214')()
+        let socket = io()
         dispatch(createMessage({
             message: data.message,
             user_id: Number(params.userId),
@@ -30,9 +29,6 @@ class ChatPage extends Component {
             user_id: Number(params.userId),
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
-        })
-        socket.on('message', msg => {
-            messages.push(msg)
         })
         dispatch(reset('ChatPage'))
     }
@@ -74,6 +70,10 @@ class ChatPage extends Component {
     }
 
      componentDidUpdate() {
+        this.renderConversion()
+    }
+
+     componentWillUpdate() {
         this.renderConversion()
     }
 
