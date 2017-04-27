@@ -6,7 +6,7 @@ const User = require('../../../database/models/index').User
 const Message = require('../../../database/models/index').Message
 const axios = require('axios')
 
-axios.post(`/auth/local/register`, {
+axios.post(`http://localhost:3214/auth/local/register`, {
     email: `admin@email.com`,
     password: `pass1234`
 }).then(resp => {
@@ -38,10 +38,18 @@ axios.post(`/auth/local/register`, {
         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493268974/smqbmnavbzfsfssjf1hp.jpg',
         likes: 0
     })
+    User.update({
+        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493268974/smqbmnavbzfsfssjf1hp.jpg'
+    }, {
+        where: { id: resp.data.id }
+    })
+})
+.catch(err => {
+    
 })
 
 
-axios.post(`/auth/local/register`, {
+axios.post(`http://localhost:3214/auth/local/register`, {
     email: `monica@email.com`,
     password: `pass1234`
 }).then(resp => {
@@ -73,9 +81,17 @@ axios.post(`/auth/local/register`, {
         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493225294/s20botoerwinfvkadqow.jpg',
         likes: 0
     })
+    User.update({
+        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493225294/s20botoerwinfvkadqow.jpg'
+    }, {
+        where: { id: resp.data.id }
+    })
+})
+.catch(err => {
+    
 })
 
-axios.post(`/auth/local/register`, {
+axios.post(`http://localhost:3214/auth/local/register`, {
     email: `jenny@email.com`,
     password: `pass1234`
 }).then(resp => {
@@ -107,4 +123,12 @@ axios.post(`/auth/local/register`, {
         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
         likes: 0
     })
+    User.update({
+        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg'
+    }, {
+        where: { id: resp.data.id }
+    })
+})
+.catch(err => {
+
 })

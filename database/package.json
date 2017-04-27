@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fixtures": "node ./mockData/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "nodemon": "^1.11.0",
     "pg": "^6.1.2",
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.5.1"

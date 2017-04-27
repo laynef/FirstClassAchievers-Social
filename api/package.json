@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server/server.js",
-    "fixtures": "node ./mockData/index.js"
+    "start": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",
