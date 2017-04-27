@@ -27922,7 +27922,7 @@ var ChatPage = function (_Component) {
                 array = messages;
             }
             socket.on('message', function (data) {
-                if (data.messages) {
+                if (data) {
                     array.push(data);
                 }
             });
@@ -27982,11 +27982,14 @@ var ChatPage = function (_Component) {
     }, {
         key: 'shouldComponentUpdate',
         value: function shouldComponentUpdate(nextProps, nextState) {
+            var _this2 = this;
+
             var socket = (0, _socket2.default)();
             if (!this.props.messages) return true;
             if (this.props.pending == null) return true;
             socket.on('message', function (data) {
                 if (data) {
+                    _this2.renderConversion();
                     return true;
                 }
             });

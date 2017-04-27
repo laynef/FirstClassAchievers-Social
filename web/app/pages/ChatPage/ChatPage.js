@@ -62,7 +62,7 @@ class ChatPage extends Component {
             array = messages
         }
         socket.on('message', (data) => {
-            if (data.messages) {
+            if (data) {
                 array.push(data)
             }
         })
@@ -116,6 +116,7 @@ class ChatPage extends Component {
         if (this.props.pending == null) return true
         socket.on('message', (data) => {
             if (data) {
+                this.renderConversion()
                 return true
             }
         })
