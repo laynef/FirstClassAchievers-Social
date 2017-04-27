@@ -27919,15 +27919,18 @@ var ChatPage = function (_Component) {
                 params = _props4.params,
                 pending = _props4.pending;
 
+            var socket = (0, _socket2.default)();
             var array = messages || [];
             if (pending && user && profile && array.length == 0) {
                 array = localStorage['to_' + params.otherId] ? JSON.parse(localStorage.getItem('to_' + params.otherId)) : [];
-                console.log('PENDING', array);
             } else if (messages) {
                 array = messages;
-                console.log('ARRAY MESSAGE', array);
             }
-            console.log('ARRAY', array);
+            socket.on('message', function (data) {
+                if (data) {
+                    array.push(data);
+                }
+            });
             return array.map(function (e, i) {
                 return _react2.default.createElement(
                     'div',
@@ -29473,14 +29476,6 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.GET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg) {
-                var payload = action.payload.push(msg);
-                return _extends({}, state, {
-                    error: null,
-                    pending: null,
-                    data: payload
-                });
-            });
             return _extends({}, state, {
                 error: null,
                 pending: null,
@@ -29500,14 +29495,6 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.SET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg) {
-                var payload = action.payload.push(msg);
-                return _extends({}, state, {
-                    error: null,
-                    pending: null,
-                    data: payload
-                });
-            });
             return _extends({}, state, {
                 error: null,
                 pending: null,

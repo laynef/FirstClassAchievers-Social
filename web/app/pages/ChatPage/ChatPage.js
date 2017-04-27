@@ -61,15 +61,18 @@ class ChatPage extends Component {
 
     renderConversion() {
         const { user, profile, messages, params, pending } = this.props
+        let socket = io()
         let array = messages || []
         if (pending && user && profile && array.length == 0) {
             array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
-            console.log(`PENDING`, array)
         } else if (messages) {
             array = messages
-            console.log(`ARRAY MESSAGE`, array)
         }
-        console.log(`ARRAY`, array)
+        socket.on('message', (data) => {
+            if (data) {
+                array.push(data)
+            }
+        })
         return array
             .map((e, i) => (
                 <div key={i} className="message clearfix">

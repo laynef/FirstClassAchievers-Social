@@ -20,15 +20,6 @@ export default function (state = INITIAL_STATE, action) {
             }
         
         case actionTypes.GET_MESSAGES_SUCCESS:
-            socket.on('message', (msg) => {
-                let payload = action.payload.push(msg)
-                return {
-                    ...state,
-                    error: null,
-                    pending: null,
-                    data: payload
-                }
-            })
             return {
                 ...state,
                 error: null,
@@ -51,20 +42,11 @@ export default function (state = INITIAL_STATE, action) {
             }
         
         case actionTypes.SET_MESSAGES_SUCCESS:
-            socket.on('message', (msg) => {
-                let payload = action.payload.push(msg)
-                return {
-                    ...state,
-                    error: null,
-                    pending: null,
-                    data: payload
-                }
-            })
             return {
                 ...state,
                 error: null,
                 pending: null,
-                data: action.payload,
+                data: action.payload
             }
 
         case actionTypes.SET_MESSAGES_ERROR:

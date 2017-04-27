@@ -57,6 +57,7 @@ io.on('connection', (socket) => {
 
     socket.broadcast.on('message', (data) => {
          socket.broadcast.emit('message', data)
+         console.log(`\n\n\n\nDATA`, data, `\n\n\n\n\n`)
     })
 
     socket.on('disconnect', function(){
