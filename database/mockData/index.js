@@ -1,7 +1,3 @@
-let promise = new Promise(resolve =>{ 
-    setTimeout(() => resolve(), 1000)
-})
+require('./models/user')
 
-promise.then(resp => {
-    require('./models/user')
-})
+
