@@ -18,20 +18,20 @@ class ChatPage extends Component {
     static formSubmit(data) {
         const { dispatch, params, reset, messages } = this.props
         this.favoriteOnInit()
-        let socket = io()
+        let socket = io('http://localhost:3214')()
         dispatch(createMessage({
             message: data.message,
             user_id: Number(params.userId),
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
-        socket.broadcast.emit('message', {
+        socket.emit('message', {
             message: data.message,
             user_id: Number(params.userId),
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
         })
-        socket.broadcast.on('message', msg => {
+        socket.on('message', msg => {
             messages.push(msg)
         })
         dispatch(reset('ChatPage'))
