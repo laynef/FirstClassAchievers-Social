@@ -69,7 +69,7 @@ class ChatPage extends Component {
             <div id="ChatPage">
                 {/* Fill me in */}
                 <h1>Chat</h1>
-                <div className="col-md-12 view chat-view bg-white clearfix" style={{height: '65vw'}}>
+                <div className="col-md-12 view chat-view bg-white clearfix innerChat">
                     <Form onSubmit={handleSubmit(ChatPage.formSubmit.bind(this))}>
                         <div className="chat-inner" id="my-conversation">
                             {this.renderConversion()}
