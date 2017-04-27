@@ -5,11 +5,8 @@ import { Link } from 'react-router'
 import { logout } from '../../../redux/actions/auth'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
-<<<<<<< HEAD
-=======
 import ChatNotifications  from './ChatNotifications'
 import SideMenu  from '../SideMenu/SideMenu'
->>>>>>> feat
 
 
 class Header extends Component {

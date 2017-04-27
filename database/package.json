@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fixtures": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/index.js"
+    "fixtures": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/index.js",
+    "fixtures:pro": "sequelize db:migrate:undo:all && sequelize db:migrate && node ./mockData/index.js"
   },
   "keywords": [],
   "author": "",
