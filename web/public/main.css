@@ -124,13 +124,18 @@
   background-color: white;
   overflow: scroll; }
 
-#ChatPage {
-  height: 65vw; }
-  @media screen and (min-width: 992px) {
-    #ChatPage {
-      margin-left: 80px; } }
-  #ChatPage h1 {
-    text-align: center; }
+@media screen and (min-width: 992px) {
+  #ChatPage {
+    margin-left: 80px; } }
+
+#ChatPage h1 {
+  text-align: center; }
+
+#ChatPage .innerChat {
+  margin: 40px 15px;
+  height: 580px;
+  width: 97.5%;
+  overflow: scroll; }
 
 #HeaderComponent .rightSpacing {
   width: 85px; }
