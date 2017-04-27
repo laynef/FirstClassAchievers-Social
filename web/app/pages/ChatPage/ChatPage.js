@@ -9,10 +9,10 @@ import io from 'socket.io-client'
 
 class ChatPage extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         const { dispatch, params } = this.props
-        dispatch(getProfile(params.otherId))
-        dispatch(getMessages(params.userId, params.otherId))
+        dispatch(getProfile(Number(params.otherId)))
+        dispatch(getMessages(Number(params.userId), Number(params.otherId)))
     }
 
     static formSubmit(data) {
@@ -21,14 +21,14 @@ class ChatPage extends Component {
         let socket = io()
         dispatch(createMessage({
             message: data.message,
-            user_id: params.userId,
-            to: params.otherId,
+            user_id: Number(params.userId),
+            to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
         socket.emit('message', {
             message: data.message,
-            user_id: params.userId,
-            to: params.otherId,
+            user_id: Number(params.userId),
+            to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
         })
         socket.on('message', msg => {
@@ -41,24 +41,19 @@ class ChatPage extends Component {
         const { messages, dispatch, params } = this.props
         let showing = []
         if (!messages) {
-           showing = localStorage[`to_${profile.user_id}`] ? localStorage.getItem(`to_${profile.user_id}`) : showing
+           showing = localStorage[`to_${params.otherId}`] ? localStorage.getItem(`to_${params.otherId}`) : []
         } else {
             showing = messages
         }
         if (showing.length == 0) {
-            dispatch(inviteFriends({ friend: params.otherId }, params.otherId))
+            dispatch(inviteFriends({ friend: Number(params.userId) }, Number(params.otherId)))
         }
     }
 
     renderConversion() {
-        const { messages, user, profile } = this.props
-        let showing = []
-        if (!messages) {
-           showing = localStorage[`to_${profile.user_id}`] ? localStorage.getItem(`to_${profile.user_id}`) : showing
-        } else {
-            showing = messages
-        }
-        return showing
+        const { user, profile, messages } = this.props
+        if (!messages) return null
+        return messages
             .map((e, i) => (
                 <div key={i} className="message clearfix">
                     {user.id == e.user_id ? null :  (
@@ -78,21 +73,39 @@ class ChatPage extends Component {
             )
     }
 
-     componentDidUpdate() {
-        this.renderConversion()
+     componentDidUpdate(nextProps, nextState) {
+        const { params, messages } = this.props
+        if (messages && nextProps.messages.length != messages.length) {
+            dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+            this.renderConversion()
+        }
+        if (!messages) {
+            this.renderConversion()
+        }
+    }
+
+     componentWillUpdate(nextProps, nextState) {
+        const { params, messages } = this.props
+        if (messages && nextProps.messages.length != messages.length) {
+            dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+            this.renderConversion()
+        }
+        if (!messages) {
+            this.renderConversion()
+        }
     }
 
     componentWillUnmount() {
         const { messages } = this.props
         if (messages) {
-            localStorage(`to_${messages[0].to}`, messages)
+            localStorage.setItem(`to_${messages[0].to}`, JSON.stringify(messages))
         }
     }
 
     render() {
-        const { messages, handleSubmit, profile } = this.props
-        let showing = []
-        if (!profile) return null
+        const { messages, handleSubmit, profile, params } = this.props
+        if (!profile || profile.id != params.otherId) return null
+        if (!messages) return null
         return (
             <div id="ChatPage">
                 {/* Fill me in */}
@@ -122,8 +135,14 @@ ChatPage = reduxForm({
     form: 'ChatPage'
 })(ChatPage)
 
-export default connect(state => ({
-    messages: state.messages.data,
+export default connect((state, props) => {
+ const message = state.messages.data
+//  let array = null
+//  if (!message) {
+//     array = !message ? (!localStorage[`to_${props.routeParams.otherId}`] ? message :  JSON.parse(localStorage.getItem(`to_${props.routeParams.otherId}`))) : null
+//  }
+ return {
+    messages: message,
     profile: state.profile.data,
     user: state.user.data
-}))(ChatPage)
+}})(ChatPage)

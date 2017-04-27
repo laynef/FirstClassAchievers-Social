@@ -27743,14 +27743,14 @@ var ChatPage = function (_Component) {
     }
 
     _createClass(ChatPage, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
             var _props = this.props,
                 dispatch = _props.dispatch,
                 params = _props.params;
 
-            dispatch((0, _profile.getProfile)(params.otherId));
-            dispatch((0, _message.getMessages)(params.userId, params.otherId));
+            dispatch((0, _profile.getProfile)(Number(params.otherId)));
+            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
         }
     }, {
         key: 'favoriteOnInit',
@@ -27762,29 +27762,24 @@ var ChatPage = function (_Component) {
 
             var showing = [];
             if (!messages) {
-                showing = localStorage['to_' + profile.user_id] ? localStorage.getItem('to_' + profile.user_id) : showing;
+                showing = localStorage['to_' + params.otherId] ? localStorage.getItem('to_' + params.otherId) : [];
             } else {
                 showing = messages;
             }
             if (showing.length == 0) {
-                dispatch((0, _message.inviteFriends)({ friend: params.otherId }, params.otherId));
+                dispatch((0, _message.inviteFriends)({ friend: Number(params.userId) }, Number(params.otherId)));
             }
         }
     }, {
         key: 'renderConversion',
         value: function renderConversion() {
             var _props3 = this.props,
-                messages = _props3.messages,
                 user = _props3.user,
-                profile = _props3.profile;
+                profile = _props3.profile,
+                messages = _props3.messages;
 
-            var showing = [];
-            if (!messages) {
-                showing = localStorage['to_' + profile.user_id] ? localStorage.getItem('to_' + profile.user_id) : showing;
-            } else {
-                showing = messages;
-            }
-            return showing.map(function (e, i) {
+            if (!messages) return null;
+            return messages.map(function (e, i) {
                 return _react2.default.createElement(
                     'div',
                     { key: i, className: 'message clearfix' },
@@ -27807,8 +27802,33 @@ var ChatPage = function (_Component) {
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate() {
-            this.renderConversion();
+        value: function componentDidUpdate(nextProps, nextState) {
+            var _props4 = this.props,
+                params = _props4.params,
+                messages = _props4.messages;
+
+            if (messages && nextProps.messages.length != messages.length) {
+                dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
+                this.renderConversion();
+            }
+            if (!messages) {
+                this.renderConversion();
+            }
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            var _props5 = this.props,
+                params = _props5.params,
+                messages = _props5.messages;
+
+            if (messages && nextProps.messages.length != messages.length) {
+                dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
+                this.renderConversion();
+            }
+            if (!messages) {
+                this.renderConversion();
+            }
         }
     }, {
         key: 'componentWillUnmount',
@@ -27816,19 +27836,20 @@ var ChatPage = function (_Component) {
             var messages = this.props.messages;
 
             if (messages) {
-                localStorage('to_' + messages[0].to, messages);
+                localStorage.setItem('to_' + messages[0].to, JSON.stringify(messages));
             }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _props4 = this.props,
-                messages = _props4.messages,
-                handleSubmit = _props4.handleSubmit,
-                profile = _props4.profile;
+            var _props6 = this.props,
+                messages = _props6.messages,
+                handleSubmit = _props6.handleSubmit,
+                profile = _props6.profile,
+                params = _props6.params;
 
-            var showing = [];
-            if (!profile) return null;
+            if (!profile || profile.id != params.otherId) return null;
+            if (!messages) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'ChatPage' },
@@ -27869,24 +27890,24 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props5 = this.props,
-                dispatch = _props5.dispatch,
-                params = _props5.params,
-                reset = _props5.reset,
-                messages = _props5.messages;
+            var _props7 = this.props,
+                dispatch = _props7.dispatch,
+                params = _props7.params,
+                reset = _props7.reset,
+                messages = _props7.messages;
 
             this.favoriteOnInit();
             var socket = (0, _socket2.default)();
             dispatch((0, _message.createMessage)({
                 message: data.message,
-                user_id: params.userId,
-                to: params.otherId,
+                user_id: Number(params.userId),
+                to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             }));
             socket.emit('message', {
                 message: data.message,
-                user_id: params.userId,
-                to: params.otherId,
+                user_id: Number(params.userId),
+                to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             });
             socket.on('message', function (msg) {
@@ -27903,9 +27924,14 @@ ChatPage = (0, _reduxForm.reduxForm)({
     form: 'ChatPage'
 })(ChatPage);
 
-exports.default = (0, _reactRedux.connect)(function (state) {
+exports.default = (0, _reactRedux.connect)(function (state, props) {
+    var message = state.messages.data;
+    //  let array = null
+    //  if (!message) {
+    //     array = !message ? (!localStorage[`to_${props.routeParams.otherId}`] ? message :  JSON.parse(localStorage.getItem(`to_${props.routeParams.otherId}`))) : null
+    //  }
     return {
-        messages: state.messages.data,
+        messages: message,
         profile: state.profile.data,
         user: state.user.data
     };
