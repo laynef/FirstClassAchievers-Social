@@ -55,8 +55,8 @@ app.get('*', (req, res) => {
 
 io.on('connection', (socket) => {
 
-    socket.broadcast.on('message', (data, type) => {
-         socket.broadcast.emit('message', data, type)
+    socket.broadcast.on('message', (type, data) => {
+         socket.broadcast.emit('message', type, data)
     })
 
     socket.on('disconnect', function(){

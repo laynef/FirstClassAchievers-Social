@@ -27869,7 +27869,8 @@ var ChatPage = function (_Component) {
             user_id: Number(props.params.userId),
             to: Number(props.params.otherId),
             message: '',
-            roomNameId: '_' + props.params.userId + '-' + props.params.otherId + '_'
+            roomNameId: '_' + props.params.userId + '-' + props.params.otherId + '_',
+            messages: []
         };
         return _this;
     }
@@ -27892,7 +27893,7 @@ var ChatPage = function (_Component) {
                 dispatch = _props2.dispatch,
                 params = _props2.params;
 
-            var showing = [];
+            var showing = this.state.messages || [];
             if (!messages) {
                 showing = localStorage['to_' + params.otherId] ? localStorage.getItem('to_' + params.otherId) : [];
             } else {
@@ -27916,16 +27917,17 @@ var ChatPage = function (_Component) {
         key: 'shouldComponentUpdate',
         value: function shouldComponentUpdate(nextProps, nextState) {
             if (!this.props.messages) return true;
+            if (this.props.messages.length != this.state.messages.length) return true;
             return false;
         }
     }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps, nextState) {
-            console.log('UPDATED');
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(nextProps, nextState) {
             var _props4 = this.props,
                 dispatch = _props4.dispatch,
                 params = _props4.params;
 
+            this.setState({ messages: nextState.messages });
             dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
         }
     }, {
@@ -27936,7 +27938,7 @@ var ChatPage = function (_Component) {
                 dispatch = _props5.dispatch;
 
             var socket = (0, _socket2.default)();
-            socket.emit('message', {}, {
+            socket.emit('message', {
                 user_id: this.state.user_id,
                 typing: anyTouched
             });
@@ -27955,7 +27957,7 @@ var ChatPage = function (_Component) {
                 params = _props6.params,
                 pending = _props6.pending;
 
-            var array = [];
+            var array = this.state.messages || [];
             if (pending && user && profile) {
                 array = localStorage['to_' + params.otherId] ? JSON.parse(localStorage.getItem('to_' + params.otherId)) : [];
             } else if (messages) {
@@ -28098,13 +28100,13 @@ var ChatPage = function (_Component) {
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             }));
             socket.emit('message', {
+                user_id: Number(params.userId),
+                typing: anyTouched
+            }, {
                 message: data.message,
                 user_id: Number(params.userId),
                 to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
-            }, {
-                user_id: Number(params.userId),
-                typing: anyTouched
             });
             dispatch(reset('ChatPage'));
         }
@@ -29497,7 +29499,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.GET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg, type) {
+            socket.on('message', function (type, msg) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29524,7 +29526,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.SET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg, type) {
+            socket.on('message', function (type, msg) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29545,15 +29547,12 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.TYPING:
-            socket.on('message', function (msg, type) {
+            socket.on('message', function (type, msg) {
                 return _extends({}, state, {
                     typing: type
                 });
             });
-            return _extends({}, state, {
-                typing: action.typing
-            });
-
+            return _extends({}, state);
     }
 
     return state;

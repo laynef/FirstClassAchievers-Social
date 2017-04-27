@@ -14,7 +14,8 @@ class ChatPage extends Component {
             user_id: Number(props.params.userId),
             to: Number(props.params.otherId),
             message: '',
-            roomNameId: `_${props.params.userId}-${props.params.otherId}_`
+            roomNameId: `_${props.params.userId}-${props.params.otherId}_`,
+            messages: []
         }
     }
 
@@ -35,20 +36,20 @@ class ChatPage extends Component {
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
         socket.emit('message', {
+            user_id: Number(params.userId),
+            typing: anyTouched
+        }, {
             message: data.message,
             user_id: Number(params.userId),
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
-        }, {
-            user_id: Number(params.userId),
-            typing: anyTouched
         })
         dispatch(reset('ChatPage'))
     }
 
     favoriteOnInit() {
         const { messages, dispatch, params } = this.props
-        let showing = []
+        let showing = this.state.messages || []
         if (!messages) {
            showing = localStorage[`to_${params.otherId}`] ? localStorage.getItem(`to_${params.otherId}`) : []
         } else {
@@ -67,19 +68,20 @@ class ChatPage extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         if (!this.props.messages) return true
+        if (this.props.messages.length != this.state.messages.length) return true
         return false
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        console.log(`UPDATED`)
+    componentDidUpdate(nextProps, nextState) {
         const { dispatch, params } = this.props
+        this.setState({ messages: nextState.messages })
         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
     }
 
     setTyping() {
         const { anyTouched, dispatch } = this.props
         let socket = io()
-        socket.emit('message', {}, {
+        socket.emit('message', {
             user_id: this.state.user_id,
             typing: anyTouched
         })
@@ -91,7 +93,7 @@ class ChatPage extends Component {
 
     renderConversion() {
         const { user, profile, messages, params, pending } = this.props
-        let array = []
+        let array = this.state.messages || []
         if (pending && user && profile) {
             array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
         } else if (messages) {
