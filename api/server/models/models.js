@@ -4,6 +4,7 @@ const Testimonial = require('../../../database/models/index').Testimonial
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
+const Message = require('../../../database/models/index').Message
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -161,13 +162,26 @@ module.exports = {
                                 friends.push(resp[0].dataValues)
                             })
                     })
-                    let promise = new Promise((resolve) => {
-                        setTimeout(() => resolve(), 250)
-                    })
-                    promise.then(success => { 
-                        res.status(200).send(friends)
+                })
+            Message.findAll({ where: { to: req.params.userId } })
+                .then(response => {
+                    response.forEach(e => {
+                        friends.push(e.dataValues.from)
                     })
                 })
+            Message.findAll({ where: { from: req.params.userId } })
+                .then(response => {
+                    response.forEach(e => {
+                        friends.push(e.dataValues.to)
+                    })
+                })
+            let promise = new Promise((resolve) => {
+                setTimeout(() => resolve(), 250)
+            })
+            promise.then(success => { 
+                let array = _.uniq(friends)
+                res.status(200).send(array)
+            })
         }
     }
 }
