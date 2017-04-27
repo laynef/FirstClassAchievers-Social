@@ -8,6 +8,7 @@ import testimonialReducer from '../reducers/testimonial'
 import followingReducer from '../reducers/following'
 import favoritesReducer from '../reducers/favorite'
 import friendsReducer from '../reducers/friends'
+import messagesReducer from '../reducers/message'
 
 
 const reducers = combineReducers({
@@ -17,7 +18,8 @@ const reducers = combineReducers({
     testimonial: testimonialReducer,
     following: followingReducer,
     favorites: favoritesReducer,
-    friends: friendsReducer
+    friends: friendsReducer,
+    messages: messagesReducer
 })
 
 export default reducers

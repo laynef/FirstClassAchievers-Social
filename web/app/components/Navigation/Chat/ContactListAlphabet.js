@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { createMessage } from '../../../redux/actions/message'
 
 
 class ContactListAlphabet extends Component {
 
     renderContactList() {
-        const { friends } = this.props
+        const { friends, dispatch, user } = this.props
         let sorted = friends.sort((a, b) => a.firstName - b.firstName)
         let alphabet = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [], j: [], k: [], l: [], m: [], n: [], o: [], p: [], q: [], r: [], s: [], t: [], u: [], v: [], w: [], x: [], y: [], z: [] }
         sorted.forEach(e => {
@@ -26,7 +27,14 @@ class ContactListAlphabet extends Component {
                     <div className="list-view-group-header text-uppercase"> {ele[0].firstName[0]}</div>
                         <ul>
                             {ele.map((e, idx) => (
-                                <Link key={`${i}${idx}`} to={`/chat/${e.user_id}/${e.id}`}>
+                                <Link key={`${i}${idx}`} 
+                                    to={`/chat/${e.user_id}/${e.id}`}
+                                    onClick={() => dispatch(createMessage({
+                                        message: null,
+                                        userId: e.user_id,
+                                        roomNameId: `${user.id}-${e.user_id}`,
+                                        to: user.id
+                                    }))}>
                                     <li className="chat-user-list clearfix">
                                         <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
                                             <span className="col-xs-height col-middle">
@@ -80,5 +88,6 @@ ContactListAlphabet = reduxForm({
 })(ContactListAlphabet)
 
 export default connect(state => ({
-    friends: state.friends.data
+    friends: state.friends.data,
+    user: state.user.data
 }))(ContactListAlphabet)

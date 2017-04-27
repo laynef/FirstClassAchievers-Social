@@ -1,8 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Message = sequelize.define('Message', {
+    room_name: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
     to: DataTypes.INTEGER,
-    from: DataTypes.INTEGER,
     message: DataTypes.TEXT
   }, {
     classMethods: {

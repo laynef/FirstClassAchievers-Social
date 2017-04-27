@@ -21,6 +21,9 @@ router.patch('/image/:userId', upload.single('image'), models.image.patch)
 
 router.get('/friends/:userId', models.friends.get)
 
+router.get('/messages/:chatId', models.messages.get)
+router.post('/messages', models.messages.post)
+
 
 // export router for server.js
 module.exports = router
