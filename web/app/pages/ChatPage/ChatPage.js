@@ -27,15 +27,16 @@ class ChatPage extends Component {
     renderChatFromMe(message, image, who) {
         return (
             <div className="message clearfix">
-                <div className="profile-img-wrapper m-t-5 inline">
-                    <img className="col-top" 
-                        width="30" height="30" 
-                        src={image || 'http://i.imgur.com/sRbuHxN.png'} 
-                        alt="" 
-                        data-src={image || 'http://i.imgur.com/sRbuHxN.png'} 
-                        data-src-retina={image || 'http://i.imgur.com/sRbuHxN.png'}/>
-                </div>
-                <div className={`chat-bubble from-${who}`}>
+                {who ? null :  (
+                    <div className="profile-img-wrapper m-t-5 inline">
+                            <img className="col-top" 
+                                width="30" height="30" 
+                                src={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                data-src={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                data-src-retina={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')}/>
+                    </div>
+                    )}
+                <div className={`chat-bubble from-${who ? 'me' : 'them'}`}>
                     {message}
                 </div>
             </div>
@@ -44,10 +45,12 @@ class ChatPage extends Component {
 
     renderConversion() {
         const { messages, user, profile } = this.props
-        return messages.map(e => this.renderChatFromMe(
+        return messages
+        .sort((a, b) => a.id - b.id)
+        .map(e => this.renderChatFromMe(
             e.message, 
             user.id == e.user_id ? user.image : profile.image,
-            user.id == e.user_id ? `me` : `them`
+            user.id == e.user_id
             )
         )
     }

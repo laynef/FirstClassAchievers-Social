@@ -59376,19 +59376,18 @@ var ChatPage = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'message clearfix' },
-                _react2.default.createElement(
+                who ? null : _react2.default.createElement(
                     'div',
                     { className: 'profile-img-wrapper m-t-5 inline' },
                     _react2.default.createElement('img', { className: 'col-top',
                         width: '30', height: '30',
-                        src: image || 'http://i.imgur.com/sRbuHxN.png',
-                        alt: '',
-                        'data-src': image || 'http://i.imgur.com/sRbuHxN.png',
-                        'data-src-retina': image || 'http://i.imgur.com/sRbuHxN.png' })
+                        src: who ? null : image || 'http://i.imgur.com/sRbuHxN.png',
+                        'data-src': who ? null : image || 'http://i.imgur.com/sRbuHxN.png',
+                        'data-src-retina': who ? null : image || 'http://i.imgur.com/sRbuHxN.png' })
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'chat-bubble from-' + who },
+                    { className: 'chat-bubble from-' + (who ? 'me' : 'them') },
                     message
                 )
             );
@@ -59403,8 +59402,10 @@ var ChatPage = function (_Component) {
                 user = _props2.user,
                 profile = _props2.profile;
 
-            return messages.map(function (e) {
-                return _this2.renderChatFromMe(e.message, user.id == e.user_id ? user.image : profile.image, user.id == e.user_id ? 'me' : 'them');
+            return messages.sort(function (a, b) {
+                return a.id - b.id;
+            }).map(function (e) {
+                return _this2.renderChatFromMe(e.message, user.id == e.user_id ? user.image : profile.image, user.id == e.user_id);
             });
         }
     }, {
@@ -59605,6 +59606,7 @@ function createMessage(data) {
 				type: _actionTypes2.default.SET_MESSAGES_SUCCESS,
 				payload: response.data
 			});
+			dispatch(getMessages(data.user_id, data.to));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.SET_MESSAGES_ERROR,

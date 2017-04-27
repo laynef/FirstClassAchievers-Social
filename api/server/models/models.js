@@ -191,9 +191,6 @@ module.exports = {
                     setTimeout(() => resolve(), 500)
                 })
                 promise.then(success => { 
-                    console.log(`ARRAY1`, array1)
-                    console.log(`ARRAY2`, array2)
-                    console.log(`ARRAY`, _.uniq(array1.concat(array2)))
                     let array = _.uniq(array1.concat(array2))
                     res.status(200).send(array)
                 })
