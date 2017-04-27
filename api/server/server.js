@@ -12,6 +12,7 @@ const session = require('express-session')
 const favicon = require('express-favicon')
 const fs = require('fs')
 const flash = require('express-flash')
+const _ = require('lodash')
 
 
 let clients = []
@@ -53,13 +54,13 @@ app.get('*', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    clients.push(server)
+    // clients.push(server)
 
-    socket.broadcast.on('message', data => {
-        clients.forEach(client => {
-            if (client !== socket) {
-                client.send(data)
-            }
-        })
+    socket.broadcast.on('message', (data) => {
+         io.emit('message', data)
     })
+
+    socket.on('disconnect', function(){
+        // _.pull(clients, server)
+    });
 })

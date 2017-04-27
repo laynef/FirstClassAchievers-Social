@@ -30,7 +30,6 @@ export function createMessage(data) {
 						type: actionTypes.SET_MESSAGES_SUCCESS,
 						payload: response.data
 					})
-                    dispatch(getMessages(data.user_id, data.to))
 				})
 				.catch((err) => {
 					dispatch({

@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { getMessages, createMessage } from '../../redux/actions/message'
 import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
+import io from 'socket.io-client'
 
 
 class ChatPage extends Component {
@@ -15,44 +16,51 @@ class ChatPage extends Component {
     }
 
     static formSubmit(data) {
-        const { dispatch, params } = this.props
+        const { dispatch, params, reset, messages } = this.props
+        let socket = io()
         dispatch(createMessage({
             message: data.message,
             user_id: params.userId,
             to: params.otherId,
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
-    }
-
-    renderChatFromMe(message, image, who) {
-        return (
-            <div className="message clearfix">
-                {who ? null :  (
-                    <div className="profile-img-wrapper m-t-5 inline">
-                            <img className="col-top" 
-                                width="30" height="30" 
-                                src={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')} 
-                                data-src={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')} 
-                                data-src-retina={who ? null : (image || 'http://i.imgur.com/sRbuHxN.png')}/>
-                    </div>
-                    )}
-                <div className={`chat-bubble from-${who ? 'me' : 'them'}`}>
-                    {message}
-                </div>
-            </div>
-        )
+        socket.emit('message', {
+            message: data.message,
+            user_id: params.userId,
+            to: params.otherId,
+            roomNameId: `_${params.userId}-${params.otherId}_`
+        })
+        socket.on('message', msg => {
+            messages.push(msg)
+        })
+        dispatch(reset('ChatPage'))
     }
 
     renderConversion() {
         const { messages, user, profile } = this.props
         return messages
-        .sort((a, b) => a.id - b.id)
-        .map(e => this.renderChatFromMe(
-            e.message, 
-            user.id == e.user_id ? user.image : profile.image,
-            user.id == e.user_id
+            .sort((a, b) => a.id - b.id)
+            .map((e, i) => (
+                <div key={i} className="message clearfix">
+                    {user.id == e.user_id ? null :  (
+                        <div className="profile-img-wrapper m-t-5 inline">
+                                <img className="col-top" 
+                                    width="30" height="30" 
+                                    src={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                    data-src={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                    data-src-retina={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')}/>
+                        </div>
+                        )}
+                    <div className={`chat-bubble from-${user.id == e.user_id ? 'me' : 'them'}`}>
+                        {e.message}
+                    </div>
+                </div>
+                )
             )
-        )
+    }
+
+     componentDidUpdate() {
+        this.renderConversion()
     }
 
     render() {
