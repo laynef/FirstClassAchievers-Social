@@ -7,8 +7,6 @@ const Message = require('../../../database/models/index').Message
 const axios = require('axios')
 
 
-window.localStorage.clear()
-
 axios.post(`http://localhost:3214/auth/local/fixtures`, {
     email: `admin@email.com`,
     password: `pass1234`,

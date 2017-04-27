@@ -10,13 +10,6 @@ class ChatPage extends Component {
 
     constructor(props, context) {
         super(props)
-        this.state = {
-            user_id: Number(props.params.userId),
-            to: Number(props.params.otherId),
-            message: '',
-            roomNameId: `_${props.params.userId}-${props.params.otherId}_`,
-            messages: []
-        }
     }
 
     componentWillMount() {
@@ -36,9 +29,6 @@ class ChatPage extends Component {
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
         socket.emit('message', {
-            user_id: Number(params.userId),
-            typing: anyTouched
-        }, {
             message: data.message,
             user_id: Number(params.userId),
             to: Number(params.otherId),
@@ -49,7 +39,7 @@ class ChatPage extends Component {
 
     favoriteOnInit() {
         const { messages, dispatch, params } = this.props
-        let showing = this.state.messages || []
+        let showing = []
         if (!messages) {
            showing = localStorage[`to_${params.otherId}`] ? localStorage.getItem(`to_${params.otherId}`) : []
         } else {
@@ -66,35 +56,10 @@ class ChatPage extends Component {
         this.renderConversion()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (!this.props.messages) return true
-        if (this.props.messages.length != this.state.messages.length) return true
-        return false
-    }
-
-    componentDidUpdate(nextProps, nextState) {
-        const { dispatch, params } = this.props
-        this.setState({ messages: nextState.messages })
-        dispatch(getMessages(Number(params.userId), Number(params.otherId)))
-    }
-
-    setTyping() {
-        const { anyTouched, dispatch } = this.props
-        let socket = io()
-        socket.emit('message', {
-            user_id: this.state.user_id,
-            typing: anyTouched
-        })
-        dispatch(settingTyping({
-            user_id: this.state.user_id,
-            typing: anyTouched
-        }))
-    }
-
     renderConversion() {
         const { user, profile, messages, params, pending } = this.props
-        let array = this.state.messages || []
-        if (pending && user && profile) {
+        let array = messages || []
+        if (pending && user && profile && array.length == 0) {
             array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
         } else if (messages) {
             array = messages
@@ -143,6 +108,18 @@ class ChatPage extends Component {
         this.renderConversion()
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!this.props.messages) return true
+        if (this.props.pending == null) return true
+        return false
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        const { dispatch, params } = this.props
+        dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+        this.renderConversion()
+    }
+
     componentDidUpdate(nextProps, nextState) {
         this.renderConversion()
     }
@@ -168,7 +145,7 @@ class ChatPage extends Component {
                         </div>
                         <div className="b-t b-grey bg-white clearfix p-l-10 p-r-10">
                             <div className="row">
-                                <Field component={renderMessageInput} name="message" onChange={() => this.setTyping()} />
+                                <Field component={renderMessageInput} name="message" />
                                 <button type="submit" className="btn btn-complete btn-block m-t-5">
                                     Submit
                                 </button>

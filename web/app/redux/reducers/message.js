@@ -20,7 +20,7 @@ export default function (state = INITIAL_STATE, action) {
             }
         
         case actionTypes.GET_MESSAGES_SUCCESS:
-            socket.on('message', (type, msg) => {
+            socket.on('message', (msg) => {
                 let payload = action.payload.push(msg)
                 return {
                     ...state,
@@ -51,7 +51,7 @@ export default function (state = INITIAL_STATE, action) {
             }
         
         case actionTypes.SET_MESSAGES_SUCCESS:
-            socket.on('message', (type, msg) => {
+            socket.on('message', (msg) => {
                 let payload = action.payload.push(msg)
                 return {
                     ...state,
@@ -75,12 +75,12 @@ export default function (state = INITIAL_STATE, action) {
             }
         
         case actionTypes.TYPING:
-            socket.on('message', (type, msg) => {
-                return {
-                    ...state,
-                    typing: type
-                }
-            })
+            // socket.on('message', (msg) => {
+            //     return {
+            //         ...state,
+            //         typing: type
+            //     }
+            // })
             return { ...state }
     }
     

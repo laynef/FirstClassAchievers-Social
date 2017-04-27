@@ -27863,16 +27863,7 @@ var ChatPage = function (_Component) {
     function ChatPage(props, context) {
         _classCallCheck(this, ChatPage);
 
-        var _this = _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
-
-        _this.state = {
-            user_id: Number(props.params.userId),
-            to: Number(props.params.otherId),
-            message: '',
-            roomNameId: '_' + props.params.userId + '-' + props.params.otherId + '_',
-            messages: []
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
     }
 
     _createClass(ChatPage, [{
@@ -27893,7 +27884,7 @@ var ChatPage = function (_Component) {
                 dispatch = _props2.dispatch,
                 params = _props2.params;
 
-            var showing = this.state.messages || [];
+            var showing = [];
             if (!messages) {
                 showing = localStorage['to_' + params.otherId] ? localStorage.getItem('to_' + params.otherId) : [];
             } else {
@@ -27914,51 +27905,17 @@ var ChatPage = function (_Component) {
             this.renderConversion();
         }
     }, {
-        key: 'shouldComponentUpdate',
-        value: function shouldComponentUpdate(nextProps, nextState) {
-            if (!this.props.messages) return true;
-            if (this.props.messages.length != this.state.messages.length) return true;
-            return false;
-        }
-    }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(nextProps, nextState) {
-            var _props4 = this.props,
-                dispatch = _props4.dispatch,
-                params = _props4.params;
-
-            this.setState({ messages: nextState.messages });
-            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
-        }
-    }, {
-        key: 'setTyping',
-        value: function setTyping() {
-            var _props5 = this.props,
-                anyTouched = _props5.anyTouched,
-                dispatch = _props5.dispatch;
-
-            var socket = (0, _socket2.default)();
-            socket.emit('message', {
-                user_id: this.state.user_id,
-                typing: anyTouched
-            });
-            dispatch((0, _message.settingTyping)({
-                user_id: this.state.user_id,
-                typing: anyTouched
-            }));
-        }
-    }, {
         key: 'renderConversion',
         value: function renderConversion() {
-            var _props6 = this.props,
-                user = _props6.user,
-                profile = _props6.profile,
-                messages = _props6.messages,
-                params = _props6.params,
-                pending = _props6.pending;
+            var _props4 = this.props,
+                user = _props4.user,
+                profile = _props4.profile,
+                messages = _props4.messages,
+                params = _props4.params,
+                pending = _props4.pending;
 
-            var array = this.state.messages || [];
-            if (pending && user && profile) {
+            var array = messages || [];
+            if (pending && user && profile && array.length == 0) {
                 array = localStorage['to_' + params.otherId] ? JSON.parse(localStorage.getItem('to_' + params.otherId)) : [];
             } else if (messages) {
                 array = messages;
@@ -27987,10 +27944,10 @@ var ChatPage = function (_Component) {
     }, {
         key: 'renderTypingBubble',
         value: function renderTypingBubble() {
-            var _props7 = this.props,
-                user = _props7.user,
-                profile = _props7.profile,
-                pending = _props7.pending;
+            var _props5 = this.props,
+                user = _props5.user,
+                profile = _props5.profile,
+                pending = _props5.pending;
 
             return _react2.default.createElement(
                 'div',
@@ -28017,6 +27974,23 @@ var ChatPage = function (_Component) {
             this.renderConversion();
         }
     }, {
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            if (!this.props.messages) return true;
+            if (this.props.pending == null) return true;
+            return false;
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            var _props6 = this.props,
+                dispatch = _props6.dispatch,
+                params = _props6.params;
+
+            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
+            this.renderConversion();
+        }
+    }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(nextProps, nextState) {
             this.renderConversion();
@@ -28033,13 +28007,11 @@ var ChatPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var _props8 = this.props,
-                messages = _props8.messages,
-                handleSubmit = _props8.handleSubmit,
-                profile = _props8.profile,
-                params = _props8.params;
+            var _props7 = this.props,
+                messages = _props7.messages,
+                handleSubmit = _props7.handleSubmit,
+                profile = _props7.profile,
+                params = _props7.params;
 
             if (!profile || profile.user_id != params.otherId) return null;
             return _react2.default.createElement(
@@ -28067,9 +28039,7 @@ var ChatPage = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'row' },
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderMessageInput, name: 'message', onChange: function onChange() {
-                                        return _this2.setTyping();
-                                    } }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderMessageInput, name: 'message' }),
                                 _react2.default.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn btn-complete btn-block m-t-5' },
@@ -28084,12 +28054,12 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props9 = this.props,
-                dispatch = _props9.dispatch,
-                params = _props9.params,
-                reset = _props9.reset,
-                messages = _props9.messages,
-                anyTouched = _props9.anyTouched;
+            var _props8 = this.props,
+                dispatch = _props8.dispatch,
+                params = _props8.params,
+                reset = _props8.reset,
+                messages = _props8.messages,
+                anyTouched = _props8.anyTouched;
 
             this.favoriteOnInit();
             var socket = (0, _socket2.default)();
@@ -28100,9 +28070,6 @@ var ChatPage = function (_Component) {
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             }));
             socket.emit('message', {
-                user_id: Number(params.userId),
-                typing: anyTouched
-            }, {
                 message: data.message,
                 user_id: Number(params.userId),
                 to: Number(params.otherId),
@@ -29499,7 +29466,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.GET_MESSAGES_SUCCESS:
-            socket.on('message', function (type, msg) {
+            socket.on('message', function (msg) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29526,7 +29493,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.SET_MESSAGES_SUCCESS:
-            socket.on('message', function (type, msg) {
+            socket.on('message', function (msg) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29547,11 +29514,12 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.TYPING:
-            socket.on('message', function (type, msg) {
-                return _extends({}, state, {
-                    typing: type
-                });
-            });
+            // socket.on('message', (msg) => {
+            //     return {
+            //         ...state,
+            //         typing: type
+            //     }
+            // })
             return _extends({}, state);
     }
 
