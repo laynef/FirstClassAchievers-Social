@@ -69,11 +69,21 @@ class ChatPage extends Component {
             )
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { params, dispatch } = this.props
+         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+        this.renderConversion()
+    }
+
      componentDidUpdate() {
+         const { params, dispatch } = this.props
+         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
         this.renderConversion()
     }
 
      componentWillUpdate() {
+         const { params, dispatch } = this.props
+         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
         this.renderConversion()
     }
 

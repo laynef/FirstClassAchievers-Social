@@ -2,6 +2,8 @@ import actionTypes from '../store/actionTypes'
 import io from 'socket.io-client'
 
 
+let socket = io()
+
 const INITIAL_STATE = {
 	pending: null,
 	error: null,
