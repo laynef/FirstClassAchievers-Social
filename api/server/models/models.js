@@ -192,6 +192,7 @@ module.exports = {
                 })
                 promise.then(success => { 
                     let array = _.uniq(array1.concat(array2))
+                        .sort((a, b) => a.id - b.id)
                     res.status(200).send(array)
                 })
             })

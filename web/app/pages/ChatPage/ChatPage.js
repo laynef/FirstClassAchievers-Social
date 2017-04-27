@@ -39,7 +39,6 @@ class ChatPage extends Component {
     renderConversion() {
         const { messages, user, profile } = this.props
         return messages
-            .sort((a, b) => a.id - b.id)
             .map((e, i) => (
                 <div key={i} className="message clearfix">
                     {user.id == e.user_id ? null :  (
