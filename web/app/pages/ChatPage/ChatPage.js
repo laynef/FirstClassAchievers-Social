@@ -47,16 +47,18 @@ class ChatPage extends Component {
     }
 
     componentWillReceiveProps() {
+        const { dispatch, params } = this.props
+        dispatch(getMessages(Number(params.userId), Number(params.otherId)))
         this.renderConversion()
     }
 
     renderConversion() {
-        const { user, profile, messages, params } = this.props
+        const { user, profile, messages, params, pending } = this.props
         let array = []
-        if (messages.pending && user && profile) {
+        if (pending && user && profile) {
             array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
-        } else if (messages.data) {
-            array = messages.data
+        } else if (messages) {
+            array = messages
         }
         return array
             .map((e, i) => (
@@ -96,7 +98,6 @@ class ChatPage extends Component {
     render() {
         const { messages, handleSubmit, profile, params } = this.props
         if (!profile || profile.id != params.otherId) return null
-        if (!messages) return null
         return (
             <div id="ChatPage">
                 {/* Fill me in */}
@@ -129,7 +130,8 @@ ChatPage = reduxForm({
 export default connect((state, props) => {
  const message = state.messages
  return {
-    messages: message,
+    messages: message.data,
+    pending: message.pending,
     profile: state.profile.data,
     user: state.user.data
 }})(ChatPage)
