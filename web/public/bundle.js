@@ -1264,6 +1264,8 @@ var actionTypes = {
 	SET_MESSAGES_PENDING: 'SET_MESSAGES_PENDING',
 	SET_MESSAGES_ERROR: 'SET_MESSAGES_ERROR',
 
+	TYPING: 'TYPING',
+
 	// Set Image
 	SET_IMAGE_SUCCESS: 'SET_IMAGE_SUCCESS',
 	SET_IMAGE_PENDING: 'SET_IMAGE_PENDING',
@@ -15794,6 +15796,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getMessages = getMessages;
 exports.createMessage = createMessage;
 exports.inviteFriends = inviteFriends;
+exports.settingTyping = settingTyping;
 
 var _axios = __webpack_require__(63);
 
@@ -15853,6 +15856,12 @@ function inviteFriends(data, id) {
 				payload: err
 			});
 		});
+	};
+}
+
+function settingTyping(type) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.TYPING, typing: type });
 	};
 }
 
@@ -27851,10 +27860,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ChatPage = function (_Component) {
     _inherits(ChatPage, _Component);
 
-    function ChatPage(props) {
+    function ChatPage(props, context) {
         _classCallCheck(this, ChatPage);
 
-        return _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
+
+        _this.state = {
+            user_id: Number(props.params.userId),
+            to: Number(props.params.otherId),
+            message: '',
+            roomNameId: '_' + props.params.userId + '-' + props.params.otherId + '_'
+        };
+        return _this;
     }
 
     _createClass(ChatPage, [{
@@ -27912,14 +27929,31 @@ var ChatPage = function (_Component) {
             dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
         }
     }, {
+        key: 'setTyping',
+        value: function setTyping() {
+            var _props5 = this.props,
+                anyTouched = _props5.anyTouched,
+                dispatch = _props5.dispatch;
+
+            var socket = (0, _socket2.default)();
+            socket.emit('message', {}, {
+                user_id: this.state.user_id,
+                typing: anyTouched
+            });
+            dispatch((0, _message.settingTyping)({
+                user_id: this.state.user_id,
+                typing: anyTouched
+            }));
+        }
+    }, {
         key: 'renderConversion',
         value: function renderConversion() {
-            var _props5 = this.props,
-                user = _props5.user,
-                profile = _props5.profile,
-                messages = _props5.messages,
-                params = _props5.params,
-                pending = _props5.pending;
+            var _props6 = this.props,
+                user = _props6.user,
+                profile = _props6.profile,
+                messages = _props6.messages,
+                params = _props6.params,
+                pending = _props6.pending;
 
             var array = [];
             if (pending && user && profile) {
@@ -27949,6 +27983,33 @@ var ChatPage = function (_Component) {
             });
         }
     }, {
+        key: 'renderTypingBubble',
+        value: function renderTypingBubble() {
+            var _props7 = this.props,
+                user = _props7.user,
+                profile = _props7.profile,
+                pending = _props7.pending;
+
+            return _react2.default.createElement(
+                'div',
+                { key: i, className: 'message clearfix' },
+                user.id == e.user_id ? null : _react2.default.createElement(
+                    'div',
+                    { className: 'profile-img-wrapper m-t-5 inline' },
+                    _react2.default.createElement('img', { className: 'col-top',
+                        width: '30', height: '30',
+                        src: user.id == e.user_id ? null : profile.image || 'http://i.imgur.com/sRbuHxN.png',
+                        'data-src': user.id == e.user_id ? null : profile.image || 'http://i.imgur.com/sRbuHxN.png',
+                        'data-src-retina': user.id == e.user_id ? null : profile.image || 'http://i.imgur.com/sRbuHxN.png' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'chat-bubble from-' + (user.id == e.user_id ? 'me' : 'them') },
+                    '. . .'
+                )
+            );
+        }
+    }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             this.renderConversion();
@@ -27970,11 +28031,13 @@ var ChatPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props6 = this.props,
-                messages = _props6.messages,
-                handleSubmit = _props6.handleSubmit,
-                profile = _props6.profile,
-                params = _props6.params;
+            var _this2 = this;
+
+            var _props8 = this.props,
+                messages = _props8.messages,
+                handleSubmit = _props8.handleSubmit,
+                profile = _props8.profile,
+                params = _props8.params;
 
             if (!profile || profile.user_id != params.otherId) return null;
             return _react2.default.createElement(
@@ -28002,7 +28065,9 @@ var ChatPage = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'row' },
-                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderMessageInput, name: 'message' }),
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderMessageInput, name: 'message', onChange: function onChange() {
+                                        return _this2.setTyping();
+                                    } }),
                                 _react2.default.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn btn-complete btn-block m-t-5' },
@@ -28017,11 +28082,12 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props7 = this.props,
-                dispatch = _props7.dispatch,
-                params = _props7.params,
-                reset = _props7.reset,
-                messages = _props7.messages;
+            var _props9 = this.props,
+                dispatch = _props9.dispatch,
+                params = _props9.params,
+                reset = _props9.reset,
+                messages = _props9.messages,
+                anyTouched = _props9.anyTouched;
 
             this.favoriteOnInit();
             var socket = (0, _socket2.default)();
@@ -28036,6 +28102,9 @@ var ChatPage = function (_Component) {
                 user_id: Number(params.userId),
                 to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
+            }, {
+                user_id: Number(params.userId),
+                typing: anyTouched
             });
             dispatch(reset('ChatPage'));
         }
@@ -29428,7 +29497,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.GET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg) {
+            socket.on('message', function (msg, type) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29455,7 +29524,7 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.SET_MESSAGES_SUCCESS:
-            socket.on('message', function (msg) {
+            socket.on('message', function (msg, type) {
                 var payload = action.payload.push(msg);
                 return _extends({}, state, {
                     error: null,
@@ -29473,6 +29542,16 @@ exports.default = function () {
             return _extends({}, state, {
                 error: action.payload,
                 pending: null
+            });
+
+        case _actionTypes2.default.TYPING:
+            socket.on('message', function (msg, type) {
+                return _extends({}, state, {
+                    typing: type
+                });
+            });
+            return _extends({}, state, {
+                typing: action.typing
             });
 
     }

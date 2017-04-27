@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
-import { getMessages, createMessage, inviteFriends } from '../../redux/actions/message'
+import { getMessages, createMessage, inviteFriends, settingTyping } from '../../redux/actions/message'
 import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
 
 class ChatPage extends Component {
 
-    constructor(props) {
+    constructor(props, context) {
         super(props)
-
+        this.state = {
+            user_id: Number(props.params.userId),
+            to: Number(props.params.otherId),
+            message: '',
+            roomNameId: `_${props.params.userId}-${props.params.otherId}_`
+        }
     }
 
     componentWillMount() {
@@ -20,7 +25,7 @@ class ChatPage extends Component {
     }
 
     static formSubmit(data) {
-        const { dispatch, params, reset, messages } = this.props
+        const { dispatch, params, reset, messages, anyTouched } = this.props
         this.favoriteOnInit()
         let socket = io()
         dispatch(createMessage({
@@ -34,6 +39,9 @@ class ChatPage extends Component {
             user_id: Number(params.userId),
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
+        }, {
+            user_id: Number(params.userId),
+            typing: anyTouched
         })
         dispatch(reset('ChatPage'))
     }
@@ -68,6 +76,19 @@ class ChatPage extends Component {
         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
     }
 
+    setTyping() {
+        const { anyTouched, dispatch } = this.props
+        let socket = io()
+        socket.emit('message', {}, {
+            user_id: this.state.user_id,
+            typing: anyTouched
+        })
+        dispatch(settingTyping({
+            user_id: this.state.user_id,
+            typing: anyTouched
+        }))
+    }
+
     renderConversion() {
         const { user, profile, messages, params, pending } = this.props
         let array = []
@@ -94,6 +115,26 @@ class ChatPage extends Component {
                 </div>
                 )
             )
+    }
+
+    renderTypingBubble() {
+        const { user, profile, pending } = this.props
+        return (
+            <div key={i} className="message clearfix">
+                {user.id == e.user_id ? null :  (
+                    <div className="profile-img-wrapper m-t-5 inline">
+                            <img className="col-top" 
+                                width="30" height="30" 
+                                src={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                data-src={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')} 
+                                data-src-retina={user.id == e.user_id ? null : (profile.image || 'http://i.imgur.com/sRbuHxN.png')}/>
+                    </div>
+                    )}
+                <div className={`chat-bubble from-${user.id == e.user_id ? 'me' : 'them'}`}>
+                    . . .
+                </div>
+            </div>
+        )
     }
 
     componentWillReceiveProps(nextProps) {
@@ -125,7 +166,7 @@ class ChatPage extends Component {
                         </div>
                         <div className="b-t b-grey bg-white clearfix p-l-10 p-r-10">
                             <div className="row">
-                                <Field component={renderMessageInput} name="message" />
+                                <Field component={renderMessageInput} name="message" onChange={() => this.setTyping()} />
                                 <button type="submit" className="btn btn-complete btn-block m-t-5">
                                     Submit
                                 </button>

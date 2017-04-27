@@ -58,3 +58,9 @@ export function inviteFriends(data, id) {
 				})			
 	}
 }
+
+export function settingTyping(type) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.TYPING, typing: type})
+	}
+}
