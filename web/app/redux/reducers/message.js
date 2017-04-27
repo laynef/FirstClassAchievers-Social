@@ -26,8 +26,7 @@ export default function (state = INITIAL_STATE, action) {
                     ...state,
                     error: null,
                     pending: null,
-                    data: payload,
-                    placeholder: msg
+                    data: payload
                 }
             })
             return {

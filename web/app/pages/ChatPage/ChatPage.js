@@ -8,6 +8,11 @@ import io from 'socket.io-client'
 
 class ChatPage extends Component {
 
+    constructor(props) {
+        super(props)
+
+    }
+
     componentWillMount() {
         const { dispatch, params } = this.props
         dispatch(getProfile(Number(params.otherId)))
@@ -52,6 +57,17 @@ class ChatPage extends Component {
         this.renderConversion()
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!this.props.messages) return true
+        return false
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log(`UPDATED`)
+        const { dispatch, params } = this.props
+        dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+    }
+
     renderConversion() {
         const { user, profile, messages, params, pending } = this.props
         let array = []
@@ -90,14 +106,14 @@ class ChatPage extends Component {
 
     componentWillUnmount() {
         const { messages } = this.props
-        if (messages) {
+        if (messages.length > 0) {
             localStorage.setItem(`to_${messages[0].to}`, JSON.stringify(messages))
         }
     }
 
     render() {
         const { messages, handleSubmit, profile, params } = this.props
-        if (!profile || profile.id != params.otherId) return null
+        if (!profile || profile.user_id != params.otherId) return null
         return (
             <div id="ChatPage">
                 {/* Fill me in */}
