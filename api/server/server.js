@@ -54,13 +54,12 @@ app.get('*', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    // clients.push(server)
 
     socket.broadcast.on('message', (data) => {
          io.emit('message', data)
     })
 
     socket.on('disconnect', function(){
-        // _.pull(clients, server)
+
     });
 })

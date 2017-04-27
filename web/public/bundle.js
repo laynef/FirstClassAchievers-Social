@@ -27802,33 +27802,8 @@ var ChatPage = function (_Component) {
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate(nextProps, nextState) {
-            var _props4 = this.props,
-                params = _props4.params,
-                messages = _props4.messages;
-
-            if (messages && nextProps.messages.length != messages.length) {
-                dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
-                this.renderConversion();
-            }
-            if (!messages) {
-                this.renderConversion();
-            }
-        }
-    }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps, nextState) {
-            var _props5 = this.props,
-                params = _props5.params,
-                messages = _props5.messages;
-
-            if (messages && nextProps.messages.length != messages.length) {
-                dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
-                this.renderConversion();
-            }
-            if (!messages) {
-                this.renderConversion();
-            }
+        value: function componentDidUpdate() {
+            this.renderConversion();
         }
     }, {
         key: 'componentWillUnmount',
@@ -27842,11 +27817,11 @@ var ChatPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props6 = this.props,
-                messages = _props6.messages,
-                handleSubmit = _props6.handleSubmit,
-                profile = _props6.profile,
-                params = _props6.params;
+            var _props4 = this.props,
+                messages = _props4.messages,
+                handleSubmit = _props4.handleSubmit,
+                profile = _props4.profile,
+                params = _props4.params;
 
             if (!profile || profile.id != params.otherId) return null;
             if (!messages) return null;
@@ -27860,13 +27835,13 @@ var ChatPage = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'col-md-12 view chat-view bg-white clearfix innerChat' },
+                    { className: 'col-md-12 view chat-view bg-white clearfix' },
                     _react2.default.createElement(
                         _reduxForm.Form,
                         { onSubmit: handleSubmit(ChatPage.formSubmit.bind(this)) },
                         _react2.default.createElement(
                             'div',
-                            { className: 'chat-inner', id: 'my-conversation' },
+                            { className: 'chat-inner innerChat', id: 'my-conversation' },
                             this.renderConversion()
                         ),
                         _react2.default.createElement(
@@ -27890,11 +27865,11 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props7 = this.props,
-                dispatch = _props7.dispatch,
-                params = _props7.params,
-                reset = _props7.reset,
-                messages = _props7.messages;
+            var _props5 = this.props,
+                dispatch = _props5.dispatch,
+                params = _props5.params,
+                reset = _props5.reset,
+                messages = _props5.messages;
 
             this.favoriteOnInit();
             var socket = (0, _socket2.default)();

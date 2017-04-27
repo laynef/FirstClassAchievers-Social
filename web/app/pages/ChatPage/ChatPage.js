@@ -73,26 +73,8 @@ class ChatPage extends Component {
             )
     }
 
-     componentDidUpdate(nextProps, nextState) {
-        const { params, messages } = this.props
-        if (messages && nextProps.messages.length != messages.length) {
-            dispatch(getMessages(Number(params.userId), Number(params.otherId)))
-            this.renderConversion()
-        }
-        if (!messages) {
-            this.renderConversion()
-        }
-    }
-
-     componentWillUpdate(nextProps, nextState) {
-        const { params, messages } = this.props
-        if (messages && nextProps.messages.length != messages.length) {
-            dispatch(getMessages(Number(params.userId), Number(params.otherId)))
-            this.renderConversion()
-        }
-        if (!messages) {
-            this.renderConversion()
-        }
+     componentDidUpdate() {
+        this.renderConversion()
     }
 
     componentWillUnmount() {
@@ -110,9 +92,9 @@ class ChatPage extends Component {
             <div id="ChatPage">
                 {/* Fill me in */}
                 <h1>Chat</h1>
-                <div className="col-md-12 view chat-view bg-white clearfix innerChat">
+                <div className="col-md-12 view chat-view bg-white clearfix">
                     <Form onSubmit={handleSubmit(ChatPage.formSubmit.bind(this))}>
-                        <div className="chat-inner" id="my-conversation">
+                        <div className="chat-inner innerChat" id="my-conversation">
                             {this.renderConversion()}
                         </div>
                         <div className="b-t b-grey bg-white clearfix p-l-10 p-r-10">
