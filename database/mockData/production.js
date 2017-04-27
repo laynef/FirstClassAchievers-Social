@@ -7,7 +7,7 @@ const Message = require('../../database/models/index').Message
 const axios = require('axios')
 
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
+axios.post(`https://first-class-achievers.herokuapp.com/auth/local/fixtures`, {
     email: `admin@email.com`,
     password: `pass1234`,
     firstName: 'Master',
@@ -43,7 +43,7 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
 })
 
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
+axios.post(`https://first-class-achievers.herokuapp.com/auth/local/fixtures`, {
     email: `monica@email.com`,
     password: `pass1234`,
     firstName: 'Monica',
@@ -79,7 +79,7 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
     
 })
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
+axios.post(`https://first-class-achievers.herokuapp.com/auth/local/fixtures`, {
     email: `jenny@email.com`,
     password: `pass1234`,
     firstName: 'Jenny',
