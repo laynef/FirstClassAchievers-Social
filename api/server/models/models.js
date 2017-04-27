@@ -163,14 +163,8 @@ module.exports = {
                             })
                     })
                 })
-            Message.findAll({ where: { user_id: req.params.userId } })
-                .then(response => {
-                    response.forEach(e => {
-                        friends.push(e.dataValues.to)
-                    })
-                })
             let promise = new Promise((resolve) => {
-                setTimeout(() => resolve(), 250)
+                setTimeout(() => resolve(), 500)
             })
             promise.then(success => { 
                 let array = _.uniq(friends)
@@ -180,17 +174,35 @@ module.exports = {
     },
     messages: {
         get: (req, res, next) => {
+            let array1 = []
+            let array2 = []
             Message.findAll({
-                where: { room_name_id: req.params.chatId }
+                where: { room_name: `_${req.params.userId}-${req.params.otherId}_` }
             })
             .then(resp => {
-                res.status(200).send(resp)
+                array1 = resp.map(e => e.dataValues)
+                Message.findAll({
+                    where: { room_name: `_${req.params.otherId}-${req.params.userId}_` }
+                })
+                .then(response => {
+                    array2 = response.map(e => e.dataValues)
+                })
+                let promise = new Promise((resolve) => {
+                    setTimeout(() => resolve(), 500)
+                })
+                promise.then(success => { 
+                    console.log(`ARRAY1`, array1)
+                    console.log(`ARRAY2`, array2)
+                    console.log(`ARRAY`, _.uniq(array1.concat(array2)))
+                    let array = _.uniq(array1.concat(array2))
+                    res.status(200).send(array)
+                })
             })
         },
         post: (req, res, next) => {
             Message.create({
                 message: req.body.message,
-                user_id: req.params.userId,
+                user_id: req.body.user_id,
                 room_name: req.body.roomNameId,
                 to: req.body.to
             })

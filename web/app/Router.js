@@ -24,7 +24,7 @@ export default (
             <Route path="profile" component={ProfilePage} />
             <Route path="favorites" component={FavoritesPage} />
             <Route path="profile/:userId" component={DetailPage} />
-            <Route path="chat/:userId/:chatId" component={ChatPage} />
+            <Route path="chat/:userId/:otherId" component={ChatPage} />
         </Route>
 
     </Route>

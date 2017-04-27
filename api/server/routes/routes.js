@@ -21,7 +21,7 @@ router.patch('/image/:userId', upload.single('image'), models.image.patch)
 
 router.get('/friends/:userId', models.friends.get)
 
-router.get('/messages/:chatId', models.messages.get)
+router.get('/messages/:userId/:otherId', models.messages.get)
 router.post('/messages', models.messages.post)
 
 

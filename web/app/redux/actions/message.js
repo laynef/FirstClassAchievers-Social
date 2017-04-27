@@ -2,10 +2,10 @@ import axios from 'axios'
 import actionTypes from '../store/actionTypes'
 
 
-export function getMessages(id) {
+export function getMessages(userId, otherId) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_MESSAGES_PENDING})
-		axios.get(`/api/messages/${id}`)
+		axios.get(`/api/messages/${userId}/${otherId}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_MESSAGES_SUCCESS,

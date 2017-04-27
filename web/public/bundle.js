@@ -6209,7 +6209,7 @@ function getUser(id) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.renderTextArea = exports.renderInput = undefined;
+exports.renderMessageInput = exports.renderTextArea = exports.renderInput = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -6278,6 +6278,21 @@ var renderTextArea = exports.renderTextArea = function renderTextArea(_ref2) {
 				error
 			)
 		)
+	);
+};
+
+var renderMessageInput = exports.renderMessageInput = function renderMessageInput(_ref3) {
+	var input = _ref3.input,
+	    _ref3$meta = _ref3.meta,
+	    touched = _ref3$meta.touched,
+	    error = _ref3$meta.error;
+	return _react2.default.createElement(
+		'div',
+		{ className: 'col-xs-8 no-padding' },
+		_react2.default.createElement('input', _extends({}, input, {
+			type: 'text',
+			className: 'form-control chat-input',
+			placeholder: 'Say something' }))
 	);
 };
 
@@ -21466,7 +21481,7 @@ exports.default = _react2.default.createElement(
         _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _ProfilePage2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: 'favorites', component: _FavoritesPage2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: 'profile/:userId', component: _DetailPage2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'chat/:userId/:chatId', component: _ChatPage2.default })
+        _react2.default.createElement(_reactRouter.Route, { path: 'chat/:userId/:otherId', component: _ChatPage2.default })
     )
 );
 
@@ -22766,16 +22781,7 @@ var ContactListAlphabet = function (_Component) {
                         ele.map(function (e, idx) {
                             return _react2.default.createElement(
                                 _reactRouter.Link,
-                                { key: '' + i + idx,
-                                    to: '/chat/' + e.user_id + '/' + e.id,
-                                    onClick: function onClick() {
-                                        return dispatch((0, _message.createMessage)({
-                                            message: null,
-                                            userId: e.user_id,
-                                            roomNameId: user.id + '-' + e.user_id,
-                                            to: user.id
-                                        }));
-                                    } },
+                                { key: '' + i + idx, to: '/chat/' + user.id + '/' + e.user_id },
                                 _react2.default.createElement(
                                     'li',
                                     { className: 'chat-user-list clearfix' },
@@ -22788,7 +22794,7 @@ var ContactListAlphabet = function (_Component) {
                                             _react2.default.createElement(
                                                 'span',
                                                 { className: 'thumbnail-wrapper d32 circular bg-success' },
-                                                _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': e.image, 'data-src': e.image, src: e.image, className: 'col-top' })
+                                                _react2.default.createElement('img', { width: '34', height: '34', alt: '', 'data-src-retina': e.image ? e.image : 'http://i.imgur.com/sRbuHxN.png', 'data-src': e.image ? e.image : 'http://i.imgur.com/sRbuHxN.png', src: e.image ? e.image : 'http://i.imgur.com/sRbuHxN.png', className: 'col-top' })
                                             )
                                         ),
                                         _react2.default.createElement(
@@ -22811,9 +22817,11 @@ var ContactListAlphabet = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var friends = this.props.friends;
+            var _props2 = this.props,
+                friends = _props2.friends,
+                user = _props2.user;
 
-            if (!friends) return null;
+            if (!friends || !user) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'ContactListAlphabet' },
@@ -59329,6 +59337,12 @@ var _reactRedux = __webpack_require__(9);
 
 var _reduxForm = __webpack_require__(16);
 
+var _message = __webpack_require__(898);
+
+var _profile = __webpack_require__(77);
+
+var _ReduxForms = __webpack_require__(94);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59340,18 +59354,68 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ChatPage = function (_Component) {
     _inherits(ChatPage, _Component);
 
-    function ChatPage(props, context) {
+    function ChatPage() {
         _classCallCheck(this, ChatPage);
 
-        var _this = _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props, context));
-
-        _this.state = {};
-        return _this;
+        return _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).apply(this, arguments));
     }
 
     _createClass(ChatPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                params = _props.params;
+
+            dispatch((0, _profile.getProfile)(params.otherId));
+            dispatch((0, _message.getMessages)(params.userId, params.otherId));
+        }
+    }, {
+        key: 'renderChatFromMe',
+        value: function renderChatFromMe(message, image, who) {
+            return _react2.default.createElement(
+                'div',
+                { className: 'message clearfix' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'profile-img-wrapper m-t-5 inline' },
+                    _react2.default.createElement('img', { className: 'col-top',
+                        width: '30', height: '30',
+                        src: image || 'http://i.imgur.com/sRbuHxN.png',
+                        alt: '',
+                        'data-src': image || 'http://i.imgur.com/sRbuHxN.png',
+                        'data-src-retina': image || 'http://i.imgur.com/sRbuHxN.png' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'chat-bubble from-' + who },
+                    message
+                )
+            );
+        }
+    }, {
+        key: 'renderConversion',
+        value: function renderConversion() {
+            var _this2 = this;
+
+            var _props2 = this.props,
+                messages = _props2.messages,
+                user = _props2.user,
+                profile = _props2.profile;
+
+            return messages.map(function (e) {
+                return _this2.renderChatFromMe(e.message, user.id == e.user_id ? user.image : profile.image, user.id == e.user_id ? 'me' : 'them');
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _props3 = this.props,
+                messages = _props3.messages,
+                handleSubmit = _props3.handleSubmit,
+                profile = _props3.profile;
+
+            if (!messages || !profile) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'ChatPage' },
@@ -59359,8 +59423,49 @@ var ChatPage = function (_Component) {
                     'h1',
                     null,
                     'Chat'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-12 view chat-view bg-white clearfix', style: { height: '65vw' } },
+                    _react2.default.createElement(
+                        _reduxForm.Form,
+                        { onSubmit: handleSubmit(ChatPage.formSubmit.bind(this)) },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'chat-inner', id: 'my-conversation' },
+                            this.renderConversion()
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'b-t b-grey bg-white clearfix p-l-10 p-r-10' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderMessageInput, name: 'message' }),
+                                _react2.default.createElement(
+                                    'button',
+                                    { type: 'submit', className: 'btn btn-complete btn-block m-t-5' },
+                                    'Submit'
+                                )
+                            )
+                        )
+                    )
                 )
             );
+        }
+    }], [{
+        key: 'formSubmit',
+        value: function formSubmit(data) {
+            var _props4 = this.props,
+                dispatch = _props4.dispatch,
+                params = _props4.params;
+
+            dispatch((0, _message.createMessage)({
+                message: data.message,
+                user_id: params.userId,
+                to: params.otherId,
+                roomNameId: '_' + params.userId + '-' + params.otherId + '_'
+            }));
         }
     }]);
 
@@ -59372,7 +59477,11 @@ ChatPage = (0, _reduxForm.reduxForm)({
 })(ChatPage);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        messages: state.messages.data,
+        profile: state.profile.data,
+        user: state.user.data
+    };
 })(ChatPage);
 
 /***/ }),
@@ -59471,10 +59580,10 @@ var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getMessages(id) {
+function getMessages(userId, otherId) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_MESSAGES_PENDING });
-		_axios2.default.get('/api/messages/' + id).then(function (response) {
+		_axios2.default.get('/api/messages/' + userId + '/' + otherId).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_MESSAGES_SUCCESS,
 				payload: response.data
