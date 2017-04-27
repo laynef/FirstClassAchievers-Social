@@ -4,8 +4,9 @@ const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
 const Message = require('../../../database/models/index').Message
+const axios = require('axios')
 
-User.create({
+axios.post(`/auth/local/register`, {
     email: `admin@email.com`,
     password: `pass1234`
 }).then(resp => {
@@ -39,7 +40,8 @@ User.create({
     })
 })
 
-User.create({
+
+axios.post(`/auth/local/register`, {
     email: `monica@email.com`,
     password: `pass1234`
 }).then(resp => {
@@ -73,7 +75,7 @@ User.create({
     })
 })
 
-User.create({
+axios.post(`/auth/local/register`, {
     email: `jenny@email.com`,
     password: `pass1234`
 }).then(resp => {

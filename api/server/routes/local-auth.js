@@ -77,7 +77,7 @@ router.post('/local/register', (req, res, next) => {
                 country: null,
                 user_id: response.dataValues.id
             })
-            res.sendStatus(201)
+            res.status(201).send(response.dataValues)
             console.log(`sign up successful`)
         })
         .catch(error => {
