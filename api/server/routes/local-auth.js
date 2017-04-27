@@ -221,15 +221,16 @@ router.post('/local/fixtures', (req, res, next) => {
         User.create({
             email: req.body.email,
             password: hash,
-            image: req.body.image
+            image: req.body.image,
+            id: req.body.id
         })
         .then(response => {
             Following.create({
                 followers: [],
-                user_id: response.dataValues.id
+                user_id: req.body.id
             })
             Favorite.create({
-                user_id: response.dataValues.id,
+                user_id: req.body.id,
                 entries: []
             })
             Profile.create({
@@ -243,7 +244,7 @@ router.post('/local/fixtures', (req, res, next) => {
                 zipCode: null,
                 state: null,
                 country: null,
-                user_id: response.dataValues.id
+                user_id: req.body.id
             })
             res.sendStatus(201)
             console.log(`sign up successful`)
