@@ -38,7 +38,12 @@ class ChatPage extends Component {
 
     renderConversion() {
         const { messages, user, profile } = this.props
-        return messages
+        if (!messages) {
+           showing = localStorage[`to_${profile.user_id}`] ? localStorage.getItem(`to_${profile.user_id}`) : showing
+        } else {
+            showing = messages
+        }
+        return showing
             .map((e, i) => (
                 <div key={i} className="message clearfix">
                     {user.id == e.user_id ? null :  (
@@ -62,9 +67,17 @@ class ChatPage extends Component {
         this.renderConversion()
     }
 
+    componentWillUnmount() {
+        const { messages } = this.props
+        if (messages) {
+            localStorage(`to_${messages[0].to}`, messages)
+        }
+    }
+
     render() {
         const { messages, handleSubmit, profile } = this.props
-        if (!messages || !profile) return null
+        let showing = []
+        if (!profile) return null
         return (
             <div id="ChatPage">
                 {/* Fill me in */}
