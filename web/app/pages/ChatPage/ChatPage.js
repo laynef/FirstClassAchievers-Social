@@ -8,13 +8,6 @@ import io from 'socket.io-client'
 
 class ChatPage extends Component {
 
-    constructor(props, context) {
-        super(props)
-        this.state = {
-            count: 0
-        }
-    }
-
     componentWillMount() {
         const { dispatch, params } = this.props
         dispatch(getProfile(Number(params.otherId)))
@@ -69,7 +62,7 @@ class ChatPage extends Component {
             array = messages
         }
         socket.on('message', (data) => {
-            if (data) {
+            if (data.messages) {
                 array.push(data)
             }
         })
@@ -118,8 +111,14 @@ class ChatPage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        let socket = io()
         if (!this.props.messages) return true
         if (this.props.pending == null) return true
+        socket.on('message', (data) => {
+            if (data) {
+                return true
+            }
+        })
         return false
     }
 

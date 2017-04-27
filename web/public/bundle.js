@@ -27860,15 +27860,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ChatPage = function (_Component) {
     _inherits(ChatPage, _Component);
 
-    function ChatPage(props, context) {
+    function ChatPage() {
         _classCallCheck(this, ChatPage);
 
-        var _this = _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).call(this, props));
-
-        _this.state = {
-            count: 0
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (ChatPage.__proto__ || Object.getPrototypeOf(ChatPage)).apply(this, arguments));
     }
 
     _createClass(ChatPage, [{
@@ -27927,7 +27922,7 @@ var ChatPage = function (_Component) {
                 array = messages;
             }
             socket.on('message', function (data) {
-                if (data) {
+                if (data.messages) {
                     array.push(data);
                 }
             });
@@ -27987,8 +27982,14 @@ var ChatPage = function (_Component) {
     }, {
         key: 'shouldComponentUpdate',
         value: function shouldComponentUpdate(nextProps, nextState) {
+            var socket = (0, _socket2.default)();
             if (!this.props.messages) return true;
             if (this.props.pending == null) return true;
+            socket.on('message', function (data) {
+                if (data) {
+                    return true;
+                }
+            });
             return false;
         }
     }, {
