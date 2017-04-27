@@ -46,10 +46,19 @@ class ChatPage extends Component {
         }
     }
 
+    componentWillReceiveProps() {
+        this.renderConversion()
+    }
+
     renderConversion() {
-        const { user, profile, messages } = this.props
-        if (!messages) return null
-        return messages
+        const { user, profile, messages, params } = this.props
+        let array = []
+        if (messages.pending && user && profile) {
+            array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : []
+        } else if (messages.data) {
+            array = messages.data
+        }
+        return array
             .map((e, i) => (
                 <div key={i} className="message clearfix">
                     {user.id == e.user_id ? null :  (
@@ -70,20 +79,10 @@ class ChatPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { params, dispatch } = this.props
-         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
         this.renderConversion()
     }
 
-     componentDidUpdate() {
-         const { params, dispatch } = this.props
-         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
-        this.renderConversion()
-    }
-
-     componentWillUpdate() {
-         const { params, dispatch } = this.props
-         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+    componentDidUpdate(nextProps, nextState) {
         this.renderConversion()
     }
 
@@ -128,11 +127,7 @@ ChatPage = reduxForm({
 })(ChatPage)
 
 export default connect((state, props) => {
- const message = state.messages.data
-//  let array = null
-//  if (!message) {
-//     array = !message ? (!localStorage[`to_${props.routeParams.otherId}`] ? message :  JSON.parse(localStorage.getItem(`to_${props.routeParams.otherId}`))) : null
-//  }
+ const message = state.messages
  return {
     messages: message,
     profile: state.profile.data,

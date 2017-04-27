@@ -21,13 +21,14 @@ export default function (state = INITIAL_STATE, action) {
         
         case actionTypes.GET_MESSAGES_SUCCESS:
             socket.on('message', msg => {
-                let payload = action.payload
-                payload.push(msg)
-                return {
-                    ...state,
-                    error: null,
-                    pending: null,
-                    data: payload
+                let payload = action.payload.push(msg)
+                if (payload.length != action.payload.length) {
+                    return {
+                        ...state,
+                        error: null,
+                        pending: null,
+                        data: payload
+                    }
                 }
             })
             return {
@@ -53,13 +54,14 @@ export default function (state = INITIAL_STATE, action) {
         
         case actionTypes.SET_MESSAGES_SUCCESS:
             socket.on('message', msg => {
-                let payload = action.payload
-                payload.push(msg)
-                return {
-                    ...state,
-                    error: null,
-                    pending: null,
-                    data: payload
+                let payload = action.payload.push(msg)
+                if (payload.length != action.payload.length) {
+                    return {
+                        ...state,
+                        error: null,
+                        pending: null,
+                        data: payload
+                    }
                 }
             })
             return {

@@ -27886,15 +27886,26 @@ var ChatPage = function (_Component) {
             }
         }
     }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps() {
+            this.renderConversion();
+        }
+    }, {
         key: 'renderConversion',
         value: function renderConversion() {
             var _props3 = this.props,
                 user = _props3.user,
                 profile = _props3.profile,
-                messages = _props3.messages;
+                messages = _props3.messages,
+                params = _props3.params;
 
-            if (!messages) return null;
-            return messages.map(function (e, i) {
+            var array = [];
+            if (messages.pending && user && profile) {
+                array = localStorage['to_' + params.otherId] ? JSON.parse(localStorage.getItem('to_' + params.otherId)) : [];
+            } else if (messages.data) {
+                array = messages.data;
+            }
+            return array.map(function (e, i) {
                 return _react2.default.createElement(
                     'div',
                     { key: i, className: 'message clearfix' },
@@ -27918,31 +27929,11 @@ var ChatPage = function (_Component) {
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-            var _props4 = this.props,
-                params = _props4.params,
-                dispatch = _props4.dispatch;
-
-            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
             this.renderConversion();
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate() {
-            var _props5 = this.props,
-                params = _props5.params,
-                dispatch = _props5.dispatch;
-
-            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
-            this.renderConversion();
-        }
-    }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate() {
-            var _props6 = this.props,
-                params = _props6.params,
-                dispatch = _props6.dispatch;
-
-            dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
+        value: function componentDidUpdate(nextProps, nextState) {
             this.renderConversion();
         }
     }, {
@@ -27957,11 +27948,11 @@ var ChatPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props7 = this.props,
-                messages = _props7.messages,
-                handleSubmit = _props7.handleSubmit,
-                profile = _props7.profile,
-                params = _props7.params;
+            var _props4 = this.props,
+                messages = _props4.messages,
+                handleSubmit = _props4.handleSubmit,
+                profile = _props4.profile,
+                params = _props4.params;
 
             if (!profile || profile.id != params.otherId) return null;
             if (!messages) return null;
@@ -28005,11 +27996,11 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props8 = this.props,
-                dispatch = _props8.dispatch,
-                params = _props8.params,
-                reset = _props8.reset,
-                messages = _props8.messages;
+            var _props5 = this.props,
+                dispatch = _props5.dispatch,
+                params = _props5.params,
+                reset = _props5.reset,
+                messages = _props5.messages;
 
             this.favoriteOnInit();
             var socket = (0, _socket2.default)();
@@ -28037,11 +28028,7 @@ ChatPage = (0, _reduxForm.reduxForm)({
 })(ChatPage);
 
 exports.default = (0, _reactRedux.connect)(function (state, props) {
-    var message = state.messages.data;
-    //  let array = null
-    //  if (!message) {
-    //     array = !message ? (!localStorage[`to_${props.routeParams.otherId}`] ? message :  JSON.parse(localStorage.getItem(`to_${props.routeParams.otherId}`))) : null
-    //  }
+    var message = state.messages;
     return {
         messages: message,
         profile: state.profile.data,
@@ -29420,13 +29407,14 @@ exports.default = function () {
 
         case _actionTypes2.default.GET_MESSAGES_SUCCESS:
             socket.on('message', function (msg) {
-                var payload = action.payload;
-                payload.push(msg);
-                return _extends({}, state, {
-                    error: null,
-                    pending: null,
-                    data: payload
-                });
+                var payload = action.payload.push(msg);
+                if (payload.length != action.payload.length) {
+                    return _extends({}, state, {
+                        error: null,
+                        pending: null,
+                        data: payload
+                    });
+                }
             });
             return _extends({}, state, {
                 error: null,
@@ -29448,13 +29436,14 @@ exports.default = function () {
 
         case _actionTypes2.default.SET_MESSAGES_SUCCESS:
             socket.on('message', function (msg) {
-                var payload = action.payload;
-                payload.push(msg);
-                return _extends({}, state, {
-                    error: null,
-                    pending: null,
-                    data: payload
-                });
+                var payload = action.payload.push(msg);
+                if (payload.length != action.payload.length) {
+                    return _extends({}, state, {
+                        error: null,
+                        pending: null,
+                        data: payload
+                    });
+                }
             });
             return _extends({}, state, {
                 error: null,
