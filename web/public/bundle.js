@@ -27879,13 +27879,13 @@ var ChatPage = function (_Component) {
                 to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             }));
-            socket.emit('message', {
+            socket.broadcast.emit('message', {
                 message: data.message,
                 user_id: Number(params.userId),
                 to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             });
-            socket.on('message', function (msg) {
+            socket.broadcast.on('message', function (msg) {
                 messages.push(msg);
             });
             dispatch(reset('ChatPage'));
