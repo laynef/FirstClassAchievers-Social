@@ -27850,6 +27850,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var socket = _socket2.default.connect('http://localhost:3214');
+
 var ChatPage = function (_Component) {
     _inherits(ChatPage, _Component);
 
@@ -27868,6 +27870,14 @@ var ChatPage = function (_Component) {
 
             dispatch((0, _profile.getProfile)(Number(params.otherId)));
             dispatch((0, _message.getMessages)(Number(params.userId), Number(params.otherId)));
+            socket.on('connect', function () {
+                var data = {
+                    user: params.userId,
+                    room1: '_' + params.userId + '-' + params.otherId + '_',
+                    room2: '_' + params.otherId + '-' + params.userId + '_'
+                };
+                socket.emit('enter', data);
+            });
         }
     }, {
         key: 'favoriteOnInit',
@@ -28069,7 +28079,6 @@ var ChatPage = function (_Component) {
                 anyTouched = _props8.anyTouched;
 
             this.favoriteOnInit();
-            var socket = (0, _socket2.default)();
             dispatch((0, _message.createMessage)({
                 message: data.message,
                 user_id: Number(params.userId),

@@ -6,18 +6,28 @@ import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
 
+
+let socket = io.connect('http://localhost:3214')
+
 class ChatPage extends Component {
 
     componentWillMount() {
         const { dispatch, params } = this.props
         dispatch(getProfile(Number(params.otherId)))
         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
+        socket.on('connect', () => {
+            let data = {
+                user: params.userId,
+                room1: `_${params.userId}-${params.otherId}_`,
+                room2: `_${params.otherId}-${params.userId}_`
+            }
+            socket.emit('enter', data)
+        })
     }
 
     static formSubmit(data) {
         const { dispatch, params, reset, messages, anyTouched } = this.props
         this.favoriteOnInit()
-        let socket = io()
         dispatch(createMessage({
             message: data.message,
             user_id: Number(params.userId),

@@ -15,7 +15,8 @@ const flash = require('express-flash')
 const _ = require('lodash')
 
 
-let clients = []
+let users = {}
+let rooms = []
 
 // port settings
 let port = process.env.PORT || 3214
@@ -55,12 +56,39 @@ app.get('*', (req, res) => {
 
 io.on('connection', (socket) => {
 
-    socket.broadcast.on('message', (data) => {
-         socket.emit('message', data)
-         socket.broadcast.emit('message', data)
-    })
+	socket.on('enter', function(data){
+		socket.user = data.user
+		socket.room1 = data.room1
+		socket.room2 = data.room2
+        rooms.push(data.room1)
+        rooms.push(data.room2)
+		users[data.user] = data.user
+		socket.join(data.room1)
+		socket.join(data.room2)
+		socket.emit('updatechat', 'SERVER', 'you have connected to room1')
+		socket.broadcast.to(data.room1).emit('updatechat', 'SERVER', data.user + ' has connected to this room')
+		socket.broadcast.to(data.room2).emit('updatechat', 'SERVER', data.user + ' has connected to this room')
+		socket.emit('updaterooms', rooms, data.room1)
+		socket.emit('updaterooms', rooms, data.room2)
+	})
+
+	socket.on('sendchat', function (data) {
+		io.sockets.in(socket.room1).emit('updatechat', socket.user, data)
+		io.sockets.in(socket.room2).emit('updatechat', socket.user, data)
+	})
+
+	socket.on('leaveRoom', function(){
+		socket.leave(socket.room1)
+		socket.leave(socket.room2)
+		socket.broadcast.to(socket.room1).emit('updatechat', 'SERVER', socket.user + ' has left this room')
+		socket.broadcast.to(socket.room2).emit('updatechat', 'SERVER', socket.user + ' has left this room')
+	})
 
     socket.on('disconnect', function(){
-
-    });
+		delete users[socket.user]
+		io.sockets.emit('updateusers', users)
+		socket.broadcast.emit('updatechat', 'SERVER', socket.user + ' has disconnected')
+		socket.leave(socket.room1)
+		socket.leave(socket.room2)
+    })
 })
