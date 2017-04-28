@@ -36,13 +36,6 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
             image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
             likes: 0
         })
-        Testimonial.create({
-            author: 'Malia Ayers',
-            message: `Phasellus iaculis leo nec lacus eleifend, non iaculis ante tristique. Nam libero sem, dignissim a malesuada et, tempor et massa. Curabitur aliquam enim at dui varius scelerisque. Morbi condimentum tellus ut ante sodales, ut rutrum magna ultrices. Aenean placerat odio eget erat aliquet, sodales ornare odio posuere. Vestibulum a sodales ipsum. Pellentesque facilisis vel nulla vel tincidunt. Nam in sem quis diam auctor efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer egestas quis sapien at rutrum. Cras feugiat, urna ac elementum auctor, turpis enim volutpat sapien, quis mattis est nunc ultricies orci. Vivamus enim lacus, molestie vitae semper vitae, gravida id felis.`,
-            user_id: 4,
-            image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
-            likes: 0
-        })
     })
 })
 .catch(err => {
@@ -78,13 +71,6 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
             message: `"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."`,
             user_id: 3,
             image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
-            likes: 0
-        })
-        Testimonial.create({
-            author: 'Malia Ayers',
-            message: `Nam iaculis, ex at fermentum imperdiet, metus libero mollis orci, nec cursus ligula mauris in ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, tellus in iaculis dapibus, mauris tortor maximus orci, at placerat enim orci eu mauris. Praesent tempor nunc vitae turpis facilisis accumsan. Cras rutrum leo sit amet placerat lacinia. Mauris viverra egestas sem, ac fringilla dolor ullamcorper vitae. Sed finibus sem et lorem sollicitudin, quis porttitor justo pellentesque.`,
-            user_id: 4,
-            image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
             likes: 0
         })
     })
@@ -123,33 +109,6 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
             image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493225294/s20botoerwinfvkadqow.jpg',
             likes: 0
         })
-        Testimonial.create({
-            author: 'Malia Ayers',
-            message: `Vestibulum id turpis sed nisi lacinia dictum. Donec euismod lorem eros, sed porttitor elit gravida a. Donec condimentum volutpat tempor. Curabitur dictum eu turpis eu placerat. Maecenas in orci quis odio convallis vehicula nec non enim. Aliquam at magna in justo volutpat lacinia ut sodales magna. Sed efficitur, est ut euismod convallis, orci turpis fringilla mi, condimentum placerat mi risus ut ante. Sed a fermentum massa. Vestibulum gravida porta justo, ultrices laoreet est consectetur quis.`,
-            user_id: 4,
-            image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
-            likes: 0
-        })
-    })
-})
-.catch(err => {
-
-})
-
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
-    email: `malia@email.com`,
-    password: `pass1234`,
-    firstName: 'Malia',
-    lastName: 'Ayers',
-    image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
-    id: 4
-}).then(resp => {
-    Testimonial.create({
-        author: 'Malia Ayers',
-        message: `Sed in placerat tortor. Cras venenatis diam vel nisl rhoncus, ut posuere odio suscipit. Quisque sit amet sodales tortor, ac facilisis justo. Nunc est purus, gravida rutrum efficitur suscipit, aliquet et velit. Praesent mi magna, pharetra vitae leo eu, tincidunt tempus tortor. Suspendisse potenti. Donec et neque venenatis, accumsan augue quis, tristique nisl. Nam volutpat, dolor id viverra tristique, enim leo varius neque, at tempus dui lorem eu odio. Ut efficitur gravida malesuada. Integer metus massa, laoreet venenatis placerat vitae, tincidunt ac dolor. Aliquam fermentum dui ipsum, ac lacinia leo finibus quis. Ut at libero condimentum, ultrices libero dictum, placerat magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus auctor nulla sit amet dui congue fermentum.`,
-        user_id: 4,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
-        likes: 0
     })
 })
 .catch(err => {
