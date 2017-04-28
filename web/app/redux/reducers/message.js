@@ -1,8 +1,5 @@
 import actionTypes from '../store/actionTypes'
-import io from 'socket.io-client'
 
-
-let socket = io()
 
 const INITIAL_STATE = {
 	pending: null,
@@ -56,14 +53,6 @@ export default function (state = INITIAL_STATE, action) {
                 pending: null
             }
         
-        case actionTypes.TYPING:
-            // socket.on('message', (msg) => {
-            //     return {
-            //         ...state,
-            //         typing: type
-            //     }
-            // })
-            return { ...state }
     }
     
     return state

@@ -15796,7 +15796,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.getMessages = getMessages;
 exports.createMessage = createMessage;
 exports.inviteFriends = inviteFriends;
-exports.settingTyping = settingTyping;
 
 var _axios = __webpack_require__(63);
 
@@ -15856,12 +15855,6 @@ function inviteFriends(data, id) {
 				payload: err
 			});
 		});
-	};
-}
-
-function settingTyping(type) {
-	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.TYPING, typing: type });
 	};
 }
 
@@ -29511,14 +29504,6 @@ exports.default = function () {
                 pending: null
             });
 
-        case _actionTypes2.default.TYPING:
-            // socket.on('message', (msg) => {
-            //     return {
-            //         ...state,
-            //         typing: type
-            //     }
-            // })
-            return _extends({}, state);
     }
 
     return state;
@@ -29528,13 +29513,7 @@ var _actionTypes = __webpack_require__(23);
 
 var _actionTypes2 = _interopRequireDefault(_actionTypes);
 
-var _socket = __webpack_require__(349);
-
-var _socket2 = _interopRequireDefault(_socket);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var socket = (0, _socket2.default)();
 
 var INITIAL_STATE = {
     pending: null,
