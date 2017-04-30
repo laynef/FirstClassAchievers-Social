@@ -34,7 +34,7 @@ class ChatPage extends Component {
             to: Number(params.otherId),
             roomNameId: `_${params.userId}-${params.otherId}_`
         }))
-        socket.emit('message', {
+        socket.emit('updatechat', Number(params.userId), {
             message: data.message,
             user_id: Number(params.userId),
             to: Number(params.otherId),
@@ -147,6 +147,12 @@ class ChatPage extends Component {
         if (messages.length > 0) {
             localStorage.setItem(`to_${messages[0].to}`, JSON.stringify(messages))
         }
+        let data = {
+            user: params.userId,
+            room1: `_${params.userId}-${params.otherId}_`,
+            room2: `_${params.otherId}-${params.userId}_`
+        }
+        socket.emit('leaveRoom', data)
     }
 
     render() {

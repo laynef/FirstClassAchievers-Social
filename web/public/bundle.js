@@ -27905,6 +27905,12 @@ var ChatPage = function (_Component) {
             if (messages.length > 0) {
                 localStorage.setItem('to_' + messages[0].to, JSON.stringify(messages));
             }
+            var data = {
+                user: params.userId,
+                room1: '_' + params.userId + '-' + params.otherId + '_',
+                room2: '_' + params.otherId + '-' + params.userId + '_'
+            };
+            socket.emit('leaveRoom', data);
         }
     }, {
         key: 'render',
@@ -27970,7 +27976,7 @@ var ChatPage = function (_Component) {
                 to: Number(params.otherId),
                 roomNameId: '_' + params.userId + '-' + params.otherId + '_'
             }));
-            socket.emit('message', {
+            socket.emit('updatechat', Number(params.userId), {
                 message: data.message,
                 user_id: Number(params.userId),
                 to: Number(params.otherId),
