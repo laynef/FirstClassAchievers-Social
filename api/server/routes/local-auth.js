@@ -231,7 +231,7 @@ router.post('/local/fixtures', (req, res, next) => {
                     user_id: req.body.id
                 })
                 Favorite.create({
-                    entries: [2,3,7,9],
+                    entries: [2,3,4,7,9],
                     user_id: req.body.id
                 })
             } else {
