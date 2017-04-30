@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
 		users[data.user] = data.user
 		socket.join(data.room1)
 		socket.join(data.room2)
-		socket.emit('updatechat', 'SERVER', 'you have connected to room1')
+		socket.emit('updatechat', 'SERVER', 'you have connected to rooms')
 		socket.broadcast.to(data.room1).emit('updatechat', 'SERVER', data.user + ' has connected to this room')
 		socket.broadcast.to(data.room2).emit('updatechat', 'SERVER', data.user + ' has connected to this room')
 		socket.emit('updaterooms', rooms, data.room1)
