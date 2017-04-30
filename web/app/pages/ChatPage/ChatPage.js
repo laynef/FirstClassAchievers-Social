@@ -124,7 +124,7 @@ class ChatPage extends Component {
         let socket = io()
         if (!this.props.messages) return true
         if (this.props.pending == null) return true
-        socket.on('message', (data) => {
+        socket.on('sendchat', (data) => {
             if (data) {
                 this.renderConversion()
                 return true
@@ -143,7 +143,7 @@ class ChatPage extends Component {
     }
 
     componentWillUnmount() {
-        const { messages } = this.props
+        const { messages, params } = this.props
         if (messages.length > 0) {
             localStorage.setItem(`to_${messages[0].to}`, JSON.stringify(messages))
         }

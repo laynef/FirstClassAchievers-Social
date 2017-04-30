@@ -27875,7 +27875,7 @@ var ChatPage = function (_Component) {
             var socket = (0, _socket2.default)();
             if (!this.props.messages) return true;
             if (this.props.pending == null) return true;
-            socket.on('message', function (data) {
+            socket.on('sendchat', function (data) {
                 if (data) {
                     _this2.renderConversion();
                     return true;
@@ -27900,7 +27900,9 @@ var ChatPage = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            var messages = this.props.messages;
+            var _props7 = this.props,
+                messages = _props7.messages,
+                params = _props7.params;
 
             if (messages.length > 0) {
                 localStorage.setItem('to_' + messages[0].to, JSON.stringify(messages));
@@ -27915,11 +27917,11 @@ var ChatPage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props7 = this.props,
-                messages = _props7.messages,
-                handleSubmit = _props7.handleSubmit,
-                profile = _props7.profile,
-                params = _props7.params;
+            var _props8 = this.props,
+                messages = _props8.messages,
+                handleSubmit = _props8.handleSubmit,
+                profile = _props8.profile,
+                params = _props8.params;
 
             if (!profile || profile.user_id != params.otherId) return null;
             return _react2.default.createElement(
@@ -27962,12 +27964,12 @@ var ChatPage = function (_Component) {
     }], [{
         key: 'formSubmit',
         value: function formSubmit(data) {
-            var _props8 = this.props,
-                dispatch = _props8.dispatch,
-                params = _props8.params,
-                reset = _props8.reset,
-                messages = _props8.messages,
-                anyTouched = _props8.anyTouched;
+            var _props9 = this.props,
+                dispatch = _props9.dispatch,
+                params = _props9.params,
+                reset = _props9.reset,
+                messages = _props9.messages,
+                anyTouched = _props9.anyTouched;
 
             this.favoriteOnInit();
             dispatch((0, _message.createMessage)({
