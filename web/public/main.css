@@ -73,34 +73,36 @@
 #ProfilePage #SecondaryContact textarea {
   height: 100px; }
 
-@media screen and (min-width: 992px) {
-  #DetailPage {
-    margin-left: 80px; } }
-
-#DetailPage h1 {
-  text-align: center; }
-
-#DetailPage #profileImage {
-  transform: scale(10); }
+#DetailPage {
+  height: 100%; }
+  @media screen and (min-width: 992px) {
+    #DetailPage {
+      margin-left: 80px; } }
+  #DetailPage h1 {
+    text-align: center; }
   @media screen and (min-width: 992px) {
     #DetailPage #profileImage {
       margin-left: 200px;
-      margin-top: 150px; } }
-
-@media screen and (min-width: 992px) {
-  #DetailPage #PrimaryContact {
-    margin-left: -230px;
-    margin-top: 350px; } }
-
-#DetailPage #SecondaryContact {
-  margin: 40px;
-  height: 700px;
-  background-color: white;
-  overflow: scroll; }
+      margin-top: 150px;
+      transform: scale(10); } }
+  @media (max-width: 992px) {
+    #DetailPage #profileImage {
+      margin: 22% 50%;
+      transform: scale(12); } }
   @media screen and (min-width: 992px) {
-    #DetailPage #SecondaryContact {
-      margin-left: 400px;
-      margin-top: -680px; } }
+    #DetailPage #PrimaryContact {
+      margin-left: -230px;
+      margin-top: 350px; } }
+  #DetailPage #SecondaryContact {
+    height: 700px;
+    background-color: white;
+    overflow: scroll; }
+    @media screen and (min-width: 992px) {
+      #DetailPage #SecondaryContact {
+        margin-left: 400px;
+        margin-top: -680px;
+        margin: 40px;
+        height: 700px; } }
 
 #DetailEntry {
   height: 65vw; }

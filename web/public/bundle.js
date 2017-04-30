@@ -27747,8 +27747,8 @@ var ChatPage = function (_Component) {
     }
 
     _createClass(ChatPage, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _props = this.props,
                 dispatch = _props.dispatch,
                 params = _props.params;
@@ -28266,7 +28266,7 @@ var DetailPage = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'span',
-                    { id: 'profileImage', className: 'thumbnail-wrapper d32 circular inline m-t-5' },
+                    { id: 'profileImage', className: 'thumbnail-wrapper d32 circular inline m-t-5 s-t-10' },
                     _react2.default.createElement('img', { src: profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
                         alt: '',
                         'data-src': profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png",
@@ -28279,7 +28279,7 @@ var DetailPage = function (_Component) {
                     { onSubmit: handleSubmit(DetailPage.formSubmit.bind(this)) },
                     _react2.default.createElement(
                         'div',
-                        { id: 'PrimaryContact', className: 'col-md-4' },
+                        { id: 'PrimaryContact', className: 'col-md-4 col-sm-12 col-xs-12' },
                         _react2.default.createElement(
                             'div',
                             { className: 'panel panel-default' },
@@ -28373,7 +28373,7 @@ var DetailPage = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { id: 'SecondaryContact', className: 'col-sm-8' },
+                    { id: 'SecondaryContact', className: 'col-md-7  col-sm-12 col-xs-12' },
                     testimonial.filter(function (e) {
                         return e.user_id == profile.user_id;
                     }).map(function (entry, i) {

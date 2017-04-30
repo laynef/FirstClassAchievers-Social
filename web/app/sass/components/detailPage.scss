@@ -1,5 +1,15 @@
 #DetailPage {
 
+	// @media (max-width: 992px) {
+	// 		position: relative;
+	// 		.panel {
+	// 			width: 100% !important;
+	// 			margin: 500px -300px -200px;
+	// 		}
+	// 	}
+
+	height: 100%;
+
     @media screen and (min-width: 992px) {
 		margin-left: 80px;
 	}
@@ -9,10 +19,15 @@
 	}
 
 	#profileImage {
-		transform: scale(10);
 		@media screen and (min-width: 992px) {
 			margin-left: 200px;
 			margin-top: 150px;
+			transform: scale(10);
+		}
+		@media (max-width: 992px) {
+			margin: 22% 50%;
+			transform: scale(12);
+
 		}
 	}
 
@@ -21,10 +36,12 @@
 			margin-left: -230px;
 			margin-top: 350px;
 		}
+		// @media (max-width: 992px) {
+		// 	margin: 200px 400px;
+		// }
 	}
 
     #SecondaryContact {
-		margin: 40px;
 		height: 700px;
 		background-color: white;
 		overflow: scroll;
@@ -32,6 +49,8 @@
 		@media screen and (min-width: 992px) {
 			margin-left: 400px;
 			margin-top: -680px;
+			margin: 40px;
+			height: 700px;
 		}
 
 	}

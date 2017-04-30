@@ -11,7 +11,7 @@ let socket = io.connect('http://localhost:3214')
 
 class ChatPage extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const { dispatch, params } = this.props
         dispatch(getProfile(Number(params.otherId)))
         dispatch(getMessages(Number(params.userId), Number(params.otherId)))
