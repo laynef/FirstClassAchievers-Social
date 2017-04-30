@@ -6,7 +6,7 @@ import { getProfile } from '../../redux/actions/profile'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
 
-
+ 
 let socket = io.connect('http://localhost:3214')
 
 class ChatPage extends Component {
