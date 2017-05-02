@@ -29043,6 +29043,7 @@ var MainPage = function (_Component) {
                 favorites = _props2.favorites;
 
             var regex = new RegExp(this.state.searchTerm, 'igm');
+            var regex1 = new RegExp('[' + this.state.searchTerm + ']', 'igm');
             return _react2.default.createElement(
                 'div',
                 { id: 'mainPage' },
@@ -29077,7 +29078,7 @@ var MainPage = function (_Component) {
                             testimonial.filter(function (e) {
                                 return following.followers.includes(e.user_id);
                             }).filter(function (e) {
-                                return regex.test(e.author) || regex.test(e.message);
+                                return regex.test(e.author) || regex.test(e.message) || regex1.test(e.author) || regex1.test(e.message);
                             }).map(function (entry, i) {
                                 return _react2.default.createElement(_PostEntry2.default, { key: i,
                                     author: entry.author,
