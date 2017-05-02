@@ -29043,7 +29043,6 @@ var MainPage = function (_Component) {
                 favorites = _props2.favorites;
 
             var regex = new RegExp(this.state.searchTerm, 'igm');
-            var regex1 = new RegExp('[' + this.state.searchTerm + ']', 'igm');
             return _react2.default.createElement(
                 'div',
                 { id: 'mainPage' },
