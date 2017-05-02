@@ -1,0 +1,149 @@
+/*================= 3.2 HOME V2 ==================*/
+
+/*=== 3.2.1 ABOUT ===*/
+.aboutSection {
+	margin-bottom:75px;
+	h2 {
+	    font-size: 20px;
+	    font-weight:700;
+	    margin:0 auto 20px;
+	    padding-bottom: 15px;
+	    display: inline-block;
+	    @include add-border(5px, $border-light, bottom);
+	}
+	p {
+	    font-size: 16px;
+	    line-height: 26px;
+	    margin:0;
+	    @include desktops {
+	    	margin:0 70px 0;
+	    }
+	}
+}
+/*=== 3.2.2 FEATURE COLLECTION ===*/
+.featuredCollection.version2{
+	margin-bottom:80px;
+	.slide{
+		background: #eeeeee;
+		height: 300px;
+		position: relative;
+	}
+	.productImage{
+		width: 50%;
+		float: left;
+		height: 300px;
+		position:relative;
+		img{
+			display: inline-block;
+			max-width: 100%;
+			width: auto;
+			position:absolute;
+			bottom:15px;
+		}
+	}
+	.productImage.pull-right{
+		img{
+			right: 10px;
+		}
+	}
+	.productCaption{
+		width: 50%;
+		position:absolute;
+		bottom:40px;
+		right: 0;
+		padding-right:30px;
+		h3{
+			font-size: 24px;
+		    font-weight:700;
+		    margin:0 0 10px;
+		    a{
+		    	color: $secondary-color;
+		    }
+		}
+		p{
+			font-size: 14px;
+		    font-weight:700;
+		    margin:0 0 25px;
+		    text-transform: uppercase;
+		}
+	}
+	.productCaption.pull-left{
+		left: 0;
+		padding-left:30px;
+	}
+}
+/*=== 3.2.3 FEATURE PRODUCT ===*/
+.version2 .imageBox{
+	margin-bottom: 40px;
+	.productImage{
+		.productMasking{
+			background-color: transparent;
+			ul{
+				bottom: 30px;
+				left: 50%;
+				@include transform(translate(-50%, 150%));
+				@include tablet {
+			    	@include transform(translate(-46%, 70%));
+			    }
+			    @include large-desktops {
+			    	@include transform(translate(-50%, 140%));
+			    }
+				li{
+					a{
+						line-height: 42px;
+						border:none;
+						background-color: $white-color;
+						i{
+							color: $secondary-color;
+						}
+						&:hover{
+							background-color:$primary-color; 
+							i{
+								color: $white-color;
+							}
+						} 
+					}
+				}
+			}
+		}
+	}
+	&:hover .productMasking{
+		opacity: 1;
+		ul{
+			-webkit-animation: itemMove 0.3s linear;
+			animation: itemMove 0.3s linear;
+		}
+	}
+}
+/*=== 3.2.4 FEATURES ===*/
+.box{
+	background-color:#f5f5f5;
+	padding:50px 20px;
+	margin-bottom:35px;
+	i{
+		font-size: 48px;
+		color: $primary-color;
+	}
+	h4{
+		margin: 20px 0;  
+	}
+	span{
+		color: #979797;
+	}
+}
+/*=== 3.2.5 INSTAGRAM SECTION ===*/
+.instagramSection{
+	width:100%;
+	.image-gallery{
+		width:33.33%;
+		display: inline-block;
+		float: left;
+		@include tablet {
+	    	width:16.66%;
+	    }
+		img{
+			width:100%;
+		}
+	}
+}
+
