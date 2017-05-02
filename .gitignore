@@ -9,6 +9,10 @@ Social/api/config
 Social/database/config
 Social/tests/config
 
+ECommerce/api/config
+ECommerce/database/config
+ECommerce/tests/config
+
 node_modules
 
 mobile
