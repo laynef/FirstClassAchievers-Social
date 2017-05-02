@@ -12,7 +12,6 @@ const session = require('express-session')
 const favicon = require('express-favicon')
 const fs = require('fs')
 const flash = require('express-flash')
-const _ = require('lodash')
 
 
 // port settings
