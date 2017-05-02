@@ -13,6 +13,14 @@ ECommerce/api/config
 ECommerce/database/config
 ECommerce/tests/config
 
+Business/api/config
+Business/database/config
+Business/tests/config
+
+Entertainment/api/config
+Entertainment/database/config
+Entertainment/tests/config
+
 node_modules
 
 mobile
