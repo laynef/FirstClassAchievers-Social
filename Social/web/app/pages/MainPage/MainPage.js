@@ -22,7 +22,7 @@ class MainPage extends Component {
 
     render() {
         const { user, testimonial, following, favorites } = this.props
-        let regex = new RegExp(this.state.searchTerm, 'ig')
+        let regex = new RegExp(this.state.searchTerm, 'igm')
         return (
             <div id="mainPage">
                 <h1>Welcome to First Class</h1>
@@ -43,7 +43,8 @@ class MainPage extends Component {
                             <div id="testimonial-background" className="col-sm-12">
                                 {testimonial
                                     .filter(e => following.followers.includes(e.user_id))
-                                    .filter(e => regex.test(e.author) || regex.test(e.message))
+                                    .filter(e => regex.test(e.author) 
+                                        || regex.test(e.message))
                                     .map((entry, i) => (
                                     <PostEntry key={i}
                                         author={entry.author}
