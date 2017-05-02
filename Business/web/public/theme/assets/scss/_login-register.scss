@@ -1,0 +1,23 @@
+
+/**login-register**/
+.login-register-left{
+    padding-left: 999px;
+    margin-left: -999px;
+    padding-bottom: 999px;
+    margin-bottom: -999px;
+    background: #f9f9f9;
+}
+.login-register-inner{
+    padding: 80px 45px;
+}
+.login-register-container{
+     label {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: 400;
+        font-family: $title-font;
+        color: #666;
+    }
+}

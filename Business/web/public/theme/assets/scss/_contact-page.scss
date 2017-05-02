@@ -1,0 +1,22 @@
+/*
+contact page
+*/
+.contact-wrapper{
+    background: $skin-color;
+}
+.address-bg{
+    padding: 40px 15px;
+    text-align: center;
+    h3{
+        color: #fff;
+        text-transform: uppercase;
+    }
+    ul{
+        margin: 0px;
+        li{
+            color: #fff;
+            font-size: 18px;
+            display: block;
+        }
+    }
+}

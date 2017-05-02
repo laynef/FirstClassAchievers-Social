@@ -1,0 +1,96 @@
+/*
+=================
+Drop down menu styles
+==================
+*/
+.dropdown-menu{
+    background-color: #000000;
+    border:0px;
+    padding: 0px;
+    min-width: 200px;
+    @include border-radius(0px);
+    >li>a{
+        color:#ccc;
+        padding: 10px 20px;
+        text-transform:capitalize;
+        font-size:13px;
+        letter-spacing:0.5px;
+        font-weight:400;
+        border-bottom:1px solid rgba(255,255,255,0.05);
+        &:hover,&:focus{
+            background-color:  rgba(255,255,255,0.03);
+            color:#fff;
+        }
+    }
+}
+/******************
+
+MULTI LEVEL DROPDOWN CSS
+
+*********************/
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0px;
+  left: 100%;
+  margin-top: 0px;
+  margin-left: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu > a:after {
+  top: 11px;
+  right: 15px;
+  font-size: 11px;
+      content: "\f3d3";
+  position: absolute;
+  font-weight: normal;
+  display: inline-block;
+  font-family: "IonIcons";
+}
+.dropdown-menu.dropdown-cart{
+    min-width: 300px;
+    padding:15px 20px;
+    li img{
+        margin-right: 15px;
+    }
+    p{
+        color: #fff;
+        opacity:0.8;
+        font-size: .7rem;
+    }
+    h4{
+        font-size: 14px;
+        margin-bottom:0;
+        a{
+            color: #fff;
+        }
+    }
+    .close{
+        color: #fff;
+        opacity:.6;
+        transition:all 0.3s;
+        -webkit-transition:all 0.3s;
+        &:hover{
+          opacity:1;
+        }
+    }
+}
+
+@media(max-width:767px){
+     .dropdown-submenu > .dropdown-menu {
+    padding-left: 20px;
+     display: block;
+    margin-left: 15px;
+  }
+   
+}

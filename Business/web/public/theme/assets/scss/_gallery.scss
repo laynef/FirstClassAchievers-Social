@@ -1,0 +1,33 @@
+/*
+Gallery
+*/
+.gallery-box{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    .gallery-overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        span{
+            display: block;
+            text-align: center;
+            font-size: 80px;
+            margin-top: -40px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            @include transition(all 0.4s);
+            @include transform(scale(0));
+        }
+    }
+    &:hover{
+        .gallery-overlay span{
+             @include transform(scale(1)); 
+        }
+    }
+}

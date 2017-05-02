@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Resto - Responsive restaurant bootstrap template</title>
+        <!-- Bootstrap -->
+        <link href="assets/css/plugins/plugins.css" rel="stylesheet">
+        <!--main css file-->
+        <link href="assets/css/style.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+ <div id="preloader">
+            <div id="preloader-inner"></div>
+        </div><!--/preloader-->
+        <!--===============main navigation + top bar==========================-->
+        <header class="header header-top-transparent">
+            <!--top bar-->
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 hidden-sm-down">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="javascript:void(0)"><i class="ion-ios-telephone"></i> +01 1800 495 593</a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)"><i class="ion-email"></i> support@resto.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <ul class="list-inline level-2">
+                                <li class="b-table list-inline-item"><a href="#" class=" waves-float waves-button">Book a table</a></li>
+                                <li class="lang list-inline-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Lang </i></a>
+                                    <ul class="dropdown-menu lang-dropdown">
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/spanish.png" alt="Spanish">Spanish</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/italy.png" alt="Italian">Italian</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/german.png" alt="German">German</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/fr.png" alt="French">French</a></li>
+                                        <li><a href="javascript:void(0)"><span><img class="flag" src="assets/images/usa-flag.png" alt="English">English</span></a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/jp.png" alt="Japanise">Japanise</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag" src="assets/images/in.png" alt="Hindi">Hindi</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end top bar-->           
+            <!--main navigation-->
+            <nav class="navbar navbar-light navbar-toggleable-md navbar-static-top sticky-header">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right collapsed" data-toggle="collapse" data-target="#navbarNavDropdown" aria-expanded="false" aria-controls="navbarNavDropdown">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+
+                            <img src="assets/images/logo-light.png" alt="logo" class="logo-default">
+                            <img src="assets/images/logo-dark.png" alt="logo" class="logo-scroll">
+
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="index.html">V1 - Default slider</a></li>
+                                    <li><a class="dropdown-item" href="index-video.html">V2 - Video background</a></li>
+                                    <li><a class="dropdown-item" href="index-parallax-static.html">V3 - parallax Static</a></li>                                   
+                                    <li><a class="dropdown-item" href="index-left-canvas.html">V4 - Offcanvas Left</a></li>
+                                    <li><a class="dropdown-item" href="index-right-canvas.html">V5 - Offcanvas Right</a></li>                                 
+                                    <li><a class="dropdown-item" href="index-boxed.html">V6 - Boxed version</a></li>
+                                    <li><a class="dropdown-item" href="one-page.html">V7 - One Page</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item" tabindex="-1" href="#">Menu Levels </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item" tabindex="-1" href="#">menu level 2 </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"> menu level 3</a></li>
+                                                    <li><a class="dropdown-item" href="#"> menu level 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="menu-simple.html">Menu simple</a></li>
+                                    <li><a class="dropdown-item" href="menu-tiles.html">Menu tiles</a></li>
+                                    <li><a class="dropdown-item" href="menu-grid.html">Menu grid</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="blog-rightsidebar.html">Right sidebar</a></li>
+                                    <li><a class="dropdown-item" href="blog-leftsidebar.html">Left sidebar</a></li>
+                                    <li><a class="dropdown-item" href="blog-masonry.html">Masonry</a></li>
+                                    <li><a class="dropdown-item" href="blog-fullwidth.html">Full width</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">Single Page</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="reservation.html">Reservation</a></li>
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="about.html">About</a></li>
+                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                                    <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                                    <li><a class="dropdown-item" href="login-register.html">Login Register</a></li>
+                                    <li><a class="dropdown-item" href="page-full-width.html">Page Full Width</a></li>
+                                    <li><a class="dropdown-item" href="error-404.html">Error 404</a></li>
+                                    <li><a class="dropdown-item" href="page-left-sidebar.html">Page left sidebar</a></li>
+                                    <li><a class="dropdown-item" href="typography.html">Typography</a></li>
+                                    <li><a class="dropdown-item" href="elements.html">Eelements</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="shop-products.html">Products</a></li>
+                                    <li><a class="dropdown-item" href="shop-cart.html">Cart</a></li>
+                                    <li><a class="dropdown-item" href="shop-checkout.html">Checkout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                    <!--cart icon-->
+                    <div class="float-right cart-nav nav-item">
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ion-ios-cart"></i> <span class="badge badge-primary">3</span></a>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-cart">
+                                <li>
+                                    <ul class="list-unstyled">
+                                        <li class="clearfix">
+                                            <a href="#" class="float-left">
+                                                <img src="assets/images/img-2.jpg" class="img-fluid" alt="" width="60">
+                                            </a>
+                                            <div class="oHidden">
+                                                <span class="close"><i class="ion-ios-close-outline"></i></span>
+                                                <h4><a href="#">Product Title</a></h4>
+                                                <p class="text-white-gray"><strong>$299.00</strong> x 1</p>
+                                            </div>
+                                        </li><!--/cart item-->
+                                        <li class="clearfix">
+                                            <a href="#" class="float-left">
+                                                <img src="assets/images/img-1.jpg" class="img-fluid" alt="" width="60">
+                                            </a>
+                                            <div class="oHidden">
+                                                <span class="close"><i class="ion-ios-close-outline"></i></span>
+                                                <h4><a href="#">Product Title</a></h4>
+                                                <p class="text-white-gray"><strong>$99.00</strong> x 1</p>
+                                            </div>
+                                        </li><!--/cart item-->
+                                        <li class="clearfix">
+                                            <a href="#" class="float-left">
+                                                <img src="assets/images/img-3.jpg" class="img-fluid" alt="" width="60">
+                                            </a>
+                                            <div class="oHidden">
+                                                <span class="close"><i class="ion-ios-close-outline"></i></span>
+                                                <h4><a href="#">Product Title</a></h4>
+                                                <p class="text-white-gray"><strong>$199.00</strong> x 1</p>
+                                            </div>
+                                        </li><!--/cart item-->
+                                        <li class="clearfix">
+
+                                            <div class="float-right">
+                                                <a href="#" class="btn btn-primary">Checkout</a>
+                                            </div>
+                                            <h4 class="text-white">
+                                                <small>Subtotal - </small> $49.99
+                                            </h4>
+                                        </li><!--/cart item-->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!--===============end main navigation + top bar =====================-->
+
+
+
+        <!--==============page header============-->
+        <div class="page-breadcrumb">
+            <div class="container text-center">
+                <h1>Elements</h1>
+            </div>
+        </div>
+        <!--==============end page header============-->
+        <div class="space-80"></div>
+       
+        <div class="container text-center">
+            <h2 class="text-capitalize text-center margin-b-50">Icon boxes</h2>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="icon-box">
+                        <i class="ion-iphone"></i>
+                        <h4>Fully responsive</h4>
+                        <p>
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="icon-box">
+                        <i class="ion-settings"></i>
+                        <h4>Valid & Clean code</h4>
+                        <p>
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="icon-box">
+                        <i class="ion-social-twitter"></i>
+                        <h4>Bootstrap3</h4>
+                        <p>
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-40"></div>
+        <div class="cta-background parallax-background" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-4 text-left">
+                        <p class="lead ">
+                            Parallax background
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div><!--end call to action-->
+        <div class="space-70"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 margin-b-30">
+                    <h2 class="text-capitalize margin-b-30">Buttons</h2>
+                    <div class="buttons-element">
+                        <button type="button" class="btn btn-xs btn-primary">Theme button</button>
+                        <button type="button" class="btn btn-lg btn-primary">Theme button</button>
+                        <button type="button" class="btn btn-xl btn-primary">Theme button</button>
+                        <br>
+                        <button type="button" class="btn btn-xs btn-dark">Dark button</button>
+                        <button type="button" class="btn btn-lg btn-dark">Dark button</button>
+                        <button type="button" class="btn btn-xl btn-dark">Dark button</button>
+                        <br>
+                        <button type="button" class="btn btn-rounded btn-primary">Rounded button</button>
+                        <button type="button" class="btn btn-rounded btn-dark">Rounded button</button>
+                        <div class="space-30"></div>
+                        <h4>Modal popup</h4>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            Launch demo modal
+                        </button>
+                    </div>                   
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 margin-b-30">
+                    <h2 class="text-capitalize margin-b-30">Responsive video</h2>
+                    <!-- 4:3 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="854" height="480" src="https://www.youtube.com/embed/xQT_Yyj3Skk" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-40"></div>
+
+        <div class="cta-skin contact-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 margin-b-30">
+                        <i class="ion-email"></i>
+                        <div class="overflow-hidden">
+                            <h4>Email</h4>
+                            <p class="lead">
+                                yourmail@dmain.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 margin-b-30">
+                        <i class="ion-email"></i>
+                        <div class="overflow-hidden">
+                            <h4>Reservation</h4>
+                            <p class="lead">
+                                +01 123-456-4590
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 margin-b-30">
+                        <i class="ion-map"></i>
+                        <div class="overflow-hidden">
+                            <h4>Location</h4>
+                            <p class="lead">
+                                124, Lorem Street, NY
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-70"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 margin-b-30">
+                     <h2 class="text-capitalize margin-b-30">Gallery Slider</h2>
+                    <div class="gallery-slider clearfix">
+                        <ul class="slides">
+                            <li>
+                                <img src="assets/images/img-3.jpg" alt="" class="img-fluid">
+                            </li>
+                            <li>
+                                <img src="assets/images/img-4.jpg" alt="" class="img-fluid">
+                            </li>
+                            <li>
+                                <img src="assets/images/img-5.jpg" alt="" class="img-fluid">
+                            </li>
+                        </ul>
+                    </div><!--gallery slider-->
+                </div>
+                <div class="col-sm-6 margin-b-30">
+                    <h2 class="text-capitalize margin-b-30">Lightbox</h2>
+                    <a class="gallery-box" href="assets/images/img-1.jpg" data-lightbox="gallery">
+                        <img src="assets/images/img-1.jpg" alt="" class="img-fluid">
+                         <div class="gallery-overlay">
+                        <span class="ion-ios-plus-empty"></span>
+                    </div>
+                    </a>                   
+                </div>
+            </div>
+        </div>
+        <div class="space-40"></div>
+         <div class="testimonials">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="text-center">
+                            <h1 class="title-1">Testimonials</h1>  
+                            <h5 class="subtitle">What they say</h5>
+                            <div class="space-30"></div>
+                        </div>
+                        <div class="testi-slider">
+                            <ul class="slides">
+                                <li>
+                                    <p>
+                                        Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor vitae egestas et, accumsan quis nunc. 
+                                    </p>
+
+                                    <div class="testi-info">
+                                        <img src="assets/images/avtar-1.jpg" alt="" width="50" class="rounded-circle">
+                                        <h4>John Doe <small> - Resto customer</small></h4>
+
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-ios-star-half"></i>
+                                    </div>
+                                </li><!--slide item-->
+                                <li>
+                                    <p>
+                                        Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor vitae egestas et, accumsan quis nunc. 
+                                    </p>
+
+                                    <div class="testi-info">
+                                        <img src="assets/images/avtar-2.jpg" alt="" width="50" class="rounded-circle">
+                                        <h4>John Doe <small> - Resto customer</small></h4>
+
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-ios-star-half"></i>
+                                    </div>
+                                </li><!--slide item-->
+                                <li>
+                                    <p>
+                                        Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor vitae egestas et, accumsan quis nunc. 
+                                    </p>
+
+                                    <div class="testi-info">
+                                        <img src="assets/images/avtar-3.jpg" alt="" width="50" class="rounded-circle">
+                                        <h4>John Doe <small> - Resto customer</small></h4>                                           
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-ios-star-half"></i>
+                                    </div>
+                                </li><!--slide item-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--testimonials end-->
+        
+     
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 margin-b-30">
+                        <img class="margin-b-20" src="assets/images/logo-light.png" alt="">
+                        <p>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        </p>
+                        <h5><a href="#">Read More...</a></h5>
+                    </div>
+                    <div class="col-lg-3 col-md-6 margin-b-30">
+                        <h3>Recent Posts</h3>
+                        <ul class="list-unstyled recent-post">
+                            <li class="clearfix">
+                                <a href="#">
+                                    <img src="assets/images/a1.jpg" alt="" width="70">
+                                </a>
+                                <div class="post-content">
+                                    <h5><a href="#">Pizza cordoin lorem ipsum dolor sit amet</a></h5>
+                                    <span>14 April 2016</span>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#">
+                                    <img src="assets/images/a2.jpg" alt="" width="70">
+                                </a>
+                                <div class="post-content">
+                                    <h5><a href="#">Cordoin lorem ipsum dolor sit amet</a></h5>
+                                    <span>14 April 2016</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 margin-b-30">
+                        <h3>Opening hours</h3>
+                        <p><span class="text-color">Monday: </span>Closed</p>
+                        <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+                        <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+                        <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 margin-b-30">
+                        <h3>Contact Us</h3>
+                        <p class="lead">
+                            Ipsum Street, Lorem Tower, MO, Columbia, 302012
+                        </p>
+                        <p class="lead"><a href="#">+01 1800 100 1000</a></p>
+                        <p><a href="#">info@resto.com</a></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <ul class="list-inline f-social">
+                            <li class="list-inline-item"><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ion-social-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="ion-social-instagram"></i></a></li>
+                        </ul>
+                        <span>&copy; Copyright 2017. Resto</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!--back to top-->
+        <a href="#" class="scrollToTop"><i class="ion-android-arrow-up"></i></a>
+        <!--back to top end-->
+
+
+
+        <!-- jQuery plugins-->
+        <script src="assets/js/plugins/plugins.js"></script>
+        <script src="assets/js/template-custom.js" type="text/javascript"></script>  
+    </body>
+</html>

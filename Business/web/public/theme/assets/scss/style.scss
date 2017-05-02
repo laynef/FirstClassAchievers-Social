@@ -1,0 +1,157 @@
+/*
+
+Project      : Resto - Complete Restaurant Template 
+Version      : v2.0
+Author       : Design_mylife (Rakesh Sharma)
+Support email: mylifedesign143@gmail.com
+*/
+@font-face {
+  font-family: "Ionicons";
+  src: url("../ionicons/fonts/ionicons.eot?v=2.0.0");
+  src: url("../ionicons/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"),url("../ionicons/fonts/ionicons.ttf?v=2.0.0") format("truetype"),url("../ionicons/fonts/ionicons.woff?v=2.0.0") format("woff"),url("../ionicons/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/***** Google fonts import ************/
+@import 'https://fonts.googleapis.com/css?family=Poppins:500,600,700';
+@import 'https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900';
+@import 'https://fonts.googleapis.com/css?family=Dancing+Script:400,700';
+//shortcodes style
+@import "_variables.scss";
+@import "_mixins.scss";
+@import "_base.scss";
+@import "_buttons.scss";
+@import "_topbar.scss";
+@import "_header.scss";
+@import "_dropdown.scss";
+@import "_pagination.scss";
+@import "_sidebar.scss";
+@import "_sliders.scss";
+@import "_page-breadcrumb.scss";
+@import "_food-menu.scss";
+@import "_news.scss";
+@import "_cta.scss";
+@import "_tabs.scss";
+@import "_team.scss";
+@import "_gallery.scss";
+@import "_shop.scss";
+@import "_login-register.scss";
+@import "_contact-page.scss";
+@import "_verticle-nav.scss";
+@import "_footer.scss";
+
+.datepicker-dropdown{
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.reservation-form{
+    padding:40px 30px;
+    background-color:#fefefe;
+    box-shadow:0px 0px 20px rgba(0,0,0,0.1);
+    border-radius:5px;
+    .input-group{
+        margin-bottom: 20px;
+    }
+    .input-group-addon{
+        background-color: #f5f5f5;
+        border: 0px;
+    }
+     .form-control{
+            padding-left: 15px;
+            border-color: #f5f5f5;
+        }
+}
+
+label.error {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -10px;
+    color: #f00;
+    font-size: 13px;
+}
+
+.reservation-form{
+    .input-group{
+        padding-bottom: 20px;
+    }
+}
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    background: 0 0;
+    color: #eee;
+    cursor: default;
+}
+.reservation-form .alert{
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+/**intro page style**/
+.intro-header{
+    padding: 130px 0;
+    background: $skin-color;
+    h1{
+        color:#fff;
+        margin-top: 30px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    p{
+        color: #eee;
+    }
+}
+.demo-box{
+    display: block;
+    position: relative;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+    @include transition(all 0.3s);
+    img{
+        margin-bottom: 20px;       
+    }
+    &:hover{
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    }
+}
+/**responsive style**/
+@media(max-width:991px){
+    .full_screen_hero h1{
+        font-size: 55px;
+        line-height: 55px;
+    }
+    .login-register-left {
+    padding-left: 0;
+    margin-left: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    background: #fff;
+}
+.login-register-inner {
+    padding: 40px 0;
+}
+}
+@media(max-width:767px){
+.main-content {
+    position: relative;
+    height: 100%;
+}
+.full_screen_hero h1 {
+    font-size: 27px;
+    line-height: 27px;
+}
+.menu-tabs li a{
+    padding: 10px 15px;
+}
+.space-80{
+    height: 40px;
+}
+.space-100{
+    height: 50px;
+}
+.space-70{
+    height: 35px;
+}
+.parallax-background,.about-chefs,.cta-background-2,.page-breadcrumb,.full_screen_hero{
+    background-attachment: scroll!important;
+    background-position: center center!important;
+}
+}

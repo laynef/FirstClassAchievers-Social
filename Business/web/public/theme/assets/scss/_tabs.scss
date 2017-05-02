@@ -1,0 +1,27 @@
+/*
+Tabs style
+*/
+
+.menu-tabs{
+    padding-bottom: 15px;
+    padding:0px;
+    li {
+        padding:0px;
+        margin:5px;
+        a{
+        padding: 10px 20px;
+        font-size: 12px;
+        display: block;
+        text-transform: uppercase;
+        background: #f5f5f5;
+        color:$skin-color;
+        display: block;
+        font-weight: 700;
+    }
+    &.active a,a:hover{
+        background-color: $skin-color;
+        color:#fff;
+    }
+    }
+    
+}

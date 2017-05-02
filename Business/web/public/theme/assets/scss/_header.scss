@@ -1,0 +1,195 @@
+/**Bootstrap 4 header style**/
+.header-top-transparent{
+    z-index: 999!important;
+}
+.navbar-light.sticky-header{
+    z-index: 999!important;
+}
+
+body .sticky-wrapper,body .sticky-wrapper.is-sticky{
+    height: auto!important;
+}
+.navbar-brand{
+    >img{
+        position: absolute;
+        top:5px;
+        &.logo-scroll{
+            opacity:0;
+        }
+    }
+}
+.navbar-nav .nav-link{
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 700;
+}
+.cart-nav .dropdown-toggle:after{
+    content: "";
+    display: none;
+}
+
+.offcanvas-nav-items{
+    .nav-link{
+        font-size: 20px;
+    }
+    .cart-nav .badge {
+   font-size: 9px;
+   top:5px;
+   right: 10px;
+}
+}
+.pushy{
+    z-index: 99999;
+}
+.pushy-open-left .site-overlay, .pushy-open-right .site-overlay{
+    z-index: 9999;
+}
+.pushy-submenu > a::after,
+.pushy-submenu > button::after {
+    background: url("../bower_components/pushy/img/arrow.svg") no-repeat;
+}
+.pushy-content{
+    ul{
+        list-style: none;
+        padding: 0px;
+    }
+}
+.pushy{
+    width: 260px;
+    a,button{
+        text-transform: uppercase;
+        font-family: $title-font;
+        font-weight:500;
+    }
+}
+.pushy-left {
+    -webkit-transform: translate3d(-260px, 0, 0);
+    -ms-transform: translate3d(-260px, 0, 0);
+    transform: translate3d(-260px, 0, 0);
+}
+.pushy-right {
+    -webkit-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
+    transform: translate3d(260px, 0, 0);
+}
+.pushy .pushy-submenu a{
+    padding: 8px 25px;
+    padding-left: 35px;
+    font-size:12px;
+}
+.float-right.menu-phone {
+    width: 150px;
+    margin-left: 15px;
+    position: relative;
+    top: -2px;
+}
+@media(min-width:992px){
+    .navbar-light.sticky-header{
+        background: transparent!important;
+    } 
+    .header-top-transparent{
+        position: absolute;
+        left:0;
+        top: 0;
+        width: 100%;
+        z-index: 9999!important;
+    }
+
+    .header-top-transparent .sticky-wrapper.is-sticky .navbar-brand{
+        >img{
+            &.logo-scroll{
+                opacity:1;
+            }
+            &.logo-default{
+                opacity: 0;
+            }
+        }
+    }
+    .header-top-transparent .navbar .nav-link{
+        color: rgba(255,255,255,0.8);
+    }
+    .header-top-transparent{
+        .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .open>.nav-link {
+            color: rgba($skin-color,1)!important;
+        }
+        .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+            color: rgba($skin-color,1)!important;
+        }
+    }
+    .header-top-transparent .sticky-wrapper.is-sticky .navbar-light{
+            background: rgba(255, 255, 255, 0.98) !important;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    }
+    .header-top-transparent .sticky-wrapper.is-sticky{
+        .navbar .nav-link{
+            color: rgba(0,0,0,0.5);
+        }
+    }
+    .navbar-toggleable-md .navbar-nav .nav-link{
+        padding-left: .8rem;
+        padding-right: .8rem;
+    }
+}
+.cart-nav{
+    .badge{
+        position: absolute;
+        top:6px;
+        right:0px;
+    }
+}
+
+@media(max-width:991px){
+    ul.nav.ml-auto.offcanvas-nav-items {
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+    .navbar-toggler{
+        border: 0px;
+    }
+    .navbar-toggler-right{
+        margin-right: 30px;
+    }
+
+    .navbar-brand > img.logo-scroll{
+        opacity:1;
+    }
+    .float-right.cart-nav.nav-item {
+        position: absolute;
+        right:0px;
+        top: 0;
+    }
+    .cart-nav .badge {
+        position: absolute;
+        top: 0px;
+        right: 6px;
+    }
+    .navbar-light.sticky-header {
+        z-index: 9999 !important;
+        background: #fff;
+    }
+    .header-top-transparent{
+        position: static;
+    }
+    .dropdown-submenu > .dropdown-menu{
+        display: block;
+    }
+    .collapse.show{
+        overflow-y: auto;
+        height: 280px;
+    }
+    .navbar-brand > img {
+        position: absolute;
+        top: 3px;
+    }
+    .navbar-header{
+        min-height: 39px;
+    }
+}
+@media(max-width:576px){
+    .navbar-toggleable-md>.container{
+        width: 100%;
+    }
+}
