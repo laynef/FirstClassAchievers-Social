@@ -27,9 +27,9 @@ server.listen(port, () => {
 })
 
 // Middleware
-// Body Parser, Morgan, and Public Compiled folder
-app.use(favicon(__dirname + '/../../web/public/favicon.ico'))
-app.use(express.static(__dirname + '/../../web/public'))
+// Body Parser, Morgan, and Build Compiled folder
+app.use(favicon(__dirname + '/../../web/build/favicon.ico'))
+app.use(express.static(__dirname + '/../../web/build'))
 app.use(cors({origin: '*'}))
 app.use(morgan('dev'))
 app.use(parser.urlencoded({ extended: true}))
