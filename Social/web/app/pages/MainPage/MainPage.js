@@ -43,8 +43,7 @@ class MainPage extends Component {
                             <div id="testimonial-background" className="col-sm-12">
                                 {testimonial
                                     .filter(e => following.followers.includes(e.user_id))
-                                    .filter(e => regex.test(e.author) 
-                                        || regex.test(e.message))
+                                    .filter(e => regex.test(e.author) || regex.test(e.message))
                                     .map((entry, i) => (
                                     <PostEntry key={i}
                                         author={entry.author}
