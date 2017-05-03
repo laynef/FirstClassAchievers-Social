@@ -149,3 +149,10 @@
 
 #HeaderComponent .drops {
   margin-right: 60px; }
+
+@media screen and (min-width: 992px) {
+  #FriendsPage {
+    margin-left: 80px; } }
+
+#FriendsPage h1 {
+  text-align: center; }

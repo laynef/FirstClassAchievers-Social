@@ -45,10 +45,10 @@ class Header extends Component {
                                     <div className="rightSpacing">
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
-                                            <img src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                            <img src={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               alt="" 
-                                              data-src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                              data-src-retina={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src-retina={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               width="32" 
                                               height="32"/>
                                         </span>
@@ -64,6 +64,12 @@ class Header extends Component {
                                           <Link to="/favorites">
                                             <i className="fs-14 fa fa-heart"></i> 
                                             Favorites
+                                          </Link>
+                                        </li>
+                                        <li>
+                                          <Link to="/friends">
+                                            <i className="fs-14 fa fa-users"></i> 
+                                            Friends
                                           </Link>
                                         </li>
                                         <li className="bg-master-lighter" onClick={() => {dispatch(logout());window.location.reload()}}>
