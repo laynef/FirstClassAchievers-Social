@@ -9,6 +9,7 @@ import followingReducer from '../reducers/following'
 import favoritesReducer from '../reducers/favorite'
 import friendsReducer from '../reducers/friends'
 import messagesReducer from '../reducers/message'
+import notifyReducer from '../reducers/notifications'
 
 
 const reducers = combineReducers({
@@ -19,7 +20,8 @@ const reducers = combineReducers({
     following: followingReducer,
     favorites: favoritesReducer,
     friends: friendsReducer,
-    messages: messagesReducer
+    messages: messagesReducer,
+    notifications: notifyReducer
 })
 
 export default reducers

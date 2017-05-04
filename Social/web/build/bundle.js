@@ -1303,6 +1303,19 @@ var actionTypes = {
 	SET_FAVORITES_PENDING: 'SET_FAVORITES_PENDING',
 	SET_FAVORITES_ERROR: 'SET_FAVORITES_ERROR',
 
+	// Notifications
+	GET_NOTIFICATIONS_SUCCESS: 'GET_NOTIFICATIONS_SUCCESS',
+	GET_NOTIFICATIONS_PENDING: 'GET_NOTIFICATIONS_PENDING',
+	GET_NOTIFICATIONS_ERROR: 'GET_NOTIFICATIONS_ERROR',
+
+	CREATE_NOTIFICATIONS_SUCCESS: 'CREATE_NOTIFICATIONS_SUCCESS',
+	CREATE_NOTIFICATIONS_PENDING: 'CREATE_NOTIFICATIONS_PENDING',
+	CREATE_NOTIFICATIONS_ERROR: 'CREATE_NOTIFICATIONS_ERROR',
+
+	SET_NOTIFICATIONS_SUCCESS: 'SET_NOTIFICATIONS_SUCCESS',
+	SET_NOTIFICATIONS_PENDING: 'SET_NOTIFICATIONS_PENDING',
+	SET_NOTIFICATIONS_ERROR: 'SET_NOTIFICATIONS_ERROR',
+
 	// Invite Friend
 	INVITE_FRIEND_SUCCESS: 'INVITE_FRIEND_SUCCESS',
 	INVITE_FRIEND_PENDING: 'INVITE_FRIEND_PENDING',
@@ -25270,8 +25283,13 @@ var _message = __webpack_require__(409);
 
 var _message2 = _interopRequireDefault(_message);
 
+var _notifications = __webpack_require__(952);
+
+var _notifications2 = _interopRequireDefault(_notifications);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// reducers
 var reducers = (0, _redux.combineReducers)({
     form: _reduxForm.reducer,
     user: _auth2.default,
@@ -25280,10 +25298,10 @@ var reducers = (0, _redux.combineReducers)({
     following: _following2.default,
     favorites: _favorite2.default,
     friends: _friends2.default,
-    messages: _message2.default
+    messages: _message2.default,
+    notifications: _notifications2.default
 });
 
-// reducers
 exports.default = reducers;
 
 /***/ }),
@@ -68753,6 +68771,98 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 952 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actionTypes2.default.GET_NOTIFICATIONS_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.GET_NOTIFICATIONS_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.GET_NOTIFICATIONS_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+        case _actionTypes2.default.SET_NOTIFICATIONS_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.SET_NOTIFICATIONS_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.SET_NOTIFICATIONS_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+        case _actionTypes2.default.CREATE_NOTIFICATIONS_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.CREATE_NOTIFICATIONS_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.CREATE_NOTIFICATIONS_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+    }
+
+    return state;
+};
+
+var _actionTypes = __webpack_require__(23);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+    pending: null,
+    error: null,
+    data: null
+};
 
 /***/ })
 /******/ ]);
