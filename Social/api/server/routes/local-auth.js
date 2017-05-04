@@ -227,11 +227,11 @@ router.post('/local/fixtures', (req, res, next) => {
         .then(response => {
             if (req.body.id == 1) {
                 Following.create({
-                    followers: [2,3,4],
+                    followers: [2,3,4,5,6,7,8],
                     user_id: req.body.id
                 })
                 Favorite.create({
-                    entries: [2,3,7,9],
+                    entries: [2,3,7,9,11],
                     user_id: req.body.id
                 })
             } else {
