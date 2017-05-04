@@ -13,6 +13,10 @@ const favicon = require('express-favicon')
 const fs = require('fs')
 const flash = require('express-flash')
 const _ = require('lodash')
+const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy
+const GoogleStrategy = require('passport-google').Strategy
+const TwitterStrategy = require('passport-twitter').Strategy
 
 
 let users = {}
@@ -41,6 +45,43 @@ app.use(session({
 }))
 app.use(cookieParser())
 app.use(flash())
+
+// Social Media Logins
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://www.example.com/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate(..., function(err, user) {
+      if (err) { return done(err) }
+      done(null, user)
+    })
+  }
+))
+passport.use(new TwitterStrategy({
+    consumerKey: TWITTER_CONSUMER_KEY,
+    consumerSecret: TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://www.example.com/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOrCreate(..., function(err, user) {
+      if (err) { return done(err) }
+      done(null, user)
+    })
+  }
+))
+passport.use(new GoogleStrategy({
+    consumerKey: GOOGLE_CONSUMER_KEY,
+    consumerSecret: GOOGLE_CONSUMER_SECRET,
+    callbackURL: "http://www.example.com/auth/google/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return done(err, user)
+      })
+  }
+))
 
 app.use('/api', routes) // when you add api routes in routes.js
 app.use('/auth', local) // when you add api routes in routes.js

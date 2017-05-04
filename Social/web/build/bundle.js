@@ -27279,6 +27279,21 @@ var LoginModal = function (_Component) {
                                                         { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
                                                         'Login'
                                                     )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '/auth/facebook' },
+                                                    'Login with Facebook'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '/auth/google' },
+                                                    'Sign In with Google'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '/auth/twitter' },
+                                                    'Sign in with Twitter'
                                                 )
                                             )
                                         )
