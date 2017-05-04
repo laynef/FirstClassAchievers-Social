@@ -27001,8 +27001,10 @@ var Header = function (_Component) {
 
       var _props = this.props,
           dispatch = _props.dispatch,
-          user = _props.user;
+          user = _props.user,
+          notifications = _props.notifications;
 
+      if (user && !notifications) return null;
       return _react2.default.createElement(
         'div',
         { id: 'HeaderComponent' },
@@ -27067,7 +27069,7 @@ var Header = function (_Component) {
                         { href: 'javascript:;', onClick: function onClick() {
                             return _this2.setState({ open: !_this2.state.open });
                           }, id: 'notification-center', className: 'icon-set globe-fill', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
-                        _react2.default.createElement('span', { className: 'bubble' })
+                        _react2.default.createElement('span', { className: '' + (!notifications[0].seen ? 'bubble' : '') })
                       )
                     ),
                     _react2.default.createElement(
@@ -27174,7 +27176,8 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(function (state) {
   return {
-    user: state.user.data
+    user: state.user.data,
+    notifications: state.notifications.data
   };
 })(Header);
 
@@ -27573,6 +27576,8 @@ var _reactRedux = __webpack_require__(9);
 
 var _reduxForm = __webpack_require__(13);
 
+var _notifications = __webpack_require__(406);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27584,15 +27589,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Notifications = function (_Component) {
     _inherits(Notifications, _Component);
 
-    function Notifications() {
+    function Notifications(props) {
         _classCallCheck(this, Notifications);
 
-        return _possibleConstructorReturn(this, (Notifications.__proto__ || Object.getPrototypeOf(Notifications)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Notifications.__proto__ || Object.getPrototypeOf(Notifications)).call(this, props));
+
+        _this.state = {
+            unread: false
+        };
+        return _this;
     }
 
     _createClass(Notifications, [{
+        key: 'checkUnread',
+        value: function checkUnread() {
+            var notifications = this.props.notifications;
+
+            return notifications.filter(function (e) {
+                return !e.seen;
+            });
+        }
+    }, {
+        key: 'markRead',
+        value: function markRead(id) {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                user = _props.user;
+
+            dispatch((0, _notifications.setNotifications)(user.id, id));
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var notifications = this.props.notifications;
 
             if (!notifications) return null;
@@ -27616,17 +27646,19 @@ var Notifications = function (_Component) {
                                     { className: 'notification-body scrollable scroll-content', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: '134px' } },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'notification-item unread clearfix' },
+                                        { className: 'notification-item ' + (!notifications[0].seen ? 'unread' : '') + ' clearfix' },
                                         _react2.default.createElement(
                                             'div',
                                             { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
                                             _react2.default.createElement('a', { href: '#', className: 'mark' })
                                         )
                                     ),
-                                    notifications.map(function (e) {
+                                    notifications.map(function (e, i) {
                                         return _react2.default.createElement(
                                             'div',
-                                            { className: 'notification-item unread clearfix' },
+                                            { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
+                                                    return _this2.markRead(e.id);
+                                                } },
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'heading' },
@@ -27692,7 +27724,8 @@ Notifications = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        notifications: state.notifications.data
+        notifications: state.notifications.data,
+        user: state.user.data
     };
 })(Notifications);
 
@@ -29934,7 +29967,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.getNotifications = getNotifications;
-exports.createNotifications = createNotifications;
 exports.setNotifications = setNotifications;
 
 var _axios = __webpack_require__(54);
@@ -29964,27 +29996,10 @@ function getNotifications(userId) {
 	};
 }
 
-function createNotifications(data, userId) {
-	return function (dispatch) {
-		dispatch({ type: _actionTypes2.default.CREATE_NOTIFICATIONS_PENDING });
-		_axios2.default.post('/api/notify/' + userId + '/', data).then(function (response) {
-			dispatch({
-				type: _actionTypes2.default.CREATE_NOTIFICATIONS_SUCCESS,
-				payload: response.data
-			});
-		}).catch(function (err) {
-			dispatch({
-				type: _actionTypes2.default.CREATE_NOTIFICATIONS_ERROR,
-				payload: err
-			});
-		});
-	};
-}
-
-function setNotifications(data, userId) {
+function setNotifications(id, userId) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_NOTIFICATIONS_PENDING });
-		_axios2.default.patch('/api/notify/' + userId + '/', data).then(function (response) {
+		_axios2.default.patch('/api/notify/' + userId + '/', { id: id }).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_NOTIFICATIONS_SUCCESS,
 				payload: response.data

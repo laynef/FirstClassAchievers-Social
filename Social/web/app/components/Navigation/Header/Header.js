@@ -20,7 +20,8 @@ class Header extends Component {
   }
 
     render() {
-        const { dispatch, user } = this.props
+        const { dispatch, user, notifications } = this.props
+        if (user && !notifications) return null
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
@@ -53,7 +54,7 @@ class Header extends Component {
                                     <div className="rightSpacing">
                                       <div className="dropdown notify">
                                         <a href="javascript:;" onClick={() => this.setState({open: !this.state.open})} id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
-                                          <span className="bubble"></span>
+                                          <span className={`${!notifications[0].seen ? 'bubble' : ''}`}></span>
                                         </a>
                                       </div>
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -121,5 +122,6 @@ class Header extends Component {
 }
 
 export default connect(state => ({
-  user: state.user.data
+  user: state.user.data,
+  notifications: state.notifications.data
 }))(Header)
