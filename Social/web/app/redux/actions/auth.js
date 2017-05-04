@@ -4,6 +4,7 @@ import { getFollowers } from './following'
 import { getProfile } from './profile'
 import { getFavorites } from './favorite'
 import { getFriends } from './friends'
+import { getNotifications } from './notifications'
 
 export function login(data) {
 	return function(dispatch) {
@@ -17,6 +18,7 @@ export function login(data) {
 					dispatch(getFollowers(response.data.id))
 					dispatch(getFavorites(response.data.id))
 					dispatch(getFriends(response.data.id))
+					dispatch(getNotifications(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({

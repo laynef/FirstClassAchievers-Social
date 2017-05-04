@@ -148,7 +148,8 @@
   margin-top: -30px; }
 
 #HeaderComponent .drops {
-  margin-right: 60px; }
+  margin-right: 60px;
+  left: -50px; }
 
 #HeaderComponent .notify {
   margin-top: 10px;
