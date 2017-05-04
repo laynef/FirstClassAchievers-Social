@@ -24,7 +24,8 @@ export function getNotifications(userId) {
 export function setNotifications(id, userId) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_NOTIFICATIONS_PENDING})
-		axios.patch(`/api/notify/${userId}/`, {id: id})
+		let data = { id: id }
+		axios.patch(`/api/notify/${userId}/`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_NOTIFICATIONS_SUCCESS,

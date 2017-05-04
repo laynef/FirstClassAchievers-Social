@@ -268,19 +268,11 @@ module.exports = {
                 res.status(200).send(resp)
             })
         },
-        post: (req, res, body) => {
-            Notification.create({
-                user_id: req.body.user_id,
-                message: req.body.message,
-                seen: false,
-                image: req.body.image
-            })
-        },
         patch: (req, res, body) => {
             Notification.update({
                 seen: true
             }, {
-                id: req.body.id
+                where: { id: req.body.id }
             })
         }
     }

@@ -27699,7 +27699,7 @@ var Notifications = function (_Component) {
                                     _react2.default.createElement(
                                         'a',
                                         { href: '#', className: '' },
-                                        'Read all notifications'
+                                        notifications.length ? 'Read all notifications' : 'No Notifications'
                                     ),
                                     _react2.default.createElement(
                                         'a',
@@ -29999,7 +29999,8 @@ function getNotifications(userId) {
 function setNotifications(id, userId) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_NOTIFICATIONS_PENDING });
-		_axios2.default.patch('/api/notify/' + userId + '/', { id: id }).then(function (response) {
+		var data = { id: id };
+		_axios2.default.patch('/api/notify/' + userId + '/', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_NOTIFICATIONS_SUCCESS,
 				payload: response.data

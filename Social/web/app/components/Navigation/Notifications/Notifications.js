@@ -62,7 +62,7 @@ class Notifications extends Component {
                                     </div>
 
                             <div className="notification-footer text-center">
-                                <a href="#" className="">Read all notifications</a>
+                                <a href="#" className="">{notifications.length ? 'Read all notifications' : 'No Notifications'}</a>
                                 <a data-toggle="refresh" className="portlet-refresh text-black pull-right" href="#">
                                     <i className="pg-refresh_new"></i>
                                 </a>
