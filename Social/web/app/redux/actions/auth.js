@@ -27,6 +27,25 @@ export function login(data) {
 	}
 }
 
+export function forgottenPassword(data) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.FORGOTTEN_PASSWORD_PENDING})
+		axios.post(`/auth/local/forgotten/password`, data)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.FORGOTTEN_PASSWORD_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.FORGOTTEN_PASSWORD_ERROR,
+						payload: err
+					})
+				})			
+	}
+}
+
 export function logout() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGOUT_PENDING})

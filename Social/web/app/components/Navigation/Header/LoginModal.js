@@ -2,15 +2,30 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../../redux/utils/ReduxForms'
-import { login } from '../../../redux/actions/auth'
+import { login, forgottenPassword } from '../../../redux/actions/auth'
 import { validate } from '../../../redux/validators/login'
+import { Link } from 'react-router'
 
 
 class LoginModal extends Component {
 
-    static formSubmit(data) {
+    constructor(props) {
+        super(props)
+        this.state = {
+            forgot: false
+        }
+    }
+
+    static formSubmitLogin(data) {
         const { dispatch, reset } = this.props
         dispatch(login(data))
+        $('#login-modal').modal('hide')
+        dispatch(reset('LoginModal'))
+    }
+
+    static formSubmitForgotten(data) {
+        const { dispatch, reset } = this.props
+        dispatch(forgottenPassword(data))
         $('#login-modal').modal('hide')
         dispatch(reset('LoginModal'))
     }
@@ -28,15 +43,28 @@ class LoginModal extends Component {
                                     <h5><span className="semi-bold">Login</span></h5>
                                     <p className="p-b-10">Login to connect with other liked minds</p>
                                     <div className="modal-body">
-                                        <Form onSubmit={handleSubmit(LoginModal.formSubmit.bind(this))}>
-                                            <Field component={renderInput} label="Email" type="email" name="email"/>
-                                            <Field component={renderInput} label="Password" type="password" name="password"/>
-                                            <div className="row">
-                                                <div className="col-sm-4 m-t-10 sm-m-t-10">
-                                                    <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                        {this.state.forgot ? (
+                                            <Form onSubmit={handleSubmit(LoginModal.formSubmitForgotten.bind(this))}>
+                                                <Field component={renderInput} label="Email" type="email" name="email"/>
+                                                <p onClick={() => this.setState({forgot: false})}>I remember my password</p>
+                                                <div className="row">
+                                                    <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                        <button type="submit" className="btn btn-primary btn-block m-t-5">Get Password</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Form>
+                                            </Form>
+                                        ) : (
+                                                <Form onSubmit={handleSubmit(LoginModal.formSubmitLogin.bind(this))}>
+                                                    <Field component={renderInput} label="Email" type="email" name="email"/>
+                                                    <Field component={renderInput} label="Password" type="password" name="password"/>
+                                                    <p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>
+                                                    <div className="row">
+                                                        <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                            <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                                        </div>
+                                                    </div>
+                                                </Form>
+                                            )}
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +78,7 @@ class LoginModal extends Component {
 }
 
 LoginModal = reduxForm({
-    form: 'LoginModal',
-    validate
+    form: 'LoginModal'
 })(LoginModal)
 
 export default connect(state => ({

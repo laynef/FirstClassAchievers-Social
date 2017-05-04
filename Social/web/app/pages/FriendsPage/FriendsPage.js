@@ -2,18 +2,30 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { getFriends } from '../../redux/actions/friends'
 
 
 class FriendsPage extends Component {
 
-    render() {
+    componentDidMount() {
+        const { dispatch, user } = this.props
+        dispatch(getFriends(user.id))
+    }
+
+    componentWillUnmount() {
         const { friends } = this.props
-        if (!friends) return null
+        localStorage.setItem('friends', JSON.stringify(friends))
+    }
+
+    render() {
+        const { friends, user } = this.props
+        if (!user) return null
+        let people = friends || JSON.parse(localStorage.getItem('friends')) || []
         return (
             <div id="FriendsPage" className="container-fluid padding-25 sm-padding-10">
                 <h1>Friends</h1>
                 <div className="row">
-                    {friends.map((e, i) => (
+                    {people.map((e, i) => (
                         <Link key={i} to={`profile/${e.user_id}`}>
                             <div className="col-md-3 m-b-10">
                                 <div className="ar-1-1 widget-1-wrapper">
@@ -52,5 +64,6 @@ FriendsPage = reduxForm({
 })(FriendsPage)
 
 export default connect(state => ({
-    friends: state.friends.data
+    friends: state.friends.data,
+    user: state.user.data
 }))(FriendsPage)
