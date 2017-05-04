@@ -156,82 +156,82 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
-    email: `zoey@email.com`,
-    password: `pass1234`,
-    firstName: 'Zoey',
-    lastName: 'Jefferson',
-    image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226771/xsx0fgn0tbsnbirbfu5n.jpg',
-    id: 5
-}).then(resp => {
-    Testimonial.create({
-        author: 'Zoey Jefferson',
-        message: `Aenean volutpat sollicitudin cursus. Suspendisse leo lorem, ultrices sed lacus sed, tempor tempus neque. Cras in erat sit amet diam aliquam tempus ut quis eros. Nam ornare, ipsum sed laoreet lobortis, metus quam scelerisque quam, id dictum dui mauris eu elit. Integer ornare, nibh in efficitur imperdiet, erat nulla lobortis odio, sed suscipit nisi erat in sapien. Quisque eget nulla et ligula tincidunt faucibus. Nulla sollicitudin urna mi, a vestibulum libero euismod sit amet.`,
-        user_id: 5,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226771/xsx0fgn0tbsnbirbfu5n.jpg',
-        likes: 0
-    })
-})
-.catch(err => {
+// axios.post(`http://localhost:3214/auth/local/fixtures`, {
+//     email: `zoey@email.com`,
+//     password: `pass1234`,
+//     firstName: 'Zoey',
+//     lastName: 'Jefferson',
+//     image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226771/xsx0fgn0tbsnbirbfu5n.jpg',
+//     id: 5
+// }).then(resp => {
+//     Testimonial.create({
+//         author: 'Zoey Jefferson',
+//         message: `Aenean volutpat sollicitudin cursus. Suspendisse leo lorem, ultrices sed lacus sed, tempor tempus neque. Cras in erat sit amet diam aliquam tempus ut quis eros. Nam ornare, ipsum sed laoreet lobortis, metus quam scelerisque quam, id dictum dui mauris eu elit. Integer ornare, nibh in efficitur imperdiet, erat nulla lobortis odio, sed suscipit nisi erat in sapien. Quisque eget nulla et ligula tincidunt faucibus. Nulla sollicitudin urna mi, a vestibulum libero euismod sit amet.`,
+//         user_id: 5,
+//         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226771/xsx0fgn0tbsnbirbfu5n.jpg',
+//         likes: 0
+//     })
+// })
+// .catch(err => {
 
-})
+// })
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
-    email: `emily@email.com`,
-    password: `pass1234`,
-    firstName: 'Emily',
-    lastName: 'Mae',
-    image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493269025/fblntkte5ximztctmya6.jpg',
-    id: 6
-}).then(resp => {
-    Testimonial.create({
-        author: 'Emily Mae',
-        message: `In vitae magna id odio condimentum bibendum. Praesent dui nibh, bibendum in nibh non, hendrerit aliquam urna. Vestibulum interdum neque eget posuere consectetur. Cras ut consectetur magna. Donec sagittis justo nec rhoncus venenatis. Nunc vel convallis justo. Pellentesque et risus molestie, semper lacus mollis, facilisis dolor. Morbi id dolor ante. Sed semper libero sed lacus scelerisque accumsan. Suspendisse dolor elit, faucibus ut tellus ac, fermentum sollicitudin eros. Vivamus sagittis, ex in sodales fermentum, mi risus pharetra metus, eu volutpat purus ex et dui. Maecenas dignissim enim in sollicitudin tincidunt. Proin aliquam sodales nunc. Fusce at eros vulputate, fermentum metus eu, condimentum tortor.`,
-        user_id: 6,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493269025/fblntkte5ximztctmya6.jpg',
-        likes: 0
-    })
-})
-.catch(err => {
+// axios.post(`http://localhost:3214/auth/local/fixtures`, {
+//     email: `emily@email.com`,
+//     password: `pass1234`,
+//     firstName: 'Emily',
+//     lastName: 'Mae',
+//     image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493269025/fblntkte5ximztctmya6.jpg',
+//     id: 6
+// }).then(resp => {
+//     Testimonial.create({
+//         author: 'Emily Mae',
+//         message: `In vitae magna id odio condimentum bibendum. Praesent dui nibh, bibendum in nibh non, hendrerit aliquam urna. Vestibulum interdum neque eget posuere consectetur. Cras ut consectetur magna. Donec sagittis justo nec rhoncus venenatis. Nunc vel convallis justo. Pellentesque et risus molestie, semper lacus mollis, facilisis dolor. Morbi id dolor ante. Sed semper libero sed lacus scelerisque accumsan. Suspendisse dolor elit, faucibus ut tellus ac, fermentum sollicitudin eros. Vivamus sagittis, ex in sodales fermentum, mi risus pharetra metus, eu volutpat purus ex et dui. Maecenas dignissim enim in sollicitudin tincidunt. Proin aliquam sodales nunc. Fusce at eros vulputate, fermentum metus eu, condimentum tortor.`,
+//         user_id: 6,
+//         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493269025/fblntkte5ximztctmya6.jpg',
+//         likes: 0
+//     })
+// })
+// .catch(err => {
 
-})
+// })
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
-    email: `nicole@email.com`,
-    password: `pass1234`,
-    firstName: 'Nicole',
-    lastName: 'Rock',
-    image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252781/vgaesfbvim3uybok6rq2.jpg',
-    id: 7
-}).then(resp => {
-    Testimonial.create({
-        author: 'Nicole Rock',
-        message: `Donec ut ullamcorper felis, nec scelerisque arcu. Integer venenatis, arcu id fermentum commodo, massa nisl viverra ipsum, sed vestibulum lacus odio sit amet leo. Quisque pellentesque risus augue, dignissim laoreet sem lobortis vitae. Sed euismod id velit a iaculis. Ut eget eleifend ligula. Donec quis porta quam. Ut sit amet placerat ante. Praesent vel lorem fringilla, bibendum nibh eget, pulvinar mauris. Fusce et neque sed libero convallis vestibulum. Vestibulum eu mauris aliquet sem tristique dictum. Nunc hendrerit at arcu eget aliquet. Maecenas non arcu non dolor rhoncus gravida non vel lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus ac sapien sed odio ultrices fringilla a sed metus. Nam malesuada magna dui, eu egestas enim suscipit nec.`,
-        user_id: 7,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252781/vgaesfbvim3uybok6rq2.jpg',
-        likes: 0
-    })
-})
-.catch(err => {
+// axios.post(`http://localhost:3214/auth/local/fixtures`, {
+//     email: `nicole@email.com`,
+//     password: `pass1234`,
+//     firstName: 'Nicole',
+//     lastName: 'Rock',
+//     image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252781/vgaesfbvim3uybok6rq2.jpg',
+//     id: 7
+// }).then(resp => {
+//     Testimonial.create({
+//         author: 'Nicole Rock',
+//         message: `Donec ut ullamcorper felis, nec scelerisque arcu. Integer venenatis, arcu id fermentum commodo, massa nisl viverra ipsum, sed vestibulum lacus odio sit amet leo. Quisque pellentesque risus augue, dignissim laoreet sem lobortis vitae. Sed euismod id velit a iaculis. Ut eget eleifend ligula. Donec quis porta quam. Ut sit amet placerat ante. Praesent vel lorem fringilla, bibendum nibh eget, pulvinar mauris. Fusce et neque sed libero convallis vestibulum. Vestibulum eu mauris aliquet sem tristique dictum. Nunc hendrerit at arcu eget aliquet. Maecenas non arcu non dolor rhoncus gravida non vel lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus ac sapien sed odio ultrices fringilla a sed metus. Nam malesuada magna dui, eu egestas enim suscipit nec.`,
+//         user_id: 7,
+//         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252781/vgaesfbvim3uybok6rq2.jpg',
+//         likes: 0
+//     })
+// })
+// .catch(err => {
 
-})
+// })
 
-axios.post(`http://localhost:3214/auth/local/fixtures`, {
-    email: `vicki@email.com`,
-    password: `pass1234`,
-    firstName: 'Vicki',
-    lastName: 'Garcia',
-    image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252737/hljqkpd5lm1utaskssva.jpg',
-    id: 8
-}).then(resp => {
-    Testimonial.create({
-        author: 'Vicki Garcia',
-        message: `Nunc eget pulvinar dolor. Pellentesque dignissim felis nec elit sollicitudin tincidunt. Nulla sed ligula id ex convallis porta a at sem. Praesent sagittis tristique convallis. Nam luctus vulputate turpis eleifend cursus. Cras felis ante, lacinia sit amet molestie nec, vulputate ut mauris. Duis malesuada, augue id porta consectetur, neque lorem luctus lectus, eu condimentum urna ligula vel mauris. Mauris placerat elementum finibus. Vestibulum sit amet porta tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam sagittis turpis aliquam enim suscipit, tincidunt venenatis tellus accumsan. Sed feugiat arcu vel felis porttitor, ut faucibus sem posuere. Curabitur urna tortor, vulputate in suscipit viverra, ultricies quis orci.`,
-        user_id: 8,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493252737/hljqkpd5lm1utaskssva.jpg',
-        likes: 0
-    })
-})
-.catch(err => {
+// axios.post(`http://localhost:3214/auth/local/fixtures`, {
+//     email: `vicki@email.com`,
+//     password: `pass1234`,
+//     firstName: 'Vicki',
+//     lastName: 'Garcia',
+//     image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493913039/htnqjfab5nozaerolmk8.jpg',
+//     id: 8
+// }).then(resp => {
+//     Testimonial.create({
+//         author: 'Vicki Garcia',
+//         message: `Nunc eget pulvinar dolor. Pellentesque dignissim felis nec elit sollicitudin tincidunt. Nulla sed ligula id ex convallis porta a at sem. Praesent sagittis tristique convallis. Nam luctus vulputate turpis eleifend cursus. Cras felis ante, lacinia sit amet molestie nec, vulputate ut mauris. Duis malesuada, augue id porta consectetur, neque lorem luctus lectus, eu condimentum urna ligula vel mauris. Mauris placerat elementum finibus. Vestibulum sit amet porta tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam sagittis turpis aliquam enim suscipit, tincidunt venenatis tellus accumsan. Sed feugiat arcu vel felis porttitor, ut faucibus sem posuere. Curabitur urna tortor, vulputate in suscipit viverra, ultricies quis orci.`,
+//         user_id: 8,
+//         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493913039/htnqjfab5nozaerolmk8.jpg',
+//         likes: 0
+//     })
+// })
+// .catch(err => {
 
-})
+// })

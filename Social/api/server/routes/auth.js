@@ -16,12 +16,12 @@ const TwitterStrategy = require('passport-twitter').Strategy
 // SMS (No Password) Login
 router.get('/sms', 
     () => {}
-);
+)
 
 // Twitter Login
 router.get('/twitter', 
     passport.authenticate('twitter')
-);
+)
 
 // Google Login
 router.get('/google',
@@ -32,7 +32,9 @@ router.get('/google',
 
 // Facebook Login
 router.get('/facebook',
-  passport.authenticate('facebook', { scope: ['read_stream', 'publish_actions'] })
+    passport.authenticate('facebook', { 
+        scope: ['read_stream', 'publish_actions'] 
+    })
 )
 
 // local auth
