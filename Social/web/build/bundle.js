@@ -27699,7 +27699,7 @@ var Notifications = function (_Component) {
                                         return _react2.default.createElement(
                                             'div',
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
-                                                    return dispatch((0, _notifications.setNotifications)(id));
+                                                    return dispatch((0, _notifications.setNotifications)(e.id));
                                                 } },
                                             _react2.default.createElement(
                                                 'div',

@@ -14,7 +14,7 @@ class Notifications extends Component {
     }
 
     render() {
-        const { notifications, dispatch} = this.props
+        const { notifications, dispatch } = this.props
         if (!notifications) return null
         return (
             <div id="Notifications">
@@ -33,7 +33,7 @@ class Notifications extends Component {
                                     {notifications
                                         .sort((a,b) => b.id - a.id)
                                         .map((e, i) => (
-                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => dispatch(setNotifications(id))}>
+                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => dispatch(setNotifications(e.id))}>
                                             <div className="heading">
                                                     <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
                                                         <img width="30" height="30" 
