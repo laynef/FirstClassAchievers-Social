@@ -13,6 +13,11 @@ const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 
 
+// SMS (No Password) Login
+router.get('/sms', 
+    () => {}
+);
+
 // Twitter Login
 router.get('/twitter', 
     passport.authenticate('twitter')

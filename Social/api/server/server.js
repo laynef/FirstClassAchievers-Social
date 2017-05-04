@@ -17,6 +17,7 @@ const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
+const config = require('../config/config')
 
 
 let users = {}
@@ -48,9 +49,9 @@ app.use(flash())
 
 // Social Media Logins
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://www.example.com/auth/facebook/callback"
+    clientID: config.facebook_api_key,
+    clientSecret: config.facebook_api_secret,
+    callbackURL: "http://localhost:3214/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(..., function(err, user) {
@@ -60,9 +61,9 @@ passport.use(new FacebookStrategy({
   }
 ))
 passport.use(new TwitterStrategy({
-    consumerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: "http://www.example.com/auth/twitter/callback"
+    consumerKey: config.twitter_api_key,
+    consumerSecret: config.twitter_api_secret,
+    callbackURL: "http://localhost:3214/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
     User.findOrCreate(..., function(err, user) {
@@ -72,9 +73,9 @@ passport.use(new TwitterStrategy({
   }
 ))
 passport.use(new GoogleStrategy({
-    consumerKey: GOOGLE_CONSUMER_KEY,
-    consumerSecret: GOOGLE_CONSUMER_SECRET,
-    callbackURL: "http://www.example.com/auth/google/callback"
+    consumerKey: config.google_client_id,
+    consumerSecret: config.google_client_secret,
+    callbackURL: "http://localhost:3214/auth/google/callback"
   },
   function(token, tokenSecret, profile, done) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
