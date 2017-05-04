@@ -27711,7 +27711,9 @@ var Notifications = function (_Component) {
                                             _react2.default.createElement('a', { href: '#', className: 'mark' })
                                         )
                                     ),
-                                    notifications.map(function (e, i) {
+                                    notifications.sort(function (a, b) {
+                                        return b.id - a.id;
+                                    }).map(function (e, i) {
                                         return _react2.default.createElement(
                                             'div',
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {

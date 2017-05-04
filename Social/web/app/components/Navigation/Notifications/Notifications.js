@@ -40,7 +40,9 @@ class Notifications extends Component {
                                         </div>
                                     </div>
  
-                                    {notifications.map((e, i) => (
+                                    {notifications
+                                        .sort((a,b) => b.id - a.id)
+                                        .map((e, i) => (
                                         <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => this.markRead(e.id)}>
                                             <div className="heading">
                                                     <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
