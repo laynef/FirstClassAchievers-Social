@@ -27704,7 +27704,7 @@ var Notifications = function (_Component) {
                                     { className: 'notification-body scrollable scroll-content', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: '134px' } },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'notification-item ' + (!notifications[0].seen ? 'unread' : '') + ' clearfix' },
+                                        { className: 'notification-item ' + (notifications.length > 0 && !notifications[0].seen ? 'unread' : '') + ' clearfix' },
                                         _react2.default.createElement(
                                             'div',
                                             { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
@@ -27757,7 +27757,7 @@ var Notifications = function (_Component) {
                                     _react2.default.createElement(
                                         'a',
                                         { href: '#', className: '' },
-                                        notifications.length ? 'Read all notifications' : 'No Notifications'
+                                        notifications.length > 0 ? 'Read all notifications' : 'No Notifications'
                                     ),
                                     _react2.default.createElement(
                                         'a',
