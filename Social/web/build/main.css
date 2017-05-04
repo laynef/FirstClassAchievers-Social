@@ -144,8 +144,8 @@
 
 #HeaderComponent .chatLink {
   float: right;
-  margin-top: 12px;
-  transform: scale(1.1); }
+  transform: scale(1.1);
+  margin-top: -30px; }
 
 #HeaderComponent .drops {
   margin-right: 60px; }
