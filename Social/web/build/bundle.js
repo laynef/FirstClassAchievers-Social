@@ -27127,7 +27127,7 @@ var Header = function (_Component) {
                         { href: 'javascript:;', onClick: function onClick() {
                             return _this2.setState({ open: !_this2.state.open });
                           }, id: 'notification-center', className: 'icon-set globe-fill', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
-                        _react2.default.createElement('span', { className: '' + (!notifications[0].seen ? 'bubble' : '') })
+                        _react2.default.createElement('span', { className: '' + (notifications.length > 0 && !notifications[0].seen ? 'bubble' : '') })
                       )
                     ),
                     _react2.default.createElement(
