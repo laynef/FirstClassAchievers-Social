@@ -5,6 +5,7 @@ const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
 const Message = require('../../../database/models/index').Message
+const Notification = require('../../../database/models/index').Notification
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -221,6 +222,31 @@ module.exports = {
                         where: { user_id: req.params.userId }
                     })
                 }
+            })
+        }
+    },
+    notify: {
+        get: (req, res, body) => {
+            Notification.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(resp => {
+                res.status(200).send(resp)
+            })
+        },
+        post: (req, res, body) => {
+            Notification.create({
+                user_id: req.body.user_id,
+                message: req.body.message,
+                seen: false,
+                image: req.body.image
+            })
+        },
+        patch: (req, res, body) => {
+            Notification.update({
+                seen: true
+            }, {
+                id: req.body.id
             })
         }
     }
