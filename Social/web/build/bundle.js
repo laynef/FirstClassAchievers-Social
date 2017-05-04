@@ -68500,6 +68500,8 @@ var _reactRedux = __webpack_require__(9);
 
 var _reduxForm = __webpack_require__(14);
 
+var _reactRouter = __webpack_require__(61);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68511,25 +68513,82 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FriendsPage = function (_Component) {
     _inherits(FriendsPage, _Component);
 
-    function FriendsPage(props, context) {
+    function FriendsPage() {
         _classCallCheck(this, FriendsPage);
 
-        var _this = _possibleConstructorReturn(this, (FriendsPage.__proto__ || Object.getPrototypeOf(FriendsPage)).call(this, props, context));
-
-        _this.state = {};
-        return _this;
+        return _possibleConstructorReturn(this, (FriendsPage.__proto__ || Object.getPrototypeOf(FriendsPage)).apply(this, arguments));
     }
 
     _createClass(FriendsPage, [{
         key: 'render',
         value: function render() {
+            var friends = this.props.friends;
+
+            if (!friends) return null;
             return _react2.default.createElement(
                 'div',
-                { id: 'FriendsPage' },
+                { id: 'FriendsPage', className: 'container-fluid padding-25 sm-padding-10' },
                 _react2.default.createElement(
                     'h1',
                     null,
                     'Friends'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    friends.map(function (e, i) {
+                        return _react2.default.createElement(
+                            _reactRouter.Link,
+                            { to: 'profile/' + e.user_id },
+                            _react2.default.createElement(
+                                'div',
+                                { key: i, className: 'col-md-3 m-b-10' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'ar-1-1 widget-1-wrapper' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin',
+                                            style: { backgroundImage: 'url(' + e.image + ')' } },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'panel-heading' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'panel-controls' },
+                                                _react2.default.createElement(
+                                                    'ul',
+                                                    null,
+                                                    _react2.default.createElement(
+                                                        'li',
+                                                        null,
+                                                        _react2.default.createElement(
+                                                            _reactRouter.Link,
+                                                            { to: 'profile/' + e.user_id, className: 'portlet-refresh', 'data-toggle': 'refresh' },
+                                                            _react2.default.createElement('i', { className: 'portlet-icon portlet-icon-refresh-lg-white' })
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'panel-body' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'pull-bottom bottom-left bottom-right padding-25' },
+                                                _react2.default.createElement(
+                                                    'h3',
+                                                    { className: 'text-white' },
+                                                    e.firstName + ' ' + e.lastName
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        );
+                    })
                 )
             );
         }
@@ -68543,7 +68602,9 @@ FriendsPage = (0, _reduxForm.reduxForm)({
 })(FriendsPage);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        friends: state.friends.data
+    };
 })(FriendsPage);
 
 /***/ })
