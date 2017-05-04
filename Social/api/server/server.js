@@ -18,6 +18,7 @@ const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 const config = require('../config/config')
+const User = require('../../database/models/user')
 
 
 let users = {}
@@ -51,10 +52,10 @@ app.use(flash())
 passport.use(new FacebookStrategy({
     clientID: config.facebook_api_key,
     clientSecret: config.facebook_api_secret,
-    callbackURL: "http://localhost:3214/auth/facebook/callback"
+    callbackURL: "https://www.example.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({where: {email: profile.emails[0]}}, function(err, user) {
+    User.findOrCreate({where: {email: profile.emails[0]} }, function(err, user) {
       if (err) { return done(err) }
       done(null, user)
     })
@@ -63,10 +64,10 @@ passport.use(new FacebookStrategy({
 passport.use(new TwitterStrategy({
     consumerKey: config.twitter_api_key,
     consumerSecret: config.twitter_api_secret,
-    callbackURL: "http://localhost:3214/auth/twitter/callback"
+    callbackURL: "https://www.example.com/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
-    User.findOrCreate({where: {email: profile.emails[0]}}, function(err, user) {
+    User.findOrCreate({where: {email: profile.emails[0]} }, function(err, user) {
       if (err) { return done(err) }
       done(null, user)
     })
@@ -75,10 +76,10 @@ passport.use(new TwitterStrategy({
 passport.use(new GoogleStrategy({
     consumerKey: config.google_client_id,
     consumerSecret: config.google_client_secret,
-    callbackURL: "http://localhost:3214/auth/google/callback"
+    callbackURL: "https://www.example.com/auth/google/callback"
   },
   function(token, tokenSecret, profile, done) {
-      User.findOrCreate({ email: profile.emails[0] }, function (err, user) {
+      User.findOrCreate({ where: {email: profile.emails[0]} }, function (err, user) {
         return done(err, user)
       })
   }
