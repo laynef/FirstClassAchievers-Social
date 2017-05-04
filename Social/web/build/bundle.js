@@ -68539,16 +68539,16 @@ var FriendsPage = function (_Component) {
                     friends.map(function (e, i) {
                         return _react2.default.createElement(
                             _reactRouter.Link,
-                            { to: 'profile/' + e.user_id },
+                            { key: i, to: 'profile/' + e.user_id },
                             _react2.default.createElement(
                                 'div',
-                                { key: i, className: 'col-md-3 m-b-10' },
+                                { className: 'col-md-3 m-b-10' },
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'ar-1-1 widget-1-wrapper' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin',
+                                        { className: 'imgs widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin',
                                             style: { backgroundImage: 'url(' + e.image + ')' } },
                                         _react2.default.createElement(
                                             'div',
@@ -68563,8 +68563,8 @@ var FriendsPage = function (_Component) {
                                                         'li',
                                                         null,
                                                         _react2.default.createElement(
-                                                            _reactRouter.Link,
-                                                            { to: 'profile/' + e.user_id, className: 'portlet-refresh', 'data-toggle': 'refresh' },
+                                                            'a',
+                                                            { className: 'portlet-refresh', 'data-toggle': 'refresh' },
                                                             _react2.default.createElement('i', { className: 'portlet-icon portlet-icon-refresh-lg-white' })
                                                         )
                                                     )

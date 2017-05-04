@@ -14,18 +14,18 @@ class FriendsPage extends Component {
                 <h1>Friends</h1>
                 <div className="row">
                     {friends.map((e, i) => (
-                        <Link to={`profile/${e.user_id}`}>
-                            <div key={i} className="col-md-3 m-b-10">
+                        <Link key={i} to={`profile/${e.user_id}`}>
+                            <div className="col-md-3 m-b-10">
                                 <div className="ar-1-1 widget-1-wrapper">
-                                    <div className="widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin"
+                                    <div className="imgs widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin"
                                         style={{backgroundImage: `url(${e.image})`}}>
                                         <div className="panel-heading">
                                             <div className="panel-controls">
                                                 <ul>
                                                     <li>
-                                                        <Link to={`profile/${e.user_id}`} className="portlet-refresh" data-toggle="refresh">
+                                                        <a className="portlet-refresh" data-toggle="refresh">
                                                             <i className="portlet-icon portlet-icon-refresh-lg-white"></i>
-                                                        </Link>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
