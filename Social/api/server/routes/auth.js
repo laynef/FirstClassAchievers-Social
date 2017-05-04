@@ -7,7 +7,28 @@ const Favorite = require('../../../database/models/index').Favorite
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
+const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+const TwitterStrategy = require('passport-twitter').Strategy
 
+
+// Twitter Login
+router.get('/twitter', 
+    passport.authenticate('twitter')
+);
+
+// Google Login
+router.get('/google',
+  passport.authenticate('google', { 
+      scope: ['https://www.googleapis.com/auth/plus.login'] 
+    })
+)
+
+// Facebook Login
+router.get('/facebook',
+  passport.authenticate('facebook', { scope: ['read_stream', 'publish_actions'] })
+)
 
 // local auth
 router.get('/local/user/:id', (req, res, next) => {
