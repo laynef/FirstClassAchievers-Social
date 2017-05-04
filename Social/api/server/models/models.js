@@ -95,26 +95,22 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
+                if (req.body.followers.includes(req.params.userId)) {
+                Profile.findAll({ where: {user_id: req.params.userId} })
+                    .then(respond => {
+                        Notification.create({
+                            user_id: req.params.userId,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
+                            seen: false,
+                            image: respond[0].dataValues.image
+                        })
+                    })
+                }
                 Following.findAll({
                     where: { user_id: req.params.userId }
                 })
                 .then(resp => {
-                    if (req.body.followers.includes(req.params.userId)) {
-                        Profile.findAll({ where: {user_id: req.params.userId} })
-                            .then(respond => {
-                                Notification.create({
-                                    user_id: req.params.userId,
-                                    message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
-                                    seen: false,
-                                    image: respond[0].dataValues.image
-                                })
-                                .then(respp => {
-                                    res.status(200).send(resp[0])
-                                })
-                            })
-                    } else {
-                        res.status(200).send(resp[0])
-                    }
+                    res.status(200).send(resp[0])
                 })
             })
         }
