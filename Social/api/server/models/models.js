@@ -99,7 +99,7 @@ module.exports = {
                     where: { user_id: req.params.userId }
                 })
                 .then(resp => {
-                    if (resp[0].dataValues.followers.includes(req.params.userId)) {
+                    if (req.body.followers.includes(req.params.userId)) {
                         Profile.findAll({ where: {user_id: req.params.userId} })
                             .then(respond => {
                                 Notification.create({
@@ -108,9 +108,13 @@ module.exports = {
                                     seen: false,
                                     image: respond[0].dataValues.image
                                 })
+                                .then(respp => {
+                                    res.status(200).send(resp[0])
+                                })
                             })
+                    } else {
+                        res.status(200).send(resp[0])
                     }
-                    res.status(200).send(resp[0])
                 })
             })
         }
