@@ -27273,27 +27273,51 @@ var LoginModal = function (_Component) {
                                                 { className: 'row' },
                                                 _react2.default.createElement(
                                                     'div',
-                                                    { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                    { className: 'col-sm-12 m-t-10 sm-m-t-10' },
                                                     _react2.default.createElement(
                                                         'button',
                                                         { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
                                                         'Login'
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { className: 'btn btn-complete btn-block m-t-5' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'fa fa-facebook' },
+                                                            _react2.default.createElement(
+                                                                'a',
+                                                                { style: { color: 'white' }, href: '/auth/facebook' },
+                                                                'Login with Facebook'
+                                                            )
+                                                        )
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { className: 'btn btn-danger btn-block m-t-5' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'fa fa-google-plus' },
+                                                            _react2.default.createElement(
+                                                                'a',
+                                                                { style: { color: 'white' }, href: '/auth/google' },
+                                                                'Sign In with Google'
+                                                            )
+                                                        )
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { className: 'btn btn-info btn-block m-t-5' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'fa fa-twitter' },
+                                                            _react2.default.createElement(
+                                                                'a',
+                                                                { style: { color: 'white' }, href: '/auth/twitter' },
+                                                                'Sign in with Twitter'
+                                                            )
+                                                        )
                                                     )
-                                                ),
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: '/auth/facebook' },
-                                                    'Login with Facebook'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: '/auth/google' },
-                                                    'Sign In with Google'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'a',
-                                                    { href: '/auth/twitter' },
-                                                    'Sign in with Twitter'
                                                 )
                                             )
                                         )

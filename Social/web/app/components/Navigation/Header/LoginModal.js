@@ -59,12 +59,18 @@ class LoginModal extends Component {
                                                     <Field component={renderInput} label="Password" type="password" name="password"/>
                                                     <p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>
                                                     <div className="row">
-                                                        <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                        <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                             <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                                            <button className="btn btn-complete btn-block m-t-5">
+                                                                <i className="fa fa-facebook"><a style={{color: 'white'}} href="/auth/facebook">Login with Facebook</a></i>
+                                                            </button>
+                                                            <button className="btn btn-danger btn-block m-t-5">
+                                                                <i className="fa fa-google-plus"><a style={{color: 'white'}} href="/auth/google">Sign In with Google</a></i>
+                                                            </button>
+                                                            <button className="btn btn-info btn-block m-t-5">
+                                                                <i className="fa fa-twitter"><a style={{color: 'white'}} href="/auth/twitter">Sign in with Twitter</a></i>
+                                                            </button>
                                                         </div>
-                                                        <a href="/auth/facebook">Login with Facebook</a>
-                                                        <a href="/auth/google">Sign In with Google</a>
-                                                        <a href="/auth/twitter">Sign in with Twitter</a>
                                                     </div>
                                                 </Form>
                                             )}
