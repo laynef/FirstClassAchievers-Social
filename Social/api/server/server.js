@@ -15,7 +15,7 @@ const flash = require('express-flash')
 const _ = require('lodash')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
-const GoogleStrategy = require('passport-google').Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 
 

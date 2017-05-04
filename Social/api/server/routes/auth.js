@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 
 
