@@ -12,6 +12,13 @@ import Notifications  from '../Notifications/Notifications'
 
 class Header extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false
+    }
+  }
+
     render() {
         const { dispatch, user } = this.props
         return (
@@ -45,7 +52,7 @@ class Header extends Component {
                                   {(user && user.id) ? (
                                     <div className="rightSpacing">
                                       <div className="dropdown notify">
-                                        <a href="javascript:;" id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
+                                        <a href="javascript:;" onClick={() => this.setState({open: !this.state.open})} id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
                                           <span className="bubble"></span>
                                         </a>
                                       </div>
@@ -85,7 +92,7 @@ class Header extends Component {
                                           </Link>
                                         </li>
                                       </ul>
-                                      <Notifications />
+                                      <Notifications open={this.state.open} />
                                       <a href="#" 
                                         className="chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" 
                                         data-toggle="quickview" 

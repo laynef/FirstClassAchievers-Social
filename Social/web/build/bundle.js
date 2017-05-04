@@ -26980,15 +26980,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Header = function (_Component) {
   _inherits(Header, _Component);
 
-  function Header() {
+  function Header(props) {
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+    _this.state = {
+      open: false
+    };
+    return _this;
   }
 
   _createClass(Header, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           dispatch = _props.dispatch,
           user = _props.user;
@@ -27054,7 +27061,9 @@ var Header = function (_Component) {
                       { className: 'dropdown notify' },
                       _react2.default.createElement(
                         'a',
-                        { href: 'javascript:;', id: 'notification-center', className: 'icon-set globe-fill', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
+                        { href: 'javascript:;', onClick: function onClick() {
+                            return _this2.setState({ open: !_this2.state.open });
+                          }, id: 'notification-center', className: 'icon-set globe-fill', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
                         _react2.default.createElement('span', { className: 'bubble' })
                       )
                     ),
@@ -27126,7 +27135,7 @@ var Header = function (_Component) {
                         )
                       )
                     ),
-                    _react2.default.createElement(_Notifications2.default, null),
+                    _react2.default.createElement(_Notifications2.default, { open: this.state.open }),
                     _react2.default.createElement('a', { href: '#',
                       className: 'chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs',
                       'data-toggle': 'quickview',
@@ -68925,10 +68934,10 @@ var Notifications = function (_Component) {
                 { id: 'Notifications' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'dropdown open' },
+                    { className: 'dropdown ' + (this.props.open ? 'open' : '') },
                     _react2.default.createElement(
                         'div',
-                        { className: 'dropdown-menu notification-toggle', role: 'menu', 'aria-labelledby': 'notification-center' },
+                        { className: 'dropdown-menu notification-toggle nots', role: 'menu', 'aria-labelledby': 'notification-center' },
                         _react2.default.createElement(
                             'div',
                             { className: 'notification-panel' },

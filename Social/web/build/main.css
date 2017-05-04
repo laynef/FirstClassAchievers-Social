@@ -155,6 +155,10 @@
   float: left;
   padding: 0 15px; }
 
+#HeaderComponent .nots {
+  left: -360px;
+  top: 6px; }
+
 @media screen and (min-width: 992px) {
   #FriendsPage {
     margin-left: 80px; } }

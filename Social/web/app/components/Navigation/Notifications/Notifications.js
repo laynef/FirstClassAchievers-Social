@@ -8,8 +8,8 @@ class Notifications extends Component {
     render() {
         return (
             <div id="Notifications">
-                <div className="dropdown open">
-                    <div className="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
+                <div className={`dropdown ${this.props.open ? 'open': ''}`}>
+                    <div className="dropdown-menu notification-toggle nots" role="menu" aria-labelledby="notification-center">
                         <div className="notification-panel">
                             <div className="scroll-wrapper notification-body scrollable" style={{position: 'relative'}}>
                                 <div className="notification-body scrollable scroll-content" style={{height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: '134px'}}>
