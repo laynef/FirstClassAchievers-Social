@@ -43,6 +43,11 @@ class Header extends Component {
                                 <div className="dropdown pull-right">
                                   {(user && user.id) ? (
                                     <div className="rightSpacing">
+                                      <div className="dropdown notify">
+                                        <a href="javascript:;" id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
+                                          <span className="bubble"></span>
+                                        </a>
+                                      </div>
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
                                             <img src={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 

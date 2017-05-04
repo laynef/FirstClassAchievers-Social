@@ -140,7 +140,7 @@
   overflow: scroll; }
 
 #HeaderComponent .rightSpacing {
-  width: 85px; }
+  width: 130px; }
 
 #HeaderComponent .chatLink {
   float: right;
@@ -149,6 +149,11 @@
 
 #HeaderComponent .drops {
   margin-right: 60px; }
+
+#HeaderComponent .notify {
+  margin-top: 10px;
+  float: left;
+  padding: 0 15px; }
 
 @media screen and (min-width: 992px) {
   #FriendsPage {

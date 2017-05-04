@@ -1,7 +1,7 @@
 #HeaderComponent {
 
     .rightSpacing {
-        width: 85px;
+        width: 130px;
     }
 
     .chatLink {
@@ -12,5 +12,11 @@
 
     .drops {
         margin-right: 60px;
+    }
+
+    .notify {
+        margin-top: 10px;
+        float: left;
+        padding: 0 15px;
     }
 }

@@ -27046,6 +27046,15 @@ var Header = function (_Component) {
                     'div',
                     { className: 'rightSpacing' },
                     _react2.default.createElement(
+                      'div',
+                      { className: 'dropdown notify' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'javascript:;', id: 'notification-center', className: 'icon-set globe-fill', 'data-toggle': 'dropdown', 'aria-expanded': 'false' },
+                        _react2.default.createElement('span', { className: 'bubble' })
+                      )
+                    ),
+                    _react2.default.createElement(
                       'button',
                       { className: 'profile-dropdown-toggle', type: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
                       _react2.default.createElement(
