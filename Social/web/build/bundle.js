@@ -28896,6 +28896,8 @@ var _PostEntry2 = _interopRequireDefault(_PostEntry);
 
 var _favorite = __webpack_require__(107);
 
+__webpack_require__(951);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28950,9 +28952,7 @@ var FavoritesPage = function (_Component) {
                     { id: 'testimonial-background', className: 'col-sm-12' },
                     testimonial.filter(function (e) {
                         return favorites.entries.includes(e.id);
-                    }).filter(function (e) {
-                        return regex.test(e.author) || regex.test(e.message);
-                    }).map(function (entry, i) {
+                    }).mainSearch(this.state.searchTerm).map(function (entry, i) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
                             message: entry.message,
@@ -29014,6 +29014,8 @@ var _following = __webpack_require__(143);
 
 var _testimonial = __webpack_require__(78);
 
+__webpack_require__(951);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29056,7 +29058,6 @@ var MainPage = function (_Component) {
                 following = _props2.following,
                 favorites = _props2.favorites;
 
-            var regex = new RegExp(this.state.searchTerm, 'igm');
             return _react2.default.createElement(
                 'div',
                 { id: 'mainPage' },
@@ -29090,9 +29091,7 @@ var MainPage = function (_Component) {
                             { id: 'testimonial-background', className: 'col-sm-12' },
                             testimonial.filter(function (e) {
                                 return following.followers.includes(e.user_id);
-                            }).filter(function (e) {
-                                return regex.test(e.author) || regex.test(e.message);
-                            }).map(function (entry, i) {
+                            }).mainSearch(this.state.searchTerm).map(function (entry, i) {
                                 return _react2.default.createElement(_PostEntry2.default, { key: i,
                                     author: entry.author,
                                     message: entry.message,
@@ -29344,6 +29343,8 @@ var _PostEntry = __webpack_require__(106);
 
 var _PostEntry2 = _interopRequireDefault(_PostEntry);
 
+__webpack_require__(951);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29423,9 +29424,7 @@ var TestimonialPage = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'testimonial-background', className: 'col-sm-12' },
-                    testimonial.filter(function (e) {
-                        return regex.test(e.author) || regex.test(e.message);
-                    }).map(function (entry, i) {
+                    testimonial.mainSearch(this.state.searchTerm).map(function (entry, i) {
                         return _react2.default.createElement(_PostEntry2.default, { key: i,
                             author: entry.author,
                             message: entry.message,
@@ -68606,6 +68605,20 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         friends: state.friends.data
     };
 })(FriendsPage);
+
+/***/ }),
+/* 951 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Array.prototype.mainSearch = function (term) {
+    var regex = new RegExp('' + term, 'ig');
+    return this.filter(function (e) {
+        return regex.test(e.author) || regex.test(e.message);
+    });
+};
 
 /***/ })
 /******/ ]);

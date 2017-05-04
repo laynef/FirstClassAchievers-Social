@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import PostEntry from '../../components/Testimonial/PostEntry'
 import { getFavorites } from '../../redux/actions/favorite'
+import '../../redux/utils/search'
 
 
 class FavoritesPage extends Component {
@@ -29,7 +30,7 @@ class FavoritesPage extends Component {
                 <div id="testimonial-background" className="col-sm-12">
                     {testimonial
                         .filter(e => favorites.entries.includes(e.id))
-                        .filter(e => regex.test(e.author) || regex.test(e.message))
+                        .mainSearch(this.state.searchTerm)
                         .map((entry, i) => (
                         <PostEntry key={i}
                             author={entry.author}
