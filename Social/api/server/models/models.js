@@ -96,23 +96,23 @@ module.exports = {
             })
             .then(response => {
                 if (req.body.followers.includes(req.params.userId)) {
-                Profile.findAll({ where: {user_id: req.params.userId} })
-                    .then(respond => {
-                        Notification.create({
-                            user_id: req.params.userId,
-                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
-                            seen: false,
-                            image: respond[0].dataValues.image
+                    Profile.findAll({ where: {user_id: req.params.userId} })
+                        .then(respond => {
+                            Notification.create({
+                                user_id: req.params.userId,
+                                message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
+                                seen: false,
+                                image: respond[0].dataValues.image
+                            })
                         })
+                    }
+                    Following.findAll({
+                        where: { user_id: req.params.userId }
                     })
-                }
-                Following.findAll({
-                    where: { user_id: req.params.userId }
+                    .then(resp => {
+                        res.status(200).send(resp[0])
+                    })
                 })
-                .then(resp => {
-                    res.status(200).send(resp[0])
-                })
-            })
         }
     },
     favorites: {
@@ -220,7 +220,7 @@ module.exports = {
                     .then(respond => {
                         Notification.create({
                             user_id: req.params.userId,
-                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} sent you a message`,
                             seen: false,
                             image: respond[0].dataValues.image
                         })
