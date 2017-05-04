@@ -10298,15 +10298,15 @@ function getFollowers(id) {
 	};
 }
 
-function setFollowers(data, id, other) {
+function setFollowers(data, user, other) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_FOLLOWERS_PENDING });
-		_axios2.default.patch('/api/following/' + id + '/' + other, data).then(function (response) {
+		_axios2.default.patch('/api/following/' + user + '/' + other, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_FOLLOWERS_SUCCESS,
 				payload: response.data
 			});
-			dispatch((0, _friends.getFriends)(id));
+			dispatch((0, _friends.getFriends)(user));
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.SET_FOLLOWERS_ERROR,
@@ -27663,7 +27663,8 @@ var Notifications = function (_Component) {
         value: function render() {
             var _props = this.props,
                 notifications = _props.notifications,
-                dispatch = _props.dispatch;
+                dispatch = _props.dispatch,
+                user = _props.user;
 
             if (!notifications) return null;
             return _react2.default.createElement(
@@ -27699,7 +27700,7 @@ var Notifications = function (_Component) {
                                         return _react2.default.createElement(
                                             'div',
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
-                                                    return dispatch((0, _notifications.setNotifications)(e.id));
+                                                    dispatch((0, _notifications.setNotifications)(e.id));dispatch((0, _notifications.getNotifications)(user.id));
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
@@ -27732,7 +27733,9 @@ var Notifications = function (_Component) {
                                 ),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'notification-footer text-center' },
+                                    { className: 'notification-footer text-center', onClick: function onClick() {
+                                            return dispatch((0, _notifications.getNotifications)(user.id));
+                                        } },
                                     _react2.default.createElement(
                                         'a',
                                         { href: '#', className: '' },
@@ -27761,7 +27764,8 @@ Notifications = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        notifications: state.notifications.data
+        notifications: state.notifications.data,
+        user: state.user.data
     };
 })(Notifications);
 

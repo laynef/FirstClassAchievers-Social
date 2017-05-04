@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { setNotifications } from '../../../redux/actions/notifications'
+import { setNotifications, getNotifications } from '../../../redux/actions/notifications'
 
 
 class Notifications extends Component {
@@ -14,7 +14,7 @@ class Notifications extends Component {
     }
 
     render() {
-        const { notifications, dispatch } = this.props
+        const { notifications, dispatch, user } = this.props
         if (!notifications) return null
         return (
             <div id="Notifications">
@@ -33,7 +33,7 @@ class Notifications extends Component {
                                     {notifications
                                         .sort((a,b) => b.id - a.id)
                                         .map((e, i) => (
-                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => dispatch(setNotifications(e.id))}>
+                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => {dispatch(setNotifications(e.id)); dispatch(getNotifications(user.id));}}>
                                             <div className="heading">
                                                     <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
                                                         <img width="30" height="30" 
@@ -53,7 +53,7 @@ class Notifications extends Component {
                                     ))}
                                     </div>
 
-                            <div className="notification-footer text-center">
+                            <div className="notification-footer text-center" onClick={() => dispatch(getNotifications(user.id))}>
                                 <a href="#" className="">{notifications.length > 0 ? 'Read all notifications' : 'No Notifications'}</a>
                                 <a data-toggle="refresh" className="portlet-refresh text-black pull-right" href="#">
                                     <i className="pg-refresh_new"></i>
@@ -75,5 +75,6 @@ Notifications = reduxForm({
 })(Notifications)
 
 export default connect(state => ({
-    notifications: state.notifications.data
+    notifications: state.notifications.data,
+    user: state.user.data
 }))(Notifications)

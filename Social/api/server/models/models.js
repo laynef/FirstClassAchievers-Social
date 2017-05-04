@@ -100,7 +100,7 @@ module.exports = {
                     })
                     .then(resp => {
                         if (resp[0].dataValues.followers.indexOf(Number(req.params.otherId)) != -1) {
-                        Profile.findAll({ where: {user_id: req.params.otherId} })
+                        Profile.findAll({ where: {user_id: req.params.userId} })
                             .then(respond => {
                                 Notification.create({
                                     user_id: req.params.otherId,
