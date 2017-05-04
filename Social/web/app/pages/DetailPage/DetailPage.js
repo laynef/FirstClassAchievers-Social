@@ -29,7 +29,7 @@ class DetailPage extends Component {
             array.push(profile.user_id)
         }
         body.followers = array
-        dispatch(setFollowers(body, user.id))
+        dispatch(setFollowers(body, user.id, profile.user_id))
     }
 
     render() {

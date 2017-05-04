@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
+
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
@@ -50,10 +51,6 @@ router.get('/local/user/:id', (req, res, next) => {
 })
 
 router.post('/local/login', (req, res, next) => {
-    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (req.body.password.length < 8 && regex.test(req.body.email)) {
-        return res.statusCode(404)
-    }
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
@@ -73,10 +70,6 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
-    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (req.body.password.length < 8 && regex.test(req.body.email)) {
-        return res.statusCode(404)
-    }
     let salt = bcrypt.genSaltSync(10)
     bcrypt.hash(req.body.password, salt, null, (err, hash) => {
         User.create({
@@ -240,10 +233,6 @@ router.post('/local/forgot/password', (req, res, next) => {
 
 
 router.post('/local/fixtures', (req, res, next) => {
-    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (req.body.password.length < 8 && regex.test(req.body.email)) {
-        return res.statusCode(404)
-    }
     let salt = bcrypt.genSaltSync(10)
     bcrypt.hash(req.body.password, salt, null, (err, hash) => {
         User.create({

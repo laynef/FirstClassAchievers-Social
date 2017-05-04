@@ -10298,10 +10298,10 @@ function getFollowers(id) {
 	};
 }
 
-function setFollowers(data, id) {
+function setFollowers(data, id, other) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_FOLLOWERS_PENDING });
-		_axios2.default.patch('/api/following/' + id, data).then(function (response) {
+		_axios2.default.patch('/api/following/' + id + '/' + other, data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_FOLLOWERS_SUCCESS,
 				payload: response.data
@@ -29253,7 +29253,7 @@ var DetailPage = function (_Component) {
                 array.push(profile.user_id);
             }
             body.followers = array;
-            dispatch((0, _following.setFollowers)(body, user.id));
+            dispatch((0, _following.setFollowers)(body, user.id, profile.user_id));
         }
     }]);
 

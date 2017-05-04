@@ -12,7 +12,7 @@ router.get('/testify', models.testify.get)
 router.post('/testify', models.testify.post)
 
 router.get('/following/:userId', models.following.get)
-router.patch('/following/:userId', models.following.patch)
+router.patch('/following/:userId/:otherId', models.following.patch)
 
 router.get('/favorites/:userId', models.favorites.get)
 router.patch('/favorites/:userId', models.favorites.patch)

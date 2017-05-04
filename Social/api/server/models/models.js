@@ -95,21 +95,21 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                if (req.body.followers.includes(req.params.userId)) {
-                    Profile.findAll({ where: {user_id: req.params.userId} })
-                        .then(respond => {
-                            Notification.create({
-                                user_id: req.params.userId,
-                                message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
-                                seen: false,
-                                image: respond[0].dataValues.image
-                            })
-                        })
-                    }
                     Following.findAll({
                         where: { user_id: req.params.userId }
                     })
                     .then(resp => {
+                        if (resp[0].dataValues.followers.indexOf(Number(req.params.otherId)) != -1) {
+                        Profile.findAll({ where: {user_id: req.params.otherId} })
+                            .then(respond => {
+                                Notification.create({
+                                    user_id: req.params.otherId,
+                                    message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
+                                    seen: false,
+                                    image: respond[0].dataValues.image
+                                })
+                            })
+                        }
                         res.status(200).send(resp[0])
                     })
                 })
