@@ -7,6 +7,7 @@ import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
 import ChatNotifications  from './ChatNotifications'
 import SideMenu  from '../SideMenu/SideMenu'
+import Notifications  from '../Notifications/Notifications'
 
 
 class Header extends Component {
@@ -84,6 +85,7 @@ class Header extends Component {
                                           </Link>
                                         </li>
                                       </ul>
+                                      <Notifications />
                                       <a href="#" 
                                         className="chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" 
                                         data-toggle="quickview" 

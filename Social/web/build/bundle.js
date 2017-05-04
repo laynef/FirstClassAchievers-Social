@@ -26965,6 +26965,10 @@ var _SideMenu = __webpack_require__(230);
 
 var _SideMenu2 = _interopRequireDefault(_SideMenu);
 
+var _Notifications = __webpack_require__(954);
+
+var _Notifications2 = _interopRequireDefault(_Notifications);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27122,6 +27126,7 @@ var Header = function (_Component) {
                         )
                       )
                     ),
+                    _react2.default.createElement(_Notifications2.default, null),
                     _react2.default.createElement('a', { href: '#',
                       className: 'chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs',
                       'data-toggle': 'quickview',
@@ -68872,6 +68877,149 @@ var INITIAL_STATE = {
     error: null,
     data: null
 };
+
+/***/ }),
+/* 953 */,
+/* 954 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(9);
+
+var _reduxForm = __webpack_require__(14);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Notifications = function (_Component) {
+    _inherits(Notifications, _Component);
+
+    function Notifications() {
+        _classCallCheck(this, Notifications);
+
+        return _possibleConstructorReturn(this, (Notifications.__proto__ || Object.getPrototypeOf(Notifications)).apply(this, arguments));
+    }
+
+    _createClass(Notifications, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'Notifications' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'dropdown open' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'dropdown-menu notification-toggle', role: 'menu', 'aria-labelledby': 'notification-center' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'notification-panel' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'scroll-wrapper notification-body scrollable', style: { position: 'relative' } },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'notification-body scrollable scroll-content', style: { height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: '134px' } },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'notification-item unread clearfix' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
+                                            _react2.default.createElement('a', { href: '#', className: 'mark' })
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'notification-item unread clearfix' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'heading' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10' },
+                                                _react2.default.createElement('img', { width: '30', height: '30',
+                                                    'data-src-retina': 'assets/img/profiles/1x.jpg',
+                                                    'data-src': 'assets/img/profiles/1.jpg', alt: '',
+                                                    src: 'assets/img/profiles/1.jpg' })
+                                            ),
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#', className: 'text-complete pull-left' },
+                                                _react2.default.createElement(
+                                                    'span',
+                                                    { className: 'bold' },
+                                                    'Revox Design Labs'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'span',
+                                                    { className: 'fs-12 m-l-10' },
+                                                    'Owners'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'span',
+                                                { className: 'pull-right time' },
+                                                '11:00pm'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
+                                            _react2.default.createElement('a', { href: '#', className: 'mark' })
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'notification-footer text-center' },
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: '#', className: '' },
+                                        'Read all notifications'
+                                    ),
+                                    _react2.default.createElement(
+                                        'a',
+                                        { 'data-toggle': 'refresh', className: 'portlet-refresh text-black pull-right', href: '#' },
+                                        _react2.default.createElement('i', { className: 'pg-refresh_new' })
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Notifications;
+}(_react.Component);
+
+Notifications = (0, _reduxForm.reduxForm)({
+    form: 'Notifications'
+})(Notifications);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {};
+})(Notifications);
 
 /***/ })
 /******/ ]);
