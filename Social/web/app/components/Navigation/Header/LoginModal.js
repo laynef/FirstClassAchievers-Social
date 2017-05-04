@@ -69,7 +69,7 @@ class LoginModal extends Component {
                                                             <button className="btn btn-danger btn-block m-t-5">
                                                                 <i className="fa fa-google-plus"><a style={{color: 'white'}} href="/auth/google">Sign In with Google</a></i>
                                                             </button>
-                                                            <button className="btn btn-info btn-block m-t-5">
+                                                            <button className="btn btn-success btn-block m-t-5">
                                                                 <i className="fa fa-twitter"><a style={{color: 'white'}} href="/auth/twitter">Sign in with Twitter</a></i>
                                                             </button>
                                                         </div>

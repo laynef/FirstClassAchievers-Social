@@ -27307,7 +27307,7 @@ var LoginModal = function (_Component) {
                                                     ),
                                                     _react2.default.createElement(
                                                         'button',
-                                                        { className: 'btn btn-info btn-block m-t-5' },
+                                                        { className: 'btn btn-success btn-block m-t-5' },
                                                         _react2.default.createElement(
                                                             'i',
                                                             { className: 'fa fa-twitter' },
