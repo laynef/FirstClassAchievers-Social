@@ -99,6 +99,17 @@ module.exports = {
                     where: { user_id: req.params.userId }
                 })
                 .then(resp => {
+                    if (resp[0].dataValues.followers.includes(req.params.userId)) {
+                        Profile.findAll({ where: {user_id: req.params.userId} })
+                            .then(respond => {
+                                Notification.create({
+                                    user_id: req.params.userId,
+                                    message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
+                                    seen: false,
+                                    image: respond[0].dataValues.image
+                                })
+                            })
+                    }
                     res.status(200).send(resp[0])
                 })
             })
@@ -204,6 +215,16 @@ module.exports = {
                 user_id: req.body.user_id,
                 room_name: req.body.roomNameId,
                 to: req.body.to
+            }).then(resp => {
+                Profile.findAll({ where: {user_id: req.body.user_id} })
+                    .then(respond => {
+                        Notification.create({
+                            user_id: req.params.userId,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
+                            seen: false,
+                            image: respond[0].dataValues.image
+                        })
+                    })
             })
         }
     },
@@ -222,6 +243,15 @@ module.exports = {
                         where: { user_id: req.params.userId }
                     })
                 }
+                Profile.findAll({ where: {user_id: req.params.userId} })
+                    .then(respond => {
+                        Notification.create({
+                            user_id: req.params.userId,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
+                            seen: false,
+                            image: respond[0].dataValues.image
+                        })
+                    })
             })
         }
     },

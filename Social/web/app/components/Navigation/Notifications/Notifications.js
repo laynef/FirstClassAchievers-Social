@@ -6,6 +6,8 @@ import { Field, reduxForm } from 'redux-form'
 class Notifications extends Component {
 
     render() {
+        const { notifications } = this.props
+        if (!notifications) return null
         return (
             <div id="Notifications">
                 <div className={`dropdown ${this.props.open ? 'open': ''}`}>
@@ -20,24 +22,25 @@ class Notifications extends Component {
                                         </div>
                                     </div>
  
-                                    <div className="notification-item unread clearfix">
-                                        <div className="heading">
-                                                <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
-                                                    <img width="30" height="30" 
-                                                            data-src-retina="assets/img/profiles/1x.jpg" 
-                                                            data-src="assets/img/profiles/1.jpg" alt="" 
-                                                            src="assets/img/profiles/1.jpg"/>
+                                    {notifications.map(e => (
+                                        <div className="notification-item unread clearfix">
+                                            <div className="heading">
+                                                    <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
+                                                        <img width="30" height="30" 
+                                                                data-src-retina={e.image} 
+                                                                data-src={e.image} alt="" 
+                                                                src={e.image}/>
+                                                    </div>
+                                                    <a href="#" className="text-complete pull-left">
+                                                        <span className="fs-12 m-l-10">{e.message}</span>
+                                                    </a>
+                                                    <span className="pull-right time">{e.createAt}</span>
                                                 </div>
-                                                <a href="#" className="text-complete pull-left">
-                                                    <span className="bold">Revox Design Labs</span>
-                                                    <span className="fs-12 m-l-10">Owners</span>
-                                                </a>
-                                                <span className="pull-right time">11:00pm</span>
+                                                <div className="option" data-toggle="tooltip" data-placement="left" title="" data-original-title="mark as read">
+                                                    <a href="#" className="mark"></a>
+                                                </div>
                                             </div>
-                                            <div className="option" data-toggle="tooltip" data-placement="left" title="" data-original-title="mark as read">
-                                                <a href="#" className="mark"></a>
-                                            </div>
-                                        </div>
+                                    ))}
                                     </div>
  
                             <div className="notification-footer text-center">
@@ -63,4 +66,5 @@ Notifications = reduxForm({
 })(Notifications)
 
 export default connect(state => ({
+    notifications: state.notifications.data
 }))(Notifications)

@@ -68929,6 +68929,9 @@ var Notifications = function (_Component) {
     _createClass(Notifications, [{
         key: 'render',
         value: function render() {
+            var notifications = this.props.notifications;
+
+            if (!notifications) return null;
             return _react2.default.createElement(
                 'div',
                 { id: 'Notifications' },
@@ -68956,46 +68959,43 @@ var Notifications = function (_Component) {
                                             _react2.default.createElement('a', { href: '#', className: 'mark' })
                                         )
                                     ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'notification-item unread clearfix' },
-                                        _react2.default.createElement(
+                                    notifications.map(function (e) {
+                                        return _react2.default.createElement(
                                             'div',
-                                            { className: 'heading' },
+                                            { className: 'notification-item unread clearfix' },
                                             _react2.default.createElement(
                                                 'div',
-                                                { className: 'thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10' },
-                                                _react2.default.createElement('img', { width: '30', height: '30',
-                                                    'data-src-retina': 'assets/img/profiles/1x.jpg',
-                                                    'data-src': 'assets/img/profiles/1.jpg', alt: '',
-                                                    src: 'assets/img/profiles/1.jpg' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { href: '#', className: 'text-complete pull-left' },
+                                                { className: 'heading' },
                                                 _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'bold' },
-                                                    'Revox Design Labs'
+                                                    'div',
+                                                    { className: 'thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10' },
+                                                    _react2.default.createElement('img', { width: '30', height: '30',
+                                                        'data-src-retina': e.image,
+                                                        'data-src': e.image, alt: '',
+                                                        src: e.image })
+                                                ),
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#', className: 'text-complete pull-left' },
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: 'fs-12 m-l-10' },
+                                                        e.message
+                                                    )
                                                 ),
                                                 _react2.default.createElement(
                                                     'span',
-                                                    { className: 'fs-12 m-l-10' },
-                                                    'Owners'
+                                                    { className: 'pull-right time' },
+                                                    e.createAt
                                                 )
                                             ),
                                             _react2.default.createElement(
-                                                'span',
-                                                { className: 'pull-right time' },
-                                                '11:00pm'
+                                                'div',
+                                                { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
+                                                _react2.default.createElement('a', { href: '#', className: 'mark' })
                                             )
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'option', 'data-toggle': 'tooltip', 'data-placement': 'left', title: '', 'data-original-title': 'mark as read' },
-                                            _react2.default.createElement('a', { href: '#', className: 'mark' })
-                                        )
-                                    )
+                                        );
+                                    })
                                 ),
                                 _react2.default.createElement(
                                     'div',
@@ -69027,7 +69027,9 @@ Notifications = (0, _reduxForm.reduxForm)({
 })(Notifications);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        notifications: state.notifications.data
+    };
 })(Notifications);
 
 /***/ })
