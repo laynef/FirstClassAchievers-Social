@@ -27,7 +27,7 @@ router.post('/messages', models.messages.post)
 router.post('/invite/:userId', models.invite.post)
 
 router.get('/notify/:userId', models.notify.get)
-router.patch('/notify/:userId', models.notify.patch)
+router.patch('/notify', models.notify.patch)
 
 
 // export router for server.js

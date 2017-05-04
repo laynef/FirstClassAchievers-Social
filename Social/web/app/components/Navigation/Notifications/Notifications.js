@@ -13,18 +13,8 @@ class Notifications extends Component {
         }
     }
 
-    checkUnread() {
-        const { notifications } = this.props
-        return notifications.filter(e => !e.seen)
-    }
-
-    markRead(id) {
-        const { dispatch, user } = this.props
-        dispatch(setNotifications(user.id, id))
-    }
-
     render() {
-        const { notifications } = this.props
+        const { notifications, dispatch} = this.props
         if (!notifications) return null
         return (
             <div id="Notifications">
@@ -43,7 +33,7 @@ class Notifications extends Component {
                                     {notifications
                                         .sort((a,b) => b.id - a.id)
                                         .map((e, i) => (
-                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => this.markRead(e.id)}>
+                                        <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => dispatch(setNotifications(id))}>
                                             <div className="heading">
                                                     <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
                                                         <img width="30" height="30" 
@@ -54,7 +44,7 @@ class Notifications extends Component {
                                                     <a href="#" className="text-complete pull-left">
                                                         <span className="fs-12 m-l-10">{e.message}</span>
                                                     </a>
-                                                    <span className="pull-right time">{e.createAt}</span>
+                                                    {/* TIME <span className="pull-right time">{e.createAt}</span> */}
                                                 </div>
                                                 <div className="option" data-toggle="tooltip" data-placement="left" title="" data-original-title="mark as read">
                                                     <a href="#" className="mark"></a>
@@ -85,6 +75,5 @@ Notifications = reduxForm({
 })(Notifications)
 
 export default connect(state => ({
-    notifications: state.notifications.data,
-    user: state.user.data
+    notifications: state.notifications.data
 }))(Notifications)

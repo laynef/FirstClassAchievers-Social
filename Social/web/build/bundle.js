@@ -16139,11 +16139,11 @@ function getNotifications(userId) {
 	};
 }
 
-function setNotifications(id, userId) {
+function setNotifications(id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.SET_NOTIFICATIONS_PENDING });
-		var data = { id: id };
-		_axios2.default.patch('/api/notify/' + userId + '/', data).then(function (response) {
+		var data = { note_id: id };
+		_axios2.default.patch('/api/notify/', data).then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.SET_NOTIFICATIONS_SUCCESS,
 				payload: response.data
@@ -27659,29 +27659,11 @@ var Notifications = function (_Component) {
     }
 
     _createClass(Notifications, [{
-        key: 'checkUnread',
-        value: function checkUnread() {
-            var notifications = this.props.notifications;
-
-            return notifications.filter(function (e) {
-                return !e.seen;
-            });
-        }
-    }, {
-        key: 'markRead',
-        value: function markRead(id) {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                user = _props.user;
-
-            dispatch((0, _notifications.setNotifications)(user.id, id));
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var notifications = this.props.notifications;
+            var _props = this.props,
+                notifications = _props.notifications,
+                dispatch = _props.dispatch;
 
             if (!notifications) return null;
             return _react2.default.createElement(
@@ -27717,7 +27699,7 @@ var Notifications = function (_Component) {
                                         return _react2.default.createElement(
                                             'div',
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
-                                                    return _this2.markRead(e.id);
+                                                    return dispatch((0, _notifications.setNotifications)(id));
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
@@ -27738,11 +27720,6 @@ var Notifications = function (_Component) {
                                                         { className: 'fs-12 m-l-10' },
                                                         e.message
                                                     )
-                                                ),
-                                                _react2.default.createElement(
-                                                    'span',
-                                                    { className: 'pull-right time' },
-                                                    e.createAt
                                                 )
                                             ),
                                             _react2.default.createElement(
@@ -27784,8 +27761,7 @@ Notifications = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        notifications: state.notifications.data,
-        user: state.user.data
+        notifications: state.notifications.data
     };
 })(Notifications);
 

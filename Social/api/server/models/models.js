@@ -268,7 +268,7 @@ module.exports = {
             Notification.update({
                 seen: true
             }, {
-                where: { id: req.body.id }
+                where: { id: req.body.note_id }
             })
         }
     }
