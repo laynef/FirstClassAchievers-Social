@@ -54,7 +54,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://localhost:3214/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
+    User.findOrCreate({where: {email: profile.emails[0]}}, function(err, user) {
       if (err) { return done(err) }
       done(null, user)
     })
@@ -66,7 +66,7 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://localhost:3214/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
-    User.findOrCreate(..., function(err, user) {
+    User.findOrCreate({where: {email: profile.emails[0]}}, function(err, user) {
       if (err) { return done(err) }
       done(null, user)
     })
@@ -78,7 +78,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3214/auth/google/callback"
   },
   function(token, tokenSecret, profile, done) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      User.findOrCreate({ email: profile.emails[0] }, function (err, user) {
         return done(err, user)
       })
   }
