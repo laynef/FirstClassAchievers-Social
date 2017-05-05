@@ -104,9 +104,9 @@ router.post('/local/forgotten/password', (req, res, next) => {
         service: 'Gmail',
         auth: {
             type: 'OAuth2',
-            user: config.google_user,
-            clientId: config.google_client_id,
-            clientSecret: config.google_client_secret,
+            // user: config.google_user,
+            // clientId: config.google_client_id,
+            // clientSecret: config.google_client_secret,
             refreshToken: '1/XXxXxsss-xxxXXXXXxXxx0XXXxxXXx0x00xxx',
             accessToken: 'ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x',
             expires: 1484314697598
