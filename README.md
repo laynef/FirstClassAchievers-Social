@@ -18,16 +18,25 @@
 ![alt-tag](./github/notifications.png)
 ### Authenication
 ### Unauthenticated View & Authenicated View
+![alt-tag](./github/unauth.png)
+![alt-tag](./github/detailed.png)
 ### Friends
 ![alt-tag](./github/friends-view.png)
 ### Favorites
+![alt-tag](./github/favorites.png)
 ### Followers
-### NewsFeed
-### Blog Posts (Testimonials)
-### Profile
-### Detail Pages
 ![alt-tag](./github/detailed.png)
+### NewsFeed
+![alt-tag](./github/detailed.png)
+### Blog Posts (Testimonials)
+![alt-tag](./github/posting.png)
+![alt-tag](./github/testimonials.png)
+### Profile
+![alt-tag](./github/profile.png)
+### Detail Pages
+![alt-tag](./github/unauth.png)
 ### Cloud Stored Images
+![alt-tag](./github/photo.png)
 ### Cloud Stored Database
 
 
