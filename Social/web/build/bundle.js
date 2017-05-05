@@ -27923,24 +27923,6 @@ var MobileMenu = function (_Component) {
                                 ),
                                 _react2.default.createElement(
                                     _reactRouter.Link,
-                                    { to: '/profile', className: 'detailed' },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'title' },
-                                        'Profile'
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                { className: 'm-t-30' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'icon-thumbnail ' },
-                                    _react2.default.createElement('i', { className: 'pg-home' })
-                                ),
-                                _react2.default.createElement(
-                                    _reactRouter.Link,
                                     { to: '/favorites', className: 'detailed' },
                                     _react2.default.createElement(
                                         'span',
@@ -29163,7 +29145,7 @@ var DetailEntry = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
+                            { className: 'card bodi share col1', 'data-social': 'item', style: { width: '100%' } },
                             _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
                             _react2.default.createElement(
                                 'div',
@@ -29342,7 +29324,7 @@ var DetailPage = function (_Component) {
             if (profile.user_id != params.userId) return null;
             return _react2.default.createElement(
                 'div',
-                { id: 'DetailPage' },
+                { id: 'DetailPage', className: 'col-sm-12' },
                 _react2.default.createElement(
                     'h1',
                     null,

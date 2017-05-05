@@ -38,7 +38,7 @@ class DetailPage extends Component {
         if (user) { if (!following || !favorites) return null }
         if (profile.user_id != params.userId) return null
         return (
-            <div id="DetailPage">
+            <div id="DetailPage" className="col-sm-12">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
                 <span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5 s-t-10">
                     <img src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}

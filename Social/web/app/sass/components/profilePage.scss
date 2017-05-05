@@ -8,10 +8,22 @@
 	}
 
 	#profileImage {
-		transform: scale(10);
 		@media screen and (min-width: 992px) {
 			margin-left: 200px;
 			margin-top: 150px;
+			transform: scale(10);
+		}
+		@media (max-width: 500px) {
+			margin: 50% 50%;
+			transform: scale(12);
+		}
+		@media (min-width: 900px) and (max-width: 992px) {
+			margin: 22% 50%;
+			transform: scale(12);
+		}
+		@media (min-width: 500px) and (max-width: 900px) {
+			margin: 38% 50%;
+			transform: scale(12);
 		}
 	}
 
@@ -19,6 +31,9 @@
 		@media screen and (min-width: 992px) {
 			margin-left: -230px;
 			margin-top: 350px;
+		}
+		@media (max-width: 992px) {
+
 		}
 	}
 

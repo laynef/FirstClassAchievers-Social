@@ -59,12 +59,6 @@ class MobileMenu extends Component {
                             </li>
                             <li className="m-t-30">
                                 <span className="icon-thumbnail "><i className="pg-home"></i></span>
-                                <Link to="/profile" className="detailed">
-                                <span className="title">Profile</span>
-                                </Link>
-                            </li>
-                            <li className="m-t-30">
-                                <span className="icon-thumbnail "><i className="pg-home"></i></span>
                                 <Link to="/favorites" className="detailed">
                                 <span className="title">Favorites</span>
                                 </Link>

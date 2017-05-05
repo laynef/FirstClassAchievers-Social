@@ -53,12 +53,26 @@
 #ProfilePage h1 {
   text-align: center; }
 
-#ProfilePage #profileImage {
-  transform: scale(10); }
-  @media screen and (min-width: 992px) {
-    #ProfilePage #profileImage {
-      margin-left: 200px;
-      margin-top: 150px; } }
+@media screen and (min-width: 992px) {
+  #ProfilePage #profileImage {
+    margin-left: 200px;
+    margin-top: 150px;
+    transform: scale(10); } }
+
+@media (max-width: 500px) {
+  #ProfilePage #profileImage {
+    margin: 50% 50%;
+    transform: scale(12); } }
+
+@media (min-width: 900px) and (max-width: 992px) {
+  #ProfilePage #profileImage {
+    margin: 22% 50%;
+    transform: scale(12); } }
+
+@media (min-width: 500px) and (max-width: 900px) {
+  #ProfilePage #profileImage {
+    margin: 38% 50%;
+    transform: scale(12); } }
 
 @media screen and (min-width: 992px) {
   #ProfilePage #PrimaryContact {
@@ -88,9 +102,17 @@
       margin-left: 200px;
       margin-top: 150px;
       transform: scale(10); } }
-  @media (max-width: 992px) {
+  @media (max-width: 500px) {
+    #DetailPage #profileImage {
+      margin: 50% 50%;
+      transform: scale(12); } }
+  @media (min-width: 900px) and (max-width: 992px) {
     #DetailPage #profileImage {
       margin: 22% 50%;
+      transform: scale(12); } }
+  @media (min-width: 500px) and (max-width: 900px) {
+    #DetailPage #profileImage {
+      margin: 38% 50%;
       transform: scale(12); } }
   @media screen and (min-width: 992px) {
     #DetailPage #PrimaryContact {
