@@ -5,9 +5,9 @@
 web/public/theme/pages
 web/public/theme/assets
 
-api/config
-database/config
-tests/config
+Social/api/config
+Social/database/config
+Social/tests/config
 
 node_modules
 
