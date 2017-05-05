@@ -124,11 +124,6 @@ class Header extends Component {
 }
 
 export default connect(state => ({
-<<<<<<< HEAD
-  user: state.user.data
-}))(Header)
-=======
   user: state.user.data,
   notifications: state.notifications.data
 }))(Header)
->>>>>>> 532c750c141bd89105ef2963faf1f629cc5f060f
