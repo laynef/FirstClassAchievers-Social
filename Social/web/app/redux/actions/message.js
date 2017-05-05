@@ -40,7 +40,7 @@ export function createMessage(data) {
 	}
 }
 
-export function inviteFriends(data, id) {
+export function inviteFriends(data, id, other) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.INVITE_FRIEND_PENDING})
 		axios.post(`/api/invite/${id}`, data)

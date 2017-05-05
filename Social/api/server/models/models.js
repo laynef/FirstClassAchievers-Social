@@ -221,7 +221,7 @@ module.exports = {
                 Profile.findAll({ where: {user_id: req.body.user_id} })
                     .then(respond => {
                         Notification.create({
-                            user_id: req.params.userId,
+                            user_id: req.body.to,
                             message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} sent you a message`,
                             seen: false,
                             image: respond[0].dataValues.image,
@@ -250,7 +250,7 @@ module.exports = {
                 Profile.findAll({ where: {user_id: req.params.userId} })
                     .then(respond => {
                         Notification.create({
-                            user_id: req.params.userId,
+                            user_id: req.body.friend,
                             message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
                             seen: false,
                             image: respond[0].dataValues.image,
