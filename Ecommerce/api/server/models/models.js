@@ -1,6 +1,13 @@
 // Interact with database on the models functions here
 const Review = require('../../../database/models/index').Review
 const CreditCard = require('../../../database/models/index').CreditCard
+const Notification = require('../../../database/models/index').Notification
+const User = require('../../../database/models/index').User
+const Profile = require('../../../database/models/index').Profile
+const Product = require('../../../database/models/index').Product
+const Order = require('../../../database/models/index').Order
+const Favorites = require('../../../database/models/index').Favorites
+const Coupon = require('../../../database/models/index').Coupon
 
 module.exports = {
     review: {
@@ -121,7 +128,18 @@ module.exports = {
             },
             post: (req, res, next) => {
                 Product.create({
-                    
+                    name: req.body.name,
+                    price: req.body.price,
+                    quantity: req.body.quantity,
+                    description: req.body.description,
+                    sizes: req.body.sizes,
+                    details: req.body.details,
+                    images: req.body.images,
+                    colors: req.body.colors,
+                    categories: req.body.categories,
+                    gender: req.body.gender,
+                    age: req.body.age,
+                    quality: req.body.quality
                 })
                 .then(resp => {
                     res.status(201).send(resp)
@@ -129,9 +147,20 @@ module.exports = {
             },
             patch: (req, res, next) => {
                 Product.update({
-                    
+                    name: req.body.name,
+                    price: req.body.price,
+                    quantity: req.body.quantity,
+                    description: req.body.description,
+                    sizes: req.body.sizes,
+                    details: req.body.details,
+                    images: req.body.images,
+                    colors: req.body.colors,
+                    categories: req.body.categories,
+                    gender: req.body.gender,
+                    age: req.body.age,
+                    quality: req.body.quality
                 }, {
-                    where: {}
+                    where: {id: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(202).send(resp)
@@ -211,17 +240,33 @@ module.exports = {
         list: {
             get: (req, res, next) => {
                 Favorites.findAll({
-                    where : {to: req.params.all}
+                    where : {to: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(200).send(resp)
                 })
             },
             post: (req, res, next) => {
-
+                Favorites.create({
+                    products: req.body.products,
+                    title: req.body.title,
+                    user_id: req.body.user_id
+                })
+                .then(resp => {
+                    res.status(201).send(resp)
+                })
             },
             patch: (req, res, next) => {
-
+                Favorites.update({
+                    products: req.body.products,
+                    title: req.body.title,
+                    user_id: req.body.user_id
+                }, {
+                    where : {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(201).send(resp)
+                })
             },
             delete: (req, res, next) => {
                 Favorites.destroy({
@@ -235,17 +280,33 @@ module.exports = {
         individual: {
             get: (req, res, next) => {
                 Favorites.findAll({
-                    where : {to: req.params.all}
+                    where : {to: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(200).send(resp[0])
                 })
             },
             post: (req, res, next) => {
-
+                Favorites.create({
+                    products: req.body.products,
+                    title: req.body.title,
+                    user_id: req.body.user_id
+                })
+                .then(resp => {
+                    res.status(201).send(resp)
+                })
             },
             patch: (req, res, next) => {
-
+                Favorites.update({
+                    products: req.body.products,
+                    title: req.body.title,
+                    user_id: req.body.user_id
+                }, {
+                    where : {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(202).send(resp)
+                })
             },
             delete: (req, res, next) => {
                 Favorites.destroy({
