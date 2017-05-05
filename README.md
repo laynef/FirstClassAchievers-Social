@@ -20,21 +20,21 @@
 ### Unauthenticated View & Authenicated View
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/detailed.png)
-### Friends
-![alt-tag](./github/friends-view.png)
 ### Favorites
 ![alt-tag](./github/favorites.png)
 ### Followers
+![alt-tag](./github/friends-view.png)
 ![alt-tag](./github/detailed.png)
 ### NewsFeed
 ![alt-tag](./github/detailed.png)
 ### Posts (Testimonials)
 ![alt-tag](./github/posting.png)
-![alt-tag](./github/testimonials.png)
+![alt-tag](./github/posts.png)
 ### Profile
 ![alt-tag](./github/profile.png)
 ### Detail Pages
 ![alt-tag](./github/unauth.png)
+![alt-tag](./github/post.png)
 ### Cloud Stored Images
 ![alt-tag](./github/photo.png)
 ### Cloud Stored Database
