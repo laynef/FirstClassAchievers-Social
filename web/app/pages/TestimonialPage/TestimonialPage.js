@@ -28,7 +28,7 @@ class TestimonialPage extends Component {
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="TestimonialPage">
-                <h1>Real Testimonials</h1>
+                <h1>Posts</h1>
                 <div className="col-sm-12">
                     <div className="input-group">
                         <input type="text" 

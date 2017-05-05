@@ -28,7 +28,7 @@
 ![alt-tag](./github/detailed.png)
 ### NewsFeed
 ![alt-tag](./github/detailed.png)
-### Blog Posts (Testimonials)
+### Posts (Testimonials)
 ![alt-tag](./github/posting.png)
 ![alt-tag](./github/testimonials.png)
 ### Profile
