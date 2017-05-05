@@ -20,6 +20,7 @@ general:
       - dev # list of branches to build
       - tests # list of branches to build
       - /feat.*/ # or regexes
+      - social
 
 test:
   override:
