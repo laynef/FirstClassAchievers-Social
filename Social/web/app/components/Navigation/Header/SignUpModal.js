@@ -10,7 +10,7 @@ class SignUpModal extends Component {
 
     static formSubmit(data) {
         const { dispatch, reset } = this.props
-        if (data.email && data.password === data.repassword) {
+        if (data.email && data.password == data.repassword) {
             dispatch(register(data))
             $('#sign-up-modal').modal('hide')
             dispatch(reset('SignUpModal'))

@@ -63,6 +63,7 @@ class LoginModal extends Component {
                                                     <div className="row">
                                                         <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                             <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>
+                                                            {/*
                                                             <button className="btn btn-complete btn-block m-t-5">
                                                                 <i className="fa fa-facebook"><a style={{color: 'white'}} href="/auth/facebook">Login with Facebook</a></i>
                                                             </button>
@@ -72,6 +73,7 @@ class LoginModal extends Component {
                                                             <button className="btn btn-success btn-block m-t-5">
                                                                 <i className="fa fa-twitter"><a style={{color: 'white'}} href="/auth/twitter">Sign in with Twitter</a></i>
                                                             </button>
+                                                            */}
                                                         </div>
                                                     </div>
                                                 </Form>

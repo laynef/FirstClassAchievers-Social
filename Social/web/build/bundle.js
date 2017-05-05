@@ -16043,45 +16043,6 @@ var LoginModal = function (_Component) {
                                                         'button',
                                                         { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },
                                                         'Login'
-                                                    ),
-                                                    _react2.default.createElement(
-                                                        'button',
-                                                        { className: 'btn btn-complete btn-block m-t-5' },
-                                                        _react2.default.createElement(
-                                                            'i',
-                                                            { className: 'fa fa-facebook' },
-                                                            _react2.default.createElement(
-                                                                'a',
-                                                                { style: { color: 'white' }, href: '/auth/facebook' },
-                                                                'Login with Facebook'
-                                                            )
-                                                        )
-                                                    ),
-                                                    _react2.default.createElement(
-                                                        'button',
-                                                        { className: 'btn btn-danger btn-block m-t-5' },
-                                                        _react2.default.createElement(
-                                                            'i',
-                                                            { className: 'fa fa-google-plus' },
-                                                            _react2.default.createElement(
-                                                                'a',
-                                                                { style: { color: 'white' }, href: '/auth/google' },
-                                                                'Sign In with Google'
-                                                            )
-                                                        )
-                                                    ),
-                                                    _react2.default.createElement(
-                                                        'button',
-                                                        { className: 'btn btn-success btn-block m-t-5' },
-                                                        _react2.default.createElement(
-                                                            'i',
-                                                            { className: 'fa fa-twitter' },
-                                                            _react2.default.createElement(
-                                                                'a',
-                                                                { style: { color: 'white' }, href: '/auth/twitter' },
-                                                                'Sign in with Twitter'
-                                                            )
-                                                        )
                                                     )
                                                 )
                                             )
@@ -16253,7 +16214,7 @@ var SignUpModal = function (_Component) {
                 dispatch = _props.dispatch,
                 reset = _props.reset;
 
-            if (data.email && data.password === data.repassword) {
+            if (data.email && data.password == data.repassword) {
                 dispatch((0, _auth.register)(data));
                 $('#sign-up-modal').modal('hide');
                 dispatch(reset('SignUpModal'));
