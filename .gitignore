@@ -5,21 +5,9 @@
 web/public/theme/pages
 web/public/theme/assets
 
-Social/api/config
-Social/database/config
-Social/tests/config
-
-ECommerce/api/config
-ECommerce/database/config
-ECommerce/tests/config
-
-Business/api/config
-Business/database/config
-Business/tests/config
-
-Entertainment/api/config
-Entertainment/database/config
-Entertainment/tests/config
+api/config
+database/config
+tests/config
 
 node_modules
 
