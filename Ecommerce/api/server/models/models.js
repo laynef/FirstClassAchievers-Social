@@ -178,7 +178,7 @@ module.exports = {
         category: {
             get: (req, res, next) => {
                 Product.findAll({
-                    where : {to: req.params.all}
+                    where : {id: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(200).send(resp)
@@ -218,8 +218,7 @@ module.exports = {
             Order.update({
                 message: req.body.message,
                 rate: req.body.rate,
-                who: req.body.who,
-                to: req.params.itemId
+                who: req.body.who
             }, {
                 where: {to: req.params.itemId}
             })
@@ -240,7 +239,7 @@ module.exports = {
         list: {
             get: (req, res, next) => {
                 Favorites.findAll({
-                    where : {to: req.params.itemId}
+                    where : {user_id: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(200).send(resp)
@@ -262,15 +261,15 @@ module.exports = {
                     title: req.body.title,
                     user_id: req.body.user_id
                 }, {
-                    where : {id: req.params.itemId}
+                    where : {user_id: req.params.itemId}
                 })
                 .then(resp => {
-                    res.status(201).send(resp)
+                    res.status(202).send(resp)
                 })
             },
             delete: (req, res, next) => {
                 Favorites.destroy({
-                    where: {id: req.params.itemId}
+                    where: {user_id: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(203).send(resp)
@@ -280,7 +279,7 @@ module.exports = {
         individual: {
             get: (req, res, next) => {
                 Favorites.findAll({
-                    where : {to: req.params.itemId}
+                    where : {id: req.params.itemId}
                 })
                 .then(resp => {
                     res.status(200).send(resp[0])
@@ -321,17 +320,21 @@ module.exports = {
     notify: {
         get: (req, res, next) => {
             Noification.findAll({
-                where : {user_id: req.params.all}
+                where : {user_id: req.params.itemId}
             })
             .then(resp => {
                 res.status(200).send(resp[0])
             })
         },
-        post: (req, res, next) => {
-
-        },
         patch: (req, res, next) => {
-
+            Noification.update({
+                seen: true
+            }, {
+                where : {id: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(202).send(resp[0])
+            })
         }
     },
     profile: {
@@ -343,11 +346,26 @@ module.exports = {
                 res.status(200).send(resp[0])
             })
         },
-        post: (req, res, next) => {
-
-        },
         patch: (req, res, next) => {
-
+            Profile.update({
+                billing_street: req.body.billing_street,
+                billing_city: req.body.billing_city,
+                billing_zip: req.body.billing_zip,
+                billing_country: req.body.billing_country,
+                shipping_street: req.body.shipping_street,
+                shipping_city: req.body.shipping_city,
+                shipping_zip: req.body.shipping_zip,
+                shipping_country: req.body.shipping_country,
+                credit_cards: req.body.credit_cards,
+                phone: req.body.phone,
+                image: req.body.image,
+                name: req.body.name
+            }, {
+                where: {user_id: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(202).send(resp[0])
+            })
         }
     }
 

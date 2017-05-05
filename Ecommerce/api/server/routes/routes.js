@@ -48,12 +48,10 @@ router.delete('/favorites/:itemId', controllers.favorites.individual.delete)
 
 // notify
 router.get('/notify', controllers.notify.get)
-router.post('/notify', controllers.notify.post)
 router.patch('/notify', controllers.notify.patch)
 
 // profile
 router.get('/profile/:itemId', controllers.profile.get)
-router.post('/profile/:itemId', controllers.profile.post)
 router.patch('/profile/:itemId', controllers.profile.patch)
 
 // coupon
