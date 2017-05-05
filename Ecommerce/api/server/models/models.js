@@ -112,27 +112,54 @@ module.exports = {
     product: {
         individual: {
             get: (req, res, next) => {
-
+                Product.findAll({
+                    where: {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(200).send(resp[0])
+                })
             },
             post: (req, res, next) => {
-
+                Product.create({
+                    
+                })
+                .then(resp => {
+                    res.status(201).send(resp)
+                })
             },
             patch: (req, res, next) => {
-
+                Product.update({
+                    
+                }, {
+                    where: {}
+                })
+                .then(resp => {
+                    res.status(202).send(resp)
+                })
             },
             delete: (req, res, next) => {
-
+                Product.destroy({
+                    where: {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(203).send(resp)
+                })
             }
         },
         category: {
             get: (req, res, next) => {
-
+                Product.findAll({
+                    where : {to: req.params.all}
+                })
+                .then(resp => {
+                    res.status(200).send(resp)
+                })
             }
         }
     },
     order: {
         all: (req, res, next) => {
-            Review.findAll({
+            Order.findAll({
                 where : {to: req.params.all}
             })
             .then(resp => {
@@ -140,7 +167,7 @@ module.exports = {
             })
         },
         get: (req, res, next) => {
-            Review.findAll({
+            Order.findAll({
                 where : {id: req.params.itemId}
             })
             .then(resp => {
@@ -148,7 +175,7 @@ module.exports = {
             })
         },
         post: (req, res, next) => {
-            Review.create({
+            Order.create({
                 message: req.body.message,
                 rate: req.body.rate,
                 who: req.body.who,
@@ -159,7 +186,7 @@ module.exports = {
             })
         },
         patch: (req, res, next) => {
-            Review.update({
+            Order.update({
                 message: req.body.message,
                 rate: req.body.rate,
                 who: req.body.who,
@@ -172,7 +199,7 @@ module.exports = {
             })
         },
         delete: (req, res, next) => {
-            Review.destroy({
+            Order.destroy({
                 where: {id: req.params.itemId}
             })
             .then(resp => {
@@ -183,7 +210,12 @@ module.exports = {
     favorites: {
         list: {
             get: (req, res, next) => {
-
+                Favorites.findAll({
+                    where : {to: req.params.all}
+                })
+                .then(resp => {
+                    res.status(200).send(resp)
+                })
             },
             post: (req, res, next) => {
 
@@ -192,12 +224,22 @@ module.exports = {
 
             },
             delete: (req, res, next) => {
-
+                Favorites.destroy({
+                    where: {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(203).send(resp)
+                })
             }
         },
         individual: {
             get: (req, res, next) => {
-
+                Favorites.findAll({
+                    where : {to: req.params.all}
+                })
+                .then(resp => {
+                    res.status(200).send(resp[0])
+                })
             },
             post: (req, res, next) => {
 
@@ -206,13 +248,23 @@ module.exports = {
 
             },
             delete: (req, res, next) => {
-
+                Favorites.destroy({
+                    where: {id: req.params.itemId}
+                })
+                .then(resp => {
+                    res.status(203).send(resp)
+                })
             }
         }
     },
     notify: {
         get: (req, res, next) => {
-
+            Noification.findAll({
+                where : {user_id: req.params.all}
+            })
+            .then(resp => {
+                res.status(200).send(resp[0])
+            })
         },
         post: (req, res, next) => {
 
@@ -223,7 +275,12 @@ module.exports = {
     },
     profile: {
         get: (req, res, next) => {
-
+            Profile.findAll({
+                where : {id: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(200).send(resp[0])
+            })
         },
         post: (req, res, next) => {
 
