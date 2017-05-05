@@ -31,7 +31,11 @@ class DetailEntry extends Component {
                     .map((e, i)=> (
                     <div className="PostEntry" key={i}>
                     <h1>{e.author + `'s Post`}</h1>
+<<<<<<< HEAD:Social/web/app/pages/DetailEntry/DetailEntry.js
                         <div className="card bodi share col1" data-social="item" style={{width: '100%'}}>
+=======
+                        <div className="card share col1" data-social="item" style={{width: '100%'}}>
+>>>>>>> a1ee2f05bbe305227b091f583ab3cb0af230fcc5:web/app/pages/DetailEntry/DetailEntry.js
                             <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                                 <div className="card-header clearfix">
                                     <div className="user-pic">

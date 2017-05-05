@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";;;;AAQA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;+BAuC+B;EAC7B,YAAY,EA5CC,OAAO;;;AA8CtB,iBAAiB;EAChB,gBAAgB,EA/CF,OAAO;;;AAiDtB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;+BAoG+B;EAC7B,gBAAgB,EAtJH,OAAO;;;AAwJtB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;aA8Ea;EACX,KAAK,EAvOQ,OAAO;;;AA0OtB;;;;;cAKc;EACZ,KAAK,EAAE,kBAAyB;;;AAElC;;;;;;;kDAOkD;EACjD,gBAAgB,EAAE,uBAAwB;;;AAE3C,gDAAgD;EC3L9C,UAAU,EDhES,OAAO;ECiE1B,UAAU,EAAE,wGAAmE;EAC/E,UAAU,EAAE,8EAAyC;;;AD4LvD,wDAAwD;EC9LtD,UAAU,EDhES,OAAO;ECiE1B,UAAU,EAAE,qGAAmE;EAC/E,UAAU,EAAE,2EAAyC;;;AD+LvD,uDAAuD;ECjMrD,UAAU,EDhES,OAAO;ECiE1B,UAAU,EAAE,qGAAmE;EAC/E,UAAU,EAAE,2EAAyC;;;ADmMtD,yBAAY;ECnOT,MAAM,EAAC,iCAAkB;;ADqO3B,+BAAO;EACN,gBAAgB,EAzQJ,OAAO;EA0QnB,YAAY,EA1QA,OAAO;;;AA8QtB,qCAAsC;EAClC,gBAAgB,EA/QL,OAAO;EAgRlB,YAAY,EAhRD,OAAO;;;AAmRtB;;;;;;;gEAOiE;EAC7D,KAAK,EA1RY,OAAO",
-"sources": ["../../scss/color-option3.scss","../../scss/partials/_mixins.scss"],
-"names": [],
-"file": "color-option3.css"
-}

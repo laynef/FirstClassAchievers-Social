@@ -3,7 +3,6 @@ import actionTypes from '../store/actionTypes'
 import { getUser } from './auth'
 import { getTestimonials } from './testimonial'
 
-
 export function setProfile(data, id) {
 	return function(dispatch) {
 		let formData = new FormData()

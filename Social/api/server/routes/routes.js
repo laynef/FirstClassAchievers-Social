@@ -2,7 +2,11 @@
 const router = require('express').Router()
 const models = require('../models/models')
 const multer = require('multer')
+<<<<<<< HEAD:Social/api/server/routes/routes.js
 const upload = multer({dest: '../../../web/build/images'})
+=======
+const upload = multer({dest: './images'})
+>>>>>>> a1ee2f05bbe305227b091f583ab3cb0af230fcc5:api/server/routes/routes.js
 
 
 router.get('/profile/:userId', models.profile.get)

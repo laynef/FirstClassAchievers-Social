@@ -8,36 +8,7 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
-const config = require('../../config/config')
 
-const FacebookStrategy = require('passport-facebook').Strategy
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const TwitterStrategy = require('passport-twitter').Strategy
-
-
-// SMS (No Password) Login
-router.get('/sms', 
-    () => {}
-)
-
-// Twitter Login
-router.get('/twitter', 
-    passport.authenticate('twitter')
-)
-
-// Google Login
-router.get('/google',
-  passport.authenticate('google', { 
-      scope: ['https://www.google.com/m8/feeds'] 
-    })
-)
-
-// Facebook Login
-router.get('/facebook',
-    passport.authenticate('facebook', { 
-        scope: ['read_stream', 'publish_actions'] 
-    })
-)
 
 // local auth
 router.get('/local/user/:id', (req, res, next) => {
@@ -152,8 +123,8 @@ router.post('/local/forgotten/password', (req, res, next) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: config.gmail_user,
-            pass:  config.gmail_pass
+            user: 'config.gmail_user',
+            pass:  'config.gmail_pass'
         },
         logger: bunyan.createLogger({
             name: 'nodemailer'
@@ -273,6 +244,7 @@ router.post('/local/fixtures', (req, res, next) => {
         })
     })
 })
+
 
 // export router for server.js
 module.exports = router

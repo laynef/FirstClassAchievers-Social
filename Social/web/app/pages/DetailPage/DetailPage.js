@@ -10,7 +10,7 @@ import pull from 'lodash/pull'
 
 class DetailPage extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         const { dispatch, params, user } = this.props 
         dispatch(getProfile(params.userId))
         dispatch(getTestimonials())
@@ -34,7 +34,7 @@ class DetailPage extends Component {
 
     render() {
         const { profile, params, testimonial, handleSubmit, user, following, favorites } = this.props;
-        if (!profile) return null
+        if (!profile ) return null
         if (user) { if (!following || !favorites) return null }
         if (profile.user_id != params.userId) return null
         return (
