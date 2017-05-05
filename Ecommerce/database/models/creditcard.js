@@ -6,11 +6,13 @@ module.exports = function(sequelize, DataTypes) {
     users_name: DataTypes.STRING,
     expire_month: DataTypes.STRING,
     expire_year: DataTypes.STRING,
-    cvc: DataTypes.STRING
+    cvc: DataTypes.STRING,
+    profile_id: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        CreditCard.belongsTo(models.Profile, {foreignKey: 'profile_id'})
       }
     }
   });

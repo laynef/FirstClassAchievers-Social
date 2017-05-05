@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       products: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize>INTEGER)
       },
       status: {
         type: Sequelize.STRING

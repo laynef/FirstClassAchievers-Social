@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       credit_cards: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       phone: {
         type: Sequelize.STRING
@@ -43,6 +43,9 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      user_id: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
