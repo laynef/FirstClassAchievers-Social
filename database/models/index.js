@@ -7,7 +7,7 @@ var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
 var db        = {};
 
-var url = 'postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt'
+var url = process.env.dbUrl
 var sequelize = new Sequelize(url);
 
 fs
