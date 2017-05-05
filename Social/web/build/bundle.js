@@ -27030,6 +27030,10 @@ var _Notifications = __webpack_require__(392);
 
 var _Notifications2 = _interopRequireDefault(_Notifications);
 
+var _MobileMenu = __webpack_require__(955);
+
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27047,7 +27051,8 @@ var Header = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
     _this.state = {
-      open: false
+      open: false,
+      mobile: false
     };
     return _this;
   }
@@ -27077,7 +27082,9 @@ var Header = function (_Component) {
               { className: 'sm-action-bar' },
               _react2.default.createElement(
                 'a',
-                { href: '#', className: 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5', 'data-toggle': 'sidebar' },
+                { onClick: function onClick() {
+                    return _this2.setState({ mobile: !_this2.state.mobile });
+                  }, className: 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5' },
                 _react2.default.createElement('span', { className: 'icon-set menu-hambuger' })
               )
             )
@@ -69110,6 +69117,273 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 955 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(9);
+
+var _reduxForm = __webpack_require__(13);
+
+var _LoginModal = __webpack_require__(390);
+
+var _LoginModal2 = _interopRequireDefault(_LoginModal);
+
+var _SignUpModal = __webpack_require__(391);
+
+var _SignUpModal2 = _interopRequireDefault(_SignUpModal);
+
+var _reactRouter = __webpack_require__(39);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MobileMenu = function (_Component) {
+    _inherits(MobileMenu, _Component);
+
+    function MobileMenu() {
+        _classCallCheck(this, MobileMenu);
+
+        return _possibleConstructorReturn(this, (MobileMenu.__proto__ || Object.getPrototypeOf(MobileMenu)).apply(this, arguments));
+    }
+
+    _createClass(MobileMenu, [{
+        key: 'render',
+        value: function render() {
+            var user = this.props.user;
+
+            return _react2.default.createElement(
+                'div',
+                { id: 'MobileMenu' },
+                _react2.default.createElement(
+                    'nav',
+                    { id: 'sideMenu', className: 'page-sidebar', 'data-pages': 'sidebar' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'sidebar-header' },
+                        _react2.default.createElement('img', { src: 'theme/assets/img/logo_white.png', alt: 'logo', className: 'brand', 'data-src': 'theme/assets/img/logo_white.png', 'data-src-retina': 'theme/assets/img/logo_white_2x.png', width: '93', height: '25' }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'sidebar-header-controls' },
+                            _react2.default.createElement(
+                                'button',
+                                { 'data-toggle-pin': 'sidebar', className: 'btn btn-link visible-xs-inline visible-sm-inline', type: 'button' },
+                                _react2.default.createElement('i', { className: 'fa fs-12' })
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'sidebar-menu' },
+                        !user || !user.id ? _react2.default.createElement(
+                            'ul',
+                            { className: 'menu-items' },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#login-modal' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Login'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#sign-up-modal' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Sign Up'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Home'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/testimonials' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Testimonials'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-social' })
+                                )
+                            )
+                        ) : _react2.default.createElement(
+                            'ul',
+                            { className: 'menu-items' },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Home'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/profile', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Profile'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-home' })
+                                ),
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/favorites', className: 'detailed' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Favorites'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/testimonials' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Testimonials'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-social' })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
+                                    { to: '/' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Logout'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-social' })
+                                )
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'clearfix' })
+                    )
+                ),
+                _react2.default.createElement(_LoginModal2.default, null),
+                _react2.default.createElement(_SignUpModal2.default, null)
+            );
+        }
+    }]);
+
+    return MobileMenu;
+}(_react.Component);
+
+MobileMenu = (0, _reduxForm.reduxForm)({
+    form: 'MobileMenu'
+})(MobileMenu);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {
+        user: state.user.data
+    };
+})(MobileMenu);
 
 /***/ })
 /******/ ]);

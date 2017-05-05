@@ -18,6 +18,9 @@
 #SideMenuComponent #sideMenu:hover {
   transform: translate(210px, 0px); }
 
+#MobileMenu #sideMenu:hover {
+  transform: translate(210px, 0px); }
+
 @media screen and (min-width: 992px) {
   #TestimonialPage {
     margin-left: 80px; } }
