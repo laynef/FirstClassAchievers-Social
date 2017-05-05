@@ -50,6 +50,7 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
+            console.log(`RESP`, response)
             Following.create({
                 followers: [],
                 user_id: response.dataValues.id
@@ -76,7 +77,7 @@ router.post('/local/register', (req, res, next) => {
         })
         .catch(error => {
             console.log(`sign up post call error: `, error)
-            res.sendStatus(400)
+            res.sendStatus(404)
         })
     })
 })
@@ -127,8 +128,10 @@ router.post('/local/forgotten/password', (req, res, next) => {
             type: 'OAuth2',
             user: config.google_user,
             clientId: config.google_client_id,
-            clientSecret: config.google_client_secret
-            // expires: 1484314697598
+            clientSecret: config.google_client_secret,
+            refreshToken: '1/XXxXxsss-xxxXXXXXxXxx0XXXxxXXx0x00xxx',
+            accessToken: 'ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x',
+            expires: 1484314697598
         },
         logger: bunyan.createLogger({
             name: 'nodemailer'
@@ -150,48 +153,16 @@ router.post('/local/forgotten/password', (req, res, next) => {
     let message = {
 
         // Comma separated list of recipients
-        to: `${req.body.firstName} ${req.body.lastName} <${req.body.email}>`,
+        to: `${req.body.email}`,
 
         // Subject of the message
-        subject: 'Nodemailer is unicode friendly ✔ #', //
+        subject: 'First Class Achievers Reset Password', //
 
         // plaintext body
-        text: `Hello ${req.body.firstName} ${req.body.lastName}!`,
+        text: `Hello ${req.body.lastName}!`,
 
         // HTML body
-        html: '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
-            '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
-
-        // Apple Watch specific HTML body
-        watchHtml: '<b>Hello</b> to myself',
-
-        // An array of attachments
-        // attachments: [
-
-            // String attachment
-            // {
-            //     filename: 'notes.txt',
-            //     content: 'Some notes about this e-mail',
-            //     contentType: 'text/plain' // optional, would be detected from the filename
-            // },
-
-            // Binary Buffer attachment
-            // {
-            //     filename: 'image.png',
-            //     content: new Buffer('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD/' +
-            //         '//+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4U' +
-            //         'g9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC', 'base64'),
-
-            //     cid: 'note@example.com' // should be as unique as possible
-            // },
-
-            // File Stream attachment
-            // {
-            //     filename: 'nyan cat ✔.gif',
-            //     path: __dirname + '/assets/nyan.gif',
-            //     cid: 'nyan@example.com' // should be as unique as possible
-            // }
-        // ]
+        html: `<a href="http://localhost:3214/reset">Reset your password<a>`
     }
 
     console.log('Sending Mail')
