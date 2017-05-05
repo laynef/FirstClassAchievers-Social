@@ -16805,8 +16805,6 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 var _reduxLogger = __webpack_require__(200);
 
-var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-
 var _reduxPromise = __webpack_require__(201);
 
 var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
@@ -16827,7 +16825,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var logger = (0, _reduxLogger2.default)();
+var logger = (0, _reduxLogger.createLogger)();
 var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxPromise2.default, logger));
 
 var Root = function (_Component) {
