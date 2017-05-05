@@ -23,7 +23,7 @@
 ### Favorites
 ![alt-tag](./github/favorites.png)
 ### Followers
-![alt-tag](./github/friends-view.png)
+![alt-tag](./github/following.png)
 ![alt-tag](./github/detailed.png)
 ### NewsFeed
 ![alt-tag](./github/detailed.png)
