@@ -59,7 +59,7 @@ class LoginModal extends Component {
                                                 <Form onSubmit={handleSubmit(LoginModal.formSubmitLogin.bind(this))}>
                                                     <Field component={renderInput} label="Email" type="email" name="email"/>
                                                     <Field component={renderInput} label="Password" type="password" name="password"/>
-                                                    <p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>
+                                                    {/*<p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>*/}
                                                     <div className="row">
                                                         <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                             <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>

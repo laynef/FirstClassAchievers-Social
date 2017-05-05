@@ -10,5 +10,8 @@ module.exports = {
     twitter_api_secret: 'pcmZt4DMbTzZisb5Vy6R7OdhFrnX2vV1MuLu3moSBZKp2Hc17d',
 
     google_client_id: '154261984040-74vff4mdnv0e7apej7f4itlc2ag1ngdv.apps.googleusercontent.com',
-    google_client_secret: 'BxweqevT14PCM3-t7RbLOUNh'
+    google_client_secret: 'BxweqevT14PCM3-t7RbLOUNh',
+
+    gmail_user: 'lfaler1993@gmail.com',
+    gmail_pass: 'FuckH@ck3r$'
 }

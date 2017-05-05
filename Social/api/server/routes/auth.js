@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
+const config = require('../../config/config')
 
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
@@ -149,10 +150,10 @@ router.patch('/local/change/password', (req, res, next) => {
 router.post('/local/forgotten/password', (req, res, next) => {
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'gmail',
         auth: {
-            user: 'username',
-            pass:  'password'
+            user: config.gmail_user,
+            pass:  config.gmail_pass
         },
         logger: bunyan.createLogger({
             name: 'nodemailer'
