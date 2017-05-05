@@ -1,5 +1,7 @@
 # FirstClassAchievers
 
+This is a Social Web App
+
 ## To Install & Run
 
 `npm i`<br>
