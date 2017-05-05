@@ -27,7 +27,7 @@ router.get('/twitter',
 // Google Login
 router.get('/google',
   passport.authenticate('google', { 
-      scope: ['https://www.googleapis.com/auth/plus.login'] 
+      scope: ['https://www.google.com/m8/feeds'] 
     })
 )
 
