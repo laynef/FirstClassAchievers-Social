@@ -17,7 +17,7 @@ This is a Social Web App
 ### Notifications
 #### Notified when invite to chat, messaged, and followed
 #### Notifications linked to recent activity
-![alt-tag](./github/notifications.png)
+![alt-tag](./github/unread.png)
 ![alt-tag](./github/read.png)
 ### Authenication
 ### Unauthenticated View & Authenicated View
