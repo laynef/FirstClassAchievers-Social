@@ -108,14 +108,6 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
         likes: 0
     })
-<<<<<<< HEAD
-    Testimonial.create({
-        author: 'Jenny Lopez',
-        message: `"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."`,
-        user_id: 3,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
-        likes: 0
-=======
     .then(response => {
         Testimonial.create({
             author: 'Bionica Johnson',
@@ -138,7 +130,6 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
             image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
             likes: 0
         })
->>>>>>> 532c750c141bd89105ef2963faf1f629cc5f060f
     })
 })
 .catch(err => {
@@ -154,17 +145,10 @@ axios.post(`http://localhost:3214/auth/local/fixtures`, {
     id: 4
 }).then(resp => {
     Testimonial.create({
-<<<<<<< HEAD
-        author: 'Jenny Lopez',
-        message: `Nullam in dolor et felis laoreet dignissim. Integer tincidunt, nisi in tristique sollicitudin, est magna dictum augue, eget convallis massa leo ut purus. Phasellus dignissim diam purus, at cursus orci aliquam in. Praesent euismod odio vel posuere imperdiet. Curabitur id dolor nec sapien fringilla sagittis. Proin id massa felis. Curabitur vitae nulla in enim mattis tincidunt ut at enim. Proin efficitur mauris nec quam facilisis, in rhoncus eros dapibus.`,
-        user_id: 3,
-        image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493226722/ayqiuj6kccb37se8fnn1.jpg',
-=======
         author: 'Malia Ayers',
         message: `Donec venenatis sem vel tortor luctus, quis aliquam nisl luctus. Curabitur in elit dignissim, placerat neque consequat, volutpat magna. Mauris eget scelerisque ipsum. Nullam consectetur mollis libero egestas pellentesque. In hac habitasse platea dictumst. Nullam rhoncus justo eu malesuada molestie. Sed at eros hendrerit, blandit diam id, ornare massa. Nunc sodales nisi et ex feugiat, et convallis mi ornare.`,
         user_id: 4,
         image: 'http://res.cloudinary.com/dzllxh0km/image/upload/v1493346828/ds45sq0nipio7nlsrouv.jpg',
->>>>>>> 532c750c141bd89105ef2963faf1f629cc5f060f
         likes: 0
     })
 })
