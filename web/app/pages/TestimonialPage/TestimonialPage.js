@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
 import TestimonialModal from '../../components/Testimonial/TestimonialModal'
 import PostEntry from '../../components/Testimonial/PostEntry'
+import '../../redux/utils/search'
 
 
 class TestimonialPage extends Component {
@@ -50,7 +51,7 @@ class TestimonialPage extends Component {
                 </div>
                 <div id="testimonial-background" className="col-sm-12">
                     {testimonial
-                        .filter(e => regex.test(e.author) || regex.test(e.message))
+                        .mainSearch(this.state.searchTerm)
                         .map((entry, i) => (
                         <PostEntry key={i}
                             author={entry.author}

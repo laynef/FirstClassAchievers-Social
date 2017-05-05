@@ -13,9 +13,9 @@ class MasterPage extends Component {
         const { children } = this.props;
         return (
             <div>
-                <Header />
                 <SideMenu />
-                { children }
+                <Header />
+                { children } 
                 <Footer />
             </div>
         )

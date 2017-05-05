@@ -33,14 +33,14 @@ module.exports = {
         ]
     },
     output: {
-        filename: "public/bundle.js"
+        filename: "build/bundle.js"
     },
     resolve: {
       extensions: ['.js', '.jsx', '.scss', '.sass', '.css']
     },
     plugins: [
         new ExtractTextPlugin({ 
-            filename: 'public/main.css', 
+            filename: 'build/main.css', 
             allChunks: true,
             disable: false
         })

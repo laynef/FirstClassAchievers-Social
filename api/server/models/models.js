@@ -5,6 +5,7 @@ const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
 const Message = require('../../../database/models/index').Message
+const Notification = require('../../../database/models/index').Notification
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -93,13 +94,26 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                Following.findAll({
-                    where: { user_id: req.params.userId }
+                    Following.findAll({
+                        where: { user_id: req.params.userId }
+                    })
+                    .then(resp => {
+                        if (resp[0].dataValues.followers.indexOf(Number(req.params.otherId)) != -1) {
+                        Profile.findAll({ where: {user_id: req.params.userId} })
+                            .then(respond => {
+                                Notification.create({
+                                    user_id: req.params.otherId,
+                                    message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
+                                    seen: false,
+                                    image: respond[0].dataValues.image,
+                                    type: 'FOLLOW',
+                                    from: respond[0].dataValues.id
+                                })
+                            })
+                        }
+                        res.status(200).send(resp[0])
+                    })
                 })
-                .then(resp => {
-                    res.status(200).send(resp[0])
-                })
-            })
         }
     },
     favorites: {
@@ -202,6 +216,18 @@ module.exports = {
                 user_id: req.body.user_id,
                 room_name: req.body.roomNameId,
                 to: req.body.to
+            }).then(resp => {
+                Profile.findAll({ where: {user_id: req.body.user_id} })
+                    .then(respond => {
+                        Notification.create({
+                            user_id: req.body.to,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} sent you a message`,
+                            seen: false,
+                            image: respond[0].dataValues.image,
+                            type: 'MESSAGE',
+                            from: respond[0].dataValues.id
+                        })
+                    })
             })
         }
     },
@@ -220,6 +246,34 @@ module.exports = {
                         where: { user_id: req.params.userId }
                     })
                 }
+                Profile.findAll({ where: {user_id: req.params.userId} })
+                    .then(respond => {
+                        Notification.create({
+                            user_id: req.body.friend,
+                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
+                            seen: false,
+                            image: respond[0].dataValues.image,
+                            type: 'INVITE',
+                            from: respond[0].dataValues.id
+                        })
+                    })
+            })
+        }
+    },
+    notify: {
+        get: (req, res, body) => {
+            Notification.findAll({
+                where: { user_id: req.params.userId }
+            })
+            .then(resp => {
+                res.status(200).send(resp)
+            })
+        },
+        patch: (req, res, body) => {
+            Notification.update({
+                seen: true
+            }, {
+                where: { id: req.body.note_id }
             })
         }
     }

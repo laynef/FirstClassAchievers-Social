@@ -1,6 +1,7 @@
 .vscode
 
 **/node_modules
+**/**/node_modules
 web/public/theme/pages
 web/public/theme/assets
 

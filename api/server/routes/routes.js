@@ -2,7 +2,11 @@
 const router = require('express').Router()
 const models = require('../models/models')
 const multer = require('multer')
+<<<<<<< HEAD
 const upload = multer({dest: './images'})
+=======
+const upload = multer()
+>>>>>>> 532c750c141bd89105ef2963faf1f629cc5f060f
 
 
 router.get('/profile/:userId', models.profile.get)
@@ -12,7 +16,7 @@ router.get('/testify', models.testify.get)
 router.post('/testify', models.testify.post)
 
 router.get('/following/:userId', models.following.get)
-router.patch('/following/:userId', models.following.patch)
+router.patch('/following/:userId/:otherId', models.following.patch)
 
 router.get('/favorites/:userId', models.favorites.get)
 router.patch('/favorites/:userId', models.favorites.patch)
@@ -25,6 +29,9 @@ router.get('/messages/:userId/:otherId', models.messages.get)
 router.post('/messages', models.messages.post)
 
 router.post('/invite/:userId', models.invite.post)
+
+router.get('/notify/:userId', models.notify.get)
+router.patch('/notify', models.notify.patch)
 
 
 // export router for server.js

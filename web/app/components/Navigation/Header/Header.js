@@ -7,18 +7,29 @@ import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
 import ChatNotifications  from './ChatNotifications'
 import SideMenu  from '../SideMenu/SideMenu'
+import Notifications  from '../Notifications/Notifications'
+import MobileMenu from '../SideMenu/MobileMenu'
 
 
 class Header extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
+      mobile: false
+    }
+  }
+
     render() {
-        const { dispatch, user } = this.props
+        const { dispatch, user, notifications } = this.props
+        if (user && !notifications) return null
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
                         <div className="pull-left full-height visible-sm visible-xs">
                           <div className="sm-action-bar">
-                            <a href="#" className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5" data-toggle="sidebar">
+                            <a onClick={() => this.setState({mobile: !this.state.mobile})} className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5">
                               <span className="icon-set menu-hambuger"></span>
                             </a>
                           </div>
@@ -43,12 +54,17 @@ class Header extends Component {
                                 <div className="dropdown pull-right">
                                   {(user && user.id) ? (
                                     <div className="rightSpacing">
+                                      <div className="dropdown notify">
+                                        <a href="javascript:;" onClick={() => this.setState({open: !this.state.open})} id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
+                                          <span className={`${notifications.length > 0 && !notifications[0].seen ? 'bubble' : ''}`}></span>
+                                        </a>
+                                      </div>
                                       <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span className="thumbnail-wrapper d32 circular inline m-t-5">
-                                            <img src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                            <img src={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               alt="" 
-                                              data-src={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                              data-src-retina={(user.image) ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                              data-src-retina={user.image ? user.image : "http://i.imgur.com/sRbuHxN.png"} 
                                               width="32" 
                                               height="32"/>
                                         </span>
@@ -66,6 +82,12 @@ class Header extends Component {
                                             Favorites
                                           </Link>
                                         </li>
+                                        <li>
+                                          <Link to="/friends">
+                                            <i className="fs-14 fa fa-users"></i> 
+                                            Friends
+                                          </Link>
+                                        </li>
                                         <li className="bg-master-lighter" onClick={() => {dispatch(logout());window.location.reload()}}>
                                           <Link to="/" className="clearfix">
                                             <span className="pull-left">Logout</span>
@@ -73,6 +95,7 @@ class Header extends Component {
                                           </Link>
                                         </li>
                                       </ul>
+                                      <Notifications open={this.state.open} />
                                       <a href="#" 
                                         className="chatLink btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" 
                                         data-toggle="quickview" 
@@ -101,5 +124,11 @@ class Header extends Component {
 }
 
 export default connect(state => ({
+<<<<<<< HEAD
   user: state.user.data
 }))(Header)
+=======
+  user: state.user.data,
+  notifications: state.notifications.data
+}))(Header)
+>>>>>>> 532c750c141bd89105ef2963faf1f629cc5f060f

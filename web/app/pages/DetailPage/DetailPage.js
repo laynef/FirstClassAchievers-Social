@@ -29,7 +29,7 @@ class DetailPage extends Component {
             array.push(profile.user_id)
         }
         body.followers = array
-        dispatch(setFollowers(body, user.id))
+        dispatch(setFollowers(body, user.id, profile.user_id))
     }
 
     render() {
@@ -40,7 +40,7 @@ class DetailPage extends Component {
         return (
             <div id="DetailPage">
                 <h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
-                <span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5">
+                <span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5 s-t-10">
                     <img src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
                         alt=""
                         data-src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
@@ -49,7 +49,7 @@ class DetailPage extends Component {
                         height="320"/>
                 </span>
                 <Form onSubmit={handleSubmit(DetailPage.formSubmit.bind(this))}>
-                    <div id="PrimaryContact" className="col-md-4">
+                    <div id="PrimaryContact" className="col-md-4 col-sm-12 col-xs-12">
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <div className="panel-title">
@@ -91,7 +91,7 @@ class DetailPage extends Component {
                             </div>
                         </div>
                     </Form>
-                    <div id="SecondaryContact" className="col-sm-8">
+                    <div id="SecondaryContact" className="col-md-7  col-sm-12 col-xs-12">
                         {testimonial
                             .filter(e => e.user_id == profile.user_id)
                             .map((entry, i) => (
