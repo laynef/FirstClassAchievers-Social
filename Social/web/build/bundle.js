@@ -16013,7 +16013,7 @@ var LoginModal = function (_Component) {
                                                 { className: 'row' },
                                                 _react2.default.createElement(
                                                     'div',
-                                                    { className: 'col-sm-4 m-t-10 sm-m-t-10' },
+                                                    { className: 'col-sm-12 m-t-10 sm-m-t-10' },
                                                     _react2.default.createElement(
                                                         'button',
                                                         { type: 'submit', className: 'btn btn-primary btn-block m-t-5' },

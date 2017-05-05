@@ -50,7 +50,7 @@ class LoginModal extends Component {
                                                 <Field component={renderInput} label="Email" type="email" name="email"/>
                                                 <p onClick={() => this.setState({forgot: false})}>I remember my password</p>
                                                 <div className="row">
-                                                    <div className="col-sm-4 m-t-10 sm-m-t-10">
+                                                    <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                         <button type="submit" className="btn btn-primary btn-block m-t-5">Get Password</button>
                                                     </div>
                                                 </div>
