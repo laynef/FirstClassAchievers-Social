@@ -17,7 +17,6 @@ const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
-const config = require('../config/config')
 const User = require('../../database/models/user')
 
 
@@ -25,7 +24,7 @@ let users = {}
 let rooms = []
 
 // port settings
-let port = process.env.PORT
+let port = process.env.PORT || 3214
 
 // web socket protocol on localhost on port 3214
 server.listen(port, () => {
@@ -47,43 +46,6 @@ app.use(session({
 }))
 app.use(cookieParser())
 app.use(flash())
-
-// Social Media Logins
-passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret: config.facebook_api_secret,
-    callbackURL: "https://www.example.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({where: {email: profile.emails[0]} }, function(err, user) {
-      if (err) { return done(err) }
-      done(null, user)
-    })
-  }
-))
-passport.use(new TwitterStrategy({
-    consumerKey: config.twitter_api_key,
-    consumerSecret: config.twitter_api_secret,
-    callbackURL: "https://www.example.com/auth/twitter/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-    User.findOrCreate({where: {email: profile.emails[0]} }, function(err, user) {
-      if (err) { return done(err) }
-      done(null, user)
-    })
-  }
-))
-passport.use(new GoogleStrategy({
-    consumerKey: config.google_client_id,
-    consumerSecret: config.google_client_secret,
-    callbackURL: "https://www.example.com/auth/google/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-      User.findOrCreate({ where: {email: profile.emails[0]} }, function (err, user) {
-        return done(err, user)
-      })
-  }
-))
 
 app.use('/api', routes) // when you add api routes in routes.js
 app.use('/auth', local) // when you add api routes in routes.js
