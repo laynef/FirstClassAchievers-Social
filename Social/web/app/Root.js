@@ -17,7 +17,7 @@ const store = createStore(
     reducers,
     applyMiddleware(
         reduxThunk, 
-        ReduxPromise
+        ReduxPromise,
         logger
     )
 )
