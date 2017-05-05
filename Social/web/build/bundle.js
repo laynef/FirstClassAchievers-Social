@@ -69331,6 +69331,24 @@ var MobileMenu = function (_Component) {
                                 { className: 'm-t-30' },
                                 _react2.default.createElement(
                                     _reactRouter.Link,
+                                    { to: '/friends' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'title' },
+                                        'Friends'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'icon-thumbnail ' },
+                                    _react2.default.createElement('i', { className: 'pg-social' })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'm-t-30' },
+                                _react2.default.createElement(
+                                    _reactRouter.Link,
                                     { to: '/testimonials' },
                                     _react2.default.createElement(
                                         'span',
