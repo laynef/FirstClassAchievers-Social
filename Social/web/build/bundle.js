@@ -16027,13 +16027,6 @@ var LoginModal = function (_Component) {
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
                                             _react2.default.createElement(
-                                                'p',
-                                                { onClick: function onClick() {
-                                                        return _this2.setState({ forgot: true });
-                                                    } },
-                                                'Forgot your password?'
-                                            ),
-                                            _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
                                                 _react2.default.createElement(
