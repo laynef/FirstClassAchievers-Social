@@ -23,7 +23,7 @@ class FriendsPage extends Component {
         let people = friends || JSON.parse(localStorage.getItem('friends')) || []
         return (
             <div id="FriendsPage" className="container-fluid padding-25 sm-padding-10">
-                <h1>Friends</h1>
+                <h1>Following</h1>
                 <div className="row">
                     {people.map((e, i) => (
                         <Link key={i} to={`profile/${e.user_id}`}>
