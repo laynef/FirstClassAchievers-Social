@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import Greeting from '../../components/greeting/Greeting'
 
 
 class MainPage extends Component {
@@ -16,7 +15,7 @@ class MainPage extends Component {
     render() {
         return (
             <div id="mainPage">
-                <Greeting />
+                <h1>Hello World</h1>
             </div>
         )
     }
