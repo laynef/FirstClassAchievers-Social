@@ -146,7 +146,7 @@ router.patch('/local/change/password', (req, res, next) => {
     })
 })
 
-router.post('/local/forgot/password', (req, res, next) => {
+router.post('/local/forgotten/password', (req, res, next) => {
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
