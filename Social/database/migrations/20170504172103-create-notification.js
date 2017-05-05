@@ -20,6 +20,12 @@ module.exports = {
       seen: {
         type: Sequelize.BOOLEAN
       },
+      type: {
+          type: Sequelize.STRING
+      },
+      from: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

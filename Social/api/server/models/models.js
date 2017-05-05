@@ -106,7 +106,9 @@ module.exports = {
                                     user_id: req.params.otherId,
                                     message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
                                     seen: false,
-                                    image: respond[0].dataValues.image
+                                    image: respond[0].dataValues.image,
+                                    type: 'FOLLOW',
+                                    from: respond[0].dataValues.id
                                 })
                             })
                         }
@@ -222,7 +224,9 @@ module.exports = {
                             user_id: req.params.userId,
                             message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} sent you a message`,
                             seen: false,
-                            image: respond[0].dataValues.image
+                            image: respond[0].dataValues.image,
+                            type: 'MESSAGE',
+                            from: respond[0].dataValues.id
                         })
                     })
             })
@@ -249,7 +253,9 @@ module.exports = {
                             user_id: req.params.userId,
                             message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
                             seen: false,
-                            image: respond[0].dataValues.image
+                            image: respond[0].dataValues.image,
+                            type: 'INVITE',
+                            from: respond[0].dataValues.id
                         })
                     })
             })
