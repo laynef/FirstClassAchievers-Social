@@ -5,10 +5,11 @@ const controllers = require('../models/models')
 // api/ server roots
 
 // review
-router.get('/review', controllers.review.get)
-router.post('/review', controllers.review.post)
-router.patch('/review', controllers.review.patch)
-router.delete('/review', controllers.review.delete)
+router.get('/review/:itemId', controllers.review.all)
+router.get('/review/:all', controllers.review.get)
+router.post('/review/:itemId', controllers.review.post)
+router.patch('/review/:itemId', controllers.review.patch)
+router.delete('/review/:itemId', controllers.review.delete)
 
 // credit card
 router.get('/credit/card/:all', controllers.creditCard.get)
