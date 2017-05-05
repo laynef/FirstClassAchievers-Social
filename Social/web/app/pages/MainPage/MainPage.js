@@ -25,7 +25,7 @@ class MainPage extends Component {
         const { user, testimonial, following, favorites } = this.props
         return (
             <div id="mainPage">
-                <h1>Welcome to First Class</h1>
+                <h1>{user ? 'News Feed' : 'Welcome to First Class'}</h1>
                 <div id="mainContainer">
                 {user && user.id && 
                     following && following.followers ? (

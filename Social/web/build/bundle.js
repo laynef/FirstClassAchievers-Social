@@ -29141,7 +29141,7 @@ var DetailEntry = function (_Component) {
                         _react2.default.createElement(
                             'h1',
                             null,
-                            e.author + '\'s Testimonial'
+                            e.author + '\'s Post'
                         ),
                         _react2.default.createElement(
                             'div',
@@ -29684,7 +29684,7 @@ var FriendsPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'Friends'
+                    'Following'
                 ),
                 _react2.default.createElement(
                     'div',
@@ -29840,7 +29840,7 @@ var MainPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'Welcome to First Class'
+                    user ? 'News Feed' : 'Welcome to First Class'
                 ),
                 _react2.default.createElement(
                     'div',
@@ -30171,7 +30171,7 @@ var TestimonialPage = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'Real Testimonials'
+                    'Posts'
                 ),
                 _react2.default.createElement(
                     'div',

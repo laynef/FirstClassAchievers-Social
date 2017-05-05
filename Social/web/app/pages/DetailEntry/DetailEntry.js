@@ -30,7 +30,7 @@ class DetailEntry extends Component {
                     .filter(e => e.id == params.entryId)
                     .map((e, i)=> (
                     <div className="PostEntry" key={i}>
-                    <h1>{e.author + `'s Testimonial`}</h1>
+                    <h1>{e.author + `'s Post`}</h1>
                         <div className="card bodi share col1" data-social="item" style={{width: '100%'}}>
                             <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                                 <div className="card-header clearfix">
