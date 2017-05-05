@@ -156,7 +156,7 @@ router.post('/local/forgotten/password', (req, res, next) => {
         to: `${req.body.email}`,
 
         // Subject of the message
-        subject: 'First Class Achievers Reset Password', //
+        subject: 'First Class Achievers Reset Password',
 
         // plaintext body
         text: `Hello ${req.body.lastName}!`,
