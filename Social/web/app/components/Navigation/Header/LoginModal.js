@@ -42,8 +42,8 @@ class LoginModal extends Component {
                                     <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
                                         <i className="pg-close fs-14"></i>
                                     </button>
-                                    <h5><span className="semi-bold">Login</span></h5>
-                                    <p className="p-b-10">Login to connect with other liked minds</p>
+                                    <h5><span className="semi-bold">{this.state.forgot ? 'Forgotten Password' : 'Login'}</span></h5>
+                                    <p className="p-b-10">{this.state.forgot ? 'Receive an email to reset your password' : 'Login to connect with other liked minds'}</p>
                                     <div className="modal-body">
                                         {this.state.forgot ? (
                                             <Form onSubmit={handleSubmit(LoginModal.formSubmitForgotten.bind(this))}>
@@ -59,7 +59,7 @@ class LoginModal extends Component {
                                                 <Form onSubmit={handleSubmit(LoginModal.formSubmitLogin.bind(this))}>
                                                     <Field component={renderInput} label="Email" type="email" name="email"/>
                                                     <Field component={renderInput} label="Password" type="password" name="password"/>
-                                                    {/*<p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>*/}
+                                                    <p onClick={() => this.setState({forgot: true})}>Forgot your password?</p>
                                                     <div className="row">
                                                         <div className="col-sm-12 m-t-10 sm-m-t-10">
                                                             <button type="submit" className="btn btn-primary btn-block m-t-5">Login</button>

@@ -15986,13 +15986,13 @@ var LoginModal = function (_Component) {
                                         _react2.default.createElement(
                                             'span',
                                             { className: 'semi-bold' },
-                                            'Login'
+                                            this.state.forgot ? 'Forgotten Password' : 'Login'
                                         )
                                     ),
                                     _react2.default.createElement(
                                         'p',
                                         { className: 'p-b-10' },
-                                        'Login to connect with other liked minds'
+                                        this.state.forgot ? 'Receive an email to reset your password' : 'Login to connect with other liked minds'
                                     ),
                                     _react2.default.createElement(
                                         'div',
@@ -16026,6 +16026,13 @@ var LoginModal = function (_Component) {
                                             { onSubmit: handleSubmit(LoginModal.formSubmitLogin.bind(this)) },
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Email', type: 'email', name: 'email' }),
                                             _react2.default.createElement(_reduxForm.Field, { component: _ReduxForms.renderInput, label: 'Password', type: 'password', name: 'password' }),
+                                            _react2.default.createElement(
+                                                'p',
+                                                { onClick: function onClick() {
+                                                        return _this2.setState({ forgot: true });
+                                                    } },
+                                                'Forgot your password?'
+                                            ),
                                             _react2.default.createElement(
                                                 'div',
                                                 { className: 'row' },
@@ -26914,7 +26921,7 @@ var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyM
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
-    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _Router2.default })
+    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _Router2.default })
 ), document.getElementById('app'));
 
 /***/ }),

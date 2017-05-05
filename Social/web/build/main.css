@@ -163,17 +163,17 @@
   left: -360px;
   top: 6px; }
 
-@media screen and (min-width: 992px) {
-  #FriendsPage {
-    margin-left: 80px; } }
-
-#FriendsPage h1 {
-  text-align: center; }
-
-#FriendsPage .imgs {
-  background-size: cover;
-  overflow: hidden;
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto; }
+#FriendsPage {
+  height: 55vw; }
+  @media screen and (min-width: 992px) {
+    #FriendsPage {
+      margin-left: 80px; } }
+  #FriendsPage h1 {
+    text-align: center; }
+  #FriendsPage .imgs {
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
