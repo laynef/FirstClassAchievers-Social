@@ -108,6 +108,129 @@ module.exports = {
                 res.status(203).send(resp)
             })
         }
+    },
+    product: {
+        individual: {
+            get: (req, res, next) => {
+
+            },
+            post: (req, res, next) => {
+
+            },
+            patch: (req, res, next) => {
+
+            },
+            delete: (req, res, next) => {
+
+            }
+        },
+        category: {
+            get: (req, res, next) => {
+
+            }
+        }
+    },
+    order: {
+        all: (req, res, next) => {
+            Review.findAll({
+                where : {to: req.params.all}
+            })
+            .then(resp => {
+                res.status(200).send(resp)
+            })
+        },
+        get: (req, res, next) => {
+            Review.findAll({
+                where : {id: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(200).send(resp[0])
+            })
+        },
+        post: (req, res, next) => {
+            Review.create({
+                message: req.body.message,
+                rate: req.body.rate,
+                who: req.body.who,
+                to: req.params.itemId
+            })
+            .then(resp => {
+                res.status(201).send(resp)
+            })
+        },
+        patch: (req, res, next) => {
+            Review.update({
+                message: req.body.message,
+                rate: req.body.rate,
+                who: req.body.who,
+                to: req.params.itemId
+            }, {
+                where: {to: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(202).send(resp)
+            })
+        },
+        delete: (req, res, next) => {
+            Review.destroy({
+                where: {id: req.params.itemId}
+            })
+            .then(resp => {
+                res.status(203).send(resp)
+            })
+        }
+    },
+    favorites: {
+        list: {
+            get: (req, res, next) => {
+
+            },
+            post: (req, res, next) => {
+
+            },
+            patch: (req, res, next) => {
+
+            },
+            delete: (req, res, next) => {
+
+            }
+        },
+        individual: {
+            get: (req, res, next) => {
+
+            },
+            post: (req, res, next) => {
+
+            },
+            patch: (req, res, next) => {
+
+            },
+            delete: (req, res, next) => {
+
+            }
+        }
+    },
+    notify: {
+        get: (req, res, next) => {
+
+        },
+        post: (req, res, next) => {
+
+        },
+        patch: (req, res, next) => {
+
+        }
+    },
+    profile: {
+        get: (req, res, next) => {
+
+        },
+        post: (req, res, next) => {
+
+        },
+        patch: (req, res, next) => {
+
+        }
     }
-    
+
 }

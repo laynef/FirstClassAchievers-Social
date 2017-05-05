@@ -28,20 +28,23 @@ router.delete('/product/:itemId', controllers.product.individual.delete)
 router.get('/product/:itemId', controllers.product.category.get)
 
 // order
+router.get('/order/:all', controllers.order.all)
 router.get('/order/:itemId', controllers.order.get)
 router.post('/order/:itemId', controllers.order.post)
 router.patch('/order/:itemId', controllers.order.patch)
 router.delete('/order/:itemId', controllers.order.delete)
 
 // favorites
-router.get('/favorites/:itemId', controllers.favorites.get)
-router.post('/favorites/:itemId', controllers.favorites.post)
-router.patch('/favorites/:itemId', controllers.favorites.patch)
+router.get('/favorites/:itemId', controllers.favorites.list.get)
+router.post('/favorites/:itemId', controllers.favorites.list.post)
+router.patch('/favorites/:itemId', controllers.favorites.list.patch)
+router.delete('/favorites/:itemId', controllers.favorites.list.delete)
 
 // individual favorites
-router.get('/favorites/:listId', controllers.favorites.individual.get)
-router.post('/favorites/:listId', controllers.favorites.individual.post)
-router.patch('/favorites/:listId', controllers.favorites.individual.patch)
+router.get('/favorites/:itemId', controllers.favorites.individual.get)
+router.post('/favorites/:itemId', controllers.favorites.individual.post)
+router.patch('/favorites/:itemId', controllers.favorites.individual.patch)
+router.delete('/favorites/:itemId', controllers.favorites.individual.delete)
 
 // notify
 router.get('/notify', controllers.notify.get)
