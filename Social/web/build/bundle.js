@@ -27704,7 +27704,7 @@ var Notifications = function (_Component) {
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
                                                     dispatch((0, _notifications.setNotifications)(e.id));
                                                     dispatch((0, _notifications.getNotifications)(user.id));
-                                                    e.type === ('INVITE' || 'MESSAGE') ? _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.browserHistory.push('/profile/' + e.from) : null;
+                                                    e.type === 'INVITE' ? _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.browserHistory.push('/profile/' + e.from) : _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from);
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
