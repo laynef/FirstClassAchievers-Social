@@ -38,12 +38,7 @@ export default function (state = INITIAL_STATE, action) {
 			}
 
 		case actionTypes.LOGOUT_SUCCESS:
-			return {
-				...state,
-				pending: null,
-				error: null,
-				data: null
-			}
+			return INITIAL_STATE
 
 		case actionTypes.LOGOUT_ERROR:
 			return {

@@ -30456,11 +30456,7 @@ exports.default = function () {
 			});
 
 		case _actionTypes2.default.LOGOUT_SUCCESS:
-			return _extends({}, state, {
-				pending: null,
-				error: null,
-				data: null
-			});
+			return INITIAL_STATE;
 
 		case _actionTypes2.default.LOGOUT_ERROR:
 			return _extends({}, state, {
