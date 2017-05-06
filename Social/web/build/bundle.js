@@ -27403,6 +27403,7 @@ var Header = function (_Component) {
           notifications = _props.notifications;
 
       if (user && !notifications) return null;
+      console.log('STATE', this.state.mobile);
       return _react2.default.createElement(
         'div',
         { id: 'HeaderComponent' },
@@ -27411,22 +27412,22 @@ var Header = function (_Component) {
           { className: 'header ' },
           _react2.default.createElement(
             'div',
-            { className: 'pull-left full-height visible-sm visible-xs' },
+            { className: ' pull-left sm-table' },
             _react2.default.createElement(
               'div',
-              { className: 'sm-action-bar' },
+              { className: 'full-height visible-sm visible-xs' },
               _react2.default.createElement(
-                'a',
-                { onClick: function onClick() {
-                    return _this2.setState({ mobile: !_this2.state.mobile });
-                  }, className: 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5' },
-                _react2.default.createElement('span', { className: 'icon-set menu-hambuger' })
+                'div',
+                { className: 'sm-action-bar' },
+                _react2.default.createElement(
+                  _reactRouter.Link,
+                  { onClick: function onClick() {
+                      return _this2.setState({ mobile: !_this2.state.mobile });
+                    }, className: 'btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5' },
+                  _react2.default.createElement('span', { className: 'icon-set menu-hambuger' })
+                )
               )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: ' pull-left sm-table' },
+            ),
             _react2.default.createElement(
               'div',
               { className: 'header-inner' },
@@ -27566,7 +27567,209 @@ var Header = function (_Component) {
         ),
         _react2.default.createElement(_LoginModal2.default, null),
         _react2.default.createElement(_SignUpModal2.default, null),
-        _react2.default.createElement(_ChatNotifications2.default, null)
+        _react2.default.createElement(_ChatNotifications2.default, null),
+        this.state.mobile ? _react2.default.createElement(
+          'div',
+          { id: 'MobileMenu' },
+          _react2.default.createElement(
+            'nav',
+            { id: 'sideMenu', className: 'page-sidebar visible', 'data-pages': 'sidebar', style: { zIndex: '100', width: '100vw' } },
+            _react2.default.createElement(
+              'div',
+              { className: 'sidebar-menu', style: { marginTop: '48px' } },
+              !user || !user.id ? _react2.default.createElement(
+                'ul',
+                { className: 'menu-items' },
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#login-modal' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Login'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#sign-up-modal' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Sign Up'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Home'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/testimonials' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Testimonials'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-social' })
+                  )
+                )
+              ) : _react2.default.createElement(
+                'ul',
+                { className: 'menu-items' },
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Home'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/favorites', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Favorites'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/friends' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Friends'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-social' })
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/testimonials' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Testimonials'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-social' })
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30' },
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Logout'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-social' })
+                  )
+                )
+              ),
+              _react2.default.createElement('div', { className: 'clearfix' })
+            )
+          ),
+          _react2.default.createElement(_LoginModal2.default, null),
+          _react2.default.createElement(_SignUpModal2.default, null)
+        ) : null
       );
     }
   }]);
@@ -27799,7 +28002,7 @@ var MobileMenu = function (_Component) {
                 { id: 'MobileMenu' },
                 _react2.default.createElement(
                     'nav',
-                    { id: 'sideMenu', className: 'page-sidebar', 'data-pages': 'sidebar' },
+                    { id: 'sideMenu', className: 'page-sidebar visible', 'data-pages': 'sidebar', style: { zIndex: '100', width: '100vw' } },
                     _react2.default.createElement(
                         'div',
                         { className: 'sidebar-header' },

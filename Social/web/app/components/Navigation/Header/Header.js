@@ -24,17 +24,18 @@ class Header extends Component {
     render() {
         const { dispatch, user, notifications } = this.props
         if (user && !notifications) return null
+        console.log(`STATE`, this.state.mobile)
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
-                        <div className="pull-left full-height visible-sm visible-xs">
-                          <div className="sm-action-bar">
-                            <a onClick={() => this.setState({mobile: !this.state.mobile})} className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5">
-                              <span className="icon-set menu-hambuger"></span>
-                            </a>
-                          </div>
-                        </div>
                         <div className=" pull-left sm-table">
+                          <div className="full-height visible-sm visible-xs">
+                              <div className="sm-action-bar">
+                                <Link onClick={() => this.setState({mobile: !this.state.mobile})} className="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5">
+                                  <span className="icon-set menu-hambuger"></span>
+                                </Link>
+                              </div>
+                            </div>
                           <div className="header-inner">
                             <Link to="/">
                               <div className="brand inline">
@@ -117,6 +118,78 @@ class Header extends Component {
                     <LoginModal />
                     <SignUpModal />
                     <ChatNotifications />
+                    {this.state.mobile ? (
+                      <div id="MobileMenu">
+                        <nav id="sideMenu" className="page-sidebar visible" data-pages="sidebar" style={{zIndex: '100', width: '100vw'}}>
+                            <div className="sidebar-menu" style={{marginTop: '48px'}}>
+                            {(!user || !user.id) ? (
+                                <ul className="menu-items">
+                                    <li className="m-t-30" data-toggle="modal" data-target="#login-modal">
+                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                        <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                            <span className="title">Login</span>
+                                        </Link>
+                                    </li>
+                                    <li className="m-t-30"  data-toggle="modal" data-target="#sign-up-modal">
+                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                        <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                            <span className="title">Sign Up</span>
+                                        </Link>
+                                    </li>
+                                <li className="m-t-30">
+                                    <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                    <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                    <span className="title">Home</span>
+                                    </Link>
+                                </li>
+                                <li className="m-t-30">
+                                    <Link onClick={() => this.setState({mobile: false})} to="/testimonials">
+                                    <span className="title">Testimonials</span>
+                                    </Link>
+                                    <span className="icon-thumbnail "><i className="pg-social"></i></span>
+                                </li>
+                                </ul>
+                                ) : (
+                                <ul className="menu-items">
+                                    <li className="m-t-30">
+                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                        <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                        <span className="title">Home</span>
+                                        </Link>
+                                    </li>
+                                    <li className="m-t-30">
+                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                        <Link onClick={() => this.setState({mobile: false})} to="/favorites" className="detailed">
+                                        <span className="title">Favorites</span>
+                                        </Link>
+                                    </li>
+                                    <li className="m-t-30">
+                                        <Link onClick={() => this.setState({mobile: false})} to="/friends">
+                                        <span className="title">Friends</span>
+                                        </Link>
+                                        <span className="icon-thumbnail "><i className="pg-social"></i></span>
+                                    </li>
+                                    <li className="m-t-30">
+                                        <Link onClick={() => this.setState({mobile: false})} to="/testimonials">
+                                        <span className="title">Testimonials</span>
+                                        </Link>
+                                        <span className="icon-thumbnail "><i className="pg-social"></i></span>
+                                    </li>
+                                    <li className="m-t-30">
+                                        <Link onClick={() => this.setState({mobile: false})} to="/">
+                                        <span className="title">Logout</span>
+                                        </Link>
+                                        <span className="icon-thumbnail "><i className="pg-social"></i></span>
+                                    </li>
+                                </ul>
+                                )}
+                                <div className="clearfix"></div>
+                            </div>
+                            </nav>
+                        <LoginModal />
+                        <SignUpModal />
+                    </div>
+                    ) : null}
                 </div>
         )
     }

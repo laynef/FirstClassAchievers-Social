@@ -12,7 +12,7 @@ class MobileMenu extends Component {
         const { user } = this.props
         return (
             <div id="MobileMenu">
-                    <nav id="sideMenu" className="page-sidebar" data-pages="sidebar">
+                <nav id="sideMenu" className="page-sidebar visible" data-pages="sidebar" style={{zIndex: '100', width: '100vw'}}>
                     <div className="sidebar-header">
                         <img src="theme/assets/img/logo_white.png" alt="logo" className="brand" data-src="theme/assets/img/logo_white.png" data-src-retina="theme/assets/img/logo_white_2x.png" width="93" height="25"/>
                         <div className="sidebar-header-controls">
