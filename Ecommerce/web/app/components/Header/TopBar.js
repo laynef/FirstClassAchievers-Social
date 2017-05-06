@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
+import LoginModal from './LoginModal'
+import SignUpModal from './SignUpModal'
 
 
 class TopBar extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            signUp: false,
+            login: false
+        }
+    }
 
     render() {
         const { children } = this.props;
