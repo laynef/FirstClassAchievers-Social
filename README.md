@@ -4,6 +4,7 @@ This is a Social Web App
 
 ## To Install & Run
 
+`cd Social`<br>
 `npm i`<br>
 `npm start` <br>
 

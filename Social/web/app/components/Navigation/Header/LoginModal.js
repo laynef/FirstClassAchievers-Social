@@ -45,7 +45,7 @@ class LoginModal extends Component {
                                     <h5><span className="semi-bold">{this.state.forgot ? 'Forgotten Password' : 'Login'}</span></h5>
                                     <p className="p-b-10">{this.state.forgot ? 'Receive an email to reset your password' : 'Login to connect with other liked minds'}</p>
                                     <div className="modal-body">
-                                        {this.state.forgot ? (
+                                       {/*} {this.state.forgot ? ( 
                                             <Form onSubmit={handleSubmit(LoginModal.formSubmitForgotten.bind(this))}>
                                                 <Field component={renderInput} label="Email" type="email" name="email"/>
                                                 <p onClick={() => this.setState({forgot: false})}>I remember my password</p>
@@ -55,7 +55,7 @@ class LoginModal extends Component {
                                                     </div>
                                                 </div>
                                             </Form>
-                                        ) : (
+                                        ) : ( */}
                                                 <Form onSubmit={handleSubmit(LoginModal.formSubmitLogin.bind(this))}>
                                                     <Field component={renderInput} label="Email" type="email" name="email"/>
                                                     <Field component={renderInput} label="Password" type="password" name="password"/>
@@ -77,7 +77,7 @@ class LoginModal extends Component {
                                                         </div>
                                                     </div>
                                                 </Form>
-                                            )}
+                                  {/*}          )} */}
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,6 @@ class Header extends Component {
     render() {
         const { dispatch, user, notifications } = this.props
         if (user && !notifications) return null
-        console.log(`STATE`, this.state.mobile)
         return (
                 <div id="HeaderComponent">
                     <div className="header ">
