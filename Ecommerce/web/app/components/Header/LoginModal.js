@@ -15,7 +15,7 @@ class LoginModal extends Component {
         const { handleSubmit } = this.props
         return (
             <div id="LoginModal">
-                <div className="modal fade login-modal" id="login" tabindex="-1" role="dialog" style={{display: 'block'}}>
+                <div className="modal fade login-modal in" id="login" tabindex="-1" role="dialog" style={{display: 'block'}}>
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">

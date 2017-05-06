@@ -1,2 +1,5 @@
 #mainPage h1 {
   text-align: center; }
+
+#LoginModal .modal-content {
+  top: 250px; }
