@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../redux/store/forms'
-import { login, register } from '../../redux/actions/auth'
+import { login, register, logout } from '../../redux/actions/auth'
 
 
 class TopBar extends Component {
@@ -32,7 +32,7 @@ class TopBar extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, dispatch, user } = this.props;
         return (
         <div id="TopBar">
             <div className="topBar">
@@ -41,11 +41,17 @@ class TopBar extends Component {
                 <div className="col-md-6 col-sm-7 col-xs-12 pull-right">
                     <ul className="list-inline pull-right top-right">
                     <li className="account-login">
+                    {user && user.id ? (
+                        <span>
+                            <a onClick={() => dispatch(logout())} data-toggle="modal" href=".login-modal">Logout</a>
+                        </span>
+                    ) : (
                         <span>
                             <a onClick={() => this.setState({login: true})} data-toggle="modal" href=".login-modal">Log in</a>
                             <small>or</small>
                             <a onClick={() => this.setState({signUp: true})} data-toggle="modal" href="#signup">Create an account</a>
                         </span>
+                    )}
                     </li>
                     <li className="searchBox">
                         <a href="#"><i className="fa fa-search"></i></a>
@@ -158,4 +164,5 @@ TopBar = reduxForm({
 })(TopBar)
 
 export default connect(state => ({
+    user: state.user.data
 }))(TopBar)

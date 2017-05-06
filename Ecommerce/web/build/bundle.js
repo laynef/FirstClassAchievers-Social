@@ -21717,7 +21717,10 @@ var TopBar = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var handleSubmit = this.props.handleSubmit;
+            var _props = this.props,
+                handleSubmit = _props.handleSubmit,
+                dispatch = _props.dispatch,
+                user = _props.user;
 
             return _react2.default.createElement(
                 'div',
@@ -21740,7 +21743,17 @@ var TopBar = function (_Component) {
                                     _react2.default.createElement(
                                         'li',
                                         { className: 'account-login' },
-                                        _react2.default.createElement(
+                                        user && user.id ? _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { onClick: function onClick() {
+                                                        return dispatch((0, _auth.logout)());
+                                                    }, 'data-toggle': 'modal', href: '.login-modal' },
+                                                'Logout'
+                                            )
+                                        ) : _react2.default.createElement(
                                             'span',
                                             null,
                                             _react2.default.createElement(
@@ -22015,9 +22028,9 @@ var TopBar = function (_Component) {
     }], [{
         key: 'formLoginSubmit',
         value: function formLoginSubmit(data) {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                reset = _props.reset;
+            var _props2 = this.props,
+                dispatch = _props2.dispatch,
+                reset = _props2.reset;
 
             dispatch((0, _auth.login)(data));
             this.setState({ login: false });
@@ -22025,9 +22038,9 @@ var TopBar = function (_Component) {
     }, {
         key: 'formSignUpSubmit',
         value: function formSignUpSubmit(data) {
-            var _props2 = this.props,
-                dispatch = _props2.dispatch,
-                reset = _props2.reset;
+            var _props3 = this.props,
+                dispatch = _props3.dispatch,
+                reset = _props3.reset;
 
             if (data.rePassword == data.password) {
                 dispatch((0, _auth.register)(data));
@@ -22044,7 +22057,9 @@ TopBar = (0, _reduxForm.reduxForm)({
 })(TopBar);
 
 exports.default = (0, _reactRedux.connect)(function (state) {
-    return {};
+    return {
+        user: state.user.data
+    };
 })(TopBar);
 
 /***/ }),
