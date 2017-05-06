@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
+import LoginModal from './LoginModal'
 
 
 class TopBar extends Component {
@@ -17,9 +18,9 @@ class TopBar extends Component {
                     <ul className="list-inline pull-right top-right">
                     <li className="account-login">
                         <span>
-                            <a data-toggle="modal" href=".login-modal">Log in</a>
-                            <small>or</small>
-                            <a data-toggle="modal" href="#signup">Create an account</a>
+                            <a data-toggle="modal" data-target="#login-modal">Log in</a>
+                                <small>or</small>
+                            <a data-toggle="modal" data-target="#sign-up-modal">Create an account</a>
                         </span>
                     </li>
                     <li className="searchBox">
@@ -70,6 +71,7 @@ class TopBar extends Component {
                 </div>
             </div>    
             </div>
+            <LoginModal />
         </div>
         )
     }
