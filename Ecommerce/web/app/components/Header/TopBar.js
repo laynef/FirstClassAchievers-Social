@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
-import LoginModal from './LoginModal'
 
 
 class TopBar extends Component {
@@ -71,7 +70,6 @@ class TopBar extends Component {
                 </div>
             </div>    
             </div>
-            <LoginModal />
         </div>
         )
     }
