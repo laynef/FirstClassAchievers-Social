@@ -7,16 +7,21 @@ axios.post(`http://localhost:3215/auth/local/register`,
     email: `admin@email.com`,
     password: `pass1234`
 })
+.then(resp => console.log(`SUCCESS`))
+.catch(err => console.log(`ERROR`))
 
 axios.post(`http://localhost:3215/auth/local/register`, 
 {
     email: `company@email.com`,
     password: `pass1234`
 })
+.then(resp => console.log(`SUCCESS`))
+.catch(err => console.log(`ERROR`))
 
 axios.post(`http://localhost:3215/auth/local/register`, 
 {
     email: `user@email.com`,
     password: `pass1234`
 })
-
+.then(resp => console.log(`SUCCESS`))
+.catch(err => console.log(`ERROR`))
