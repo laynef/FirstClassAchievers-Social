@@ -5093,6 +5093,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getTestimonials = getTestimonials;
 exports.createTestimonials = createTestimonials;
+exports.likeTestimonial = likeTestimonial;
 
 var _axios = __webpack_require__(54);
 
@@ -5132,6 +5133,23 @@ function createTestimonials(data) {
 		}).catch(function (err) {
 			dispatch({
 				type: _actionTypes2.default.CREATE_TESTIMONIAL_ERROR,
+				payload: err
+			});
+		});
+	};
+}
+
+function likeTestimonial(data, id) {
+	return function (dispatch) {
+		dispatch({ type: _actionTypes2.default.UPDATE_TESTIMONIAL_PENDING });
+		_axios2.default.patch('/api/like/testify/' + id, data).then(function (response) {
+			dispatch({
+				type: _actionTypes2.default.UPDATE_TESTIMONIAL_SUCCESS,
+				payload: response.data
+			});
+		}).catch(function (err) {
+			dispatch({
+				type: _actionTypes2.default.UPDATE_TESTIMONIAL_ERROR,
 				payload: err
 			});
 		});

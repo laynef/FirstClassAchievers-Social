@@ -39,3 +39,22 @@ export function createTestimonials(data) {
 				})			
 	}
 }
+
+export function likeTestimonial(data, id) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.UPDATE_TESTIMONIAL_PENDING})
+		axios.patch(`/api/like/testify/${id}`, data)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.UPDATE_TESTIMONIAL_SUCCESS,
+						payload: response.data
+					})
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.UPDATE_TESTIMONIAL_ERROR,
+						payload: err
+					})
+				})			
+	}
+}
