@@ -124,30 +124,30 @@ class Header extends Component {
                             <div className="sidebar-menu" style={{marginTop: '48px'}}>
                             {(!user || !user.id) ? (
                                 <ul className="menu-items">
-                                    <li className="m-t-30" data-toggle="modal" data-target="#login-modal">
-                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
-                                        <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
-                                            <span className="title">Login</span>
-                                        </Link>
-                                    </li>
-                                    <li className="m-t-30"  data-toggle="modal" data-target="#sign-up-modal">
-                                        <span className="icon-thumbnail "><i className="pg-home"></i></span>
-                                        <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
-                                            <span className="title">Sign Up</span>
-                                        </Link>
-                                    </li>
-                                <li className="m-t-30">
-                                    <span className="icon-thumbnail "><i className="pg-home"></i></span>
-                                    <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
-                                    <span className="title">Home</span>
-                                    </Link>
-                                </li>
-                                <li className="m-t-30">
-                                    <Link onClick={() => this.setState({mobile: false})} to="/testimonials">
-                                    <span className="title">Testimonials</span>
-                                    </Link>
-                                    <span className="icon-thumbnail "><i className="pg-social"></i></span>
-                                </li>
+                                  <li className="m-t-30">
+                                      <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                      <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                      <span className="title">Home</span>
+                                      </Link>
+                                  </li>
+                                  <li className="m-t-30">
+                                      <Link onClick={() => this.setState({mobile: false})} to="/testimonials">
+                                      <span className="title">Testimonials</span>
+                                      </Link>
+                                      <span className="icon-thumbnail "><i className="pg-social"></i></span>
+                                  </li>
+                                  <li className="m-t-30" data-toggle="modal" data-target="#login-modal">
+                                      <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                      <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                          <span className="title">Login</span>
+                                      </Link>
+                                  </li>
+                                  <li className="m-t-30"  data-toggle="modal" data-target="#sign-up-modal">
+                                      <span className="icon-thumbnail "><i className="pg-home"></i></span>
+                                      <Link onClick={() => this.setState({mobile: false})} to="/" className="detailed">
+                                          <span className="title">Sign Up</span>
+                                      </Link>
+                                  </li>
                                 </ul>
                                 ) : (
                                 <ul className="menu-items">

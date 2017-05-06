@@ -9,6 +9,7 @@ const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
 const config = require('../../config/config')
+const helper = require('sendgrid').mail
 
 
 // local auth
@@ -121,102 +122,26 @@ router.patch('/local/change/password', (req, res, next) => {
 })
 
 router.post('/local/forgotten/password', (req, res, next) => {
-    // Create a SMTP transporter object
-    let transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            type: 'OAuth2',
-            user: config.google_user,
-            clientId: config.google_client_id,
-            clientSecret: config.google_client_secret,
-            refreshToken: '1/XXxXxsss-xxxXXXXXxXxx0XXXxxXXx0x00xxx',
-            accessToken: 'ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x',
-            expires: 1484314697598
-        },
-        logger: bunyan.createLogger({
-            name: 'nodemailer'
-        }),
-        debug: true // include SMTP traffic in the logs
-    }, {
-        // default message fields
-
-        // sender info
-        from: 'First Class Achievers <no-reply@firstclass.net>',
-        headers: {
-            'X-Laziness-level': 1000 // just an example header, no need to use this
-        }
+    let fromEmail = new helper.Email('test@example.com')
+    let toEmail = new helper.Email(req.body.email)
+    let subject = 'Hello World from the SendGrid Node.js Library!'
+    let content = new helper.Content('text/plain', 'Hello, Email!')
+    let mail = new helper.Mail(fromEmail, subject, toEmail, content)
+    let api_key = process.env.SENDGRID_API_KEY || config.SENDGRID_API_KEY
+    let sg = require('sendgrid')(api_key)
+    let request = sg.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON()
     })
 
-    console.log('SMTP Configured')
-
-    // Message object
-    let message = {
-
-        // Comma separated list of recipients
-        to: `${req.body.email}`,
-
-        // Subject of the message
-        subject: 'First Class Achievers Reset Password',
-
-        // plaintext body
-        text: `Hello ${req.body.lastName}!`,
-
-        // HTML body
-        html: `<a href="http://localhost:3214/reset">Reset your password<a>`
-    }
-
-    console.log('Sending Mail')
-    transporter.sendMail(message, (error, info) => {
+    sg.API(request, function (error, response) {
         if (error) {
-            console.log('Error occurred')
-            console.log(error.message)
-            return
+            console.log('Error response received')
         }
-        console.log('Message sent successfully!')
-        console.log('Server responded with "%s"', info.response)
-        transporter.close()
-    })
-})
-
-
-router.post('/local/fixtures', (req, res, next) => {
-    let salt = bcrypt.genSaltSync(10)
-    bcrypt.hash(req.body.password, salt, null, (err, hash) => {
-        User.create({
-            email: req.body.email,
-            password: hash,
-            image: req.body.image,
-            id: req.body.id
-        })
-        .then(response => {
-            Following.create({
-                followers: [],
-                user_id: req.body.id
-            })
-            Favorite.create({
-                user_id: req.body.id,
-                entries: []
-            })
-            Profile.create({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                city: null,
-                goals: null,
-                position: null,
-                nickname: null,
-                image: req.body.image,
-                zipCode: null,
-                state: null,
-                country: null,
-                user_id: req.body.id
-            })
-            res.sendStatus(201)
-            console.log(`sign up successful`)
-        })
-        .catch(error => {
-            console.log(`sign up post call error: `, error)
-            res.sendStatus(400)
-        })
+        console.log(response.statusCode)
+        console.log(response.body)
+        console.log(response.headers)
     })
 })
 

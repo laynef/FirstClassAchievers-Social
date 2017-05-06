@@ -27582,46 +27582,6 @@ var Header = function (_Component) {
                 { className: 'menu-items' },
                 _react2.default.createElement(
                   'li',
-                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#login-modal' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon-thumbnail ' },
-                    _react2.default.createElement('i', { className: 'pg-home' })
-                  ),
-                  _react2.default.createElement(
-                    _reactRouter.Link,
-                    { onClick: function onClick() {
-                        return _this2.setState({ mobile: false });
-                      }, to: '/', className: 'detailed' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'title' },
-                      'Login'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#sign-up-modal' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon-thumbnail ' },
-                    _react2.default.createElement('i', { className: 'pg-home' })
-                  ),
-                  _react2.default.createElement(
-                    _reactRouter.Link,
-                    { onClick: function onClick() {
-                        return _this2.setState({ mobile: false });
-                      }, to: '/', className: 'detailed' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'title' },
-                      'Sign Up'
-                    )
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
                   { className: 'm-t-30' },
                   _react2.default.createElement(
                     'span',
@@ -27658,6 +27618,46 @@ var Header = function (_Component) {
                     'span',
                     { className: 'icon-thumbnail ' },
                     _react2.default.createElement('i', { className: 'pg-social' })
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#login-modal' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Login'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'm-t-30', 'data-toggle': 'modal', 'data-target': '#sign-up-modal' },
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'icon-thumbnail ' },
+                    _react2.default.createElement('i', { className: 'pg-home' })
+                  ),
+                  _react2.default.createElement(
+                    _reactRouter.Link,
+                    { onClick: function onClick() {
+                        return _this2.setState({ mobile: false });
+                      }, to: '/', className: 'detailed' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'title' },
+                      'Sign Up'
+                    )
                   )
                 )
               ) : _react2.default.createElement(
