@@ -42,7 +42,7 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				pending: null,
 				error: null,
-				data: action.payload
+				data: null
 			}
 
 		case actionTypes.LOGOUT_ERROR:

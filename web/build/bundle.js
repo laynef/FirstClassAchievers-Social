@@ -27498,7 +27498,7 @@ var Header = function (_Component) {
                       _react2.default.createElement(
                         'li',
                         { className: 'bg-master-lighter', onClick: function onClick() {
-                            dispatch((0, _auth.logout)());window.location.reload();
+                            return dispatch((0, _auth.logout)());
                           } },
                         _react2.default.createElement(
                           _reactRouter.Link,
@@ -30459,7 +30459,7 @@ exports.default = function () {
 			return _extends({}, state, {
 				pending: null,
 				error: null,
-				data: action.payload
+				data: null
 			});
 
 		case _actionTypes2.default.LOGOUT_ERROR:

@@ -88,7 +88,7 @@ class Header extends Component {
                                             Friends
                                           </Link>
                                         </li>
-                                        <li className="bg-master-lighter" onClick={() => {dispatch(logout());window.location.reload()}}>
+                                        <li className="bg-master-lighter" onClick={() => dispatch(logout())}>
                                           <Link to="/" className="clearfix">
                                             <span className="pull-left">Logout</span>
                                             <span className="pull-right"><i className="pg-power"></i></span>
