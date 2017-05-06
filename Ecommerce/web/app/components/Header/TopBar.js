@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../redux/store/forms'
+import { login, register } from '../../redux/actions/auth'
 
 
 class TopBar extends Component {
@@ -17,12 +18,18 @@ class TopBar extends Component {
     }
 
     static formLoginSubmit(data) {
-        const { dispatch } = this.props
+        const { dispatch, reset } = this.props
+        dispatch(login(data))
+        dispatch(reset('TopBar'))
         this.setState({login: false})
     }
 
     static formSignUpSubmit(data) {
-        const { dispatch } = this.props
+        const { dispatch, reset } = this.props
+        if (data.rePassword == data.password) {
+            dispatch(register(data))
+            dispatch(reset('TopBar'))
+        }
         this.setState({signUp: false})
     }
 
