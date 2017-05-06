@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { Field, reduxForm } from 'redux-form'
-import LoginModal from './LoginModal'
-import SignUpModal from './SignUpModal'
+import { Field, reduxForm, Form } from 'redux-form'
+import { renderInput } from '../../redux/store/forms'
 
 
 class TopBar extends Component {
@@ -12,12 +11,23 @@ class TopBar extends Component {
         super(props)
         this.state = {
             signUp: false,
-            login: false
+            login: false,
+            forgotten: false
         }
     }
 
+    static formLoginSubmit(data) {
+        const { dispatch } = this.props
+        this.setState({login: false})
+    }
+
+    static formSignUpSubmit(data) {
+        const { dispatch } = this.props
+        this.setState({signUp: false})
+    }
+
     render() {
-        const { children } = this.props;
+        const { handleSubmit } = this.props;
         return (
         <div id="TopBar">
             <div className="topBar">
@@ -27,9 +37,9 @@ class TopBar extends Component {
                     <ul className="list-inline pull-right top-right">
                     <li className="account-login">
                         <span>
-                            <a data-toggle="modal" href=".login-modal">Log in</a>
+                            <a onClick={() => this.setState({login: true})} data-toggle="modal" href=".login-modal">Log in</a>
                             <small>or</small>
-                            <a data-toggle="modal" href="#signup">Create an account</a>
+                            <a onClick={() => this.setState({signUp: true})} data-toggle="modal" href="#signup">Create an account</a>
                         </span>
                     </li>
                     <li className="searchBox">
@@ -80,6 +90,59 @@ class TopBar extends Component {
                 </div>
             </div>    
             </div>
+                {this.state.login ? (
+                    <div id="LoginModal">
+                        <div className="modal fade login-modal in" id="login" tabindex="-1" role="dialog" style={{display: 'block'}}>
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({login: false})} className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 className="modal-title">log in</h3>
+                                    </div>
+                                    <div className="modal-body">
+                                        <Form role="form" onSubmit={handleSubmit(TopBar.formLoginSubmit.bind(this))}> 
+                                            <Field component={renderInput} type="email" label="Email" placeholder="Enter email" name="email"/>
+                                            {this.state.forgotten ? (
+                                                <div>
+                                                    <button type="submit" className="btn btn-primary btn-block">reset password</button>
+                                                    <button onClick={() => this.setState({forgotten: false})} type="button" className="btn btn-link btn-block">I remember my password</button>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <Field component={renderInput} type="password" label="Password" placeholder="Enter password" name="password"/>
+                                                    <button type="submit" className="btn btn-primary btn-block">log in</button>
+                                                    <button onClick={() => this.setState({forgotten: true})} type="button" className="btn btn-link btn-block">Forgot Password?</button>
+                                                </div>
+                                            )}
+                                        </Form>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ): null}
+                {this.state.signUp ? (
+                    <div id="SignUpModal">
+                        <div className="modal fade in" id="signup" tabindex="-1" role="dialog" style={{display: 'block'}}>
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <button type="button" onClick={() => this.setState({signUp: false})} className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 className="modal-title">create an account</h3>
+                                    </div>
+                                    <div className="modal-body">
+                                        <Form role="form" onSubmit={handleSubmit(TopBar.formSignUpSubmit.bind(this))}> 
+                                            <Field component={renderInput} type="email" label="Email" placeholder="Enter email" name="email"/>
+                                            <Field component={renderInput} type="password" label="Password" placeholder="Enter password" name="password"/>
+                                            <Field component={renderInput} type="password" label="Confirm Password" placeholder="Confirm password" name="rePassword"/>
+                                            <button type="submit" className="btn btn-primary btn-block">sign up</button>
+                                        </Form>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ): null}
         </div>
         )
     }
