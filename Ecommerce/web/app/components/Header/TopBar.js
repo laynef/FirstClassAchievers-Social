@@ -20,6 +20,13 @@ class TopBar extends Component {
     static formLoginSubmit(data) {
         const { dispatch, reset } = this.props
         dispatch(login(data))
+        dispatch(reset('TopBar'))
+        this.setState({login: false})
+    }
+
+    static formForgottenSubmit(data) {
+        const { dispatch, reset } = this.props
+        dispatch(reset('TopBar'))
         this.setState({login: false})
     }
 
@@ -27,6 +34,7 @@ class TopBar extends Component {
         const { dispatch, reset } = this.props
         if (data.rePassword == data.password) {
             dispatch(register(data))
+            dispatch(reset('TopBar'))
         }
         this.setState({signUp: false})
     }
@@ -101,36 +109,48 @@ class TopBar extends Component {
                 </div>
             </div>    
             </div>
-                {this.state.login ? (
+            {this.state.login ? 
+                this.state.forgotten ? (
                     <div id="LoginModal">
                         <div className="modal fade login-modal in" id="login" tabindex="-1" role="dialog" style={{display: 'block'}}>
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
-                                        <button type="button" onClick={() => this.setState({login: false})} className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <button type="button" onClick={() => this.setState({login: false, forgotten: false})} className="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         <h3 className="modal-title">log in</h3>
                                     </div>
                                     <div className="modal-body">
                                         <Form role="form" onSubmit={handleSubmit(TopBar.formLoginSubmit.bind(this))}> 
                                             <Field component={renderInput} type="email" label="Email" placeholder="Enter email" name="email"/>
-                                            {this.state.forgotten ? (
-                                                <div>
-                                                    <button type="submit" className="btn btn-primary btn-block">reset password</button>
-                                                    <button onClick={() => this.setState({forgotten: false})} type="button" className="btn btn-link btn-block">I remember my password</button>
-                                                </div>
-                                            ) : (
-                                                <div>
-                                                    <Field component={renderInput} type="password" label="Password" placeholder="Enter password" name="password"/>
-                                                    <button type="submit" className="btn btn-primary btn-block">log in</button>
-                                                    <button onClick={() => this.setState({forgotten: true})} type="button" className="btn btn-link btn-block">Forgot Password?</button>
-                                                </div>
-                                            )}
-                                        </Form>  
+                                                <button type="submit" className="btn btn-primary btn-block">reset password</button>
+                                                <button onClick={() => this.setState({forgotten: false})} type="button" className="btn btn-link btn-block">I remember my password</button>
+                                                </Form>  
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                    ) : (
+                        <div id="LoginModal">
+                            <div className="modal fade login-modal in" id="login" tabindex="-1" role="dialog" style={{display: 'block'}}>
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <button type="button" onClick={() => this.setState({login: false})} className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h3 className="modal-title">log in</h3>
+                                        </div>
+                                        <div className="modal-body">
+                                            <Form role="form" onSubmit={handleSubmit(TopBar.formForgottenSubmit.bind(this))}> 
+                                                <Field component={renderInput} type="email" label="Email" placeholder="Enter email" name="email"/>
+                                                    <Field component={renderInput} type="password" label="Password" placeholder="Enter password" name="password"/>
+                                                    <button type="submit" className="btn btn-primary btn-block">log in</button>
+                                                    <button onClick={() => this.setState({forgotten: true})} type="button" className="btn btn-link btn-block">Forgot Password?</button>
+                                                    </Form>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                 ): null}
                 {this.state.signUp ? (
                     <div id="SignUpModal">

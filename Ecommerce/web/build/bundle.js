@@ -21902,7 +21902,59 @@ var TopBar = function (_Component) {
                         )
                     )
                 ),
-                this.state.login ? _react2.default.createElement(
+                this.state.login ? this.state.forgotten ? _react2.default.createElement(
+                    'div',
+                    { id: 'LoginModal' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'modal fade login-modal in', id: 'login', tabindex: '-1', role: 'dialog', style: { display: 'block' } },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'modal-dialog' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'modal-content' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'modal-header' },
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', onClick: function onClick() {
+                                                return _this2.setState({ login: false, forgotten: false });
+                                            }, className: 'close', 'data-dismiss': 'modal', 'aria-hidden': 'true' },
+                                        '\xD7'
+                                    ),
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'modal-title' },
+                                        'log in'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'modal-body' },
+                                    _react2.default.createElement(
+                                        _reduxForm.Form,
+                                        { role: 'form', onSubmit: handleSubmit(TopBar.formLoginSubmit.bind(this)) },
+                                        _react2.default.createElement(_reduxForm.Field, { component: _forms.renderInput, type: 'email', label: 'Email', placeholder: 'Enter email', name: 'email' }),
+                                        _react2.default.createElement(
+                                            'button',
+                                            { type: 'submit', className: 'btn btn-primary btn-block' },
+                                            'reset password'
+                                        ),
+                                        _react2.default.createElement(
+                                            'button',
+                                            { onClick: function onClick() {
+                                                    return _this2.setState({ forgotten: false });
+                                                }, type: 'button', className: 'btn btn-link btn-block' },
+                                            'I remember my password'
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ) : _react2.default.createElement(
                     'div',
                     { id: 'LoginModal' },
                     _react2.default.createElement(
@@ -21935,39 +21987,20 @@ var TopBar = function (_Component) {
                                     { className: 'modal-body' },
                                     _react2.default.createElement(
                                         _reduxForm.Form,
-                                        { role: 'form', onSubmit: handleSubmit(TopBar.formLoginSubmit.bind(this)) },
+                                        { role: 'form', onSubmit: handleSubmit(TopBar.formForgottenSubmit.bind(this)) },
                                         _react2.default.createElement(_reduxForm.Field, { component: _forms.renderInput, type: 'email', label: 'Email', placeholder: 'Enter email', name: 'email' }),
-                                        this.state.forgotten ? _react2.default.createElement(
-                                            'div',
-                                            null,
-                                            _react2.default.createElement(
-                                                'button',
-                                                { type: 'submit', className: 'btn btn-primary btn-block' },
-                                                'reset password'
-                                            ),
-                                            _react2.default.createElement(
-                                                'button',
-                                                { onClick: function onClick() {
-                                                        return _this2.setState({ forgotten: false });
-                                                    }, type: 'button', className: 'btn btn-link btn-block' },
-                                                'I remember my password'
-                                            )
-                                        ) : _react2.default.createElement(
-                                            'div',
-                                            null,
-                                            _react2.default.createElement(_reduxForm.Field, { component: _forms.renderInput, type: 'password', label: 'Password', placeholder: 'Enter password', name: 'password' }),
-                                            _react2.default.createElement(
-                                                'button',
-                                                { type: 'submit', className: 'btn btn-primary btn-block' },
-                                                'log in'
-                                            ),
-                                            _react2.default.createElement(
-                                                'button',
-                                                { onClick: function onClick() {
-                                                        return _this2.setState({ forgotten: true });
-                                                    }, type: 'button', className: 'btn btn-link btn-block' },
-                                                'Forgot Password?'
-                                            )
+                                        _react2.default.createElement(_reduxForm.Field, { component: _forms.renderInput, type: 'password', label: 'Password', placeholder: 'Enter password', name: 'password' }),
+                                        _react2.default.createElement(
+                                            'button',
+                                            { type: 'submit', className: 'btn btn-primary btn-block' },
+                                            'log in'
+                                        ),
+                                        _react2.default.createElement(
+                                            'button',
+                                            { onClick: function onClick() {
+                                                    return _this2.setState({ forgotten: true });
+                                                }, type: 'button', className: 'btn btn-link btn-block' },
+                                            'Forgot Password?'
                                         )
                                     )
                                 )
@@ -22033,17 +22066,29 @@ var TopBar = function (_Component) {
                 reset = _props2.reset;
 
             dispatch((0, _auth.login)(data));
+            dispatch(reset('TopBar'));
+            this.setState({ login: false });
+        }
+    }, {
+        key: 'formForgottenSubmit',
+        value: function formForgottenSubmit(data) {
+            var _props3 = this.props,
+                dispatch = _props3.dispatch,
+                reset = _props3.reset;
+
+            dispatch(reset('TopBar'));
             this.setState({ login: false });
         }
     }, {
         key: 'formSignUpSubmit',
         value: function formSignUpSubmit(data) {
-            var _props3 = this.props,
-                dispatch = _props3.dispatch,
-                reset = _props3.reset;
+            var _props4 = this.props,
+                dispatch = _props4.dispatch,
+                reset = _props4.reset;
 
             if (data.rePassword == data.password) {
                 dispatch((0, _auth.register)(data));
+                dispatch(reset('TopBar'));
             }
             this.setState({ signUp: false });
         }
