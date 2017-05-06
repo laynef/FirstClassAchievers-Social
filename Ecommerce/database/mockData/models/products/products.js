@@ -25,7 +25,8 @@ let keys = {
     },
     gender: {
         0: 'FEMALE',
-        1: 'MALE'
+        1: 'MALE',
+        2: 'UNISEX'
     }
 }
 
@@ -38,12 +39,30 @@ let products = [
     //     sizes: req.body.sizes, // ARRAY
     //     details: req.body.details, // TEXT
     //     images: req.body.images, // ARRAY
-    //     colors: req.body.colors, // ARRAY
+    //     colors: req.body.colors, // STRING
     //     categories: req.body.categories,
     //     gender: req.body.gender, // STRING
     //     age: req.body.age, // STRING
     //     quality: req.body.quality // STRING
     // }
+    {
+        name: "LA Hat",  // STRING
+        price: 20.00, // DOUBLE
+        quantity: 55, // INTEGER
+        description: '', // TEXT
+        sizes: [
+            ''
+        ], // ARRAY
+        details: '', // TEXT
+        images: [
+
+        ], // ARRAY
+        colors: "BLACK", // STRING
+        categories: keys.categories[0],
+        gender: keys.gender[2], // STRING
+        age: keys.age[0] // STRING
+    }
+    
 ]
 
 products.map(e => {

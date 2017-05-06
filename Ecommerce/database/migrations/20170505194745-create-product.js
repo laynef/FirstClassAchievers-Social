@@ -30,18 +30,15 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
       colors: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.STRING
       },
       categories: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.STRING
       },
       gender: {
         type: Sequelize.STRING
       },
       age: {
-        type: Sequelize.STRING
-      },
-      quality: {
         type: Sequelize.STRING
       },
       createdAt: {

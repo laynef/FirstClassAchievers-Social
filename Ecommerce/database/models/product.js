@@ -8,11 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     sizes: DataTypes.ARRAY(DataTypes.STRING),
     details: DataTypes.TEXT,
     images: DataTypes.ARRAY(DataTypes.STRING),
-    colors: DataTypes.ARRAY(DataTypes.STRING),
-    categories: DataTypes.ARRAY(DataTypes.STRING),
+    colors: DataTypes.DataTypes.STRING,
+    categories: DataTypes.STRING,
     gender: DataTypes.STRING,
-    age: DataTypes.STRING,
-    quality: DataTypes.STRING
+    age: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
