@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         Profile.belongsTo(models.User, {foreignKey: 'user_id'})
         Profile.hasMany(models.CreditCard, {foreignKey: 'profile_id'})
+        Profile.belongsTo(models.Company, {foreignKey: 'profile_id'})
       }
     }
   });
