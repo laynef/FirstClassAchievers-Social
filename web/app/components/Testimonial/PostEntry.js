@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { Link } from 'react-router'
 import { setFavorites } from '../../redux/actions/favorite'
+import { getComment } from '../../redux/actions/comment'
+import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import pull from 'lodash/pull'
+import CommentEntry from './CommentEntry'
 
 
 class PostEntry extends Component {
@@ -23,7 +26,9 @@ class PostEntry extends Component {
     }
 
     render() {
-        const { author, message, image, profileId, detail, entryId, handleSubmit, favorites, userId } = this.props
+        const { author, message, image, 
+            profileId, detail, entryId, handleSubmit, 
+            favorites, userId, user } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -55,6 +60,7 @@ class PostEntry extends Component {
                     <div className="card-description">
                         <p>{message}</p>
                     </div>
+                        {user && user.id ? <CommentEntry id={entryId} key={entryId} entryId={entryId} /> : null}
                 </div>
             </div>
         )
@@ -67,4 +73,5 @@ PostEntry = reduxForm({
 })(PostEntry)
 
 export default connect(state => ({
+    user: state.user.data
 }))(PostEntry)

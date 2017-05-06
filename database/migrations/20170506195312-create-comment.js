@@ -17,6 +17,12 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
+      author: {
+        type: Sequelize.STRING
+      },
+      image: {
+        type: Sequelize.STRING
+      },
       likes: {
         type: Sequelize.ARRAY(Sequelize.INTEGER)
       },

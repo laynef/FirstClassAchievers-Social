@@ -21,7 +21,7 @@ export const renderTextArea = ({input, label,  placeholder='', meta: {touched, e
 )
 
 export const renderMessageInput = ({input, meta: {touched, error}}) => (
-	<div className="col-xs-8 no-padding">
+	<div className="col-xs-12 no-padding">
 		<input {...input}
 			type="text" 
 			className="form-control chat-input" 

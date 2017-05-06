@@ -4,6 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     post_id: DataTypes.INTEGER,
     message: DataTypes.TEXT,
     user_id: DataTypes.INTEGER,
+    author: DataTypes.STRING,
+    image: DataTypes.STRING,
     likes: DataTypes.ARRAY(DataTypes.INTEGER)
   }, {
     classMethods: {

@@ -91,22 +91,22 @@ export default function (state = INITIAL_STATE, action) {
 				error: action.payload
 			}
 
-		case actionTypes.GET_USER_PENDING:
+		case actionTypes.USER_PROFILE_PENDING:
 			return {
 				...state,
 				pending: true,
 				error: null
 			}
 
-		case actionTypes.GET_USER_SUCCESS:
+		case actionTypes.USER_PROFILE_SUCCESS:
 			return {
 				...state,
 				pending: null,
 				error: null,
-				data: action.payload
+				profile: action.payload
 			}
 
-		case actionTypes.GET_USER_ERROR:
+		case actionTypes.USER_PROFILE_ERROR:
 			return {
 				...state,
 				pending: null,

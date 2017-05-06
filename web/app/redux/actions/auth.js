@@ -19,6 +19,7 @@ export function login(data) {
 					dispatch(getFavorites(response.data.id))
 					dispatch(getFriends(response.data.id))
 					dispatch(getNotifications(response.data.id))
+					dispatch(getUser(response.data.id))
 				})
 				.catch((err) => {
 					dispatch({
@@ -109,17 +110,17 @@ export function changePassword(data) {
 
 export function getUser(id) {
 	return function(dispatch) {
-		dispatch({type: actionTypes.GET_USER_PENDING})
-		axios.get(`/auth/local/user/${id}`)
+		dispatch({type: actionTypes.USER_PROFILE_PENDING})
+		axios.get(`/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
-						type: actionTypes.GET_USER_SUCCESS,
+						type: actionTypes.USER_PROFILE_SUCCESS,
 						payload: response.data
 					})
 				})
 				.catch((err) => {
 					dispatch({
-						type: actionTypes.GET_USER_ERROR,
+						type: actionTypes.USER_PROFILE_ERROR,
 						payload: err
 					})
 				})

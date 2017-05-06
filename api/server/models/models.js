@@ -292,6 +292,8 @@ module.exports = {
                 post_id: req.params.entryId,
                 message: req.body.message,
                 user_id: req.body.user_id,
+                author: req.body.author,
+                image: req.body.image,
                 likes: []
             })
             .then(resp => {

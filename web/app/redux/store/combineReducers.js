@@ -10,6 +10,7 @@ import favoritesReducer from '../reducers/favorite'
 import friendsReducer from '../reducers/friends'
 import messagesReducer from '../reducers/message'
 import commentReducer from '../reducers/comment'
+import notifyReducer from '../reducers/notifications'
 
 
 const reducers = combineReducers({
