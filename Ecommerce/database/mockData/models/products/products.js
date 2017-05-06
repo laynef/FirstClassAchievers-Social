@@ -29,20 +29,20 @@ let keys = {
 }
 
 let products = [
-    {
-        name: req.body.name,
-        price: req.body.price,
-        quantity: req.body.quantity,
-        description: req.body.description,
-        sizes: req.body.sizes,
-        details: req.body.details,
-        images: req.body.images,
-        colors: req.body.colors,
-        categories: req.body.categories,
-        gender: req.body.gender,
-        age: req.body.age,
-        quality: req.body.quality
-    }
+    // {
+    //     name: req.body.name,  // STRING
+    //     price: req.body.price, // DOUBLE
+    //     quantity: req.body.quantity, // STRING
+    //     description: req.body.description, // TEXT
+    //     sizes: req.body.sizes, // ARRAY
+    //     details: req.body.details, // TEXT
+    //     images: req.body.images, // ARRAY
+    //     colors: req.body.colors, // ARRAY
+    //     categories: req.body.categories,
+    //     gender: req.body.gender, // STRING
+    //     age: req.body.age, // STRING
+    //     quality: req.body.quality // STRING
+    // }
 ]
 
 products.map(e => {
