@@ -42,6 +42,7 @@ This is a Social Web App
 ### Cloud Stored Images
 ![alt-tag](./github/photo.png)
 ### Cloud Stored Database
+### Responsive Layout
 
 
 ## Tech Stack
