@@ -17,8 +17,6 @@
 
 ## Timeline
 
-## Responsive Layout
-
 ## Forgotten Password
 
 ## Big data handling
