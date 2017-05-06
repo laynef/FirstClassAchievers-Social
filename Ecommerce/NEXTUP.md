@@ -4,7 +4,7 @@
 ## Payment
 ## Wishlist
 ## Shopping Cart
-## Search
+## Search Engine
 ## Sort
 ## Order List
 ## Cancel Order
@@ -12,3 +12,8 @@
 ## Deals
 ## Reviews
 ## Guest View
+## Catalog Views (Grid & List)
+## Company Upload
+## Bulk Upload
+## Tracking Order
+## ADs

@@ -9,6 +9,7 @@ const Order = require('../../../database/models/index').Order
 const Favorites = require('../../../database/models/index').Favorites
 const Coupon = require('../../../database/models/index').Coupon
 
+
 let keys = {
     categories: {
         0: 'HAT',
@@ -23,7 +24,8 @@ let keys = {
         9: 'SOCKS',
         10: 'TANK_TOP',
         11: 'BLOUSE',
-        12: 'SHORTS'
+        12: 'SHORTS',
+        13: 'SHOES'
     },
     age: {
         0: 'ADULT',

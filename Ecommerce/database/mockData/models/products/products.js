@@ -16,7 +16,8 @@ let keys = {
         9: 'SOCKS',
         10: 'TANK_TOP',
         11: 'BLOUSE',
-        12: 'SHORTS'
+        12: 'SHORTS',
+        13: 'SHOES'
     },
     age: {
         0: 'ADULT',
