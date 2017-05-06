@@ -48,7 +48,8 @@ router.post('/local/register', (req, res, next) => {
     bcrypt.hash(req.body.password, salt, null, (err, hash) => {
         User.create({
             email: req.body.email,
-            password: hash
+            password: hash,
+            image: req.body.image || null
         })
         .then(response => {
             Following.create({
