@@ -51,6 +51,28 @@ export default function (state = INITIAL_STATE, action) {
                 error: action.payload,
                 pending: null
             } 
+        
+        case actionTypes.UPDATE_TESTIMONIAL_PENDING:
+            return {
+                ...state,
+                error: null,
+                pending: true
+            }
+        
+        case actionTypes.UPDATE_TESTIMONIAL_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                pending: null,
+                data: action.payload
+            }
+        
+        case actionTypes.UPDATE_TESTIMONIAL_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                pending: null
+            } 
 
     }
     

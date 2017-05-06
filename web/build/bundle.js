@@ -1235,6 +1235,10 @@ var actionTypes = {
 	CREATE_TESTIMONIAL_PENDING: 'CREATE_TESTIMONIAL_PENDING',
 	CREATE_TESTIMONIAL_ERROR: 'CREATE_TESTIMONIAL_ERROR',
 
+	UPDATE_TESTIMONIAL_SUCCESS: 'UPDATE_TESTIMONIAL_SUCCESS',
+	UPDATE_TESTIMONIAL_PENDING: 'UPDATE_TESTIMONIAL_PENDING',
+	UPDATE_TESTIMONIAL_ERROR: 'UPDATE_TESTIMONIAL_ERROR',
+
 	// Profile
 	GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS',
 	GET_PROFILE_PENDING: 'GET_PROFILE_PENDING',
@@ -1292,6 +1296,19 @@ var actionTypes = {
 	SET_FAVORITES_SUCCESS: 'SET_FAVORITES_SUCCESS',
 	SET_FAVORITES_PENDING: 'SET_FAVORITES_PENDING',
 	SET_FAVORITES_ERROR: 'SET_FAVORITES_ERROR',
+
+	// Comments
+	GET_COMMENT_SUCCESS: 'GET_COMMENT_SUCCESS',
+	GET_COMMENT_PENDING: 'GET_COMMENT_PENDING',
+	GET_COMMENT_ERROR: 'GET_COMMENT_ERROR',
+
+	SET_COMMENT_SUCCESS: 'SET_COMMENT_SUCCESS',
+	SET_COMMENT_PENDING: 'SET_COMMENT_PENDING',
+	SET_COMMENT_ERROR: 'SET_COMMENT_ERROR',
+
+	UPDATE_COMMENT_SUCCESS: 'UPDATE_COMMENT_SUCCESS',
+	UPDATE_COMMENT_PENDING: 'UPDATE_COMMENT_PENDING',
+	UPDATE_COMMENT_ERROR: 'UPDATE_COMMENT_ERROR',
 
 	// Notifications
 	GET_NOTIFICATIONS_SUCCESS: 'GET_NOTIFICATIONS_SUCCESS',
@@ -31027,6 +31044,25 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.CREATE_TESTIMONIAL_ERROR:
+            return _extends({}, state, {
+                error: action.payload,
+                pending: null
+            });
+
+        case _actionTypes2.default.UPDATE_TESTIMONIAL_PENDING:
+            return _extends({}, state, {
+                error: null,
+                pending: true
+            });
+
+        case _actionTypes2.default.UPDATE_TESTIMONIAL_SUCCESS:
+            return _extends({}, state, {
+                error: null,
+                pending: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.UPDATE_TESTIMONIAL_ERROR:
             return _extends({}, state, {
                 error: action.payload,
                 pending: null
