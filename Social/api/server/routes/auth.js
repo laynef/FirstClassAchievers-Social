@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
-const config = require('../../config/config')
-const helper = require('sendgrid').mail
+// const config = require('../../config/config')
+// const helper = require('sendgrid').mail
 
 
 // local auth
@@ -121,29 +121,29 @@ router.patch('/local/change/password', (req, res, next) => {
     })
 })
 
-router.post('/local/forgotten/password', (req, res, next) => {
-    let fromEmail = new helper.Email('test@example.com')
-    let toEmail = new helper.Email(req.body.email)
-    let subject = 'Hello World from the SendGrid Node.js Library!'
-    let content = new helper.Content('text/plain', 'Hello, Email!')
-    let mail = new helper.Mail(fromEmail, subject, toEmail, content)
-    let api_key = process.env.SENDGRID_API_KEY || config.SENDGRID_API_KEY
-    let sg = require('sendgrid')(api_key)
-    let request = sg.emptyRequest({
-        method: 'POST',
-        path: '/v3/mail/send',
-        body: mail.toJSON()
-    })
+// router.post('/local/forgotten/password', (req, res, next) => {
+//     let fromEmail = new helper.Email('test@example.com')
+//     let toEmail = new helper.Email(req.body.email)
+//     let subject = 'Hello World from the SendGrid Node.js Library!'
+//     let content = new helper.Content('text/plain', 'Hello, Email!')
+//     let mail = new helper.Mail(fromEmail, subject, toEmail, content)
+//     let api_key = process.env.SENDGRID_API_KEY || config.SENDGRID_API_KEY
+//     let sg = require('sendgrid')(api_key)
+//     let request = sg.emptyRequest({
+//         method: 'POST',
+//         path: '/v3/mail/send',
+//         body: mail.toJSON()
+//     })
 
-    sg.API(request, function (error, response) {
-        if (error) {
-            console.log('Error response received')
-        }
-        console.log(response.statusCode)
-        console.log(response.body)
-        console.log(response.headers)
-    })
-})
+//     sg.API(request, function (error, response) {
+//         if (error) {
+//             console.log('Error response received')
+//         }
+//         console.log(response.statusCode)
+//         console.log(response.body)
+//         console.log(response.headers)
+//     })
+// })
 
 
 // export router for server.js

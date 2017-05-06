@@ -7,7 +7,7 @@ var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
 var db        = {};
 
-var url = process.env.dbUrl || require('../config/config')[env].url
+var url = process.env.dbUrl 
 var sequelize = new Sequelize(url);
 
 fs
