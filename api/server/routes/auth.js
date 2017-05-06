@@ -67,7 +67,7 @@ router.post('/local/register', (req, res, next) => {
                 goals: null,
                 position: null,
                 nickname: null,
-                image: null,
+                image: req.body.image || null,
                 zipCode: null,
                 state: null,
                 country: null,
