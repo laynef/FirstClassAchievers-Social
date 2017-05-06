@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       products: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       email: {
         type: Sequelize.STRING
