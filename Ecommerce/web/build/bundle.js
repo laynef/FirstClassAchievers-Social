@@ -20167,6 +20167,10 @@ var _reactRouter = __webpack_require__(127);
 
 var _reduxForm = __webpack_require__(198);
 
+var _TopBar = __webpack_require__(794);
+
+var _TopBar2 = _interopRequireDefault(_TopBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20192,6 +20196,7 @@ var MasterPage = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 null,
+                _react2.default.createElement(_TopBar2.default, null),
                 children
             );
         }
@@ -49833,6 +49838,232 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 794 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(48);
+
+var _reactRouter = __webpack_require__(127);
+
+var _reduxForm = __webpack_require__(198);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TopBar = function (_Component) {
+    _inherits(TopBar, _Component);
+
+    function TopBar() {
+        _classCallCheck(this, TopBar);
+
+        return _possibleConstructorReturn(this, (TopBar.__proto__ || Object.getPrototypeOf(TopBar)).apply(this, arguments));
+    }
+
+    _createClass(TopBar, [{
+        key: 'render',
+        value: function render() {
+            var children = this.props.children;
+
+            return _react2.default.createElement(
+                'div',
+                { id: 'TopBar' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'topBar' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-6 col-sm-7 col-xs-12 pull-right' },
+                                _react2.default.createElement(
+                                    'ul',
+                                    { className: 'list-inline pull-right top-right' },
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'account-login' },
+                                        _react2.default.createElement(
+                                            'span',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { 'data-toggle': 'modal', href: '.login-modal' },
+                                                'Log in'
+                                            ),
+                                            _react2.default.createElement(
+                                                'small',
+                                                null,
+                                                'or'
+                                            ),
+                                            _react2.default.createElement(
+                                                'a',
+                                                { 'data-toggle': 'modal', href: '#signup' },
+                                                'Create an account'
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'searchBox' },
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: '#' },
+                                            _react2.default.createElement('i', { className: 'fa fa-search' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'ul',
+                                            { className: 'dropdown-menu dropdown-menu-right' },
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'span',
+                                                    { className: 'input-group' },
+                                                    _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search\u2026', 'aria-describedby': 'basic-addon2' }),
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'submit', className: 'input-group-addon' },
+                                                        'Submit'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'dropdown cart-dropdown' },
+                                        _react2.default.createElement(
+                                            'a',
+                                            { href: 'javascript:void(0)', className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
+                                            _react2.default.createElement('i', { className: 'fa fa-shopping-cart' }),
+                                            '$0'
+                                        ),
+                                        _react2.default.createElement(
+                                            'ul',
+                                            { className: 'dropdown-menu dropdown-menu-right' },
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                'Item(s) in your cart'
+                                            ),
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: 'single-product.html' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'media' },
+                                                        _react2.default.createElement('img', { className: 'media-left media-object', src: 'theme/img/home/cart-items/cart-item-01.jpg', alt: 'cart-Image' }),
+                                                        _react2.default.createElement(
+                                                            'div',
+                                                            { className: 'media-body' },
+                                                            _react2.default.createElement(
+                                                                'h5',
+                                                                { className: 'media-heading' },
+                                                                'INCIDIDUNT UT ',
+                                                                _react2.default.createElement('br', null),
+                                                                _react2.default.createElement(
+                                                                    'span',
+                                                                    null,
+                                                                    '2 X $199'
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: 'single-product.html' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'media' },
+                                                        _react2.default.createElement('img', { className: 'media-left media-object', src: 'theme/img/home/cart-items/cart-item-01.jpg', alt: 'cart-Image' }),
+                                                        _react2.default.createElement(
+                                                            'div',
+                                                            { className: 'media-body' },
+                                                            _react2.default.createElement(
+                                                                'h5',
+                                                                { className: 'media-heading' },
+                                                                'INCIDIDUNT UT ',
+                                                                _react2.default.createElement('br', null),
+                                                                _react2.default.createElement(
+                                                                    'span',
+                                                                    null,
+                                                                    '2 X $199'
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'li',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'btn-group', role: 'group', 'aria-label': '...' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-default', onclick: 'location.href=\'cart-page.html\';' },
+                                                        'Shopping Cart'
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-default', onclick: 'location.href=\'checkout-step-1.html\';' },
+                                                        'Checkout'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return TopBar;
+}(_react.Component);
+
+TopBar = (0, _reduxForm.reduxForm)({
+    form: 'TopBar'
+})(TopBar);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {};
+})(TopBar);
 
 /***/ })
 /******/ ]);
