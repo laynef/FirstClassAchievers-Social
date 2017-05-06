@@ -60,8 +60,8 @@ router.post('/local/register', (req, res, next) => {
                 entries: []
             })
             Profile.create({
-                firstName: null,
-                lastName: null,
+                firstName: req.body.firstName|| null,
+                lastName: req.body.lastName || null,
                 city: null,
                 goals: null,
                 position: null,
