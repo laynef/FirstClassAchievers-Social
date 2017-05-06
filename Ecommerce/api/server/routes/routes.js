@@ -19,13 +19,13 @@ router.patch('/credit/card/:itemId', controllers.creditCard.patch)
 router.delete('/credit/card/:itemId', controllers.creditCard.delete)
 
 // indiviual product
-router.get('/product/:itemId', controllers.product.individual.get)
-router.post('/product/:itemId', controllers.product.individual.post)
-router.patch('/product/:itemId', controllers.product.individual.patch)
-router.delete('/product/:itemId', controllers.product.individual.delete)
+router.get('/product/single/:itemId', controllers.product.individual.get)
+router.post('/product/single', controllers.product.individual.post)
+router.patch('/product/single/:itemId', controllers.product.individual.patch)
+router.delete('/product/single/:itemId', controllers.product.individual.delete)
 
 // category product
-router.get('/product/:itemId', controllers.product.category.get)
+router.get('/product/category/:itemId', controllers.product.category.get)
 
 // order
 router.get('/order/:all', controllers.order.all)
