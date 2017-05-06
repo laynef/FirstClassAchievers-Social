@@ -9,7 +9,7 @@ import followingReducer from '../reducers/following'
 import favoritesReducer from '../reducers/favorite'
 import friendsReducer from '../reducers/friends'
 import messagesReducer from '../reducers/message'
-import notifyReducer from '../reducers/notifications'
+import commentReducer from '../reducers/comment'
 
 
 const reducers = combineReducers({
@@ -21,7 +21,8 @@ const reducers = combineReducers({
     favorites: favoritesReducer,
     friends: friendsReducer,
     messages: messagesReducer,
-    notifications: notifyReducer
+    notifications: notifyReducer,
+    comments: commentReducer
 })
 
 export default reducers

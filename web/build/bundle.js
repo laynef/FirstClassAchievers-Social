@@ -25690,9 +25690,9 @@ var _message = __webpack_require__(412);
 
 var _message2 = _interopRequireDefault(_message);
 
-var _notifications = __webpack_require__(413);
+var _comment = __webpack_require__(956);
 
-var _notifications2 = _interopRequireDefault(_notifications);
+var _comment2 = _interopRequireDefault(_comment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25706,7 +25706,8 @@ var reducers = (0, _redux.combineReducers)({
     favorites: _favorite2.default,
     friends: _friends2.default,
     messages: _message2.default,
-    notifications: _notifications2.default
+    notifications: notifyReducer,
+    comments: _comment2.default
 });
 
 exports.default = reducers;
@@ -30847,98 +30848,7 @@ var INITIAL_STATE = {
 };
 
 /***/ }),
-/* 413 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-    var action = arguments[1];
-
-    switch (action.type) {
-        case _actionTypes2.default.GET_NOTIFICATIONS_PENDING:
-            return _extends({}, state, {
-                error: null,
-                pending: true
-            });
-
-        case _actionTypes2.default.GET_NOTIFICATIONS_SUCCESS:
-            return _extends({}, state, {
-                error: null,
-                pending: null,
-                data: action.payload
-            });
-
-        case _actionTypes2.default.GET_NOTIFICATIONS_ERROR:
-            return _extends({}, state, {
-                error: action.payload,
-                pending: null
-            });
-
-        case _actionTypes2.default.SET_NOTIFICATIONS_PENDING:
-            return _extends({}, state, {
-                error: null,
-                pending: true
-            });
-
-        case _actionTypes2.default.SET_NOTIFICATIONS_SUCCESS:
-            return _extends({}, state, {
-                error: null,
-                pending: null,
-                data: action.payload
-            });
-
-        case _actionTypes2.default.SET_NOTIFICATIONS_ERROR:
-            return _extends({}, state, {
-                error: action.payload,
-                pending: null
-            });
-
-        case _actionTypes2.default.CREATE_NOTIFICATIONS_PENDING:
-            return _extends({}, state, {
-                error: null,
-                pending: true
-            });
-
-        case _actionTypes2.default.CREATE_NOTIFICATIONS_SUCCESS:
-            return _extends({}, state, {
-                error: null,
-                pending: null,
-                data: action.payload
-            });
-
-        case _actionTypes2.default.CREATE_NOTIFICATIONS_ERROR:
-            return _extends({}, state, {
-                error: action.payload,
-                pending: null
-            });
-
-    }
-
-    return state;
-};
-
-var _actionTypes = __webpack_require__(22);
-
-var _actionTypes2 = _interopRequireDefault(_actionTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var INITIAL_STATE = {
-    pending: null,
-    error: null,
-    data: null
-};
-
-/***/ }),
+/* 413 */,
 /* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -69572,6 +69482,98 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 956 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actionTypes2.default.GET_COMMENT_PENDING:
+            return _extends({}, state, {
+                pending: true,
+                error: null
+            });
+
+        case _actionTypes2.default.GET_COMMENT_SUCCESS:
+            return _extends({}, state, {
+                pending: null,
+                error: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.GET_COMMENT_ERROR:
+            return _extends({}, state, {
+                pending: null,
+                error: action.payload
+            });
+
+        case _actionTypes2.default.SET_COMMENT_PENDING:
+            return _extends({}, state, {
+                pending: true,
+                error: null
+            });
+
+        case _actionTypes2.default.SET_COMMENT_SUCCESS:
+            return _extends({}, state, {
+                pending: null,
+                error: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.SET_COMMENT_ERROR:
+            return _extends({}, state, {
+                pending: null,
+                error: action.payload
+            });
+
+        case _actionTypes2.default.UPDATE_COMMENT_PENDING:
+            return _extends({}, state, {
+                pending: true,
+                error: null
+            });
+
+        case _actionTypes2.default.UPDATE_COMMENT_SUCCESS:
+            return _extends({}, state, {
+                pending: null,
+                error: null,
+                data: action.payload
+            });
+
+        case _actionTypes2.default.UPDATE_COMMENT_ERROR:
+            return _extends({}, state, {
+                pending: null,
+                error: action.payload
+            });
+
+    }
+
+    return state;
+};
+
+var _actionTypes = __webpack_require__(22);
+
+var _actionTypes2 = _interopRequireDefault(_actionTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+    pending: null,
+    error: null,
+    data: null
+};
 
 /***/ })
 /******/ ]);
