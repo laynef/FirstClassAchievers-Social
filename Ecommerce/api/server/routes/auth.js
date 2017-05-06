@@ -1,7 +1,6 @@
 const app = require('express')
 const router = require('express').Router()
 const User = require('../../../database/models/index').User
-const Profile = require('../../../database/models/index').Profile
 const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
@@ -49,7 +48,6 @@ router.post('/local/register', (req, res, next) => {
         })
         .then(response => {
             console.log(`RESP`, response)
-
             res.sendStatus(201)
             console.log(`sign up successful`)
         })
@@ -167,27 +165,6 @@ router.post('/local/fixtures', (req, res, next) => {
             id: req.body.id
         })
         .then(response => {
-            Following.create({
-                followers: [],
-                user_id: req.body.id
-            })
-            Favorite.create({
-                user_id: req.body.id,
-                entries: []
-            })
-            Profile.create({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                city: null,
-                goals: null,
-                position: null,
-                nickname: null,
-                image: req.body.image,
-                zipCode: null,
-                state: null,
-                country: null,
-                user_id: req.body.id
-            })
             res.sendStatus(201)
             console.log(`sign up successful`)
         })

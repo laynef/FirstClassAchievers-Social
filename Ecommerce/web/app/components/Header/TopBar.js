@@ -20,7 +20,6 @@ class TopBar extends Component {
     static formLoginSubmit(data) {
         const { dispatch, reset } = this.props
         dispatch(login(data))
-        dispatch(reset('TopBar'))
         this.setState({login: false})
     }
 
@@ -28,7 +27,6 @@ class TopBar extends Component {
         const { dispatch, reset } = this.props
         if (data.rePassword == data.password) {
             dispatch(register(data))
-            dispatch(reset('TopBar'))
         }
         this.setState({signUp: false})
     }
@@ -143,7 +141,7 @@ class TopBar extends Component {
                                             <Field component={renderInput} type="password" label="Password" placeholder="Enter password" name="password"/>
                                             <Field component={renderInput} type="password" label="Confirm Password" placeholder="Confirm password" name="rePassword"/>
                                             <button type="submit" className="btn btn-primary btn-block">sign up</button>
-                                        </Form>  
+                                        </Form>
                                     </div>
                                 </div>
                             </div>
