@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Testimonial = sequelize.define('Testimonial', {
     author: DataTypes.STRING,
     message: DataTypes.TEXT,
-    likes: DataTypes.INTEGER,
+    likes: DataTypes.ARRAY(DataTypes.INTEGER),
     user_id: DataTypes.INTEGER,
     image: DataTypes.TEXT
   }, {

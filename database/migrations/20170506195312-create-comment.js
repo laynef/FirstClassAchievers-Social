@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       likes: {
-        type: Sequelize.ARRAY
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       createdAt: {
         allowNull: false,
