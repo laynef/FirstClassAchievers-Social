@@ -51,7 +51,6 @@ router.post('/local/register', (req, res, next) => {
             password: hash
         })
         .then(response => {
-            console.log(`RESP`, response)
             Following.create({
                 followers: [],
                 user_id: response.dataValues.id

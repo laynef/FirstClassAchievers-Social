@@ -6,6 +6,7 @@ const Favorite = require('../../../database/models/index').Favorite
 const User = require('../../../database/models/index').User
 const Message = require('../../../database/models/index').Message
 const Notification = require('../../../database/models/index').Notification
+const Comment = require('../../../database/models/index').Comment
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -68,7 +69,7 @@ module.exports = {
                 message: req.body.message,
                 user_id: req.body.userId,
                 image: req.body.image,
-                likes: 0
+                likes: []
             })
             .then(response => {
                 Testimonial.findAll()
@@ -275,6 +276,69 @@ module.exports = {
             }, {
                 where: { id: req.body.note_id }
             })
+        }
+    },
+    comments: {
+        get: (req, res, next) => {
+            Comment.findAll({
+                where: {post_id: req.params.entryId}
+            })
+            .then(resp => {
+                res.status(200).send(resp)
+            })
+        },
+        post: (req, res, next) => {
+            Comment.create({
+                post_id: req.params.entryId,
+                message: req.body.message,
+                user_id: req.body.user_id,
+                likes: []
+            })
+            .then(resp => {
+                res.status(200).send(resp)
+            })
+        }
+    },
+    likes: {
+        comment: {
+            patch: (req, res, next) => {
+                Comment.findAll({
+                    where: {id: req.params.entryId}  
+                })
+                .then(resp => {
+                    let likes = resp[0].dataValues.likes.slice()
+                    if (likes.includes(req.body.user_id)) {
+                        _.pull(likes, req.body.user_id)
+                    } else {
+                        likes.push(req.body.user_id)
+                    }
+                    Comment.update({
+                        likes: likes
+                    }, {
+                        where: {id: req.params.entryId}
+                    })
+                })
+            }
+        },
+        testify: {
+            patch: (req, res, next) => {
+                 Testimonial.findAll({
+                    where: {id: req.params.entryId}  
+                })
+                .then(resp => {
+                    let likes = resp[0].dataValues.likes.slice()
+                    if (likes.includes(req.body.user_id)) {
+                        _.pull(likes, req.body.user_id)
+                    } else {
+                        likes.push(req.body.user_id)
+                    }
+                    Testimonial.update({
+                        likes: likes
+                    }, {
+                        where: {id: req.params.entryId}
+                    })
+                })
+            }
         }
     }
 }
