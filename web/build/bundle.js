@@ -30338,7 +30338,7 @@ var TestimonialPage = function (_Component) {
                 favorites = _props.favorites;
 
             if (!testimonial) return null;
-            if (user) {
+            if (user && user.id) {
                 if (!favorites) return null;
             }
             var regex = new RegExp(this.state.searchTerm, 'ig');
@@ -30382,11 +30382,11 @@ var TestimonialPage = function (_Component) {
                             author: entry.author,
                             message: entry.message,
                             profileId: entry.user_id,
-                            userId: user ? user.id : null,
+                            userId: user && user.id ? user.id : null,
                             image: entry.image,
                             entryId: entry.id,
                             detail: false,
-                            favorites: favorites && user.id != entry.user_id ? favorites.entries : null
+                            favorites: favorites && user && user.id != entry.user_id ? favorites.entries : null
                         });
                     })
                 ),

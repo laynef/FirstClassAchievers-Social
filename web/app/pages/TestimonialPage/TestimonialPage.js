@@ -24,7 +24,7 @@ class TestimonialPage extends Component {
     render() {
         const { user, testimonial, favorites } = this.props;
         if (!testimonial) return null
-        if (user) { if (!favorites) return null }
+        if (user && user.id) { if (!favorites) return null }
         let regex = new RegExp(this.state.searchTerm, 'ig')
         return (
             <div id="TestimonialPage">
@@ -57,11 +57,11 @@ class TestimonialPage extends Component {
                             author={entry.author}
                             message={entry.message}
                             profileId={entry.user_id}
-                            userId={user ? user.id : null}
+                            userId={user && user.id ? user.id : null}
                             image={entry.image}
                             entryId={entry.id}
                             detail={false}
-                            favorites={favorites && user.id != entry.user_id ? favorites.entries : null}
+                            favorites={favorites && user && user.id != entry.user_id ? favorites.entries : null}
                         />
                     ))}
                 </div>
