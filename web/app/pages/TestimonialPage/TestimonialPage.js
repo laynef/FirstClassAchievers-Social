@@ -64,6 +64,7 @@ class TestimonialPage extends Component {
                             entryId={entry.id}
                             detail={false}
                             favorites={favorites && user && user.id != entry.user_id ? favorites.entries : null}
+                            likes={e.likes}
                         />
                     ))}
                 </div>

@@ -7720,6 +7720,8 @@ var _favorite = __webpack_require__(107);
 
 var _comment = __webpack_require__(143);
 
+var _testimonial = __webpack_require__(79);
+
 var _ReduxForms = __webpack_require__(55);
 
 var _pull = __webpack_require__(197);
@@ -7760,7 +7762,8 @@ var PostEntry = function (_Component) {
                 handleSubmit = _props.handleSubmit,
                 favorites = _props.favorites,
                 userId = _props.userId,
-                user = _props.user;
+                user = _props.user,
+                likes = _props.likes;
 
             return _react2.default.createElement(
                 'div',
@@ -7815,6 +7818,19 @@ var PostEntry = function (_Component) {
                         ) : null
                     ),
                     _react2.default.createElement(
+                        _reduxForm.Form,
+                        { onSubmit: handleSubmit(PostEntry.formLikesSubmit.bind(this)) },
+                        likes ? likes.includes(user.id) ? _react2.default.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn' },
+                            _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
+                        ) : _react2.default.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn' },
+                            _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
+                        ) : null
+                    ),
+                    _react2.default.createElement(
                         'div',
                         { className: 'card-description' },
                         _react2.default.createElement(
@@ -7846,6 +7862,18 @@ var PostEntry = function (_Component) {
             body.user_id = userId;
             body.entries = array;
             dispatch((0, _favorite.setFavorites)(body, userId));
+        }
+    }, {
+        key: 'formLikesSubmit',
+        value: function formLikesSubmit() {
+            var _props3 = this.props,
+                dispatch = _props3.dispatch,
+                likes = _props3.likes,
+                entryId = _props3.entryId;
+
+            var body = {};
+            body.likes = likes;
+            dispatch((0, _testimonial.likeTestimonial)(body, entryId));
         }
     }]);
 
@@ -30689,7 +30717,8 @@ var TestimonialPage = function (_Component) {
                             image: entry.image,
                             entryId: entry.id,
                             detail: false,
-                            favorites: favorites && user && user.id != entry.user_id ? favorites.entries : null
+                            favorites: favorites && user && user.id != entry.user_id ? favorites.entries : null,
+                            likes: e.likes
                         });
                     })
                 ),

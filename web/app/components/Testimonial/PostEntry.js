@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { Link } from 'react-router'
 import { setFavorites } from '../../redux/actions/favorite'
 import { getComment } from '../../redux/actions/comment'
+import { likeTestimonial } from '../../redux/actions/testimonial'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import pull from 'lodash/pull'
 import CommentEntry from './CommentEntry'
@@ -25,10 +26,17 @@ class PostEntry extends Component {
         dispatch(setFavorites(body, userId))
     }
 
+    static formLikesSubmit() {
+        const { dispatch, likes, entryId } = this.props
+        let body = {}
+        body.likes = likes
+        dispatch(likeTestimonial(body, entryId))
+    }
+
     render() {
         const { author, message, image, 
             profileId, detail, entryId, handleSubmit, 
-            favorites, userId, user } = this.props
+            favorites, userId, user, likes } = this.props
         return (
             <div className="PostEntry">
                 <div className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -55,6 +63,13 @@ class PostEntry extends Component {
                                 (favorites.includes(entryId)) ? 
                                 (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>) 
                                 : (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>)
+                            : null}
+                        </Form>
+                        <Form onSubmit={handleSubmit(PostEntry.formLikesSubmit.bind(this))}>
+                            {(likes) ? 
+                                (likes.includes(user.id)) ? 
+                                (<button type="submit" className="btn"><i className="fa fa-thumbs-up"></i></button>) 
+                                : (<button type="submit" className="btn"><i className="fa fa-thumbs-o-up"></i></button>)
                             : null}
                         </Form>
                     <div className="card-description">
