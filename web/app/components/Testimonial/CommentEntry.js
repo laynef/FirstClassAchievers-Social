@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
-import { getComment, setComment } from '../../redux/actions/comment'
+import { getComment, setComment, likeComment } from '../../redux/actions/comment'
 
 
 class CommentEntry extends Component {
@@ -12,6 +12,13 @@ class CommentEntry extends Component {
         this.state = {
             text: ''
         }
+    }
+
+    formLikesSubmit(id) {
+        const { dispatch, userId } = this.props
+        let body = {}
+        body.user_id = Number(userId)
+        dispatch(likeComment(body, id))
     }
 
     render() {
@@ -54,6 +61,13 @@ class CommentEntry extends Component {
                                         </span>
                                     </h6>
                                 </div>
+                                <form>
+                                    {(e.likes) ? 
+                                        (e.likes.includes(user.id)) ? 
+                                        (<button onClick={this.formLikesSubmit.bind(this, e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></button>) 
+                                        : (<button onClick={this.formLikesSubmit.bind(this, e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></button>)
+                                    : null}
+                                </form>
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>

@@ -28891,16 +28891,27 @@ var CommentEntry = function (_Component) {
     }
 
     _createClass(CommentEntry, [{
+        key: 'formLikesSubmit',
+        value: function formLikesSubmit(id) {
+            var _props = this.props,
+                dispatch = _props.dispatch,
+                userId = _props.userId;
+
+            var body = {};
+            body.user_id = Number(userId);
+            dispatch((0, _comment.likeComment)(body, id));
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            var _props = this.props,
-                entryId = _props.entryId,
-                comments = _props.comments,
-                user = _props.user,
-                profile = _props.profile,
-                dispatch = _props.dispatch;
+            var _props2 = this.props,
+                entryId = _props2.entryId,
+                comments = _props2.comments,
+                user = _props2.user,
+                profile = _props2.profile,
+                dispatch = _props2.dispatch;
 
             return _react2.default.createElement(
                 'div',
@@ -28969,6 +28980,21 @@ var CommentEntry = function (_Component) {
                                         _react2.default.createElement('i', { className: 'icon-map' })
                                     )
                                 )
+                            ),
+                            _react2.default.createElement(
+                                'form',
+                                null,
+                                e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
+                                    'button',
+                                    { onClick: _this2.formLikesSubmit.bind(_this2, e.id), type: 'submit', className: 'btn' },
+                                    e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
+                                    _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
+                                ) : _react2.default.createElement(
+                                    'button',
+                                    { onClick: _this2.formLikesSubmit.bind(_this2, e.id), type: 'submit', className: 'btn' },
+                                    e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
+                                    _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
+                                ) : null
                             ),
                             _react2.default.createElement(
                                 'div',
