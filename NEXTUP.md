@@ -20,6 +20,3 @@
 ## Big data handling
 
 ## Search engine
-
-## Notification on comments & likes
-
