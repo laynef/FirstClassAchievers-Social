@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import { getComment, setComment, likeComment } from '../../redux/actions/comment'
+import io from 'socket.io-client'
 
+
+let socket = io('http://localhost:3214')
 
 class CommentEntry extends Component {
 
@@ -35,6 +38,13 @@ class CommentEntry extends Component {
             image: profile.image,
             to: this.props.profileId
         }, entryId)); 
+        socket.emit('comment', {
+            message: this.state.text,
+            user_id: user.id,
+            author: `${profile.firstName} ${profile.lastName}`,
+            image: profile.image,
+            to: this.props.profileId
+        }, entryId)
         dispatch(getComment()); 
         this.setState({text: ''})
     }

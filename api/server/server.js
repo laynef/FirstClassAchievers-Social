@@ -82,6 +82,10 @@ io.on('connection', (socket) => {
 		io.sockets.in(socket.room2).emit('updatechat', socket.user, data)
 	})
 
+	socket.on('comment', function(data, id) {
+		socket.emit('comment', data, id)
+	})
+
 	socket.on('leaveRoom', function(){
 		socket.leave(socket.room1)
 		socket.leave(socket.room2)
