@@ -53,6 +53,7 @@ class MainPage extends Component {
                                         entryId={entry.id}
                                         userId={user ? user.id : null}
                                         favorites={favorites ? favorites.entries : null}
+                                        likes={entry.likes}
                                         detail={false}
                                     />
                                 ))}
