@@ -7875,7 +7875,7 @@ var PostEntry = function (_Component) {
                 userId = _props3.userId;
 
             var body = {};
-            body.likes = userId;
+            body.user_id = userId;
             dispatch((0, _testimonial.likeTestimonial)(body, entryId));
         }
     }]);
