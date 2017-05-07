@@ -27,6 +27,7 @@ class CommentEntry extends Component {
 
     onEnterKeyDown() {
         const { dispatch, entryId, user, profile } = this.props
+        if (this.state.text == '') return null
         dispatch(setComment({
             message: this.state.text,
             user_id: user.id,

@@ -28920,6 +28920,7 @@ var CommentEntry = function (_Component) {
                 user = _props2.user,
                 profile = _props2.profile;
 
+            if (this.state.text == '') return null;
             dispatch((0, _comment.setComment)({
                 message: this.state.text,
                 user_id: user.id,
