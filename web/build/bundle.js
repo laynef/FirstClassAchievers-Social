@@ -28900,6 +28900,7 @@ var CommentEntry = function (_Component) {
             var body = {};
             body.user_id = Number(user.id);
             dispatch((0, _comment.likeComment)(body, id));
+            dispatch((0, _comment.getComment)());
         }
     }, {
         key: 'render',

@@ -19,6 +19,7 @@ class CommentEntry extends Component {
         let body = {}
         body.user_id = Number(user.id)
         dispatch(likeComment(body, id))
+        dispatch(getComment())
     }
 
     render() {
