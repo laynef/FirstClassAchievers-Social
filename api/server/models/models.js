@@ -310,6 +310,14 @@ module.exports = {
                 likes: []
             })
             .then(resp => {
+                Notification.create({
+                    user_id: req.body.user_id,
+                    message: `${req.body.author} left a comment`,
+                    seen: false,
+                    image: req.body.image,
+                    type: 'COMMENT',
+                    from: req.params.entryId
+                })
                 res.status(200).send(resp)
             })
         }

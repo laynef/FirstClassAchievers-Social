@@ -28013,7 +28013,7 @@ var Notifications = function (_Component) {
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
                                                     dispatch((0, _notifications.setNotifications)(e.id));
                                                     dispatch((0, _notifications.getNotifications)(user.id));
-                                                    e.type === 'INVITE' ? _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.hashHistory.push('/profile/' + e.from) : _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from);
+                                                    e.type === 'INVITE' ? _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'COMMENT' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'LIKE' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.hashHistory.push('/profile/' + e.from) : _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from);
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
