@@ -14,32 +14,27 @@ class CommentEntry extends Component {
         }
     }
 
-    componentDidMount() { 
-        const { dispatch, entryId } = this.props
-        dispatch(getComment(entryId))
-    }
-
     render() {
-        const { entryId, comments, user, profile } = this.props
+        const { entryId, comments, user, profile, dispatch } = this.props
         return (
             <div className="CommentEntry">
                 <form onSubmit={() => dispatch(setComment({
-                                message: this.state.text,
-                                user_id: user.id,
-                                author: `${profile.firstName} ${profile.lastName}`,
-                                image: profile.image
-                            }, entryId))}>
+                            message: this.state.text,
+                            user_id: user.id,
+                            author: `${profile.firstName} ${profile.lastName}`,
+                            image: profile.image
+                        }, entryId))}>
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 
-                            onChange={() => this.setState({text: e.target.value})}
+                            onChange={(e) => this.setState({text: e.target.value})}
                             className="form-control chat-input" 
                             placeholder="Say something"/>
                         <button type="submit" className="btn btn-block btn-success">Submit</button>
                     </div>
                 </form>
-                {comments && comments.map(e => (
-                    <div className="card share col1" data-social="item" style={{width: '100%'}}>
+                {comments && comments.map((e, i) => (
+                    <div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
                         <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                             <div className="card-header clearfix">
                                 <div className="user-pic">

@@ -280,11 +280,13 @@ module.exports = {
     },
     comments: {
         get: (req, res, next) => {
-            Comment.findAll({
-                where: {post_id: req.params.entryId}
-            })
+            Comment.findAll({})
             .then(resp => {
-                res.status(200).send(resp)
+                let data = {}
+                resp.forEach(e => {
+                    data[e.post_id] = data[e.post_id] ? data[e.post_id].push(e) : e
+                })
+                res.status(200).send(data)
             })
         },
         post: (req, res, next) => {

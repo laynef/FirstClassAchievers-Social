@@ -7819,7 +7819,7 @@ var PostEntry = function (_Component) {
                             message
                         )
                     ),
-                    user && user.id ? _react2.default.createElement(_CommentEntry2.default, { id: entryId, key: entryId, entryId: entryId }) : null
+                    user && user.id ? _react2.default.createElement(_CommentEntry2.default, { entryId: entryId }) : null
                 )
             );
         }
@@ -16410,7 +16410,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function getComment(id) {
 	return function (dispatch) {
 		dispatch({ type: _actionTypes2.default.GET_COMMENT_PENDING });
-		_axios2.default.get('/api/comments/' + id).then(function (response) {
+		_axios2.default.get('/api/comments').then(function (response) {
 			dispatch({
 				type: _actionTypes2.default.GET_COMMENT_SUCCESS,
 				payload: response.data
@@ -27025,7 +27025,7 @@ var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyM
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
-    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _Router2.default })
+    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _Router2.default })
 ), document.getElementById('app'));
 
 /***/ }),
@@ -27978,7 +27978,7 @@ var Notifications = function (_Component) {
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
                                                     dispatch((0, _notifications.setNotifications)(e.id));
                                                     dispatch((0, _notifications.getNotifications)(user.id));
-                                                    e.type === 'INVITE' ? _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.browserHistory.push('/profile/' + e.from) : _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from);
+                                                    e.type === 'INVITE' ? _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.hashHistory.push('/profile/' + e.from) : _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from);
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
@@ -28856,24 +28856,16 @@ var CommentEntry = function (_Component) {
     }
 
     _createClass(CommentEntry, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                entryId = _props.entryId;
-
-            dispatch((0, _comment.getComment)(entryId));
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            var _props2 = this.props,
-                entryId = _props2.entryId,
-                comments = _props2.comments,
-                user = _props2.user,
-                profile = _props2.profile;
+            var _props = this.props,
+                entryId = _props.entryId,
+                comments = _props.comments,
+                user = _props.user,
+                profile = _props.profile,
+                dispatch = _props.dispatch;
 
             return _react2.default.createElement(
                 'div',
@@ -28893,7 +28885,7 @@ var CommentEntry = function (_Component) {
                         { className: 'col-xs-12 no-padding' },
                         _react2.default.createElement('input', {
                             type: 'text',
-                            onChange: function onChange() {
+                            onChange: function onChange(e) {
                                 return _this2.setState({ text: e.target.value });
                             },
                             className: 'form-control chat-input',
@@ -28905,10 +28897,10 @@ var CommentEntry = function (_Component) {
                         )
                     )
                 ),
-                comments && comments.map(function (e) {
+                comments && comments.map(function (e, i) {
                     return _react2.default.createElement(
                         'div',
-                        { className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
+                        { key: i, className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
                         _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
                         _react2.default.createElement(
                             'div',
@@ -30576,6 +30568,8 @@ var _reduxForm = __webpack_require__(11);
 
 var _testimonial = __webpack_require__(79);
 
+var _comment = __webpack_require__(233);
+
 var _TestimonialModal = __webpack_require__(399);
 
 var _TestimonialModal2 = _interopRequireDefault(_TestimonialModal);
@@ -30614,6 +30608,7 @@ var TestimonialPage = function (_Component) {
             var dispatch = this.props.dispatch;
 
             dispatch((0, _testimonial.getTestimonials)());
+            dispatch((0, _comment.getComment)());
         }
     }, {
         key: 'render',

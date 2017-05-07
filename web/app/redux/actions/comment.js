@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes'
 export function getComment(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_COMMENT_PENDING})
-		axios.get(`/api/comments/${id}`)
+		axios.get(`/api/comments`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_COMMENT_SUCCESS,

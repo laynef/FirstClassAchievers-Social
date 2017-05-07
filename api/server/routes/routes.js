@@ -30,7 +30,7 @@ router.post('/invite/:userId', models.invite.post)
 router.get('/notify/:userId', models.notify.get)
 router.patch('/notify', models.notify.patch)
 
-router.get('/comments/:entryId', models.comments.get)
+router.get('/comments', models.comments.get)
 router.post('/comments/:entryId', models.comments.post)
 
 router.patch('/like/comment/:entryId', models.likes.comment.patch)

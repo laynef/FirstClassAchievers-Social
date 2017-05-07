@@ -60,7 +60,7 @@ class PostEntry extends Component {
                     <div className="card-description">
                         <p>{message}</p>
                     </div>
-                        {user && user.id ? <CommentEntry id={entryId} key={entryId} entryId={entryId} /> : null}
+                        {user && user.id ? <CommentEntry entryId={entryId} /> : null}
                 </div>
             </div>
         )

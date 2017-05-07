@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
+import { getComment } from '../../redux/actions/comment'
 import TestimonialModal from '../../components/Testimonial/TestimonialModal'
 import PostEntry from '../../components/Testimonial/PostEntry'
 import '../../redux/utils/search'
@@ -19,6 +20,7 @@ class TestimonialPage extends Component {
     componentDidMount() {
         const { dispatch } = this.props 
         dispatch(getTestimonials())
+        dispatch(getComment())
     }
 
     render() {
