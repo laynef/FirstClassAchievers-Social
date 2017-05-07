@@ -15,9 +15,11 @@ class CommentEntry extends Component {
     }
 
     formLikesSubmit(id) {
-        const { dispatch, user } = this.props
+        const { dispatch, user, profile } = this.props
         let body = {}
         body.user_id = Number(user.id)
+        body.author = `${profile.firstName} ${profile.lastName}`
+        body.image = profile.image
         dispatch(likeComment(body, id))
         dispatch(getComment())
     }

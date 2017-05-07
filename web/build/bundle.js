@@ -7947,10 +7947,13 @@ var PostEntry = function (_Component) {
                 dispatch = _props3.dispatch,
                 likes = _props3.likes,
                 entryId = _props3.entryId,
-                userId = _props3.userId;
+                userId = _props3.userId,
+                profile = _props3.profile;
 
             var body = {};
             body.user_id = Number(userId);
+            body.author = profile.firstName + ' ' + profile.lastName;
+            body.image = profile.image;
             dispatch((0, _testimonial.likeTestimonial)(body, entryId));
         }
     }]);
@@ -7964,7 +7967,8 @@ PostEntry = (0, _reduxForm.reduxForm)({
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        user: state.user.data
+        user: state.user.data,
+        profile: state.user.profile
     };
 })(PostEntry);
 
@@ -28895,10 +28899,13 @@ var CommentEntry = function (_Component) {
         value: function formLikesSubmit(id) {
             var _props = this.props,
                 dispatch = _props.dispatch,
-                user = _props.user;
+                user = _props.user,
+                profile = _props.profile;
 
             var body = {};
             body.user_id = Number(user.id);
+            body.author = profile.firstName + ' ' + profile.lastName;
+            body.image = profile.image;
             dispatch((0, _comment.likeComment)(body, id));
             dispatch((0, _comment.getComment)());
         }

@@ -27,9 +27,11 @@ class PostEntry extends Component {
     }
 
     static formLikesSubmit() {
-        const { dispatch, likes, entryId, userId } = this.props
+        const { dispatch, likes, entryId, userId, profile } = this.props
         let body = {}
         body.user_id = Number(userId)
+        body.author = `${profile.firstName} ${profile.lastName}`
+        body.image = profile.image
         dispatch(likeTestimonial(body, entryId))
     }
 
@@ -88,5 +90,6 @@ PostEntry = reduxForm({
 })(PostEntry)
 
 export default connect(state => ({
-    user: state.user.data
+    user: state.user.data,
+    profile: state.user.profile
 }))(PostEntry)

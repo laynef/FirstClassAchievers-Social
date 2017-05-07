@@ -340,6 +340,14 @@ module.exports = {
                     }, {
                         where: {id: req.params.entryId}
                     })
+                    Notification.create({
+                        user_id: req.body.user_id,
+                        message: `${req.body.author} like your comment`,
+                        seen: false,
+                        image: req.body.image,
+                        type: 'LIKE',
+                        from: req.params.entryId
+                    })
                 })
             }
         },
@@ -359,6 +367,14 @@ module.exports = {
                         likes: likes
                     }, {
                         where: {id: req.params.entryId}
+                    })
+                    Notification.create({
+                        user_id: req.body.user_id,
+                        message: `${req.body.author} like your post`,
+                        seen: false,
+                        image: req.body.image,
+                        type: 'LIKE',
+                        from: req.params.entryId
                     })
                 })
             }
