@@ -33,7 +33,7 @@ class CommentEntry extends Component {
                         <button type="submit" className="btn btn-block btn-success">Submit</button>
                     </div>
                 </form>
-                {comments && comments.map((e, i) => (
+                {comments[entryId].map((e, i) => (
                     <div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
                         <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
                             <div className="card-header clearfix">
