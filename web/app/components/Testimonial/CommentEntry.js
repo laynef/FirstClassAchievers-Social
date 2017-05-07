@@ -18,12 +18,12 @@ class CommentEntry extends Component {
         const { entryId, comments, user, profile, dispatch } = this.props
         return (
             <div className="CommentEntry">
-                <form onSubmit={() => dispatch(setComment({
+                <form onSubmit={() => {dispatch(setComment({
                             message: this.state.text,
                             user_id: user.id,
                             author: `${profile.firstName} ${profile.lastName}`,
                             image: profile.image
-                        }, entryId))}>
+                        }, entryId)); dispatch(getComment())}}>
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 

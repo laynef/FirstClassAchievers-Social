@@ -1250,6 +1250,10 @@ var actionTypes = {
 	GET_COMMENT_PENDING: 'GET_COMMENT_PENDING',
 	GET_COMMENT_ERROR: 'GET_COMMENT_ERROR',
 
+	SINGLE_GET_COMMENT_SUCCESS: 'SINGLE_GET_COMMENT_SUCCESS',
+	SINGLE_GET_COMMENT_PENDING: 'SINGLE_GET_COMMENT_PENDING',
+	SINGLE_GET_COMMENT_ERROR: 'SINGLE_GET_COMMENT_ERROR',
+
 	SET_COMMENT_SUCCESS: 'SET_COMMENT_SUCCESS',
 	SET_COMMENT_PENDING: 'SET_COMMENT_PENDING',
 	SET_COMMENT_ERROR: 'SET_COMMENT_ERROR',
@@ -28873,12 +28877,12 @@ var CommentEntry = function (_Component) {
                 _react2.default.createElement(
                     'form',
                     { onSubmit: function onSubmit() {
-                            return dispatch((0, _comment.setComment)({
+                            dispatch((0, _comment.setComment)({
                                 message: _this2.state.text,
                                 user_id: user.id,
                                 author: profile.firstName + ' ' + profile.lastName,
                                 image: profile.image
-                            }, entryId));
+                            }, entryId));dispatch((0, _comment.getComment)());
                         } },
                     _react2.default.createElement(
                         'div',
@@ -30891,6 +30895,25 @@ exports.default = function () {
             });
 
         case _actionTypes2.default.UPDATE_COMMENT_ERROR:
+            return _extends({}, state, {
+                pending: null,
+                error: action.payload
+            });
+
+        case _actionTypes2.default.SINGLE_GET_COMMENT_PENDING:
+            return _extends({}, state, {
+                pending: true,
+                error: null
+            });
+
+        case _actionTypes2.default.SINGLE_GET_COMMENT_SUCCESS:
+            return _extends({}, state, {
+                pending: null,
+                error: null,
+                single: action.payload
+            });
+
+        case _actionTypes2.default.SINGLE_GET_COMMENT_ERROR:
             return _extends({}, state, {
                 pending: null,
                 error: action.payload

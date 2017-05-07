@@ -73,6 +73,29 @@ export default function (state = INITIAL_STATE, action) {
                 pending: null,
                 error: action.payload
             }
+        
+        case actionTypes.SINGLE_GET_COMMENT_PENDING:
+            return {
+                ...state,
+                pending: true,
+                error: null
+            }
+
+        case actionTypes.SINGLE_GET_COMMENT_SUCCESS:
+            return {
+                ...state,
+                pending: null,
+                error: null,
+                single: action.payload
+            }
+
+        case actionTypes.SINGLE_GET_COMMENT_ERROR:
+            return {
+                ...state,
+                pending: null,
+                error: action.payload
+            }
+        
     
     }
 

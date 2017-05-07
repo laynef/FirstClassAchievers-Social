@@ -279,18 +279,25 @@ module.exports = {
         }
     },
     comments: {
-        get: (req, res, next) => {
+        all: (req, res, next) => {
             Comment.findAll({})
+                .then(resp => {
+                    let data = {}
+                    resp.forEach(e => {
+                        data[e.dataValues.post_id] = []
+                    })
+                    resp.forEach(e => {
+                        data[e.dataValues.post_id].push(e)
+                    })
+                    res.status(200).send(data)
+                })
+        },
+        get: (req, res, next) => {
+            Comment.findAll({
+                where: {post_id: req.params.entryId}
+            })
             .then(resp => {
-                let data = {}
-                let array = []
-                resp.forEach(e => {
-                    data[e.dataValues.post_id] = []
-                })
-                resp.forEach(e => {
-                    data[e.dataValues.post_id].push(e)
-                })
-                res.status(200).send(data)
+                res.status(200).send(resp)
             })
         },
         post: (req, res, next) => {
