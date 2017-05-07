@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, FormReducer, Form } from 'redux-form'
-import { getTestimonials } from '../../redux/actions/testimonial'
+import { getTestimonials, likeTestimonial } from '../../redux/actions/testimonial'
 import { getComment } from '../../redux/actions/comment'
 import { setFavorites } from '../../redux/actions/favorite'
 import pull from 'lodash/pull'
@@ -10,7 +10,7 @@ import CommentEntry from '../../components/Testimonial/CommentEntry'
 
 class DetailEntry extends Component {
 
-    static formSubmit() {
+    formSubmit() {
         const { dispatch, favorites, user, params } = this.props
         let body = {}
         let array = favorites.entries.slice()
@@ -22,6 +22,17 @@ class DetailEntry extends Component {
         body.user_id = user.id
         body.entries = array
         dispatch(setFavorites(body, user.id))
+    }
+
+    formLikesSubmit() {
+        const { dispatch, user, profile, userProfile, params } = this.props
+        let body = {}
+        body.user_id = Number(user.id)
+        body.author = `${userProfile.firstName} ${userProfile.lastName}`
+        body.image = userProfile.image
+        body.to = profile.id
+        dispatch(likeTestimonial(body, params.entryId))
+        dispatch(getTestimonials())
     }
 
     componentDidMount() {
@@ -55,13 +66,16 @@ class DetailEntry extends Component {
                                         </span>
                                     </h6>
                                 </div>
-                            <Form onSubmit={handleSubmit(DetailEntry.formSubmit.bind(this))}>
-                                {(favorites && e.user_id != user.id)  ? 
-                                    (favorites.entries.includes(e.id)) ? 
-                                    (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>) 
-                                    : (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>)
-                                : null}
-                            </Form>
+                            {(favorites && e.user_id != user.id) ? 
+                                (favorites.entries.includes(e.id)) ? 
+                                (<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>) 
+                                : (<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
+                            : null}
+                            {(e.likes) ? 
+                                (e.likes.includes(user.id)) ? 
+                                (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{e.likes && e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes && e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
+                                : (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{e.likes && e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes && e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
+                            : null}
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>
@@ -83,5 +97,6 @@ export default connect(state => ({
     testimonial: state.testimonial.data,
     user: state.user.data,
     favorites: state.favorites.data,
-    profile: state.profile.data
+    profile: state.profile.data,
+    userProfile: state.user.profile
 }))(DetailEntry)
