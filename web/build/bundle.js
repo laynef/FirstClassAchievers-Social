@@ -7823,10 +7823,12 @@ var PostEntry = function (_Component) {
                         likes ? likes.includes(user.id) ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
+                            likes.length > 0 ? likes.length + ' Likes' : likes.length == 1 ? likes.length + ' Like' : '',
                             _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
                         ) : _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
+                            likes.length > 0 ? likes.length + ' Likes' : likes.length == 1 ? likes.length + ' Like' : '',
                             _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
                         ) : null
                     ),
@@ -7869,10 +7871,11 @@ var PostEntry = function (_Component) {
             var _props3 = this.props,
                 dispatch = _props3.dispatch,
                 likes = _props3.likes,
-                entryId = _props3.entryId;
+                entryId = _props3.entryId,
+                userId = _props3.userId;
 
             var body = {};
-            body.likes = likes;
+            body.likes = userId;
             dispatch((0, _testimonial.likeTestimonial)(body, entryId));
         }
     }]);
@@ -30718,7 +30721,7 @@ var TestimonialPage = function (_Component) {
                             entryId: entry.id,
                             detail: false,
                             favorites: favorites && user && user.id != entry.user_id ? favorites.entries : null,
-                            likes: e.likes
+                            likes: user && user.id != entry.user_id ? entry.likes : null
                         });
                     })
                 ),

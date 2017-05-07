@@ -27,9 +27,9 @@ class PostEntry extends Component {
     }
 
     static formLikesSubmit() {
-        const { dispatch, likes, entryId } = this.props
+        const { dispatch, likes, entryId, userId } = this.props
         let body = {}
-        body.likes = likes
+        body.likes = userId
         dispatch(likeTestimonial(body, entryId))
     }
 
@@ -68,8 +68,8 @@ class PostEntry extends Component {
                         <Form onSubmit={handleSubmit(PostEntry.formLikesSubmit.bind(this))}>
                             {(likes) ? 
                                 (likes.includes(user.id)) ? 
-                                (<button type="submit" className="btn"><i className="fa fa-thumbs-up"></i></button>) 
-                                : (<button type="submit" className="btn"><i className="fa fa-thumbs-o-up"></i></button>)
+                                (<button type="submit" className="btn">{likes.length > 0 ? `${likes.length} Likes`: likes.length == 1 ? `${likes.length} Like`: ''}<i className="fa fa-thumbs-up"></i></button>) 
+                                : (<button type="submit" className="btn">{likes.length > 0 ? `${likes.length} Likes`: likes.length == 1 ? `${likes.length} Like`: ''}<i className="fa fa-thumbs-o-up"></i></button>)
                             : null}
                         </Form>
                     <div className="card-description">
