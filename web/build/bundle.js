@@ -28895,10 +28895,10 @@ var CommentEntry = function (_Component) {
         value: function formLikesSubmit(id) {
             var _props = this.props,
                 dispatch = _props.dispatch,
-                userId = _props.userId;
+                user = _props.user;
 
             var body = {};
-            body.user_id = Number(userId);
+            body.user_id = Number(user.id);
             dispatch((0, _comment.likeComment)(body, id));
         }
     }, {
@@ -28986,12 +28986,16 @@ var CommentEntry = function (_Component) {
                                 null,
                                 e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
                                     'button',
-                                    { onClick: _this2.formLikesSubmit.bind(_this2, e.id), type: 'submit', className: 'btn' },
+                                    { onClick: function onClick() {
+                                            return _this2.formLikesSubmit(e.id);
+                                        }, type: 'submit', className: 'btn' },
                                     e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
                                     _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
                                 ) : _react2.default.createElement(
                                     'button',
-                                    { onClick: _this2.formLikesSubmit.bind(_this2, e.id), type: 'submit', className: 'btn' },
+                                    { onClick: function onClick() {
+                                            return _this2.formLikesSubmit(e.id);
+                                        }, type: 'submit', className: 'btn' },
                                     e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
                                     _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
                                 ) : null

@@ -15,9 +15,9 @@ class CommentEntry extends Component {
     }
 
     formLikesSubmit(id) {
-        const { dispatch, userId } = this.props
+        const { dispatch, user } = this.props
         let body = {}
-        body.user_id = Number(userId)
+        body.user_id = Number(user.id)
         dispatch(likeComment(body, id))
     }
 
@@ -64,8 +64,8 @@ class CommentEntry extends Component {
                                 <form>
                                     {(e.likes) ? 
                                         (e.likes.includes(user.id)) ? 
-                                        (<button onClick={this.formLikesSubmit.bind(this, e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></button>) 
-                                        : (<button onClick={this.formLikesSubmit.bind(this, e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></button>)
+                                        (<button onClick={() => this.formLikesSubmit(e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></button>) 
+                                        : (<button onClick={() => this.formLikesSubmit(e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></button>)
                                     : null}
                                 </form>
                             <div className="card-description">
