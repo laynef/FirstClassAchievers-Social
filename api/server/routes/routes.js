@@ -2,7 +2,6 @@
 const router = require('express').Router()
 const models = require('../models/models')
 const multer = require('multer')
-// const upload = multer({dest: '../../../web/build/images'})
 const upload = multer({dest: './images'})
 
 

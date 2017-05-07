@@ -91,6 +91,28 @@ export default function (state = INITIAL_STATE, action) {
 				error: action.payload
 			}
 
+		case actionTypes.CHANGE_FORGOTTEN_PASSWORD_PENDING:
+			return {
+				...state,
+				pending: true,
+				error: null
+			}
+
+		case actionTypes.CHANGE_FORGOTTEN_PASSWORD_SUCCESS:
+			return {
+				...state,
+				pending: null,
+				error: null,
+				data: action.payload
+			}
+
+		case actionTypes.CHANGE_FORGOTTEN_PASSWORD_ERROR:
+			return {
+				...state,
+				pending: null,
+				error: action.payload
+			}
+
 		case actionTypes.USER_PROFILE_PENDING:
 			return {
 				...state,
@@ -107,6 +129,28 @@ export default function (state = INITIAL_STATE, action) {
 			}
 
 		case actionTypes.USER_PROFILE_ERROR:
+			return {
+				...state,
+				pending: null,
+				error: action.payload
+			}
+
+		case actionTypes.USER_EMAIL_PENDING:
+			return {
+				...state,
+				pending: true,
+				error: null
+			}
+
+		case actionTypes.USER_EMAIL_SUCCESS:
+			return {
+				...state,
+				pending: null,
+				error: null,
+				data: action.payload
+			}
+
+		case actionTypes.USER_EMAIL_ERROR:
 			return {
 				...state,
 				pending: null,

@@ -104,8 +104,9 @@ class DetailPage extends Component {
                                 profileId={entry.user_id}
                                 entryId={entry.id}
                                 userId={user ? user.id : null}
-                                favorites={favorites && user.id != profile.user_id ? favorites.entries : null}
                                 detail={true}
+                                favorites={favorites && user && user.id != entry.user_id ? favorites.entries : null}
+                                likes={user && user.id != entry.user_id ? entry.likes : null}
                             />
                         ))}
                 </div>

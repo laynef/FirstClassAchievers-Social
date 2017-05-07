@@ -310,14 +310,16 @@ module.exports = {
                 likes: []
             })
             .then(resp => {
-                Notification.create({
-                    user_id: req.body.to,
-                    message: `${req.body.author} left a comment`,
-                    seen: false,
-                    image: req.body.image,
-                    type: 'COMMENT',
-                    from: req.params.entryId
-                })
+                if (req.body.user_id != req.body.to) {
+                    Notification.create({
+                        user_id: req.body.to,
+                        message: `${req.body.author} left a comment`,
+                        seen: false,
+                        image: req.body.image,
+                        type: 'COMMENT',
+                        from: req.params.entryId
+                    })
+                }
                 res.status(200).send(resp)
             })
         }
@@ -340,14 +342,16 @@ module.exports = {
                     }, {
                         where: {id: req.params.entryId}
                     })
-                    Notification.create({
-                        user_id: req.body.to,
-                        message: `${req.body.author} like your comment`,
-                        seen: false,
-                        image: req.body.image,
-                        type: 'LIKE',
-                        from: req.params.entryId
-                    })
+                    if (req.body.user_id != req.body.to) {
+                        Notification.create({
+                            user_id: req.body.to,
+                            message: `${req.body.author} like your comment`,
+                            seen: false,
+                            image: req.body.image,
+                            type: 'LIKE',
+                            from: req.params.entryId
+                        })
+                    }
                 })
             }
         },
@@ -368,14 +372,16 @@ module.exports = {
                     }, {
                         where: {id: req.params.entryId}
                     })
-                    Notification.create({
-                        user_id: req.body.to,
-                        message: `${req.body.author} like your post`,
-                        seen: false,
-                        image: req.body.image,
-                        type: 'LIKE',
-                        from: req.params.entryId
-                    })
+                    if (req.body.user_id != req.body.to) {
+                        Notification.create({
+                            user_id: req.body.to,
+                            message: `${req.body.author} like your post`,
+                            seen: false,
+                            image: req.body.image,
+                            type: 'LIKE',
+                            from: req.params.entryId
+                        })
+                    }
                 })
             }
         }

@@ -71,7 +71,7 @@ class PostEntry extends Component {
                         : null}
                         <p>{message}</p>
                     </div>
-                        {user && user.id ? <CommentEntry profileId={profileId} entryId={entryId} /> : null}
+                    <CommentEntry profileId={profileId} entryId={entryId} />
                 </div>
             </div>
         )

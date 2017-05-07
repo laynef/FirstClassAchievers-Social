@@ -17,7 +17,7 @@ class TestimonialPage extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const { dispatch } = this.props 
         dispatch(getTestimonials())
         dispatch(getComment())
