@@ -1,6 +1,6 @@
 {
   "development": {
-    "url": "postgres://whgqixse:lE7VjxRd52FWmdVTbC_E9J1FtE6k0UoO@stampy.db.elephantsql.com:5432/whgqixse",
+    "url": "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
     "dialect": "postgres"
   },
   "test": {
