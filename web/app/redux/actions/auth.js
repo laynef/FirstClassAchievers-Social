@@ -30,10 +30,10 @@ export function login(data) {
 	}
 }
 
-export function forgottenPassword(data) {
+export function forgottenPassword(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.FORGOTTEN_PASSWORD_PENDING})
-		axios.post(`/auth/local/forgotten/password`, data)
+		axios.post(`/auth/local/forgotten/password/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.FORGOTTEN_PASSWORD_SUCCESS,
@@ -141,6 +141,27 @@ export function getUser(id) {
 				.catch((err) => {
 					dispatch({
 						type: actionTypes.USER_PROFILE_ERROR,
+						payload: err
+					})
+				})
+	}
+}
+
+
+export function getUserEmail(id) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.USER_EMAIL_PENDING})
+		axios.get(`/auth/local/user/${id}`)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.USER_EMAIL_SUCCESS,
+						payload: response.data
+					})
+					dispatch(login(response.data))
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.USER_EMAIL_ERROR,
 						payload: err
 					})
 				})

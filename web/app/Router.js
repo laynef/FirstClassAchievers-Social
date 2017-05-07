@@ -28,7 +28,7 @@ export default (
             <Route path="profile/:userId" component={DetailPage} />
             <Route path="chat/:userId/:otherId" component={ChatPage} />
             <Route path="friends" component={FriendsPage} />
-            <Route path="reset" component={ResetPasswordPage} />
+            <Route path="reset/:userId" component={ResetPasswordPage} />
         </Route>
 
     </Route>

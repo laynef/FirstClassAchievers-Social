@@ -125,27 +125,22 @@ router.patch('/local/forgotten/change/:userId', (req, res, next) => {
         where: { id: req.params.userId }
     }).then(response => {
         let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
-            bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
-                if (result) {
-                    User.update({
-                        password: hash
-                    }, { 
-                        where: { id: response[0].dataValues.id }
+        bcrypt.hash(req.body.password, salt, null, (errs, hash) => {
+            if (hash) {
+                User.update({
+                    password: hash
+                }, { 
+                    where: { id: response[0].dataValues.id }
+                })
+                    .then(resp => {
+                        req.cookies.user = resp
+                        res.status(202).json(resp)
                     })
-                        .then(resp => {
-                            req.cookies.user = resp
-                            res.status(202).json(resp)
-                        })
-                        .catch(errs => {
-                            console.log(`Update error`, errs)
-                            res.sendStatus(404)
-                        })
-                } else {
-                    console.log(`Wrong password`)
-                    res.sendStatus(401)
-                }
-            })
+                    .catch(errs => {
+                        console.log(`Update error`, errs)
+                        res.sendStatus(404)
+                    })
+            }
         })
     }).catch(error => {
         console.log(`Patch request error`, error)
