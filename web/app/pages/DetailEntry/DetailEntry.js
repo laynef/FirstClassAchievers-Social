@@ -5,6 +5,7 @@ import { getTestimonials } from '../../redux/actions/testimonial'
 import { getComment } from '../../redux/actions/comment'
 import { setFavorites } from '../../redux/actions/favorite'
 import pull from 'lodash/pull'
+import CommentEntry from '../../components/Testimonial/CommentEntry'
 
 
 class DetailEntry extends Component {
@@ -29,7 +30,7 @@ class DetailEntry extends Component {
     }
 
     render() {
-        const { testimonial, params, user, favorites, handleSubmit } = this.props
+        const { testimonial, params, user, favorites, handleSubmit, profile } = this.props
         return (
             <div id="DetailEntry">
                 {testimonial
@@ -64,6 +65,7 @@ class DetailEntry extends Component {
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>
+                            {user && user.id ? <CommentEntry profileId={profile.user_id} entryId={params.entryId} /> : null}
                         </div>
                     </div>
                 ))}
@@ -80,5 +82,6 @@ DetailEntry = reduxForm({
 export default connect(state => ({
     testimonial: state.testimonial.data,
     user: state.user.data,
-    favorites: state.favorites.data
+    favorites: state.favorites.data,
+    profile: state.profile.data
 }))(DetailEntry)

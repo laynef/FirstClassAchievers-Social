@@ -29650,6 +29650,10 @@ var _pull = __webpack_require__(197);
 
 var _pull2 = _interopRequireDefault(_pull);
 
+var _CommentEntry = __webpack_require__(398);
+
+var _CommentEntry2 = _interopRequireDefault(_CommentEntry);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29684,7 +29688,8 @@ var DetailEntry = function (_Component) {
                 params = _props.params,
                 user = _props.user,
                 favorites = _props.favorites,
-                handleSubmit = _props.handleSubmit;
+                handleSubmit = _props.handleSubmit,
+                profile = _props.profile;
 
             return _react2.default.createElement(
                 'div',
@@ -29753,7 +29758,8 @@ var DetailEntry = function (_Component) {
                                     null,
                                     e.message
                                 )
-                            )
+                            ),
+                            user && user.id ? _react2.default.createElement(_CommentEntry2.default, { profileId: profile.user_id, entryId: params.entryId }) : null
                         )
                     );
                 })
@@ -29792,7 +29798,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     return {
         testimonial: state.testimonial.data,
         user: state.user.data,
-        favorites: state.favorites.data
+        favorites: state.favorites.data,
+        profile: state.profile.data
     };
 })(DetailEntry);
 
