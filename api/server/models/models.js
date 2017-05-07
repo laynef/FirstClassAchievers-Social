@@ -311,7 +311,7 @@ module.exports = {
             })
             .then(resp => {
                 Notification.create({
-                    user_id: req.body.user_id,
+                    user_id: req.body.to,
                     message: `${req.body.author} left a comment`,
                     seen: false,
                     image: req.body.image,
@@ -341,7 +341,7 @@ module.exports = {
                         where: {id: req.params.entryId}
                     })
                     Notification.create({
-                        user_id: req.body.user_id,
+                        user_id: req.body.to,
                         message: `${req.body.author} like your comment`,
                         seen: false,
                         image: req.body.image,
@@ -369,7 +369,7 @@ module.exports = {
                         where: {id: req.params.entryId}
                     })
                     Notification.create({
-                        user_id: req.body.user_id,
+                        user_id: req.body.to,
                         message: `${req.body.author} like your post`,
                         seen: false,
                         image: req.body.image,

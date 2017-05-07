@@ -15,11 +15,12 @@ class CommentEntry extends Component {
     }
 
     formLikesSubmit(id) {
-        const { dispatch, user, profile } = this.props
+        const { dispatch, user, profile, profileId } = this.props
         let body = {}
         body.user_id = Number(user.id)
         body.author = `${profile.firstName} ${profile.lastName}`
         body.image = profile.image
+        body.to = profileId
         dispatch(likeComment(body, id))
         dispatch(getComment())
     }
@@ -30,7 +31,8 @@ class CommentEntry extends Component {
             message: this.state.text,
             user_id: user.id,
             author: `${profile.firstName} ${profile.lastName}`,
-            image: profile.image
+            image: profile.image,
+            to: this.props.profileId
         }, entryId)); 
         dispatch(getComment()); 
         this.setState({text: ''})
@@ -44,7 +46,7 @@ class CommentEntry extends Component {
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 
-                            onChange={(e) => this.setState({text: e.target.value})}
+                            onChange={e => this.setState({text: e.target.value})}
                             className="form-control chat-input" 
                             onEnterKeyDown={() => this.onEnterKeyDown()}
                             placeholder="Say something"/>

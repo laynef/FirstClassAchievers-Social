@@ -7848,12 +7848,14 @@ var PostEntry = function (_Component) {
                 likes = _props2.likes,
                 entryId = _props2.entryId,
                 userId = _props2.userId,
-                profile = _props2.profile;
+                profile = _props2.profile,
+                profileId = _props2.profileId;
 
             var body = {};
             body.user_id = Number(userId);
             body.author = profile.firstName + ' ' + profile.lastName;
             body.image = profile.image;
+            body.to = profileId;
             dispatch((0, _testimonial.likeTestimonial)(body, entryId));
         }
     }, {
@@ -7950,7 +7952,7 @@ var PostEntry = function (_Component) {
                             message
                         )
                     ),
-                    user && user.id ? _react2.default.createElement(_CommentEntry2.default, { entryId: entryId }) : null
+                    user && user.id ? _react2.default.createElement(_CommentEntry2.default, { profileId: profileId, entryId: entryId }) : null
                 )
             );
         }
@@ -28898,12 +28900,14 @@ var CommentEntry = function (_Component) {
             var _props = this.props,
                 dispatch = _props.dispatch,
                 user = _props.user,
-                profile = _props.profile;
+                profile = _props.profile,
+                profileId = _props.profileId;
 
             var body = {};
             body.user_id = Number(user.id);
             body.author = profile.firstName + ' ' + profile.lastName;
             body.image = profile.image;
+            body.to = profileId;
             dispatch((0, _comment.likeComment)(body, id));
             dispatch((0, _comment.getComment)());
         }
@@ -28920,7 +28924,8 @@ var CommentEntry = function (_Component) {
                 message: this.state.text,
                 user_id: user.id,
                 author: profile.firstName + ' ' + profile.lastName,
-                image: profile.image
+                image: profile.image,
+                to: this.props.profileId
             }, entryId));
             dispatch((0, _comment.getComment)());
             this.setState({ text: '' });

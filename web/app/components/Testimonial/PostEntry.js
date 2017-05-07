@@ -23,11 +23,12 @@ class PostEntry extends Component {
     }
 
     formLikesSubmit() {
-        const { dispatch, likes, entryId, userId, profile } = this.props
+        const { dispatch, likes, entryId, userId, profile, profileId } = this.props
         let body = {}
         body.user_id = Number(userId)
         body.author = `${profile.firstName} ${profile.lastName}`
         body.image = profile.image
+        body.to = profileId
         dispatch(likeTestimonial(body, entryId))
     }
 
@@ -69,7 +70,7 @@ class PostEntry extends Component {
                         : null}
                         <p>{message}</p>
                     </div>
-                        {user && user.id ? <CommentEntry entryId={entryId} /> : null}
+                        {user && user.id ? <CommentEntry profileId={profileId} entryId={entryId} /> : null}
                 </div>
             </div>
         )
