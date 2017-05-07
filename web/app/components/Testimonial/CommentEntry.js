@@ -33,29 +33,31 @@ class CommentEntry extends Component {
                         <button type="submit" className="btn btn-block btn-success">Submit</button>
                     </div>
                 </form>
-                {comments && comments[entryId] && comments[entryId].map((e, i) => (
-                    <div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
-                        <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
-                            <div className="card-header clearfix">
-                                <div className="user-pic">
-                                    <img
-                                        width="122" height="122" 
-                                        data-src-retina={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        data-src={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} 
-                                        src={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} />
+                <div style={{maxHeight: '200px', overflow: 'scroll', width: '100%'}}>
+                    {comments && comments[entryId] && comments[entryId].map((e, i) => (
+                        <div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
+                            <div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
+                                <div className="card-header clearfix">
+                                    <div className="user-pic">
+                                        <img
+                                            width="122" height="122" 
+                                            data-src-retina={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                            data-src={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} 
+                                            src={e.image ? e.image : "http://i.imgur.com/sRbuHxN.png"} />
+                                    </div>
+                                    <h5>{e.author}</h5>
+                                    <h6>Created posted
+                                        <span className="location semi-bold">
+                                            <i className="icon-map"></i> 
+                                        </span>
+                                    </h6>
                                 </div>
-                                <h5>{e.author}</h5>
-                                <h6>Created posted
-                                    <span className="location semi-bold">
-                                        <i className="icon-map"></i> 
-                                    </span>
-                                </h6>
+                            <div className="card-description">
+                                <p>{e.message}</p>
                             </div>
-                        <div className="card-description">
-                            <p>{e.message}</p>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         )
     }

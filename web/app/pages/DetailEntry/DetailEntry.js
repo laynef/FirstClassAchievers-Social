@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, FormReducer, Form } from 'redux-form'
 import { getTestimonials } from '../../redux/actions/testimonial'
+import { getComment } from '../../redux/actions/comment'
 import { setFavorites } from '../../redux/actions/favorite'
 import pull from 'lodash/pull'
 
@@ -20,6 +21,11 @@ class DetailEntry extends Component {
         body.user_id = user.id
         body.entries = array
         dispatch(setFavorites(body, user.id))
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getComment())
     }
 
     render() {

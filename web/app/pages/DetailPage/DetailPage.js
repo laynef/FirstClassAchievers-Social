@@ -4,6 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { getProfile } from '../../redux/actions/profile'
 import { getTestimonials } from '../../redux/actions/testimonial'
 import { getFollowers, setFollowers } from '../../redux/actions/following'
+import { getComment } from '../../redux/actions/comment'
 import PostEntry from '../../components/Testimonial/PostEntry'
 import pull from 'lodash/pull'
 
@@ -17,6 +18,7 @@ class DetailPage extends Component {
         if (user) {
             dispatch(getFollowers(user.id))
         }
+        dispatch(getComment())
     }
 
     static formSubmit() {

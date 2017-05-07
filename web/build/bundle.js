@@ -28901,50 +28901,54 @@ var CommentEntry = function (_Component) {
                         )
                     )
                 ),
-                comments && comments[entryId] && comments[entryId].map(function (e, i) {
-                    return _react2.default.createElement(
-                        'div',
-                        { key: i, className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
-                        _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
-                        _react2.default.createElement(
+                _react2.default.createElement(
+                    'div',
+                    { style: { maxHeight: '200px', overflow: 'scroll', width: '100%' } },
+                    comments && comments[entryId] && comments[entryId].map(function (e, i) {
+                        return _react2.default.createElement(
                             'div',
-                            { className: 'card-header clearfix' },
+                            { key: i, className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
+                            _react2.default.createElement('div', { className: 'circle', 'data-toggle': 'tooltip', title: '', 'data-container': 'body', 'data-original-title': 'Label' }),
                             _react2.default.createElement(
                                 'div',
-                                { className: 'user-pic' },
-                                _react2.default.createElement('img', {
-                                    width: '122', height: '122',
-                                    'data-src-retina': e.image ? e.image : "http://i.imgur.com/sRbuHxN.png",
-                                    'data-src': e.image ? e.image : "http://i.imgur.com/sRbuHxN.png",
-                                    src: e.image ? e.image : "http://i.imgur.com/sRbuHxN.png" })
-                            ),
-                            _react2.default.createElement(
-                                'h5',
-                                null,
-                                e.author
-                            ),
-                            _react2.default.createElement(
-                                'h6',
-                                null,
-                                'Created posted',
+                                { className: 'card-header clearfix' },
                                 _react2.default.createElement(
-                                    'span',
-                                    { className: 'location semi-bold' },
-                                    _react2.default.createElement('i', { className: 'icon-map' })
+                                    'div',
+                                    { className: 'user-pic' },
+                                    _react2.default.createElement('img', {
+                                        width: '122', height: '122',
+                                        'data-src-retina': e.image ? e.image : "http://i.imgur.com/sRbuHxN.png",
+                                        'data-src': e.image ? e.image : "http://i.imgur.com/sRbuHxN.png",
+                                        src: e.image ? e.image : "http://i.imgur.com/sRbuHxN.png" })
+                                ),
+                                _react2.default.createElement(
+                                    'h5',
+                                    null,
+                                    e.author
+                                ),
+                                _react2.default.createElement(
+                                    'h6',
+                                    null,
+                                    'Created posted',
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'location semi-bold' },
+                                        _react2.default.createElement('i', { className: 'icon-map' })
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-description' },
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    e.message
                                 )
                             )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'card-description' },
-                            _react2.default.createElement(
-                                'p',
-                                null,
-                                e.message
-                            )
-                        )
-                    );
-                })
+                        );
+                    })
+                )
             );
         }
     }]);
@@ -29556,6 +29560,8 @@ var _reduxForm = __webpack_require__(11);
 
 var _testimonial = __webpack_require__(79);
 
+var _comment = __webpack_require__(143);
+
 var _favorite = __webpack_require__(107);
 
 var _pull = __webpack_require__(197);
@@ -29580,6 +29586,13 @@ var DetailEntry = function (_Component) {
     }
 
     _createClass(DetailEntry, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var dispatch = this.props.dispatch;
+
+            dispatch((0, _comment.getComment)());
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -29728,6 +29741,8 @@ var _testimonial = __webpack_require__(79);
 
 var _following = __webpack_require__(144);
 
+var _comment = __webpack_require__(143);
+
 var _PostEntry = __webpack_require__(106);
 
 var _PostEntry2 = _interopRequireDefault(_PostEntry);
@@ -29766,6 +29781,7 @@ var DetailPage = function (_Component) {
             if (user) {
                 dispatch((0, _following.getFollowers)(user.id));
             }
+            dispatch((0, _comment.getComment)());
         }
     }, {
         key: 'render',
