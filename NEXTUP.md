@@ -11,8 +11,6 @@
 ### Images
 ### Videos
 ### Audio
-### Likes
-### Comments
 ### Sharing
 
 ## Timeline
