@@ -12,7 +12,7 @@ import CommentEntry from './CommentEntry'
 
 class PostEntry extends Component {
 
-    static formSubmit() {
+    formSubmit() {
         const { dispatch, favorites, entryId, userId } = this.props
         let body = {}
         let array = favorites.slice()
@@ -22,7 +22,7 @@ class PostEntry extends Component {
         dispatch(setFavorites(body, userId))
     }
 
-    static formLikesSubmit() {
+    formLikesSubmit() {
         const { dispatch, likes, entryId, userId, profile } = this.props
         let body = {}
         body.user_id = Number(userId)
@@ -57,20 +57,16 @@ class PostEntry extends Component {
                             </div>
                         </Link>
                     <div className="card-description">
-                        <Form onSubmit={handleSubmit(PostEntry.formSubmit.bind(this))}>
-                            {(favorites && profileId != userId) ? 
-                                (favorites.includes(entryId)) ? 
-                                (<a type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>) 
-                                : (<a type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
-                            : null}
-                        </Form>
-                        <Form onSubmit={handleSubmit(PostEntry.formLikesSubmit.bind(this))}>
-                            {(likes) ? 
-                                (likes.includes(user.id)) ? 
-                                (<a type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
-                                : (<a type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
-                            : null}
-                        </Form>
+                        {(favorites && profileId != userId) ? 
+                            (favorites.includes(entryId)) ? 
+                            (<a onClick={() => this.formSubmit()} type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>) 
+                            : (<a onClick={() => this.formSubmit()} type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
+                        : null}
+                        {(likes) ? 
+                            (likes.includes(user.id)) ? 
+                            (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
+                            : (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
+                        : null}
                         <p>{message}</p>
                     </div>
                         {user && user.id ? <CommentEntry entryId={entryId} /> : null}

@@ -102,6 +102,12 @@
   margin: -55px 50px;
   z-index: 1000; }
 
+.PostEntry .likes {
+  float: right;
+  transform: scale(2);
+  margin: -40px 50px;
+  z-index: 1000; }
+
 .PostEntry .no-likes {
   float: right;
   transform: scale(2);

@@ -24,26 +24,30 @@ class CommentEntry extends Component {
         dispatch(getComment())
     }
 
+    onEnterKeyDown() {
+        const { dispatch, entryId, user, profile } = this.props
+        dispatch(setComment({
+            message: this.state.text,
+            user_id: user.id,
+            author: `${profile.firstName} ${profile.lastName}`,
+            image: profile.image
+        }, entryId)); 
+        dispatch(getComment()); 
+        this.setState({text: ''})
+    }
+
     render() {
         const { entryId, comments, user, profile, dispatch } = this.props
         return (
             <div className="CommentEntry">
-                <form onSubmit={() => {
-                        dispatch(setComment({
-                            message: this.state.text,
-                            user_id: user.id,
-                            author: `${profile.firstName} ${profile.lastName}`,
-                            image: profile.image
-                        }, entryId)); 
-                        dispatch(getComment()); 
-                        this.setState({text: ''})}}>
+                <form>
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 
                             onChange={(e) => this.setState({text: e.target.value})}
                             className="form-control chat-input" 
+                            onEnterKeyDown={() => this.onEnterKeyDown()}
                             placeholder="Say something"/>
-                        <button type="submit" className="btn btn-block btn-success">Submit</button>
                     </div>
                 </form>
                 <div style={{maxHeight: '200px', overflow: 'scroll', width: '100%'}}>
@@ -65,13 +69,11 @@ class CommentEntry extends Component {
                                         </span>
                                     </h6>
                                 </div>
-                                <form>
                                     {(e.likes) ? 
                                         (e.likes.includes(user.id)) ? 
-                                        (<a onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
-                                        : (<a onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
+                                        (<a className="likes" onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
+                                        : (<a className="likes" onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
                                     : null}
-                                </form>
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>
