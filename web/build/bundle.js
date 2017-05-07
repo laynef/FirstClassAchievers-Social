@@ -7880,36 +7880,36 @@ var PostEntry = function (_Component) {
                         )
                     ),
                     _react2.default.createElement(
-                        _reduxForm.Form,
-                        { onSubmit: handleSubmit(PostEntry.formSubmit.bind(this)) },
-                        favorites && profileId != userId ? favorites.includes(entryId) ? _react2.default.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn' },
-                            _react2.default.createElement('i', { className: 'fa fa-heart' })
-                        ) : _react2.default.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn' },
-                            _react2.default.createElement('i', { className: 'fa fa-heart-o' })
-                        ) : null
-                    ),
-                    _react2.default.createElement(
-                        _reduxForm.Form,
-                        { onSubmit: handleSubmit(PostEntry.formLikesSubmit.bind(this)) },
-                        likes ? likes.includes(user.id) ? _react2.default.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn' },
-                            likes.length > 1 ? likes.length + ' Likes   ' : likes.length == 1 ? likes.length + ' Like   ' : '',
-                            _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
-                        ) : _react2.default.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn' },
-                            likes.length > 1 ? likes.length + ' Likes   ' : likes.length == 1 ? likes.length + ' Like   ' : '',
-                            _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
-                        ) : null
-                    ),
-                    _react2.default.createElement(
                         'div',
                         { className: 'card-description' },
+                        _react2.default.createElement(
+                            _reduxForm.Form,
+                            { onSubmit: handleSubmit(PostEntry.formSubmit.bind(this)) },
+                            favorites && profileId != userId ? favorites.includes(entryId) ? _react2.default.createElement(
+                                'a',
+                                { type: 'submit', className: '' + (likes && likes.length > 0 ? 'fav' : 'no-likes') },
+                                _react2.default.createElement('i', { className: 'fa fa-heart' })
+                            ) : _react2.default.createElement(
+                                'a',
+                                { type: 'submit', className: '' + (likes && likes.length > 0 ? 'fav' : 'no-likes') },
+                                _react2.default.createElement('i', { className: 'fa fa-heart-o' })
+                            ) : null
+                        ),
+                        _react2.default.createElement(
+                            _reduxForm.Form,
+                            { onSubmit: handleSubmit(PostEntry.formLikesSubmit.bind(this)) },
+                            likes ? likes.includes(user.id) ? _react2.default.createElement(
+                                'a',
+                                { type: 'submit', className: 'like' },
+                                likes && likes.length > 1 ? likes.length + ' Likes   ' : likes && likes.length == 1 ? likes.length + ' Like   ' : '',
+                                _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
+                            ) : _react2.default.createElement(
+                                'a',
+                                { type: 'submit', className: 'like' },
+                                likes && likes.length > 1 ? likes.length + ' Likes   ' : likes && likes.length == 1 ? likes.length + ' Like   ' : '',
+                                _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
+                            ) : null
+                        ),
                         _react2.default.createElement(
                             'p',
                             null,
@@ -7931,11 +7931,7 @@ var PostEntry = function (_Component) {
 
             var body = {};
             var array = favorites.slice();
-            if (array.includes(entryId)) {
-                (0, _pull2.default)(array, entryId);
-            } else {
-                array.push(entryId);
-            }
+            array.includes(entryId) ? (0, _pull2.default)(array, entryId) : array.push(entryId);
             body.user_id = userId;
             body.entries = array;
             dispatch((0, _favorite.setFavorites)(body, userId));
@@ -27064,7 +27060,7 @@ var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyM
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
-    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _Router2.default })
+    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _Router2.default })
 ), document.getElementById('app'));
 
 /***/ }),
@@ -28017,7 +28013,7 @@ var Notifications = function (_Component) {
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
                                                     dispatch((0, _notifications.setNotifications)(e.id));
                                                     dispatch((0, _notifications.getNotifications)(user.id));
-                                                    e.type === 'INVITE' ? _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'COMMENT' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'LIKE' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.hashHistory.push('/profile/' + e.from) : _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from);
+                                                    e.type === 'INVITE' ? _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'COMMENT' ? _reactRouter.browserHistory.push('/testimonials/' + e.from) : e.type === 'LIKE' ? _reactRouter.browserHistory.push('/testimonials/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.browserHistory.push('/profile/' + e.from) : _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from);
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
@@ -28993,17 +28989,17 @@ var CommentEntry = function (_Component) {
                                 'form',
                                 null,
                                 e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
-                                    'button',
+                                    'a',
                                     { onClick: function onClick() {
                                             return _this2.formLikesSubmit(e.id);
-                                        }, type: 'submit', className: 'btn' },
+                                        }, type: 'submit' },
                                     e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
                                     _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
                                 ) : _react2.default.createElement(
-                                    'button',
+                                    'a',
                                     { onClick: function onClick() {
                                             return _this2.formLikesSubmit(e.id);
-                                        }, type: 'submit', className: 'btn' },
+                                        }, type: 'submit' },
                                     e.likes.length > 1 ? e.likes.length + ' Likes   ' : e.likes.length == 1 ? e.likes.length + ' Like   ' : '',
                                     _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
                                 ) : null

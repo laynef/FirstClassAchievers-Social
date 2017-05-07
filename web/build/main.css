@@ -90,6 +90,24 @@
 #ProfilePage #SecondaryContact textarea {
   height: 100px; }
 
+.PostEntry .fav {
+  float: right;
+  transform: scale(2);
+  margin: -55px 150px;
+  z-index: 1000; }
+
+.PostEntry .like {
+  float: right;
+  transform: scale(2);
+  margin: -55px 50px;
+  z-index: 1000; }
+
+.PostEntry .no-likes {
+  float: right;
+  transform: scale(2);
+  margin: -55px 90px;
+  z-index: 1000; }
+
 #DetailPage {
   height: 100%; }
   @media screen and (min-width: 992px) {

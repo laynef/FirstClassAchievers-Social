@@ -28,7 +28,8 @@ class CommentEntry extends Component {
         const { entryId, comments, user, profile, dispatch } = this.props
         return (
             <div className="CommentEntry">
-                <form onSubmit={() => {dispatch(setComment({
+                <form onSubmit={() => {
+                        dispatch(setComment({
                             message: this.state.text,
                             user_id: user.id,
                             author: `${profile.firstName} ${profile.lastName}`,
@@ -67,8 +68,8 @@ class CommentEntry extends Component {
                                 <form>
                                     {(e.likes) ? 
                                         (e.likes.includes(user.id)) ? 
-                                        (<button onClick={() => this.formLikesSubmit(e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></button>) 
-                                        : (<button onClick={() => this.formLikesSubmit(e.id)} type="submit" className="btn">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></button>)
+                                        (<a onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
+                                        : (<a onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
                                     : null}
                                 </form>
                             <div className="card-description">

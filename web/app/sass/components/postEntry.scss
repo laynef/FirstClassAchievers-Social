@@ -1,3 +1,23 @@
 .PostEntry {
 
+    .fav {
+        float: right;
+        transform: scale(2);
+        margin: -55px 150px;
+        z-index: 1000;
+    }
+
+    .like {
+        float: right;
+        transform: scale(2);
+        margin: -55px 50px;
+        z-index: 1000;
+    }
+    .no-likes {
+        float: right;
+        transform: scale(2);
+        margin: -55px 90px;
+        z-index: 1000;
+    }
+    
 }

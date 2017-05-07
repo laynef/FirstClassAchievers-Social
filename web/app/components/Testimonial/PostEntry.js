@@ -16,11 +16,7 @@ class PostEntry extends Component {
         const { dispatch, favorites, entryId, userId } = this.props
         let body = {}
         let array = favorites.slice()
-        if (array.includes(entryId)) {
-             pull(array, entryId)
-        } else {
-            array.push(entryId)
-        }
+        array.includes(entryId) ? pull(array, entryId) : array.push(entryId)
         body.user_id = userId
         body.entries = array
         dispatch(setFavorites(body, userId))
@@ -60,21 +56,21 @@ class PostEntry extends Component {
                                 </h6>
                             </div>
                         </Link>
+                    <div className="card-description">
                         <Form onSubmit={handleSubmit(PostEntry.formSubmit.bind(this))}>
                             {(favorites && profileId != userId) ? 
                                 (favorites.includes(entryId)) ? 
-                                (<button type="submit" className="btn"><i className="fa fa-heart"></i></button>) 
-                                : (<button type="submit" className="btn"><i className="fa fa-heart-o"></i></button>)
+                                (<a type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>) 
+                                : (<a type="submit" className={`${likes && likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
                             : null}
                         </Form>
                         <Form onSubmit={handleSubmit(PostEntry.formLikesSubmit.bind(this))}>
                             {(likes) ? 
                                 (likes.includes(user.id)) ? 
-                                (<button type="submit" className="btn">{likes.length > 1 ? `${likes.length} Likes   `: likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></button>) 
-                                : (<button type="submit" className="btn">{likes.length > 1 ? `${likes.length} Likes   `: likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></button>)
+                                (<a type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
+                                : (<a type="submit" className="like">{likes && likes.length > 1 ? `${likes.length} Likes   `: likes && likes.length == 1 ? `${likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
                             : null}
                         </Form>
-                    <div className="card-description">
                         <p>{message}</p>
                     </div>
                         {user && user.id ? <CommentEntry entryId={entryId} /> : null}
