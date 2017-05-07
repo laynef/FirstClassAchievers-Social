@@ -28946,8 +28946,10 @@ var CommentEntry = function (_Component) {
                 'div',
                 { className: 'CommentEntry' },
                 _react2.default.createElement(
-                    'form',
-                    null,
+                    _reduxForm.Form,
+                    { onSubmit: function onSubmit() {
+                            return _this2.onEnterKeyDown();
+                        } },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-xs-12 no-padding' },
@@ -28957,10 +28959,12 @@ var CommentEntry = function (_Component) {
                                 return _this2.setState({ text: e.target.value });
                             },
                             className: 'form-control chat-input',
-                            onEnterKeyDown: function onEnterKeyDown() {
-                                return _this2.onEnterKeyDown();
-                            },
-                            placeholder: 'Say something' })
+                            placeholder: 'Say something' }),
+                        _react2.default.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn btn-block btn-success' },
+                            'Submit'
+                        )
                     )
                 ),
                 _react2.default.createElement(
