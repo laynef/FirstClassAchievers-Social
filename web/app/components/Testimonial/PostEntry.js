@@ -4,7 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form'
 import { Link } from 'react-router'
 import { setFavorites } from '../../redux/actions/favorite'
 import { getComment } from '../../redux/actions/comment'
-import { likeTestimonial } from '../../redux/actions/testimonial'
+import { likeTestimonial, getTestimonials } from '../../redux/actions/testimonial'
 import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import pull from 'lodash/pull'
 import CommentEntry from './CommentEntry'
@@ -30,6 +30,7 @@ class PostEntry extends Component {
         body.image = profile.image
         body.to = profileId
         dispatch(likeTestimonial(body, entryId))
+        dispatch(getTestimonials())
     }
 
     render() {
