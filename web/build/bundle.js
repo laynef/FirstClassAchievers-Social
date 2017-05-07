@@ -29714,7 +29714,7 @@ var DetailEntry = function (_Component) {
             body.user_id = Number(user.id);
             body.author = userProfile.firstName + ' ' + userProfile.lastName;
             body.image = userProfile.image;
-            body.to = profile.id;
+            body.to = profile.user_id;
             dispatch((0, _testimonial.likeTestimonial)(body, params.entryId));
             dispatch((0, _testimonial.getTestimonials)());
         }

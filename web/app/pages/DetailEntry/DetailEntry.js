@@ -30,7 +30,7 @@ class DetailEntry extends Component {
         body.user_id = Number(user.id)
         body.author = `${userProfile.firstName} ${userProfile.lastName}`
         body.image = userProfile.image
-        body.to = profile.id
+        body.to = profile.user_id
         dispatch(likeTestimonial(body, params.entryId))
         dispatch(getTestimonials())
     }
