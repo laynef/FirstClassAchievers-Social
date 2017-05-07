@@ -283,8 +283,12 @@ module.exports = {
             Comment.findAll({})
             .then(resp => {
                 let data = {}
+                let array = []
                 resp.forEach(e => {
-                    data[e.post_id] = data[e.post_id] ? data[e.post_id].push(e) : e
+                    data[e.dataValues.post_id] = []
+                })
+                resp.forEach(e => {
+                    data[e.dataValues.post_id].push(e)
                 })
                 res.status(200).send(data)
             })

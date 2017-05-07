@@ -28897,7 +28897,7 @@ var CommentEntry = function (_Component) {
                         )
                     )
                 ),
-                comments[entryId].map(function (e, i) {
+                comments && comments[entryId] && comments[entryId].map(function (e, i) {
                     return _react2.default.createElement(
                         'div',
                         { key: i, className: 'card share col1', 'data-social': 'item', style: { width: '100%' } },
