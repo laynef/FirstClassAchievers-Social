@@ -14,6 +14,5 @@
 ### Sharing
 
 ## Timeline
-## Forgotten Password
 ## Big data handling
 ## Search engine
