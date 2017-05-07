@@ -4,7 +4,6 @@ This is a Social Web App
 
 ## To Install & Run
 
-`cd Social`<br>
 `npm i`<br>
 `npm start` <br>
 
@@ -39,6 +38,8 @@ This is a Social Web App
 ### Detail Pages
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/post.png)
+### Comments
+### Likes
 ### Cloud Stored Images
 ![alt-tag](./github/photo.png)
 ### Cloud Stored Database
