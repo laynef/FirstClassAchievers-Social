@@ -28941,16 +28941,15 @@ var CommentEntry = function (_Component) {
                 comments = _props3.comments,
                 user = _props3.user,
                 profile = _props3.profile,
-                dispatch = _props3.dispatch;
+                dispatch = _props3.dispatch,
+                handleSubmit = _props3.handleSubmit;
 
             return _react2.default.createElement(
                 'div',
                 { className: 'CommentEntry' },
                 _react2.default.createElement(
                     _reduxForm.Form,
-                    { onSubmit: function onSubmit() {
-                            return _this2.onEnterKeyDown();
-                        } },
+                    { onSubmit: handleSubmit(this.onEnterKeyDown.bind(this)) },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-xs-12 no-padding' },
@@ -28961,11 +28960,7 @@ var CommentEntry = function (_Component) {
                             },
                             className: 'form-control chat-input',
                             placeholder: 'Say something' }),
-                        _react2.default.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn btn-block btn-success' },
-                            'Submit'
-                        )
+                        _react2.default.createElement('span', { type: 'submit' })
                     )
                 ),
                 _react2.default.createElement(

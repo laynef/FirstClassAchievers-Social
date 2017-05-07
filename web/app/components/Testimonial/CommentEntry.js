@@ -40,17 +40,17 @@ class CommentEntry extends Component {
     }
 
     render() {
-        const { entryId, comments, user, profile, dispatch } = this.props
+        const { entryId, comments, user, profile, dispatch, handleSubmit } = this.props
         return (
             <div className="CommentEntry">
-                <Form onSubmit={() => this.onEnterKeyDown()}>
+                <Form onSubmit={handleSubmit(this.onEnterKeyDown.bind(this))}>
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 
                             onChange={e => this.setState({text: e.target.value})}
                             className="form-control chat-input" 
                             placeholder="Say something"/>
-                            <button type="submit" className="btn btn-block btn-success">Submit</button>
+                            <span type="submit"></span>
                     </div>
                 </Form>
                 <div style={{maxHeight: '200px', overflow: 'scroll', width: '100%'}}>
