@@ -7953,7 +7953,7 @@ var PostEntry = function (_Component) {
                             message
                         )
                     ),
-                    user && user.id ? _react2.default.createElement(_CommentEntry2.default, { profileId: profileId, entryId: entryId }) : null
+                    _react2.default.createElement(_CommentEntry2.default, { profileId: profileId, entryId: entryId })
                 )
             );
         }
@@ -16726,7 +16726,7 @@ var CommentEntry = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'CommentEntry' },
-                _react2.default.createElement(
+                user && user.id ? _react2.default.createElement(
                     _reduxForm.Form,
                     { onSubmit: handleSubmit(this.onEnterKeyDown.bind(this)) },
                     _react2.default.createElement(
@@ -16741,7 +16741,7 @@ var CommentEntry = function (_Component) {
                             placeholder: 'Say something' }),
                         _react2.default.createElement('span', { type: 'submit' })
                     )
-                ),
+                ) : null,
                 _react2.default.createElement(
                     'div',
                     { style: { maxHeight: '200px', overflow: 'scroll', width: '100%' } },
@@ -16778,7 +16778,7 @@ var CommentEntry = function (_Component) {
                                     )
                                 )
                             ),
-                            e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
+                            e.likes && user && user.id ? e.likes.includes(user.id) ? _react2.default.createElement(
                                 'a',
                                 { className: 'likes', onClick: function onClick() {
                                         return _this2.formLikesSubmit(e.id);
@@ -29912,7 +29912,7 @@ var DetailEntry = function (_Component) {
                                     }, type: 'submit', className: '' + (e.likes && e.likes.length > 0 ? 'fav' : 'no-likes') },
                                 _react2.default.createElement('i', { className: 'fa fa-heart-o' })
                             ) : null,
-                            e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
+                            user && user.id && e.likes ? e.likes.includes(user.id) ? _react2.default.createElement(
                                 'a',
                                 { onClick: function onClick() {
                                         return _this2.formLikesSubmit();
@@ -29936,7 +29936,7 @@ var DetailEntry = function (_Component) {
                                     e.message
                                 )
                             ),
-                            user && user.id ? _react2.default.createElement(_CommentEntry2.default, { profileId: profile.user_id, entryId: params.entryId }) : null
+                            _react2.default.createElement(_CommentEntry2.default, { profileId: profile.user_id, entryId: params.entryId })
                         )
                     );
                 })

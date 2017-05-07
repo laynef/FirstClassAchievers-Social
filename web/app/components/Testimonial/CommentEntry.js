@@ -37,7 +37,7 @@ class CommentEntry extends Component {
             author: `${profile.firstName} ${profile.lastName}`,
             image: profile.image,
             to: this.props.profileId
-        }, entryId)); 
+        }, entryId)) 
         socket.emit('comment', {
             message: this.state.text,
             user_id: user.id,
@@ -45,7 +45,7 @@ class CommentEntry extends Component {
             image: profile.image,
             to: this.props.profileId
         }, entryId)
-        dispatch(getComment()); 
+        dispatch(getComment())
         this.setState({text: ''})
     }
 
@@ -53,6 +53,7 @@ class CommentEntry extends Component {
         const { entryId, comments, user, profile, dispatch, handleSubmit } = this.props
         return (
             <div className="CommentEntry">
+            {user && user.id ? (
                 <Form onSubmit={handleSubmit(this.onEnterKeyDown.bind(this))}>
                     <div className="col-xs-12 no-padding">
                         <input
@@ -63,6 +64,7 @@ class CommentEntry extends Component {
                             <span type="submit"></span>
                     </div>
                 </Form>
+                ): null}
                 <div style={{maxHeight: '200px', overflow: 'scroll', width: '100%'}}>
                     {comments && comments[entryId] && comments[entryId].map((e, i) => (
                         <div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
@@ -82,7 +84,7 @@ class CommentEntry extends Component {
                                         </span>
                                     </h6>
                                 </div>
-                                {(e.likes) ? 
+                                {(e.likes && user && user.id) ? 
                                     (e.likes.includes(user.id)) ? 
                                     (<a className="likes" onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
                                     : (<a className="likes" onClick={() => this.formLikesSubmit(e.id)} type="submit">{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)

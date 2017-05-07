@@ -71,7 +71,7 @@ class DetailEntry extends Component {
                                 (<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>) 
                                 : (<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
                             : null}
-                            {(e.likes) ? 
+                            {(user && user.id && e.likes) ? 
                                 (e.likes.includes(user.id)) ? 
                                 (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{e.likes && e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes && e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-up"></i></a>) 
                                 : (<a onClick={() => this.formLikesSubmit()} type="submit" className="like">{e.likes && e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes && e.likes.length == 1 ? `${e.likes.length} Like   `: ''}<i className="fa fa-thumbs-o-up"></i></a>)
@@ -79,7 +79,7 @@ class DetailEntry extends Component {
                             <div className="card-description">
                                 <p>{e.message}</p>
                             </div>
-                            {user && user.id ? <CommentEntry profileId={profile.user_id} entryId={params.entryId} /> : null}
+                            <CommentEntry profileId={profile.user_id} entryId={params.entryId} />
                         </div>
                     </div>
                 ))}
