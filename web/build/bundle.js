@@ -7898,12 +7898,12 @@ var PostEntry = function (_Component) {
                         likes ? likes.includes(user.id) ? _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
-                            likes.length > 0 ? likes.length + ' Likes' : likes.length == 1 ? likes.length + ' Like' : '',
+                            likes.length > 1 ? likes.length + ' Likes   ' : likes.length == 1 ? likes.length + ' Like   ' : '',
                             _react2.default.createElement('i', { className: 'fa fa-thumbs-up' })
                         ) : _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn' },
-                            likes.length > 0 ? likes.length + ' Likes' : likes.length == 1 ? likes.length + ' Like' : '',
+                            likes.length > 1 ? likes.length + ' Likes   ' : likes.length == 1 ? likes.length + ' Like   ' : '',
                             _react2.default.createElement('i', { className: 'fa fa-thumbs-o-up' })
                         ) : null
                     ),
@@ -28913,7 +28913,9 @@ var CommentEntry = function (_Component) {
                                 user_id: user.id,
                                 author: profile.firstName + ' ' + profile.lastName,
                                 image: profile.image
-                            }, entryId));dispatch((0, _comment.getComment)());
+                            }, entryId));
+                            dispatch((0, _comment.getComment)());
+                            _this2.setState({ text: '' });
                         } },
                     _react2.default.createElement(
                         'div',

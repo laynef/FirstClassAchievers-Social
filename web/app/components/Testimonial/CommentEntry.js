@@ -23,7 +23,9 @@ class CommentEntry extends Component {
                             user_id: user.id,
                             author: `${profile.firstName} ${profile.lastName}`,
                             image: profile.image
-                        }, entryId)); dispatch(getComment())}}>
+                        }, entryId)); 
+                        dispatch(getComment()); 
+                        this.setState({text: ''})}}>
                     <div className="col-xs-12 no-padding">
                         <input
                             type="text" 
