@@ -29,7 +29,7 @@ class PostEntry extends Component {
     static formLikesSubmit() {
         const { dispatch, likes, entryId, userId } = this.props
         let body = {}
-        body.user_id = userId
+        body.user_id = Number(userId)
         dispatch(likeTestimonial(body, entryId))
     }
 
