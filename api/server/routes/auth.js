@@ -159,7 +159,7 @@ router.patch('/local/change/password', (req, res, next) => {
 //         })
 //         .then(response => {
 //             let message = {
-//                 "html": `<a herf="http://localhost:3214/reset/${resp[0].dataValues.id}">Reset your password</a>`,
+//                 "html": `<a herf="https://first-class-achievers.herokuapp.com/reset/${resp[0].dataValues.id}">Reset your password</a>`,
 //                 "text": "Press on this link and reset your password",
 //                 "subject": "Reset Password",
 //                 "from_email": "no-reply@firstclass.com",

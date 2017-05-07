@@ -23,7 +23,7 @@ class TestimonialModal extends Component {
                                     <div className="modal-body">
                                         <div className="form-group">
                                             <label>Share Link</label>
-                                            <span className="form-control">{`http://localhost:3214/#/testimonials/${this.props.entryId}`}</span>
+                                            <span className="form-control">{`https://first-class-achievers.herokuapp.com/#/testimonials/${this.props.entryId}`}</span>
                                         </div>
                                     </div>
                                 </div>

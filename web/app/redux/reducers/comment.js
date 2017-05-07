@@ -2,7 +2,7 @@ import actionTypes from '../store/actionTypes'
 import io from 'socket.io-client'
 
 
-let socket = io('http://localhost:3214')
+let socket = io('https://first-class-achievers.herokuapp.com')
 
 const INITIAL_STATE = {
 	pending: null,

@@ -7,7 +7,7 @@ import { renderMessageInput } from '../../redux/utils/ReduxForms'
 import io from 'socket.io-client'
 
  
-let socket = io.connect('http://localhost:3214')
+let socket = io.connect('https://first-class-achievers.herokuapp.com')
 
 class ChatPage extends Component {
 

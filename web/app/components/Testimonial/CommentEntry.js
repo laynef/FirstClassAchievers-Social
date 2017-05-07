@@ -6,7 +6,7 @@ import { getComment, setComment, likeComment } from '../../redux/actions/comment
 import io from 'socket.io-client'
 
 
-let socket = io('http://localhost:3214')
+let socket = io('https://first-class-achievers.herokuapp.com')
 
 class CommentEntry extends Component {
 
