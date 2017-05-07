@@ -8,8 +8,7 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
-// const config = require('../../config/config')
-// const helper = require('sendgrid').mail
+const config = require('../../config/config')
 
 
 // local auth
@@ -121,29 +120,84 @@ router.patch('/local/change/password', (req, res, next) => {
     })
 })
 
-// router.post('/local/forgotten/password', (req, res, next) => {
-//     let fromEmail = new helper.Email('test@example.com')
-//     let toEmail = new helper.Email(req.body.email)
-//     let subject = 'Hello World from the SendGrid Node.js Library!'
-//     let content = new helper.Content('text/plain', 'Hello, Email!')
-//     let mail = new helper.Mail(fromEmail, subject, toEmail, content)
-//     let api_key = process.env.SENDGRID_API_KEY || config.SENDGRID_API_KEY
-//     let sg = require('sendgrid')(api_key)
-//     let request = sg.emptyRequest({
-//         method: 'POST',
-//         path: '/v3/mail/send',
-//         body: mail.toJSON()
-//     })
+router.patch('/local/forgotten/change/:userId', (req, res, next) => {
+    User.findAll({
+        where: { id: req.params.userId }
+    }).then(response => {
+        let salt = bcrypt.genSaltSync(10)
+        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
+            bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
+                if (result) {
+                    User.update({
+                        password: hash
+                    }, { 
+                        where: { id: response[0].dataValues.id }
+                    })
+                        .then(resp => {
+                            req.cookies.user = resp
+                            res.status(202).json(resp)
+                        })
+                        .catch(errs => {
+                            console.log(`Update error`, errs)
+                            res.sendStatus(404)
+                        })
+                } else {
+                    console.log(`Wrong password`)
+                    res.sendStatus(401)
+                }
+            })
+        })
+    }).catch(error => {
+        console.log(`Patch request error`, error)
+        res.sendStatus(501)
+    })
+})
 
-//     sg.API(request, function (error, response) {
-//         if (error) {
-//             console.log('Error response received')
-//         }
-//         console.log(response.statusCode)
-//         console.log(response.body)
-//         console.log(response.headers)
-//     })
-// })
+router.post('/local/forgotten/password', (req, res, next) => {
+    User.findAll({
+        where: {email: req.body.email}
+    })
+    .then(resp => {
+        Profile.findAll({
+            where: {user_id: resp[0].dataValues.id}
+        })
+        .then(response => {
+            let message = {
+                "html": `<a herf="http://localhost:3214/reset/${resp[0].dataValues.id}">Reset your password</a>`,
+                "text": "Press on this link and reset your password",
+                "subject": "Reset Password",
+                "from_email": "no-reply@firstclass.com",
+                "from_name": "First Class Achievers",
+                "to": [{
+                        "email": req.body.email,
+                        "name": `${response[0].dataValues.firstName} ${response[0].dataValues.lastName}`,
+                        "type": "to"
+                    }],
+                "merge_language": "mailchimp",
+                "tags": [
+                    "password-resets"
+                ]
+            };
+            var async = false;
+            var ip_pool = "Main Pool";
+            mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool}, function(result) {
+                console.log(result);
+                /*
+                [{
+                        "email": "recipient.email@example.com",
+                        "status": "sent",
+                        "reject_reason": "hard-bounce",
+                        "_id": "abc123abc123abc123abc123abc123"
+                    }]
+                */
+            }, function(e) {
+                // Mandrill returns the error as an object with name and message keys
+                console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+                // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+            });
+        })
+    })
+})
 
 
 // export router for server.js

@@ -108,6 +108,26 @@ export function changePassword(data) {
 	}
 }
 
+export function changeForgottenPassword(data, id) {
+	return function(dispatch) {
+		dispatch({type: actionTypes.CHANGE_FORGOTTEN_PASSWORD_PENDING})
+		axios.patch(`/auth/local/forgotten/change/${id}`, data)
+			.then((response) => {
+					dispatch({
+						type: actionTypes.CHANGE_FORGOTTEN_PASSWORD_SUCCESS,
+						payload: response.data
+					})
+					dispatch(login(response.data))
+				})
+				.catch((err) => {
+					dispatch({
+						type: actionTypes.CHANGE_FORGOTTEN_PASSWORD_ERROR,
+						payload: err
+					})
+				})
+	}
+}
+
 export function getUser(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.USER_PROFILE_PENDING})

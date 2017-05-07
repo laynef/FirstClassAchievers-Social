@@ -12,6 +12,7 @@ import DetailPage from './pages/DetailPage/DetailPage'
 import DetailEntry from './pages/DetailEntry/DetailEntry'
 import ChatPage from './pages/ChatPage/ChatPage'
 import FriendsPage from './pages/FriendsPage/FriendsPage'
+import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage'
 
 
 export default (
@@ -27,6 +28,7 @@ export default (
             <Route path="profile/:userId" component={DetailPage} />
             <Route path="chat/:userId/:otherId" component={ChatPage} />
             <Route path="friends" component={FriendsPage} />
+            <Route path="reset" component={ResetPasswordPage} />
         </Route>
 
     </Route>
