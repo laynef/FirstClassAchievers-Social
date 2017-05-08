@@ -1,9 +1,13 @@
+import React from 'react'
 import {Actions, Scene, Router} from 'react-native-router-flux'
 
-const scenes = Actions.create(
-  <Scene key="root">
+// Pages
+import MainPage  from './pages/MainPage'
 
-  </Scene>
+const RouterComponent = () => (
+    <Router>
+        <Scene key="home" component={MainPage} />
+    </Router>
 )
 
-export default scenes
+export default RouterComponent
