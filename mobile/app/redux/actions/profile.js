@@ -7,7 +7,7 @@ export function setProfile(data, id) {
 	return function(dispatch) {
 		let formData = new FormData()
 		dispatch({type: actionTypes.SET_PROFILE_PENDING})
-		axios.patch(`/api/profile/${id}`, data)
+		axios.patch(`https://first-class-achievers.herokuapp.com/api/profile/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_PROFILE_SUCCESS,
@@ -27,7 +27,7 @@ export function setProfile(data, id) {
 export function getProfile(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_PROFILE_PENDING})
-		axios.get(`/api/profile/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_PROFILE_SUCCESS,
@@ -48,7 +48,7 @@ export function setImage(data, id) {
 		let body = new FormData()
 		body.append('image', data)
 		dispatch({type: actionTypes.SET_IMAGE_PENDING})
-		axios.patch(`/api/image/${id}`, body)
+		axios.patch(`https://first-class-achievers.herokuapp.com/api/image/${id}`, body)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_IMAGE_SUCCESS,
