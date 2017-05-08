@@ -1,83 +1,61 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form'
 import { login } from '../redux/actions/auth';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, Input, Button, Spinner } from '../commons/index';
 
-class LoginForm extends Component {
+class AuthPage extends Component {
 
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
-  }
-
-  onButtonPress() {
-    const { email, password } = this.props;
-  }
-
-  renderButton() {
-    if (this.props.loading) {
-      return <Spinner size="large" />;
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
     }
 
-    return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
-      </Button>
-    );
-  }
+    submit() {
+        const { dispatch } = this.props
+        dispatch(login({
+            email: this.state.email, 
+            password: this.state.password
+        }))
+    }
 
-  render() {
-    return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+    render() {
+        return (
+            <Card>
+                <CardSection>
+                <Input
+                    label="Email"
+                    placeholder="Enter email"
+                    onChangeText={e => this.setState({email: e.target.value})}
+                />
+                </CardSection>
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+                <CardSection>
+                <Input
+                    secureTextEntry
+                    label="Password"
+                    placeholder="Enter password"
+                    onChangeText={e => this.setState({password: e.target.value})}
+                />
+                </CardSection>
 
-        <Text style={styles.errorTextStyle}>
-          {this.props.error}
-        </Text>
-
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
-    );
-  }
+                <CardSection>
+                    <Button onPress={() => this.submit()}>
+                        Login
+                    </Button>
+                </CardSection>
+            </Card>
+        );
+    }
 }
 
-const styles = {
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'red'
-  }
-};
+AuthPage = reduxForm({
+    form: 'AuthPage'
+})(AuthPage)
 
-const mapStateToProps = ({ auth }) => {
-  const { email, password } = auth;
-
-  return { email, password };
-};
-
-export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser
-})(LoginForm);
+export default connect(state => ({
+}))(AuthPage)

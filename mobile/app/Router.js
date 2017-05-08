@@ -6,7 +6,7 @@ import MainPage  from './pages/MainPage'
 import AuthPage  from './pages/AuthPage'
 
 const RouterComponent = () => (
-    <Router>
+    <Router sceneStyle={{ paddingTop: 65 }}>
         <Scene key="auth">
           <Scene key="login" component={AuthPage} title="Please Login" />
         </Scene>
