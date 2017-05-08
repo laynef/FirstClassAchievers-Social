@@ -30,7 +30,7 @@ class AuthPage extends Component {
                 <Input
                     label="Email"
                     placeholder="Enter email"
-                    onChangeText={e => this.setState({email: e.target.value})}
+                    onChangeText={email => this.setState({email})}
                 />
                 </CardSection>
 
@@ -39,7 +39,7 @@ class AuthPage extends Component {
                     secureTextEntry
                     label="Password"
                     placeholder="Enter password"
-                    onChangeText={e => this.setState({password: e.target.value})}
+                    onChangeText={password => this.setState({password})}
                 />
                 </CardSection>
 

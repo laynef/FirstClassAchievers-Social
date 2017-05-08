@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "server": "nodemon ./../api/server/server.js",
     "test": "jest"
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "nodemon": "^1.11.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-router-flux": "^3.38.1",
@@ -15,6 +17,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.6.3",
     "redux-forms": "^0.11.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "socket.io-client": "^1.7.4"
   },
   "devDependencies": {

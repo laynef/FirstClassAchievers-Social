@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes'
 export function getTestimonials() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_TESTIMONIAL_PENDING})
-		axios.get(`https://first-class-achievers.herokuapp.com/api/testify`)
+		axios.get(`http://localhost:3214/api/testify`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_TESTIMONIAL_SUCCESS,
@@ -24,7 +24,7 @@ export function getTestimonials() {
 export function createTestimonials(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.CREATE_TESTIMONIAL_PENDING})
-		axios.post(`https://first-class-achievers.herokuapp.com/api/testify`, data)
+		axios.post(`http://localhost:3214/api/testify`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.CREATE_TESTIMONIAL_SUCCESS,
@@ -43,7 +43,7 @@ export function createTestimonials(data) {
 export function likeTestimonial(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.UPDATE_TESTIMONIAL_PENDING})
-		axios.patch(`https://first-class-achievers.herokuapp.com/api/like/testify/${id}`, data)
+		axios.patch(`http://localhost:3214/api/like/testify/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.UPDATE_TESTIMONIAL_SUCCESS,

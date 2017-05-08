@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes'
 export function getFriends(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FRIENDS_PENDING})
-		axios.get(`https://first-class-achievers.herokuapp.com/api/friends/${id}`)
+		axios.get(`http://localhost:3214/api/friends/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_FRIENDS_SUCCESS,
