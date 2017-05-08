@@ -1,8 +1,5 @@
 import actionTypes from '../store/actionTypes'
-import io from 'socket.io-client'
 
-
-let socket = io('https://first-class-achievers.herokuapp.com')
 
 const INITIAL_STATE = {
 	pending: null,
@@ -20,9 +17,6 @@ export default function (state = INITIAL_STATE, action) {
 			}
 
 		case actionTypes.GET_COMMENT_SUCCESS:
-            socket.on('comment', function(data, id) {
-                action.payload[id].push(data)
-            })
 			return {
 				...state,
 				pending: null,

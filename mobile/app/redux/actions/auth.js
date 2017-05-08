@@ -131,7 +131,7 @@ export function changeForgottenPassword(data, id) {
 export function getUser(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.USER_PROFILE_PENDING})
-		axios.get(`/api/profile/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.USER_PROFILE_SUCCESS,

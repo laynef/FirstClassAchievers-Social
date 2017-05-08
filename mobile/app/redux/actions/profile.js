@@ -45,8 +45,8 @@ export function getProfile(id) {
 
 export function setImage(data, id) {
 	return function(dispatch) {
-		let body = new FormData()
-		body.append('image', data)
+		// let body = new FormData()
+		// body.append('image', data)
 		dispatch({type: actionTypes.SET_IMAGE_PENDING})
 		axios.patch(`https://first-class-achievers.herokuapp.com/api/image/${id}`, body)
 			.then((response) => {
