@@ -13,6 +13,8 @@
     "react-native-router-flux": "^3.38.1",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
+    "redux-form": "^6.6.3",
+    "redux-forms": "^0.11.0",
     "socket.io-client": "^1.7.4"
   },
   "devDependencies": {

@@ -1,44 +1,83 @@
-import React, { Component } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native'
+import React, { Component } from 'react';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions/auth';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
-export default class MainPage extends Component {
+class LoginForm extends Component {
+
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onButtonPress() {
+    const { email, password } = this.props;
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Login
+      </Button>
+    );
+  }
+
   render() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.welcome}>
-            Welcome to React Native!
-            </Text>
-            <Text style={styles.instructions}>
-            To get started, edit index.android.js
-            </Text>
-            <Text style={styles.instructions}>
-            Double tap R on your keyboard to reload,{'\n'}
-            Shake or press menu button for dev menu
-            </Text>
-        </View>
-    )
+      <Card>
+        <CardSection>
+          <Input
+            label="Email"
+            placeholder="email@gmail.com"
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
+            secureTextEntry
+            label="Password"
+            placeholder="password"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
+          />
+        </CardSection>
+
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
+
+        <CardSection>
+          {this.renderButton()}
+        </CardSection>
+      </Card>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
+const styles = {
+  errorTextStyle: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-})
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password } = auth;
+
+  return { email, password };
+};
+
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, loginUser
+})(LoginForm);
