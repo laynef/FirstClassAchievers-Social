@@ -1,0 +1,27 @@
+import { combineReducers } from 'redux'
+
+// reducers
+import userReducer from '../reducers/auth'
+import profileReducer from '../reducers/profile'
+import testimonialReducer from '../reducers/testimonial'
+import followingReducer from '../reducers/following'
+import favoritesReducer from '../reducers/favorite'
+import friendsReducer from '../reducers/friends'
+import messagesReducer from '../reducers/message'
+import commentReducer from '../reducers/comment'
+import notifyReducer from '../reducers/notifications'
+
+
+const reducers = combineReducers({
+    user: userReducer,
+    profile: profileReducer,
+    testimonial: testimonialReducer,
+    following: followingReducer,
+    favorites: favoritesReducer,
+    friends: friendsReducer,
+    messages: messagesReducer,
+    notifications: notifyReducer,
+    comments: commentReducer
+})
+
+export default reducers
