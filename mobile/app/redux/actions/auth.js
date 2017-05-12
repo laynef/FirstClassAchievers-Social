@@ -5,6 +5,8 @@ import { getProfile } from './profile'
 import { getFavorites } from './favorite'
 import { getFriends } from './friends'
 import { getNotifications } from './notifications'
+import {Actions, ActionConst} from 'react-native-router-flux'
+
 
 export function login(data) {
 	return function(dispatch) {
@@ -20,6 +22,7 @@ export function login(data) {
 					dispatch(getFriends(response.data.id))
 					dispatch(getNotifications(response.data.id))
 					dispatch(getUser(response.data.id))
+					Actions.home({type: ActionConst.REPLACE})
 				})
 				.catch((err) => {
 					dispatch({

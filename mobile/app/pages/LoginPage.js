@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Text } from 'react-native'
+import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { login } from '../redux/actions/auth';
-import { Card, CardSection, Input, Button, Spinner } from '../commons/index';
+import { login } from '../redux/actions/auth'
+import { Card, CardSection, Input, Button, Spinner } from '../commons/index'
+
 
 class LoginPage extends Component {
 
@@ -49,7 +50,7 @@ class LoginPage extends Component {
                     </Button>
                 </CardSection>
             </Card>
-        );
+        )
     }
 }
 

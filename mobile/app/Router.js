@@ -9,6 +9,7 @@ import SignUpPage  from './pages/SignUpPage'
 
 const RouterComponent = () => (
     <Router sceneStyle={{ paddingTop: 65 }}>
+        {/* First Step Auth */}
         <Scene key="auth">
           <Scene key="login" component={LoginPage} title="Please Login" renderRightButton={() => (
               <Text  onPress={() => Actions.signup({type: ActionConst.PUSH})}>
@@ -21,6 +22,8 @@ const RouterComponent = () => (
               </Text>
           )} />
         </Scene>
+
+
 
         <Scene key="home" component={MainPage} />
     </Router>
