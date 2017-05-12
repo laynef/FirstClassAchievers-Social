@@ -31,9 +31,6 @@ const RouterComponent = () => (
           )} />
         </Scene>
 
-        <Scene key="menu" component={Menu} title="Menu"/>
-        <Scene key="chatList" component={ChatList} title="Chat List"/>
-
         <Scene key="home"
             component={MainPage}
             title="Newsfeed"
@@ -48,6 +45,9 @@ const RouterComponent = () => (
                 </Text>
                 )}>
         </Scene>
+
+        <Scene key="menu" component={Menu} title="Menu"/>
+        <Scene key="chatList" component={ChatList} title="Chat List"/>
 
     </Router>
 )
