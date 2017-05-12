@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form'
 import { login } from '../redux/actions/auth';
 import { Card, CardSection, Input, Button, Spinner } from '../commons/index';
 
-class AuthPage extends Component {
+class LoginPage extends Component {
 
     constructor(props) {
         super(props)
@@ -53,9 +53,9 @@ class AuthPage extends Component {
     }
 }
 
-AuthPage = reduxForm({
-    form: 'AuthPage'
-})(AuthPage)
+LoginPage = reduxForm({
+    form: 'LoginPage'
+})(LoginPage)
 
 export default connect(state => ({
-}))(AuthPage)
+}))(LoginPage)
