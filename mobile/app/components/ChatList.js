@@ -7,15 +7,6 @@ import { Card, CardSection, Input, Button, Spinner } from '../commons/index'
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux'
 
 
-let pages = [
-    "home",
-    "testimonials",
-    "profile",
-    "favorites",
-    "friends",
-    "logout"
-]
-
 class ChatList extends Component {
 
     constructor(props) {
@@ -29,11 +20,7 @@ class ChatList extends Component {
     render() {
         return (
             <Card>
-                {pages.map(e => (
-                    <CardSection>
-                        <Text onPress={() => Actions[e]({type: ActionConst.PUSH})}>{e}</Text>
-                    </CardSection>
-                ))}
+
             </Card>
         )
     }

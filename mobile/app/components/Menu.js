@@ -29,11 +29,24 @@ class Menu extends Component {
     render() {
         return (
             <Card>
-                {pages.map(e => (
-                    <CardSection>
-                        <Text onPress={() => Actions[e]({type: ActionConst.PUSH})}>{e}</Text>
-                    </CardSection>
-                ))}
+                <CardSection onPress={() => Actions.home({type: ActionConst.PUSH})}>
+                    <Text>HOME</Text>
+                </CardSection>
+                <CardSection onPress={() => Actions.testimonials({type: ActionConst.PUSH})}>
+                    <Text>TESTIMONIALS</Text>
+                </CardSection>
+                <CardSection onPress={() => Actions.profile({type: ActionConst.PUSH})}>
+                    <Text>PROFILE</Text>
+                </CardSection>
+                <CardSection onPress={() => Actions.favorites({type: ActionConst.PUSH})}>
+                    <Text>FAVORITES</Text>
+                </CardSection>
+                <CardSection onPress={() => Actions.followers({type: ActionConst.PUSH})}>
+                    <Text>FOLLOWERS</Text>
+                </CardSection>
+                <CardSection onPress={() => Actions.auth({type: ActionConst.PUSH})}>
+                    <Text>LOGOUT</Text>
+                </CardSection>
             </Card>
         )
     }

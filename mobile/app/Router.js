@@ -1,6 +1,7 @@
 import React from 'react'
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux'
 import { Text } from 'react-native'
+import { Icon } from 'native-base';
 
 // Pages
 import MainPage  from './pages/MainPage'
@@ -30,6 +31,9 @@ const RouterComponent = () => (
           )} />
         </Scene>
 
+        <Scene key="menu" component={Menu} title="Menu"/>
+        <Scene key="chatList" component={ChatList} title="Chat List"/>
+
         <Scene key="home"
             component={MainPage}
             title="Newsfeed"
@@ -43,10 +47,6 @@ const RouterComponent = () => (
                     Chat
                 </Text>
                 )}>
-
-            <Scene key="menu" component={Menu}/>
-            <Scene key="chatList" component={ChatList}/>
-
         </Scene>
 
     </Router>
