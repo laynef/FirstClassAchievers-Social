@@ -17,7 +17,7 @@ class MainPage extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, user } = this.props 
+        const { dispatch } = this.props 
         dispatch(getTestimonials())
     }
 
