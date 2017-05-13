@@ -33,7 +33,7 @@ const RouterComponent = () => (
 
         <Scene key="home"
             component={MainPage}
-            title="Newsfeed"
+            title="News Feed"
             renderLeftButton={() => (
                 <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
                     Menu

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { Container, Content } from 'native-base'
+import { Container, Content } from 'native-base/backward'
 import { getTestimonials } from '../redux/actions/testimonial'
 import PostEntry from '../components/PostEntry'
 import { ScrollView } from 'react-native'

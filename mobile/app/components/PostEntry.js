@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base'
+import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base/backward'
 ​
 
 class PostEntry extends Component {
