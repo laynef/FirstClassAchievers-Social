@@ -6,7 +6,7 @@ import {Scene, Router} from 'react-native-router-flux'
 import RouterComponent from './Router'
 import reduxThunk from 'redux-thunk'
 import ReduxPromise from 'redux-promise'
-import { StyleProvider, getTheme } from 'native-base'
+
 
 export default class mobile extends Component {
   render() {
@@ -14,11 +14,9 @@ export default class mobile extends Component {
         applyMiddleware(reduxThunk, ReduxPromise)
     )
     return (
-        <StyleProvider>
-            <Provider store={store}>
-                <RouterComponent />
-            </Provider>
-        </StyleProvider>
+        <Provider store={store}>
+            <RouterComponent />
+        </Provider>
     )
   }
 }

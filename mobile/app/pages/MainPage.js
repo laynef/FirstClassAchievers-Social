@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { Container, Content } from 'native-base/backward'
 import { getTestimonials } from '../redux/actions/testimonial'
 import PostEntry from '../components/PostEntry'
 import { ScrollView } from 'react-native'
@@ -18,8 +17,6 @@ class MainPage extends Component {
     const { testimonial, following } = this.props
     return (
       <ScrollView>
-        <Container>
-          <Content>
             {testimonial
               .filter(e => following.followers.includes(e.user_id))
               .map((entry , i) => (
@@ -30,8 +27,6 @@ class MainPage extends Component {
                     likes={entry.likes}
                   />
               ))}
-          </Content>
-        </Container>
       </ScrollView>
     )
   }
