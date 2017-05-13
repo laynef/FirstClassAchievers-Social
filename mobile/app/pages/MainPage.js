@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { getTestimonials } from '../redux/actions/testimonial'
-import PostEntry from '../components/PostEntry'
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
+import { Card, CardSection, Input, Button, Spinner } from '../commons/index'
 
 
 class MainPage extends Component {
@@ -20,12 +20,14 @@ class MainPage extends Component {
             {testimonial
               .filter(e => following.followers.includes(e.user_id))
               .map((entry , i) => (
-                  <PostEntry key={i}
-                    image={entry.image}
-                    author={entry.author}
-                    message={entry.message}
-                    likes={entry.likes}
-                  />
+                  <Card>
+                    <CardSection>
+                        <Text>{entry.author}</Text>
+                    </CardSection>
+                    <CardSection>
+                        <Text>{entry.message}</Text>
+                    </CardSection>
+                </Card>
               ))}
       </ScrollView>
     )
