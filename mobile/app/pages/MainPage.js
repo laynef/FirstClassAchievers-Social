@@ -4,6 +4,7 @@ import { reduxForm } from 'redux-form'
 import { Container, Content } from 'native-base'
 import { getTestimonials } from '../redux/actions/testimonial'
 import PostEntry from '../components/PostEntry'
+import { ScrollView } from 'react-native'
 
 
 class MainPage extends Component {
@@ -16,21 +17,22 @@ class MainPage extends Component {
   render() {
     const { testimonial, following } = this.props
     return (
-      <Container>
-        <Content>
-          {testimonial
-             .filter(e => following.followers.includes(e.user_id))
-             .map((e, i) => (
-                <PostEntry 
-                  key={i}
-                  image={e.image}
-                  author={e.author}
-                  message={e.message}
-                  likes={e.likes}
-                />
-            ))}
-        </Content>
-      </Container>
+      <ScrollView>
+        <Container>
+          <Content>
+            {testimonial
+              .filter(e => following.followers.includes(e.user_id))
+              .map((entry , i) => (
+                  <PostEntry key={i}
+                    image={entry.image}
+                    author={entry.author}
+                    message={entry.message}
+                    likes={entry.likes}
+                  />
+              ))}
+          </Content>
+        </Container>
+      </ScrollView>
     )
   }
 }

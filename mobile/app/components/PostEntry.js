@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base'
 ​
 
-export default class PostEntry extends Component {
+class PostEntry extends Component {
 
     render() {
         const { author, message, image,  likes } = this.props
         return (
             <Card>
                 <CardItem>
-                <Left>
-                    <Thumbnail source={image} />
-                    <Body>
-                        <Text>{author}</Text>
-                        <Text note>Created By</Text>
-                    </Body>
-                </Left>
+                    <Left>
+                        <Thumbnail source={image} />
+                        <Body>
+                            <Text>{author}</Text>
+                            <Text note>Created By</Text>
+                        </Body>
+                    </Left>
                 </CardItem>
                 <CardItem cardBody>
                     <Text>{message}</Text>
@@ -38,3 +40,10 @@ export default class PostEntry extends Component {
         )
     }
 }
+
+PostEntry = reduxForm({
+    form: 'PostEntry'
+})(PostEntry)
+
+export default connect(state => ({
+}))(PostEntry)
