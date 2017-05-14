@@ -15,7 +15,7 @@ class FollowersPage extends Component {
                 {friends.map((e, i) => {
                     let url = e.image.replace(/http/ig, 'https')
                     return (
-                    <CardSection>
+                    <CardSection key={i}>
                         <Image style={{width: 350, height: 350}} source={{uri: url}} />
                     </CardSection>
                 )})}
