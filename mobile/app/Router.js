@@ -1,7 +1,6 @@
 import React from 'react'
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux'
 import { Text } from 'react-native'
-import { Icon } from 'native-base';
 
 // Pages
 import MainPage  from './pages/MainPage'
