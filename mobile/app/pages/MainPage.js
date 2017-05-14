@@ -22,6 +22,7 @@ class MainPage extends Component {
               .map((entry , i) => (
                   <Card key={i}>
                     <CardSection>
+                        <Thumbnail image={entry.image} />
                         <Text>{entry.author}</Text>
                         <Text>Created By</Text>
                     </CardSection>

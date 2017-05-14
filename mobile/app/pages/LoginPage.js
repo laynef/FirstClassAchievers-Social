@@ -49,18 +49,6 @@ class LoginPage extends Component {
                         Login
                     </Button>
                 </CardSection>
-
-                  <Image 
-                        style={{
-                            alignSelf: 'center',
-                            height: 150,
-                            width: 150,
-                            borderWidth: 1,
-                            borderRadius: 75
-                        }}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} 
-                        resizeMode="cover"
-                    />
             </Card>
         )
     }
