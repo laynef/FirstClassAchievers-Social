@@ -5,7 +5,7 @@ import { ScrollView, Text, Image } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail } from '../commons/index'
 
 
-class MainPage extends Component {
+class FavoritesPage extends Component {
 
   componentDidMount() {
       const { dispatch } = this.props 
@@ -39,4 +39,4 @@ class MainPage extends Component {
 export default connect(state => ({
   favorites: state.favorites.data,
   testimonial: state.testimonial.data
-}))(MainPage)
+}))(FavoritesPage)

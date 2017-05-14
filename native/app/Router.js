@@ -7,6 +7,7 @@ import MainPage  from './pages/MainPage'
 import LoginPage  from './pages/LoginPage'
 import SignUpPage  from './pages/SignUpPage'
 import TestimonialsPage  from './pages/TestimonialsPage'
+import FavoritesPage  from './pages/FavoritesPage'
 
 // Components
 import Menu from './components/Menu'
@@ -51,6 +52,21 @@ const RouterComponent = () => (
 
         <Scene key="testimonials"
             component={MainPage}
+            title="News Feed"
+            renderLeftButton={() => (
+                <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
+                    Menu
+                </Text>
+                )}
+            renderRightButton={() => (
+                <Text onPress={() => Actions.chatList({type: ActionConst.PUSH})}>
+                    Chat
+                </Text>
+                )}>
+        </Scene>
+
+        <Scene key="favorites"
+            component={FavoritesPage}
             title="News Feed"
             renderLeftButton={() => (
                 <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
