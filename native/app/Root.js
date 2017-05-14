@@ -8,7 +8,7 @@ import reduxThunk from 'redux-thunk'
 import ReduxPromise from 'redux-promise'
 
 
-export default class mobile extends Component {
+export default class native extends Component {
   render() {
     const store = createStore(reducers, 
         applyMiddleware(reduxThunk, ReduxPromise)
