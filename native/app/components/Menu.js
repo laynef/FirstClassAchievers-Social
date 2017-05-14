@@ -14,27 +14,27 @@ class Menu extends Component {
         return (
             <Card>
                 <CardSection>
-                    <Button onPress={() => Actions.home({type: ActionConst.REPLACE})}>
+                    <Button onPress={() => Actions.home({type: ActionConst.POP_AND_REPLACE})}>
                         <Text>HOME</Text>
                     </Button>
                 </CardSection>
                 <CardSection>
-                    <Button onPress={() => Actions.testimonials({type: ActionConst.REPLACE})}>
+                    <Button onPress={() => Actions.testimonials({type: ActionConst.POP_AND_REPLACE})}>
                         <Text>TESTIMONIALS</Text>
                     </Button>
                 </CardSection>
                 <CardSection>
-                    <Button onPress={() => Actions.profile({type: ActionConst.REPLACE})}>
+                    <Button onPress={() => Actions.profile({type: ActionConst.POP_AND_REPLACE})}>
                         <Text>PROFILE</Text>
                     </Button>
                 </CardSection>
                 <CardSection>
-                    <Button onPress={() => Actions.favorites({type: ActionConst.REPLACE})}>
+                    <Button onPress={() => Actions.favorites({type: ActionConst.POP_AND_REPLACE})}>
                         <Text>FAVORITES</Text>
                     </Button>
                 </CardSection>
                 <CardSection>
-                    <Button onPress={() => Actions.followers({type: ActionConst.REPLACE})}>
+                    <Button onPress={() => Actions.followers({type: ActionConst.POP_AND_REPLACE})}>
                         <Text>FOLLOWERS</Text>
                     </Button>
                 </CardSection>

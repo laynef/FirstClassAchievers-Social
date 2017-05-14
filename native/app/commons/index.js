@@ -6,3 +6,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './Confirm';
 export * from './Thumbnail';
+export * from './Post';
