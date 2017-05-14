@@ -6,7 +6,7 @@ const Thumbnail = ({ image }) => {
   let url = image.replace(/http/ig, 'https')
   return (
     <View style={view}>
-        <Image source={{uri: url}} style={view} />
+        <Image source={{uri: url}} style={img} />
       </View>
   );
 };

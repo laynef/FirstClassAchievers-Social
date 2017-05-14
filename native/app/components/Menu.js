@@ -2,50 +2,49 @@ import React, { Component } from 'react'
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { login } from '../redux/actions/auth'
+import { logout } from '../redux/actions/auth'
 import { Card, CardSection, Input, Button, Spinner } from '../commons/index'
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux'
 
 
-let pages = [
-    "home",
-    "testimonials",
-    "profile",
-    "favorites",
-    "friends",
-    "logout"
-]
-
 class Menu extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
-
     render() {
+        const { dispatch } = this.props
         return (
             <Card>
-                <CardSection onPress={() => Actions.home({type: ActionConst.PUSH})}>
-                    <Text>HOME</Text>
+                <CardSection>
+                    <Button onPress={() => Actions.home({type: ActionConst.REPLACE})}>
+                        <Text>HOME</Text>
+                    </Button>
                 </CardSection>
-                <CardSection onPress={() => Actions.testimonials({type: ActionConst.PUSH})}>
-                    <Text>TESTIMONIALS</Text>
+                <CardSection>
+                    <Button onPress={() => Actions.testimonials({type: ActionConst.REPLACE})}>
+                        <Text>TESTIMONIALS</Text>
+                    </Button>
                 </CardSection>
-                <CardSection onPress={() => Actions.profile({type: ActionConst.PUSH})}>
-                    <Text>PROFILE</Text>
+                <CardSection>
+                    <Button onPress={() => Actions.profile({type: ActionConst.REPLACE})}>
+                        <Text>PROFILE</Text>
+                    </Button>
                 </CardSection>
-                <CardSection onPress={() => Actions.favorites({type: ActionConst.PUSH})}>
-                    <Text>FAVORITES</Text>
+                <CardSection>
+                    <Button onPress={() => Actions.favorites({type: ActionConst.REPLACE})}>
+                        <Text>FAVORITES</Text>
+                    </Button>
                 </CardSection>
-                <CardSection onPress={() => Actions.followers({type: ActionConst.PUSH})}>
-                    <Text>FOLLOWERS</Text>
+                <CardSection>
+                    <Button onPress={() => Actions.followers({type: ActionConst.REPLACE})}>
+                        <Text>FOLLOWERS</Text>
+                    </Button>
                 </CardSection>
-                <CardSection onPress={() => Actions.auth({type: ActionConst.PUSH})}>
-                    <Text>LOGOUT</Text>
+                <CardSection>
+                    <Button onPress={() => {
+                        dispatch(logout())
+                        Actions.auth({type: ActionConst.REPLACE})
+                    }}>
+                        <Text>LOGOUT</Text>
+                    </Button>
                 </CardSection>
             </Card>
         )

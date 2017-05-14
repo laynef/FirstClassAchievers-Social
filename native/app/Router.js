@@ -6,6 +6,7 @@ import { Text } from 'react-native'
 import MainPage  from './pages/MainPage'
 import LoginPage  from './pages/LoginPage'
 import SignUpPage  from './pages/SignUpPage'
+import TestimonialsPage  from './pages/TestimonialsPage'
 
 // Components
 import Menu from './components/Menu'
@@ -47,6 +48,21 @@ const RouterComponent = () => (
 
         <Scene key="menu" component={Menu} title="Menu"/>
         <Scene key="chatList" component={ChatList} title="Chat List"/>
+
+        <Scene key="testimonials"
+            component={MainPage}
+            title="News Feed"
+            renderLeftButton={() => (
+                <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
+                    Menu
+                </Text>
+                )}
+            renderRightButton={() => (
+                <Text onPress={() => Actions.chatList({type: ActionConst.PUSH})}>
+                    Chat
+                </Text>
+                )}>
+        </Scene>
 
     </Router>
 )
