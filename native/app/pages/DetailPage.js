@@ -10,14 +10,15 @@ import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from
 class ProfilePage extends Component {
 
   componentWillMount() {
-      const { dispatch, params, user, userId } = this.props 
+      const { dispatch, user, userId } = this.props 
       dispatch(getProfile(userId))
       dispatch(getTestimonials())
       if (user) dispatch(getFollowers(user.id))
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, user, testimonial, following } = this.props
+    if (!user || !profile || !following || !testimonial) return null
     return (
       <ScrollView>
         <ProfilePic image={profile.image} />
@@ -67,5 +68,5 @@ export default connect(state => ({
   following: state.following.data,
   profile: state.profile.data,
   testimonial: state.testimonial.data,
-  user: user.state.data
+  user: state.user.data
 }))(ProfilePage)
