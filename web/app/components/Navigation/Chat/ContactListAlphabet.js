@@ -27,7 +27,7 @@ class ContactListAlphabet extends Component {
                     <div className="list-view-group-header text-uppercase"> {ele[0].firstName[0]}</div>
                         <ul>
                             {ele.map((e, idx) => (
-                                <Link key={`${i}${idx}`} to={`/chat/${user.id}/${e.user_id}`}>
+                                <Link key={`${i} ${idx}`} to={`/chat/${user.id}/${e.user_id}`}>
                                     <li className="chat-user-list clearfix">
                                         <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" className="" href="#">
                                             <span className="col-xs-height col-middle">
