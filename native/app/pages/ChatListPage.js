@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Text, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
-import { login } from '../redux/actions/auth'
-import { Card, CardSection, Input, Button, Spinner, Thumbnail } from '../commons/index'
-import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux'
+import { getTestimonials } from '../redux/actions/testimonial'
+import { getProfile } from '../redux/actions/profile'
+import { getFollowers } from '../redux/actions/following'
+import { ScrollView, Text, Image } from 'react-native'
+import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
 
 
-class ChatList extends Component {
+class ChatListPage extends Component {
 
     renderContactList() {
         const { friends } = this.props
@@ -23,7 +23,7 @@ class ChatList extends Component {
                 array.push(alphabet[e])
             }
         })
-        return array.map((e, i) => (
+        return array.concat.map((e, i) => (
             <Card>
                 <CardSection>
                     <Text>{e[0].firstName[0]}</Text>
@@ -48,10 +48,6 @@ class ChatList extends Component {
   }
 }
 
-ChatList = reduxForm({
-    form: 'ChatList'
-})(ChatList)
-
 export default connect(state => ({
-    friends: state.friends.data
-}))(ChatList)
+  friends: state.friends.data
+}))(ChatListPage)
