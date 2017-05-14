@@ -8,6 +8,8 @@ import LoginPage  from './pages/LoginPage'
 import SignUpPage  from './pages/SignUpPage'
 import TestimonialsPage  from './pages/TestimonialsPage'
 import FavoritesPage  from './pages/FavoritesPage'
+import ProfilePage  from './pages/ProfilePage'
+import FollowersPage  from './pages/FollowersPage'
 
 // Components
 import Menu from './components/Menu'
@@ -52,7 +54,7 @@ const RouterComponent = () => (
 
         <Scene key="testimonials"
             component={MainPage}
-            title="News Feed"
+            title="Posts"
             renderLeftButton={() => (
                 <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
                     Menu
@@ -67,7 +69,37 @@ const RouterComponent = () => (
 
         <Scene key="favorites"
             component={FavoritesPage}
-            title="News Feed"
+            title="Favorites"
+            renderLeftButton={() => (
+                <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
+                    Menu
+                </Text>
+                )}
+            renderRightButton={() => (
+                <Text onPress={() => Actions.chatList({type: ActionConst.PUSH})}>
+                    Chat
+                </Text>
+                )}>
+        </Scene>
+
+        <Scene key="profile"
+            component={ProfilePage}
+            title="My Profile"
+            renderLeftButton={() => (
+                <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
+                    Menu
+                </Text>
+                )}
+            renderRightButton={() => (
+                <Text onPress={() => Actions.chatList({type: ActionConst.PUSH})}>
+                    Chat
+                </Text>
+                )}>
+        </Scene>
+
+        <Scene key="followers"
+            component={FollowersPage}
+            title="Following"
             renderLeftButton={() => (
                 <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>
                     Menu
