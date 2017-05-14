@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "nodemon node_modules/react-native/local-cli/cli.js start",
+    "start": "nodemon ./../api/server/server.js",
     "test": "jest"
   },
   "dependencies": {
@@ -12,6 +13,7 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-router-flux": "^3.39.1",
+    "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-form": "^6.7.0",
     "redux-promise": "^0.5.3",
