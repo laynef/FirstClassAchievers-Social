@@ -6,7 +6,6 @@ import { setFavorites } from '../redux/actions/favorite'
 import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail } from '../commons/index'
 import { Actions, ActionConst } from 'react-native-router-flux'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import pull from 'lodash/pull'
 
 
@@ -55,25 +54,25 @@ class FavoritesPage extends Component {
                             <Text>{entry.author}</Text>
                             <Text>Created By</Text>
                             {entry.likes.includes(user.id) ? (
-                                <Button onPress={() => dispatch(submitTestimonialLikes(entry.likes, user.id))}>
+                                <Button onPress={() => this.submitTestimonialLikes(entry.likes, user.id)}>
                                   <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
-                                    <Icon name="thumbs-up" size={10}/>
+ 
                                   </Text>
                                 </Button>
                               ) : (
-                                <Button onPress={() => dispatch(submitTestimonialLikes(entry.likes, user.id))}>
+                                <Button onPress={() => this.submitTestimonialLikes(entry.likes, user.id)}>
                                   <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
-                                    <Icon name="thumbs-o-up" size={10}/>
+
                                   </Text>
                                 </Button>
                               )}
-                              {favorites.includes(user.id) ? (
-                                <Button onPress={() => dispatch(submitFavorites(favorites, user.id))}>
-                                    <Icon name="heart" size={10}/>
+                              {favorites.entries.includes(user.id) ? (
+                                <Button onPress={() => this.submitFavorites(favorites, user.id)}>
+
                                 </Button>
                               ) : (
-                                <Button onPress={() => dispatch(submitFavorites(favorites, user.id))}>
-                                    <Icon name="heart-o" size={10}/>
+                                <Button onPress={() => this.submitFavorites(favorites, user.id)}>
+
                                 </Button>
                               )}
                         </CardSection>
@@ -106,15 +105,15 @@ class FavoritesPage extends Component {
                                 <Text>{e.author}</Text>
                                 <Text>Created By</Text>
                                 {e.likes.includes(user.id) ? (
-                                  <Button onPress={() => dispatch(submitCommentLikes(e.likes, user.id))}>
+                                  <Button onPress={() => this.submitCommentLikes(e.likes, user.id)}>
                                     <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
-                                      <Icon name="thumbs-up" size={10}/>
+
                                     </Text>
                                   </Button>
                                 ) : (
-                                  <Button onPress={() => dispatch(submitCommentLikes(e.likes, user.id))}>
+                                  <Button onPress={() => this.submitCommentLikes(e.likes, user.id)}>
                                     <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
-                                      <Icon name="thumbs-o-up" size={10}/>
+
                                     </Text>
                                   </Button>
                                 )}
