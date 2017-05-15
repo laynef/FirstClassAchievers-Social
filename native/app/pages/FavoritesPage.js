@@ -85,6 +85,9 @@ class FavoritesPage extends Component {
                         </CardSection>
                     </TouchableOpacity>
                     <CardSection>
+                      <Text>{entry.message}</Text>
+                    </CardSection>
+                    <CardSection>
                         <Input 
                           placeholder={`Leave a comment...`}
                           autoCorrect={true}
@@ -126,7 +129,7 @@ class FavoritesPage extends Component {
                                 )}
                             </CardSection>
                               <CardSection>
-                                  <Text>{entry.message}</Text>
+                                  <Text>{e.message}</Text>
                               </CardSection>
                           </Card>
                           ))}
