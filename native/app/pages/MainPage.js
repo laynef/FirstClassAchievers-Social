@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTestimonials } from '../redux/actions/testimonial'
-import { setComment, getComment } from '../redux/actions/comment'
+import { getTestimonials, likeTestimonial } from '../redux/actions/testimonial'
+import { setComment, getComment, likeComment } from '../redux/actions/comment'
+import { setFavorites } from '../redux/actions/favorite'
 import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail } from '../commons/index'
 import { Actions, ActionConst } from 'react-native-router-flux'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import pull from 'lodash/pull'
 
 
 class MainPage extends Component {
@@ -14,9 +17,32 @@ class MainPage extends Component {
       dispatch(getTestimonials())
   }
 
+  submitTestimonialLikes(id, likes) {
+    const { dispatch } = this.props
+    likes = likes.includes(id) ? pull(id) : likes.push(id)
+    let body = {likes: likes, user_id: id}
+    dispatch(likeTestimonial(body, id))
+    dispatch(getTestimonials())
+  }
+
+  submitCommentLikes(id, likes) {
+    const { dispatch } = this.props
+    likes = likes.includes(id) ? pull(id) : likes.push(id)
+    let body = {likes: likes, user_id: id}
+    dispatch(likeComment(body, id))
+    dispatch(getComment())
+  }
+
+  submitFavorites(id, favorites) {
+    const { dispatch } = this.props
+    favorites = favorites.includes(id) ? pull(id) : favorites.push(id)
+    let body = {entries: favorites, user_id: id}
+    dispatch(setFavorites(body, id))
+  }
+
   render() {
-    const { testimonial, user, profile, dispatch, comments, following } = this.props
-    if (!testimonial || !user || !profile || !following) return null
+    const { testimonial, user, profile, dispatch, comments, following, favorites } = this.props
+    if (!testimonial || !user || !profile || !following || !favorites) return null
     return (
       <ScrollView>
             {testimonial
@@ -28,6 +54,28 @@ class MainPage extends Component {
                           <Thumbnail image={entry.image} />
                           <Text>{entry.author}</Text>
                           <Text>Created By</Text>
+                          {entry.likes.includes(user.id) ? (
+                                <Button onPress={() => dispatch(submitTestimonialLikes(entry.likes, user.id))}>
+                                  <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
+                                    <Icon name="thumbs-up" size={10}/>
+                                  </Text>
+                                </Button>
+                              ) : (
+                                <Button onPress={() => dispatch(submitTestimonialLikes(entry.likes, user.id))}>
+                                  <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
+                                    <Icon name="thumbs-o-up" size={10}/>
+                                  </Text>
+                                </Button>
+                              )}
+                              {favorites.includes(user.id) ? (
+                                <Button onPress={() => dispatch(submitFavorites(favorites, user.id))}>
+                                    <Icon name="heart" size={10}/>
+                                </Button>
+                              ) : (
+                                <Button onPress={() => dispatch(submitFavorites(favorites, user.id))}>
+                                    <Icon name="heart-o" size={10}/>
+                                </Button>
+                              )}
                       </CardSection>
                     </TouchableOpacity>
                     <CardSection>
@@ -52,6 +100,7 @@ class MainPage extends Component {
                       }}>Send</Button>
                     </CardSection>
                     <CardSection>
+                    <ScrollView>
                         {comments && comments[entry.id] && 
                           comments[entry.id].map((e, idx) => (
                           <Card key={`${i} ${idx}`}>
@@ -59,12 +108,26 @@ class MainPage extends Component {
                                 <Thumbnail image={e.image} />
                                 <Text>{e.author}</Text>
                                 <Text>Created By</Text>
+                                {e.likes.includes(user.id) ? (
+                                  <Button onPress={() => dispatch(submitCommentLikes(e.likes, user.id))}>
+                                    <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
+                                      <Icon name="thumbs-up" size={10}/>
+                                    </Text>
+                                  </Button>
+                                ) : (
+                                  <Button onPress={() => dispatch(submitCommentLikes(e.likes, user.id))}>
+                                    <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
+                                      <Icon name="thumbs-o-up" size={10}/>
+                                    </Text>
+                                  </Button>
+                                )}
                             </CardSection>
                           <CardSection>
                               <Text>{e.message}</Text>
                           </CardSection>
                         </Card>
                         ))}
+                        </ScrollView>
                     </CardSection>
                 </Card>
               ))}
@@ -78,5 +141,6 @@ export default connect(state => ({
   profile: state.user.profile,
   user: state.user.data,
   following: state.following.data,
-  testimonial: state.testimonial.data
+  testimonial: state.testimonial.data,
+  favorites: state.favorites.data
 }))(MainPage)
