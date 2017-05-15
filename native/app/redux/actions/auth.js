@@ -80,7 +80,20 @@ export function register(data) {
 						type: actionTypes.REGISTER_SUCCESS,
 						payload: response.data
 					})
-					dispatch(login(data))
+					axios.post(`http://localhost:3214/auth/local/login`, response.data)
+						.then((response) => {
+								dispatch({
+									type: actionTypes.LOGIN_SUCCESS,
+									payload: response.data
+								})
+								Actions.home({type: ActionConst.POP_AND_REPLACE})
+						})
+						.catch(err => {
+							dispatch({
+								type: actionTypes.LOGIN_ERROR,
+								payload: err
+							})
+						})
 				})
 				.catch((err) => {
 					dispatch({

@@ -21,7 +21,9 @@ import ChatList from './components/ChatList'
 
 
 const RouterComponent = () => (
-    <Router sceneStyle={{ paddingTop: 65 }}>
+    <Router sceneStyle={{ 
+        paddingTop: 65 
+    }}>
         {/* First Step Auth */}
         <Scene key="auth">
           <Scene key="login" component={LoginPage} 
@@ -32,7 +34,7 @@ const RouterComponent = () => (
           )} />
           <Scene key="signup" component={SignUpPage} 
                 title="Sign Up" renderRightButton={() => (
-              <Text onPress={() => Actions.login({type: ActionConst.BACK})}>
+              <Text onPress={() => Actions.login({type: ActionConst.POP})}>
                 Login
               </Text>
           )} />
