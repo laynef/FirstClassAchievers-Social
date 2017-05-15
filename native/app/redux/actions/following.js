@@ -6,7 +6,7 @@ import { getFriends } from './friends'
 export function getFollowers(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FOLLOWERS_PENDING})
-		axios.get(`http://localhost:3214/api/following/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/api/following/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_FOLLOWERS_SUCCESS,
@@ -25,7 +25,7 @@ export function getFollowers(id) {
 export function setFollowers(data, user, other) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FOLLOWERS_PENDING})
-		axios.patch(`http://localhost:3214/api/following/${user}/${other}`, data)
+		axios.patch(`https://first-class-achievers.herokuapp.com/api/following/${user}/${other}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_FOLLOWERS_SUCCESS,

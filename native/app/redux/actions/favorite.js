@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes'
 export function getFavorites(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FAVORITES_PENDING})
-		axios.get(`http://localhost:3214/api/favorites/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/api/favorites/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_FAVORITES_SUCCESS,
@@ -24,7 +24,7 @@ export function getFavorites(id) {
 export function setFavorites(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FAVORITES_PENDING})
-		axios.patch(`http://localhost:3214/api/favorites/${id}`, data)
+		axios.patch(`https://first-class-achievers.herokuapp.com/api/favorites/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_FAVORITES_SUCCESS,

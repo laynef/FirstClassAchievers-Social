@@ -11,7 +11,7 @@ import {Actions, ActionConst} from 'react-native-router-flux'
 export function login(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGIN_PENDING})
-		axios.post(`http://localhost:3214/auth/local/login`, data)
+		axios.post(`https://first-class-achievers.herokuapp.com/auth/local/login`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGIN_SUCCESS,
@@ -36,7 +36,7 @@ export function login(data) {
 export function forgottenPassword(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.FORGOTTEN_PASSWORD_PENDING})
-		axios.post(`http://localhost:3214/auth/local/forgotten/password/${id}`, data)
+		axios.post(`https://first-class-achievers.herokuapp.com/auth/local/forgotten/password/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.FORGOTTEN_PASSWORD_SUCCESS,
@@ -55,7 +55,7 @@ export function forgottenPassword(data, id) {
 export function logout() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.LOGOUT_PENDING})
-		axios.get(`http://localhost:3214/auth/local/logout`)
+		axios.get(`https://first-class-achievers.herokuapp.com/auth/local/logout`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.LOGOUT_SUCCESS,
@@ -74,13 +74,13 @@ export function logout() {
 export function register(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.REGISTER_PENDING})
-		axios.post(`http://localhost:3214/auth/local/register`, data)
+		axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.REGISTER_SUCCESS,
 						payload: response.data
 					})
-					axios.post(`http://localhost:3214/auth/local/login`, response.data)
+					axios.post(`https://first-class-achievers.herokuapp.com/auth/local/login`, response.data)
 						.then((response) => {
 								dispatch({
 									type: actionTypes.LOGIN_SUCCESS,
@@ -107,7 +107,7 @@ export function register(data) {
 export function changePassword(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.CHANGE_PASSWORD_PENDING})
-		axios.patch(`http://localhost:3214/auth/local/change/password`, data)
+		axios.patch(`https://first-class-achievers.herokuapp.com/auth/local/change/password`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.CHANGE_PASSWORD_SUCCESS,
@@ -127,7 +127,7 @@ export function changePassword(data) {
 export function changeForgottenPassword(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.CHANGE_FORGOTTEN_PASSWORD_PENDING})
-		axios.patch(`http://localhost:3214/auth/local/forgotten/change/${id}`, data)
+		axios.patch(`https://first-class-achievers.herokuapp.com/auth/local/forgotten/change/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.CHANGE_FORGOTTEN_PASSWORD_SUCCESS,
@@ -147,7 +147,7 @@ export function changeForgottenPassword(data, id) {
 export function getUser(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.USER_PROFILE_PENDING})
-		axios.get(`http://localhost:3214/api/profile/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/api/profile/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.USER_PROFILE_SUCCESS,
@@ -167,7 +167,7 @@ export function getUser(id) {
 export function getUserEmail(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.USER_EMAIL_PENDING})
-		axios.get(`http://localhost:3214/auth/local/user/${id}`)
+		axios.get(`https://first-class-achievers.herokuapp.com/auth/local/user/${id}`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.USER_EMAIL_SUCCESS,
