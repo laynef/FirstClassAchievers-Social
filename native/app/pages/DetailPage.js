@@ -8,7 +8,7 @@ import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from
 import { Actions, ActionConst } from 'react-native-router-flux'
 
 
-class ProfilePage extends Component {
+class DetailPage extends Component {
 
   componentWillMount() {
       const { dispatch, user, userId } = this.props 
@@ -72,4 +72,4 @@ export default connect(state => ({
   profile: state.profile.data,
   testimonial: state.testimonial.data,
   user: state.user.data
-}))(ProfilePage)
+}))(DetailPage)

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getTestimonials } from '../redux/actions/testimonial'
+import { setProfile } from '../redux/actions/profile'
 import { ScrollView, Text, Image } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 
 class ProfilePage extends Component {
@@ -17,7 +19,7 @@ class ProfilePage extends Component {
     }
 
   render() {
-    const { profile } = this.props
+    const { profile, dispatch } = this.props
     return (
       <ScrollView>
         <ProfilePic image={profile.image} />
@@ -44,10 +46,20 @@ class ProfilePage extends Component {
                 />
             </CardSection>
             <CardSection>
-                <Button>Submit</Button>
+                <Button onPress={() => dispatch(setProfile({
+                        firstName : firstName || profile.firstName,
+                        lastName : lastName || profile.lastName,
+                        nickname : nickname || profile.nickname,
+                        city : city || profile.city,
+                        state : state || profile.state,
+                        country : country || profile.country,
+                        zipCode : zipCode || profile.zipCode,
+                        position : position || profile.position,
+                        goals : goals || profile.goals
+                }, profile.user_id))}>Submit</Button>
             </CardSection>
             <CardSection>
-                <Button>Change Password</Button>
+                <Button onPress={() => Actions.changePassword({type: ActionConst.PUSH})}>Change Password</Button>
             </CardSection>
         </Card>
       </ScrollView>

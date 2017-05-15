@@ -7,7 +7,7 @@ import { ScrollView, Text, Image } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
 
 
-class ProfilePage extends Component {
+class DetailEntryPage extends Component {
 
   render() {
     const { testimonial, entryId } = this.props
@@ -38,4 +38,4 @@ export default connect(state => ({
   profile: state.profile.data,
   testimonial: state.testimonial.data,
   user: state.user.data
-}))(ProfilePage)
+}))(DetailEntryPage)

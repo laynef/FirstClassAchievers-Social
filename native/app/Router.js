@@ -12,6 +12,7 @@ import ProfilePage  from './pages/ProfilePage'
 import FollowersPage  from './pages/FollowersPage'
 import DetailPage  from './pages/DetailPage'
 import DetailEntryPage  from './pages/DetailEntryPage'
+import ChangePasswordPage  from './pages/ChangePasswordPage'
 
 // Components
 import Menu from './components/Menu'
@@ -55,6 +56,7 @@ const RouterComponent = () => (
         <Scene key="chatList" component={ChatList} title="Chat List"/>
         <Scene key="detail" component={DetailPage} title="Details"/>
         <Scene key="entry" component={DetailEntryPage} title="Post Details"/>
+        <Scene key="changePassword" component={ChangePasswordPage} title="Change Password"/>
 
         <Scene key="testimonials"
             component={MainPage}
