@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { getTestimonials } from '../redux/actions/testimonial'
 import { getProfile } from '../redux/actions/profile'
 import { getFollowers } from '../redux/actions/following'
-import { ScrollView, Text, Image } from 'react-native'
+import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 
 class ProfilePage extends Component {
@@ -49,11 +50,13 @@ class ProfilePage extends Component {
               .filter(e => e.user_id == profile.user_id)
               .map((entry , i) => (
                   <Card key={i}>
-                    <CardSection>
-                        <Thumbnail image={entry.image} />
-                        <Text>{entry.author}</Text>
-                        <Text>Created By</Text>
-                    </CardSection>
+                    <TouchableOpacity onPress={() => Actions.entry({entryId: entry.id, type: ActionConst.PUSH})}>
+                        <CardSection>
+                            <Thumbnail image={entry.image} />
+                            <Text>{entry.author}</Text>
+                            <Text>Created By</Text>
+                        </CardSection>
+                    </TouchableOpacity>
                     <CardSection>
                         <Text>{entry.message}</Text>
                     </CardSection>

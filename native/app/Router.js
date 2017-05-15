@@ -11,6 +11,7 @@ import FavoritesPage  from './pages/FavoritesPage'
 import ProfilePage  from './pages/ProfilePage'
 import FollowersPage  from './pages/FollowersPage'
 import DetailPage  from './pages/DetailPage'
+import DetailEntryPage  from './pages/DetailEntryPage'
 
 // Components
 import Menu from './components/Menu'
@@ -53,6 +54,7 @@ const RouterComponent = () => (
         <Scene key="menu" component={Menu} title="Menu"/>
         <Scene key="chatList" component={ChatList} title="Chat List"/>
         <Scene key="detail" component={DetailPage} title="Details"/>
+        <Scene key="entry" component={DetailEntryPage} title="Post Details"/>
 
         <Scene key="testimonials"
             component={MainPage}

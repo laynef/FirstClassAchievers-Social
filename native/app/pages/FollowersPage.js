@@ -16,8 +16,8 @@ class FollowersPage extends Component {
                 {friends.map((e, i) => {
                     let url = e.image.replace(/http/ig, 'https')
                     return (
-                        <TouchableOpacity onPress={() => Actions.detail({userId: e.user_id, type: ActionConst.PUSH})}>
-                            <CardSection key={i}>
+                        <TouchableOpacity key={i} onPress={() => Actions.detail({userId: e.user_id, type: ActionConst.PUSH})}>
+                            <CardSection>
                                 <Image style={{width: 350, height: 350}} source={{uri: url}} />
                             </CardSection>
                         </TouchableOpacity>

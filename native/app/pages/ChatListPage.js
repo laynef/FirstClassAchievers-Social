@@ -24,12 +24,12 @@ class ChatListPage extends Component {
             }
         })
         return array.concat.map((e, i) => (
-            <Card>
+            <Card  key={i}>
                 <CardSection>
                     <Text>{e[0].firstName[0]}</Text>
                 </CardSection>
                 {e.map((ele, idx) => (
-                    <CardSection>
+                    <CardSection  key={`${i} ${idx}`}>
                         <Thumbnail image={ele.image} />
                         <Text>{`${ele.firstName} ${ele.lastName}`}</Text>
                     </CardSection>
