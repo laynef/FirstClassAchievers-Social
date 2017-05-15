@@ -13,7 +13,14 @@ import pull from 'lodash/pull'
 
 class DetailPage extends Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
+    }
+  }
+
+  componentDidMount() {
       const { dispatch, user, userId } = this.props 
       dispatch(getProfile(userId))
       dispatch(getTestimonials())
@@ -75,7 +82,8 @@ class DetailPage extends Component {
                 <Text>Last Name</Text>
                 <Text>{profile.lastName}</Text>
             </CardSection>
-            {following.followers.includes(profile.user_id) ? (
+            {user.id != profile.user_id ? (
+              following.followers.includes(profile.user_id) ? (
                 <CardSection>
                     <Button onPress={() => this.submit()}>Unfollow</Button>
                 </CardSection>
@@ -83,13 +91,13 @@ class DetailPage extends Component {
                 <CardSection>
                     <Button onPress={() => this.submit()}>Follow</Button>
                 </CardSection>
-            )}
+            )) : null}
         </Card>
         {testimonial
               .filter(e => e.user_id == profile.user_id)
               .map((entry , i) => (
                   <Card key={i}>
-                    <TouchableOpacity onPress={() => Actions.detail({entryId: entry.id, type: ActionConst.PUSH})}>
+                    <TouchableOpacity onPress={() => Actions.entry({entryId: entry.id, type: ActionConst.PUSH})}>
                         <CardSection>
                             <Thumbnail image={entry.image} />
                             <Text>{entry.author}</Text>
@@ -118,6 +126,9 @@ class DetailPage extends Component {
                               )}
                         </CardSection>
                     </TouchableOpacity>
+                    <CardSection>
+                        <Text>{entry.message}</Text>
+                    </CardSection>
                     <CardSection>
                         <Input 
                           placeholder={`Leave a comment...`}
@@ -160,7 +171,7 @@ class DetailPage extends Component {
                                 )}
                             </CardSection>
                               <CardSection>
-                                  <Text>{entry.message}</Text>
+                                  <Text>{e.message}</Text>
                               </CardSection>
                           </Card>
                           ))}

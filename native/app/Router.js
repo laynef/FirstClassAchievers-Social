@@ -63,7 +63,7 @@ const RouterComponent = () => (
         <Scene key="chat" component={ChatPage} title="Chat"/>
 
         <Scene key="testimonials"
-            component={MainPage}
+            component={TestimonialsPage}
             title="Posts"
             renderLeftButton={() => (
                 <Text onPress={() => Actions.menu({type: ActionConst.PUSH})}>

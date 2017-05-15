@@ -11,6 +11,13 @@ import pull from 'lodash/pull'
 
 class FavoritesPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
+    }
+  }
+
   componentDidMount() {
       const { dispatch } = this.props 
       dispatch(getTestimonials())
@@ -78,6 +85,9 @@ class FavoritesPage extends Component {
                         </CardSection>
                     </TouchableOpacity>
                     <CardSection>
+                      <Text>{entry.message}</Text>
+                    </CardSection>
+                    <CardSection>
                         <Input 
                           placeholder={`Leave a comment...`}
                           autoCorrect={true}
@@ -119,7 +129,7 @@ class FavoritesPage extends Component {
                                 )}
                             </CardSection>
                               <CardSection>
-                                  <Text>{entry.message}</Text>
+                                  <Text>{e.message}</Text>
                               </CardSection>
                           </Card>
                           ))}

@@ -54,7 +54,7 @@ class TestimonialsPage extends Component {
             {testimonial
               .map((entry , i) => (
                   <Card key={i}>
-                    <TouchableOpacity onPress={() => Actions.detail({userId: user.id, type: ActionConst.PUSH})}>
+                    <TouchableOpacity onPress={() => Actions.detail({userId: entry.user_id, type: ActionConst.PUSH})}>
                         <CardSection>
                             <Thumbnail image={entry.image} />
                             <Text>{entry.author}</Text>
