@@ -11,6 +11,13 @@ import pull from 'lodash/pull'
 
 class DetailEntryPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
+    }
+  }
+
   submitTestimonialLikes(id, likes) {
     const { dispatch } = this.props
     likes = likes.includes(id) ? pull(id) : likes.push(id)

@@ -13,6 +13,13 @@ import pull from 'lodash/pull'
 
 class DetailPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
+    }
+  }
+
   componentWillMount() {
       const { dispatch, user, userId } = this.props 
       dispatch(getProfile(userId))

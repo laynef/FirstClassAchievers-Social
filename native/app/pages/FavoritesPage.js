@@ -11,6 +11,13 @@ import pull from 'lodash/pull'
 
 class FavoritesPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
+    }
+  }
+
   componentDidMount() {
       const { dispatch } = this.props 
       dispatch(getTestimonials())
