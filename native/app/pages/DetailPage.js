@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getTestimonials } from '../redux/actions/testimonial'
 import { getProfile } from '../redux/actions/profile'
-import { getFollowers } from '../redux/actions/following'
+import { getFollowers, setFollowers } from '../redux/actions/following'
 import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
 import { Actions, ActionConst } from 'react-native-router-flux'
+import pull from 'lodash/pull'
 
 
 class DetailPage extends Component {
@@ -15,6 +16,19 @@ class DetailPage extends Component {
       dispatch(getProfile(userId))
       dispatch(getTestimonials())
       if (user) dispatch(getFollowers(user.id))
+  }
+
+  submit() {
+        const { dispatch, following, user, profile } = this.props
+        let body = {};
+        let array = following.followers.slice()
+        if (array.includes(profile.user_id)) {
+            pull(array, profile.user_id)
+        } else {
+            array.push(profile.user_id)
+        }
+        body.followers = array
+        dispatch(setFollowers(body, user.id, profile.user_id))
   }
 
   render() {
@@ -38,11 +52,11 @@ class DetailPage extends Component {
             </CardSection>
             {following.followers.includes(profile.user_id) ? (
                 <CardSection>
-                    <Button>Unfollow</Button>
+                    <Button onPress={() => this.submit()}>Unfollow</Button>
                 </CardSection>
             ) : (
                 <CardSection>
-                    <Button>Follow</Button>
+                    <Button onPress={() => this.submit()}>Follow</Button>
                 </CardSection>
             )}
         </Card>
