@@ -8,7 +8,7 @@ import { Actions, ActionConst } from 'react-native-router-flux'
 
 class TestimonialsPage extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
       const { dispatch } = this.props 
       dispatch(getTestimonials())
   }

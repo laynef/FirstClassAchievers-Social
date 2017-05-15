@@ -47,15 +47,15 @@ class ProfilePage extends Component {
             </CardSection>
             <CardSection>
                 <Button onPress={() => dispatch(setProfile({
-                        firstName : firstName || profile.firstName,
-                        lastName : lastName || profile.lastName,
-                        nickname : nickname || profile.nickname,
-                        city : city || profile.city,
-                        state : state || profile.state,
-                        country : country || profile.country,
-                        zipCode : zipCode || profile.zipCode,
-                        position : position || profile.position,
-                        goals : goals || profile.goals
+                        firstName : this.state.firstName || profile.firstName,
+                        lastName : this.state.lastName || profile.lastName,
+                        nickname : this.state.nickname || profile.nickname,
+                        city : profile.city,
+                        state : profile.state,
+                        country : profile.country,
+                        zipCode : profile.zipCode,
+                        position : profile.position,
+                        goals : profile.goals
                 }, profile.user_id))}>Submit</Button>
             </CardSection>
             <CardSection>
