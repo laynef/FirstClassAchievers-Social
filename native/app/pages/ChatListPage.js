@@ -41,7 +41,7 @@ class ChatListPage extends Component {
     }
 
   render() {
-    const { friends } = this.props
+    const { friends, user } = this.props
     return (
       <ScrollView>
         {this.renderContactList()}
