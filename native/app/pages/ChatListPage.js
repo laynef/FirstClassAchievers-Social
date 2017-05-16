@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { getTestimonials } from '../redux/actions/testimonial'
 import { getProfile } from '../redux/actions/profile'
 import { getFollowers } from '../redux/actions/following'
-import { ScrollView, Text, Image } from 'react-native'
+import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
-
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 class ChatListPage extends Component {
 
     renderContactList() {
-        const { friends } = this.props
+        const { friends, user } = this.props
         let sorted = friends.sort((a, b) => a.firstName - b.firstName)
         let alphabet = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [], i: [], j: [], k: [], l: [], m: [], n: [], o: [], p: [], q: [], r: [], s: [], t: [], u: [], v: [], w: [], x: [], y: [], z: [] }
         sorted.forEach(e => {
@@ -29,10 +29,12 @@ class ChatListPage extends Component {
                     <Text>{e[0].firstName[0]}</Text>
                 </CardSection>
                 {e.map((ele, idx) => (
-                    <CardSection  key={`${i} ${idx}`}>
-                        <Thumbnail image={ele.image} />
-                        <Text>{`${ele.firstName} ${ele.lastName}`}</Text>
-                    </CardSection>
+                    <TouchableOpacity onPress={() => Actions.chat({type: ActionConst.PUSH, otherId: ele.user_id, userId: user.id})}>
+                        <CardSection  key={`${i} ${idx}`}>
+                            <Thumbnail image={ele.image} />
+                            <Text>{`${ele.firstName} ${ele.lastName}`}</Text>
+                        </CardSection>
+                    </TouchableOpacity>
                 ))}
             </Card>
         ))
@@ -49,5 +51,6 @@ class ChatListPage extends Component {
 }
 
 export default connect(state => ({
-  friends: state.friends.data
+  friends: state.friends.data,
+  user: state.user.data
 }))(ChatListPage)
