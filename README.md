@@ -2,13 +2,24 @@
 
 This is a Social Web App
 
-## To Install & Run
+## To Install & Run Web
 
 `npm i`<br>
 `npm start` <br>
 
+## To Install & Run Mobile
+
+`cd native`<br>
+`npm i`<br>
+
+For iOS<br>
+`react-native run-ios`<br>
+For Android<br>
+`react-native run-android`<br>
+
 ## Features
 
+### Web & Mobile
 ### Chat
 #### Direct Messaging with web sockets
 #### Alphabet Contact List
