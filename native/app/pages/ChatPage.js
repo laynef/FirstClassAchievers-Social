@@ -5,10 +5,7 @@ import { reduxForm } from 'redux-form'
 import { getMessages, createMessage, inviteFriends } from '../redux/actions/message'
 import { getProfile } from '../redux/actions/profile'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail } from '../commons/index'
-import io from 'socket.io-client'
 
-
-const socket = io('https://first-class-achievers.herokuapp.com')
 
 class ChatPage extends Component {
 
@@ -23,14 +20,6 @@ class ChatPage extends Component {
         const { dispatch, otherId, userId } = this.props
         dispatch(getProfile(Number(otherId)))
         dispatch(getMessages(Number(userId), Number(otherId)))
-        socket.on('connect', () => {
-            let data = {
-                user: userId,
-                room1: `_${userId}-${otherId}_`,
-                room2: `_${otherId}-${userId}_`
-            }
-            socket.emit('enter', data)
-        })
     }
 
     submit() {
@@ -42,12 +31,6 @@ class ChatPage extends Component {
             to: Number(otherId),
             roomNameId: `_${userId}-${otherId}_`
         }))
-        socket.emit('updatechat', Number(userId), {
-            message: this.state.text,
-            user_id: Number(userId),
-            to: Number(otherId),
-            roomNameId: `_${userId}-${otherId}_`
-        })
         this.setState({text: ''})
     }
 

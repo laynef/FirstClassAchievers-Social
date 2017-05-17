@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes'
 export function getComment(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_COMMENT_PENDING})
-		axios.get(`https://first-class-achievers.herokuapp.com/api/comments`)
+		axios.get(`http://localhost:3214/api/comments`)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.GET_COMMENT_SUCCESS,
@@ -24,7 +24,7 @@ export function getComment(id) {
 export function setComment(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_COMMENT_PENDING})
-		axios.post(`https://first-class-achievers.herokuapp.com/api/comments/${id}`, data)
+		axios.post(`http://localhost:3214/api/comments/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.SET_COMMENT_SUCCESS,
@@ -43,7 +43,7 @@ export function setComment(data, id) {
 export function likeComment(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.UPDATE_COMMENT_PENDING})
-		axios.patch(`https://first-class-achievers.herokuapp.com/api/like/comment/${id}`, data)
+		axios.patch(`http://localhost:3214/api/like/comment/${id}`, data)
 			.then((response) => {
 					dispatch({
 						type: actionTypes.UPDATE_COMMENT_SUCCESS,
