@@ -3,11 +3,17 @@ import { connect } from 'react-redux'
 import { getTestimonials } from '../redux/actions/testimonial'
 import { getProfile } from '../redux/actions/profile'
 import { getFollowers } from '../redux/actions/following'
+import { getFriends } from '../redux/actions/friends'
 import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
 import { Actions, ActionConst } from 'react-native-router-flux'
 
 class ChatListPage extends Component {
+
+    componentDidMount() {
+        const { dispatch, user } = this.props
+        dispatch(getFriends(user.id))
+    }
 
     renderContactList() {
         const { friends, user } = this.props

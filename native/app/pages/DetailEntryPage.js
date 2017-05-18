@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getTestimonials, likeTestimonial } from '../redux/actions/testimonial'
 import { getComment, likeComment, setComment } from '../redux/actions/comment'
+import { getFavorites, setFavorites } from '../redux/actions/favorite'
 import { getProfile } from '../redux/actions/profile'
-import { getFollowers, setFavorites } from '../redux/actions/following'
+import { getFollowers } from '../redux/actions/following'
 import { ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { Card, CardSection, Input, Button, Spinner, Thumbnail, ProfilePic } from '../commons/index'
 import pull from 'lodash/pull'
@@ -16,6 +17,14 @@ class DetailEntryPage extends Component {
     this.state = {
       message: ''
     }
+  }
+
+  componentWillMount() {
+      const { dispatch, user } = this.props 
+      dispatch(getTestimonials())
+      dispatch(getFavorites(user.id))
+      dispatch(getFollowers(user.id))
+      dispatch(getComment())
   }
 
   submitTestimonialLikes(id, likes) {
@@ -43,7 +52,7 @@ class DetailEntryPage extends Component {
 
   render() {
     const { testimonial, user, profile, dispatch, comments, following, favorites, entryId } = this.props
-    if (!testimonial || !user || !profile || !following || !favorites) return null
+    if (!testimonial || !user || !comments || !profile || !favorites || !favorites) return null
     return (
       <ScrollView>
         {testimonial
@@ -56,23 +65,23 @@ class DetailEntryPage extends Component {
                             <Text>{entry.author}</Text>
                             <Text>Created By</Text>
                             {entry.likes.includes(entry.id) ? (
-                                <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 50, height: 50}}>
-                                  <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 25, height: 25}} />
-                                  <Text style={{width: 20, height: 20}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
+                                <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 75, height: 75}}>
+                                  <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 50, height: 50}} />
+                                  <Text style={{width: 50, height: 50}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
                                 </TouchableOpacity>
                               ) : (
-                                <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 50, height: 50}}>
-                                  <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 25, height: 25}}  />
-                                  <Text style={{width: 20, height: 20}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
+                                <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 75, height: 75}}>
+                                  <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 50, height: 50}}  />
+                                  <Text style={{width: 50, height: 50}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
                                 </TouchableOpacity>
                               )}
                               {favorites.entries.includes(entry.id) ? (
-                                <TouchableOpacity onPress={() => this.submitFavorites(favorites, user.id)} style={{width: 50, height: 50}}>
-                                  <Image source={{uri: 'http://www.endlessicons.com/wp-content/uploads/2013/06/heart-icon.png'}} style={{width: 25, height: 25}}  />
+                                <TouchableOpacity onPress={() => this.submitFavorites(favorites.entries, user.id)} style={{width: 75, height: 75}}>
+                                  <Image source={{uri: 'http://www.endlessicons.com/wp-content/uploads/5013/06/heart-icon.png'}} style={{width: 50, height: 50}}  />
                                 </TouchableOpacity>
                               ) : (
-                                <TouchableOpacity onPress={() => this.submitFavorites(favorites, user.id)} style={{width: 50, height: 50}}>
-                                  <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/feather/96/heart-512.png'}} style={{width: 25, height: 25}}  />
+                                <TouchableOpacity onPress={() => this.submitFavorites(favorites.entries, user.id)} style={{width: 75, height: 75}}>
+                                  <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/feather/96/heart-512.png'}} style={{width: 50, height: 50}}  />
                                 </TouchableOpacity>
                               )}
                         </CardSection>
@@ -109,13 +118,13 @@ class DetailEntryPage extends Component {
                                 <Text>Created By</Text>
                                 {e.likes.includes(e.id) ? (
                                   <TouchableOpacity onPress={() => this.submitCommentLikes(e.likes, user.id)}>
-                                    <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 25, height: 25}} />
-                                    <Text style={{width: 20, height: 20}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
+                                    <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 50, height: 50}} />
+                                    <Text style={{width: 50, height: 50}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
                                   </TouchableOpacity>
                                 ) : (
                                   <TouchableOpacity onPress={() => this.submitCommentLikes(e.likes, user.id)}>
-                                    <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 25, height: 25}}  />
-                                    <Text style={{width: 20, height: 20}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
+                                    <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 50, height: 50}}  />
+                                    <Text style={{width: 50, height: 50}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
                                   </TouchableOpacity>
                                 )}
                             </CardSection>

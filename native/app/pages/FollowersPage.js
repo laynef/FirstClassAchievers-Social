@@ -3,11 +3,17 @@ import { Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { login } from '../redux/actions/auth'
+import { getFollowers } from '../redux/actions/following'
 import { Card, CardSection, Input, Button, Spinner } from '../commons/index'
 import { Actions, ActionConst } from 'react-native-router-flux'
 
 
 class FollowersPage extends Component {
+
+    componentWillMount() {
+      const { dispatch, user } = this.props 
+      dispatch(getFollowers(user.id))
+    }
 
     render() {
         const { friends } = this.props
@@ -32,5 +38,6 @@ FollowersPage = reduxForm({
 })(FollowersPage)
 
 export default connect(state => ({
-    friends: state.friends.data
+    friends: state.friends.data,
+    user: state.user.data
 }))(FollowersPage)
