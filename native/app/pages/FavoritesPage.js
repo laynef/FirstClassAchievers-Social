@@ -60,28 +60,26 @@ class FavoritesPage extends Component {
                             <Thumbnail image={entry.image} />
                             <Text>{entry.author}</Text>
                             <Text>Created By</Text>
-                            {entry.likes.includes(user.id) ? (
-                                <Button onPress={() => this.submitTestimonialLikes(entry.likes, user.id)}>
-                                  <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
- 
-                                  </Text>
-                                </Button>
-                              ) : (
-                                <Button onPress={() => this.submitTestimonialLikes(entry.likes, user.id)}>
-                                  <Text>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}
-
-                                  </Text>
-                                </Button>
-                              )}
-                              {favorites.entries.includes(user.id) ? (
-                                <Button onPress={() => this.submitFavorites(favorites, user.id)}>
-
-                                </Button>
-                              ) : (
-                                <Button onPress={() => this.submitFavorites(favorites, user.id)}>
-
-                                </Button>
-                              )}
+                              {entry.likes.includes(entry.id) ? (
+                                  <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 50, height: 50}}>
+                                    <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 25, height: 25}} />
+                                    <Text style={{width: 20, height: 20}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
+                                  </TouchableOpacity>
+                                ) : (
+                                  <TouchableOpacity onPress={() => this.submitTestimonialLikes(entry.likes, user.id)} style={{width: 50, height: 50}}>
+                                    <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 25, height: 25}}  />
+                                    <Text style={{width: 20, height: 20}}>{entry.likes.length > 1 ? `${entry.likes.length} Likes   `: entry.likes.length == 1 ? `${entry.likes.length} Like   `: ''}</Text>
+                                  </TouchableOpacity>
+                                )}
+                                {favorites.entries.includes(entry.id) ? (
+                                  <TouchableOpacity onPress={() => this.submitFavorites(favorites, user.id)} style={{width: 50, height: 50}}>
+                                    <Image source={{uri: 'http://www.endlessicons.com/wp-content/uploads/2013/06/heart-icon.png'}} style={{width: 25, height: 25}}  />
+                                  </TouchableOpacity>
+                                ) : (
+                                  <TouchableOpacity onPress={() => this.submitFavorites(favorites, user.id)} style={{width: 50, height: 50}}>
+                                    <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/feather/96/heart-512.png'}} style={{width: 25, height: 25}}  />
+                                  </TouchableOpacity>
+                                )}
                         </CardSection>
                     </TouchableOpacity>
                     <CardSection>
@@ -114,19 +112,17 @@ class FavoritesPage extends Component {
                                 <Thumbnail image={e.image} />
                                 <Text>{e.author}</Text>
                                 <Text>Created By</Text>
-                                {e.likes.includes(user.id) ? (
-                                  <Button onPress={() => this.submitCommentLikes(e.likes, user.id)}>
-                                    <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
-
-                                    </Text>
-                                  </Button>
-                                ) : (
-                                  <Button onPress={() => this.submitCommentLikes(e.likes, user.id)}>
-                                    <Text>{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}
-
-                                    </Text>
-                                  </Button>
-                                )}
+                                  {e.likes.includes(e.id) ? (
+                                    <TouchableOpacity onPress={() => this.submitCommentLikes(e.likes, user.id)}>
+                                      <Image source={{uri: 'http://www.clker.com/cliparts/R/U/Y/u/I/M/thumbs-up-icon-blue-hi.png'}} style={{width: 25, height: 25}} />
+                                      <Text style={{width: 20, height: 20}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
+                                    </TouchableOpacity>
+                                  ) : (
+                                    <TouchableOpacity onPress={() => this.submitCommentLikes(e.likes, user.id)}>
+                                      <Image source={{uri: 'https://cdn0.iconfinder.com/data/icons/elite-emoticons/512/thumbs-up-512.png'}} style={{width: 25, height: 25}}  />
+                                      <Text style={{width: 20, height: 20}} >{e.likes.length > 1 ? `${e.likes.length} Likes   `: e.likes.length == 1 ? `${e.likes.length} Like   `: ''}</Text>
+                                    </TouchableOpacity>
+                                  )}
                             </CardSection>
                               <CardSection>
                                   <Text>{e.message}</Text>
