@@ -24,6 +24,7 @@ For Android<br>
 #### Direct Messaging with web sockets
 #### Alphabet Contact List
 ![alt-tag](./github/chat-list.png)
+![alt-tag](./github/mobile-chat-list.png)
 ![alt-tag](./github/chat.png)
 ### Notifications
 #### Notified when invite to chat, messaged, and followed
@@ -34,21 +35,28 @@ For Android<br>
 ### Unauthenticated View & Authenicated View
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/detailed.png)
+![alt-tag](./github/mobile-detailed.png)
 ### Favorites
 ![alt-tag](./github/favorites.png)
+![alt-tag](./github/mobile-favorites.png)
 ### Followers
 ![alt-tag](./github/following.png)
+![alt-tag](./github/mobile-followers.png)
 ![alt-tag](./github/detailed.png)
+![alt-tag](./github/mobile-detail.png)
 ### NewsFeed
 ![alt-tag](./github/detailed.png)
+![alt-tag](./github/mobile-newsfeed-2.png)
 ### Posts (Testimonials)
 ![alt-tag](./github/posting.png)
 ![alt-tag](./github/posts.png)
+![alt-tag](./github/mobile-posts.png)
 ### Profile
 ![alt-tag](./github/profile.png)
 ### Detail Pages
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/post.png)
+![alt-tag](./github/mobile-post-detail.png)
 ### Comments
 ### Likes
 ### Cloud Stored Images
