@@ -35,7 +35,7 @@ For Android<br>
 ### Unauthenticated View & Authenicated View
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-detailed.png)
+![alt-tag](./github/mobile-detail.png)
 ### Favorites
 ![alt-tag](./github/favorites.png)
 ![alt-tag](./github/mobile-favorites.png)
