@@ -35,7 +35,7 @@ For Android<br>
 ### Unauthenticated View & Authenicated View
 ![alt-tag](./github/unauth.png)
 ![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-detail.png)
+![alt-tag](./github/mobile-detailed.png)
 ### Favorites
 ![alt-tag](./github/favorites.png)
 ![alt-tag](./github/mobile-favorites.png)
@@ -43,7 +43,7 @@ For Android<br>
 ![alt-tag](./github/following.png)
 ![alt-tag](./github/mobile-followers.png)
 ![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-detail.png)
+![alt-tag](./github/mobile-detailed.png)
 ### NewsFeed
 ![alt-tag](./github/detailed.png)
 ![alt-tag](./github/mobile-newsfeed-2.png)
