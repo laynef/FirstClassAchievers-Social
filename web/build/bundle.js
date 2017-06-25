@@ -27519,7 +27519,7 @@ var ContactListAlphabet = function (_Component) {
                         ele.map(function (e, idx) {
                             return _react2.default.createElement(
                                 _reactRouter.Link,
-                                { key: '' + i + idx, to: '/chat/' + user.id + '/' + e.user_id },
+                                { key: i + ' ' + idx, to: '/chat/' + user.id + '/' + e.user_id },
                                 _react2.default.createElement(
                                     'li',
                                     { className: 'chat-user-list clearfix' },
@@ -30587,9 +30587,7 @@ var MainPage = function (_Component) {
     _createClass(MainPage, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _props = this.props,
-                dispatch = _props.dispatch,
-                user = _props.user;
+            var dispatch = this.props.dispatch;
 
             dispatch((0, _testimonial.getTestimonials)());
         }
@@ -30598,11 +30596,11 @@ var MainPage = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var _props2 = this.props,
-                user = _props2.user,
-                testimonial = _props2.testimonial,
-                following = _props2.following,
-                favorites = _props2.favorites;
+            var _props = this.props,
+                user = _props.user,
+                testimonial = _props.testimonial,
+                following = _props.following,
+                favorites = _props.favorites;
 
             return _react2.default.createElement(
                 'div',

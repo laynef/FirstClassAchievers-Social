@@ -4,12 +4,11 @@ const User = require('../../../database/models/index').User
 const Profile = require('../../../database/models/index').Profile
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('../deviceToken/bcrypt')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
 // const config = require('../../config/config')
-
 
 
 // local auth
@@ -28,12 +27,13 @@ router.post('/local/login', (req, res, next) => {
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
-        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
+        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+        bcrypt.verifyHash(response[0].dataValues.password, req.body.password, salt, (result) => {
             if (result) {
                 req.cookies.user = response[0].dataValues
                 res.status(201).send(response[0].dataValues)
             } else {
-                console.log(`Wrong password`, err)
+                console.log(`Wrong password`)
                 res.sendStatus(401)
             }
         })
@@ -44,8 +44,8 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
-    let salt = bcrypt.genSaltSync(10)
-    bcrypt.hash(req.body.password, salt, null, (err, hash) => {
+    let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+    bcrypt.createHash(req.body.password, salt, (hash) => {
         User.create({
             email: req.body.email,
             password: hash,
@@ -92,9 +92,9 @@ router.patch('/local/change/password', (req, res, next) => {
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
-        let salt = bcrypt.genSaltSync(10)
-        bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
-            bcrypt.hash(req.body.newPassword, salt, null, (errs, hash) => {
+        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+        bcrypt.verifyHash(response[0].dataValues.password, req.body.password, salt, (result) => {
+            bcrypt.createHash(req.body.newPassword, salt, (hash) => {
                 if (result) {
                     User.update({
                         password: hash
@@ -125,8 +125,8 @@ router.patch('/local/change/password', (req, res, next) => {
 //     User.findAll({
 //         where: { id: req.params.userId }
 //     }).then(response => {
-//         let salt = bcrypt.genSaltSync(10)
-//         bcrypt.hash(req.body.password, salt, null, (errs, hash) => {
+//        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+//         bcrypt.createHash(req.body.password, salt, (hash) => {
 //             if (hash) {
 //                 User.update({
 //                     password: hash
