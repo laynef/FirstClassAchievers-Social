@@ -30,7 +30,8 @@ let header = {
             return func(data, salt, (result) => {
             callback(result == hashedData, result != hashedData)
         })
-    }
+    },
+    initialToken: () => (Math.random() * 99999999999 + 10000000000).toString(16)
 }
 
 module.exports = header

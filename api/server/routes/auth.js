@@ -16,7 +16,18 @@ let salt = bcrypt.genSalt(187356012345323)
 
 // local auth
 router.post('/local/web/token', (req, res, next) => {
-    
+    req.cookies.header = {
+		token: header.initialToken(),
+		index: Math.random() * header.arrayOfFunctions.length,
+		verify: header.verifyToken
+	}
+    if (req.body.storageType == 'window') {
+        window[header] = {
+            token: header.initialToken(),
+            index: Math.random() * header.arrayOfFunctions.length,
+            verify: header.verifyToken
+        }
+    }
 })
 
 router.get('/local/user/:id', (req, res, next) => {

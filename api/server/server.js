@@ -18,6 +18,7 @@ const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 const User = require('../../database/models/user')
+const header = require('./deviceToken/web')
 
 
 let users = {}
@@ -51,7 +52,7 @@ app.use('/api', routes) // when you add api routes in routes.js
 app.use('/auth', local) // when you add api routes in routes.js
 
 // Render the index.html
-app.get('/', (req, res) => { 
+app.get('/', (req, res) => {
     res.sendFile('index.html') 
 })
 
