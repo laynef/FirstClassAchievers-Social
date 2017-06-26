@@ -3,7 +3,7 @@ const User = require('../../../database/models/index').User
 const axios = require('axios')
 
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `admin@email.com`,
     password: `pass1234`,
     firstName: 'Bionica',
@@ -37,7 +37,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 })
 
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `monica@email.com`,
     password: `pass1234`,
     firstName: 'Monica',
@@ -70,7 +70,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
     
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `jenny@email.com`,
     password: `pass1234`,
     firstName: 'Jenny',
@@ -103,7 +103,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `malia@email.com`,
     password: `pass1234`,
     firstName: 'Malia',
@@ -143,7 +143,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `zoey@email.com`,
     password: `pass1234`,
     firstName: 'Zoey',
@@ -162,7 +162,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `emily@email.com`,
     password: `pass1234`,
     firstName: 'Emily',
@@ -181,7 +181,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `nicole@email.com`,
     password: `pass1234`,
     firstName: 'Nicole',
@@ -200,7 +200,7 @@ axios.post(`http://localhost:3214/auth/local/register`, {
 
 })
 
-axios.post(`http://localhost:3214/auth/local/register`, {
+axios.post(`http://localhost:3215/auth/local/register`, {
     email: `vicki@email.com`,
     password: `pass1234`,
     firstName: 'Vicki',

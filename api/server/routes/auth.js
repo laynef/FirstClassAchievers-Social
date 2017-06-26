@@ -11,6 +11,8 @@ const passport = require('passport')
 // const config = require('../../config/config')
 
 
+let salt = bcrypt.genSalt(187356012345323)
+
 // local auth
 router.get('/local/user/:id', (req, res, next) => {
     User.findAll({ where: {id: req.params.id} })
@@ -27,7 +29,7 @@ router.post('/local/login', (req, res, next) => {
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
-        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+        
         bcrypt.verifyHash(response[0].dataValues.password, req.body.password, salt, (result) => {
             if (result) {
                 req.cookies.user = response[0].dataValues
@@ -44,7 +46,7 @@ router.post('/local/login', (req, res, next) => {
 })
 
 router.post('/local/register', (req, res, next) => {
-    let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+    
     bcrypt.createHash(req.body.password, salt, (hash) => {
         User.create({
             email: req.body.email,
@@ -92,7 +94,7 @@ router.patch('/local/change/password', (req, res, next) => {
     User.findAll({
         where: { email: req.body.email }
     }).then(response => {
-        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+        
         bcrypt.verifyHash(response[0].dataValues.password, req.body.password, salt, (result) => {
             bcrypt.createHash(req.body.newPassword, salt, (hash) => {
                 if (result) {
@@ -125,7 +127,7 @@ router.patch('/local/change/password', (req, res, next) => {
 //     User.findAll({
 //         where: { id: req.params.userId }
 //     }).then(response => {
-//        let salt = bcrypt.genSalt("asldkfjnmwne123rasdasd341233445234ffbslkjfas,mdnbfasdf")
+//        
 //         bcrypt.createHash(req.body.password, salt, (hash) => {
 //             if (hash) {
 //                 User.update({
