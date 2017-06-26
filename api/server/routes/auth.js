@@ -5,6 +5,7 @@ const Profile = require('../../../database/models/index').Profile
 const Following = require('../../../database/models/index').Following
 const Favorite = require('../../../database/models/index').Favorite
 const bcrypt = require('../deviceToken/bcrypt')
+const header = require('../deviceToken/web')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
@@ -14,6 +15,10 @@ const passport = require('passport')
 let salt = bcrypt.genSalt(187356012345323)
 
 // local auth
+router.post('/local/web/token', (req, res, next) => {
+    
+})
+
 router.get('/local/user/:id', (req, res, next) => {
     User.findAll({ where: {id: req.params.id} })
         .then(response => {
