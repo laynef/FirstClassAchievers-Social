@@ -39,7 +39,6 @@ class Header extends Component {
                             <Link to="/">
                               <div className="brand inline">
                                   <img src="//theme/assets/img/logo.png" 
-                                    alt="logo" 
                                     data-src="//theme/assets/img/logo.png" 
                                     data-src-retina="//theme/assets/img/logo_2x.png" 
                                     width="93" 
