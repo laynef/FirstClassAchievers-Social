@@ -14,7 +14,7 @@ class MobileMenu extends Component {
             <div id="MobileMenu">
                 <nav id="sideMenu" className="page-sidebar visible" data-pages="sidebar" style={{zIndex: '100', width: '100vw'}}>
                     <div className="sidebar-header">
-                        <img src="/build/theme/assets/img/logo_white.png" alt="logo" className="brand" data-src="/build/theme/assets/img/logo_white.png" data-src-retina="theme/assets/img/logo_white_2x.png" width="93" height="25"/>
+                        <img src="http://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_white.png" alt="logo" className="brand" data-src="http://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_white.png" data-src-retina="theme/assets/img/logo_white_2x.png" width="93" height="25"/>
                         <div className="sidebar-header-controls">
                         <button data-toggle-pin="sidebar" className="btn btn-link visible-xs-inline visible-sm-inline" type="button">
                             <i className="fa fs-12"></i>
