@@ -1838,8 +1838,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "applyRouterMiddleware", function() { return __WEBPACK_IMPORTED_MODULE_14__applyRouterMiddleware__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__browserHistory__ = __webpack_require__(871);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "browserHistory", function() { return __WEBPACK_IMPORTED_MODULE_15__browserHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__hashHistory__ = __webpack_require__(875);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "hashHistory", function() { return __WEBPACK_IMPORTED_MODULE_16__hashHistory__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__browserHistory__ = __webpack_require__(875);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "browserHistory", function() { return __WEBPACK_IMPORTED_MODULE_16__browserHistory__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__createMemoryHistory__ = __webpack_require__(337);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createMemoryHistory", function() { return __WEBPACK_IMPORTED_MODULE_17__createMemoryHistory__["a"]; });
 /* components */
@@ -27436,7 +27436,7 @@ var store = (0, _redux.createStore)(_combineReducers2.default, (0, _redux.applyM
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
-    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: _Router2.default })
+    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _Router2.default })
 ), document.getElementById('app'));
 
 /***/ }),
@@ -28389,7 +28389,7 @@ var Notifications = function (_Component) {
                                             { key: i, className: 'notification-item ' + (!e.seen ? 'unread' : '') + ' clearfix', onClick: function onClick() {
                                                     dispatch((0, _notifications.setNotifications)(e.id));
                                                     dispatch((0, _notifications.getNotifications)(user.id));
-                                                    e.type === 'INVITE' ? _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'COMMENT' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'LIKE' ? _reactRouter.hashHistory.push('/testimonials/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.hashHistory.push('/profile/' + e.from) : _reactRouter.hashHistory.push('/chat/' + user.id + '/' + e.from);
+                                                    e.type === 'INVITE' ? _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from) : e.type === 'COMMENT' ? _reactRouter.browserHistory.push('/testimonials/' + e.from) : e.type === 'LIKE' ? _reactRouter.browserHistory.push('/testimonials/' + e.from) : e.type === 'FOLLOW' ? _reactRouter.browserHistory.push('/profile/' + e.from) : _reactRouter.browserHistory.push('/chat/' + user.id + '/' + e.from);
                                                 } },
                                             _react2.default.createElement(
                                                 'div',
@@ -30955,7 +30955,7 @@ var ResetPasswordPage = function (_Component) {
 
             if (data.repassword == data.password) {
                 dispatch((0, _auth.changeForgottenPassword)(data, params.userId));
-                _reactRouter.hashHistory.push('/');
+                _reactRouter.browserHistory.push('/');
             }
         }
     }]);
@@ -43171,7 +43171,7 @@ var HashPathCoders = {
   }
 };
 
-var createHashHistory = function createHashHistory() {
+var createbrowserHistory = function createbrowserHistory() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
   !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
@@ -43260,7 +43260,7 @@ var createHashHistory = function createHashHistory() {
   });
 };
 
-exports.default = createHashHistory;
+exports.default = createbrowserHistory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -61188,12 +61188,12 @@ function getRouteParams(route, params) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_lib_createHashHistory__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_lib_createHashHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_history_lib_createHashHistory__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_lib_createbrowserHistory__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_lib_createbrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_history_lib_createbrowserHistory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createRouterHistory__ = __webpack_require__(338);
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__createRouterHistory__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_history_lib_createHashHistory___default.a));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__createRouterHistory__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0_history_lib_createbrowserHistory___default.a));
 
 /***/ }),
 /* 876 */

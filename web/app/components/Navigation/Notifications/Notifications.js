@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { setNotifications, getNotifications } from '../../../redux/actions/notifications'
-import { hashHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 
 
 class Notifications extends Component {
@@ -37,10 +37,10 @@ class Notifications extends Component {
                                         <div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => {
                                             dispatch(setNotifications(e.id)); 
                                             dispatch(getNotifications(user.id));
-                                            ((e.type === 'INVITE') ? hashHistory.push(`/chat/${user.id}/${e.from}`) : 
-                                            (e.type === 'COMMENT') ?  hashHistory.push(`/testimonials/${e.from}`) : 
-                                            (e.type === 'LIKE') ?  hashHistory.push(`/testimonials/${e.from}`) : 
-                                            (e.type === 'FOLLOW') ?  hashHistory.push(`/profile/${e.from}`) : hashHistory.push(`/chat/${user.id}/${e.from}`))
+                                            ((e.type === 'INVITE') ? browserHistory.push(`/chat/${user.id}/${e.from}`) : 
+                                            (e.type === 'COMMENT') ?  browserHistory.push(`/testimonials/${e.from}`) : 
+                                            (e.type === 'LIKE') ?  browserHistory.push(`/testimonials/${e.from}`) : 
+                                            (e.type === 'FOLLOW') ?  browserHistory.push(`/profile/${e.from}`) : browserHistory.push(`/chat/${user.id}/${e.from}`))
                                         }}>
                                             <div className="heading">
                                                     <div className="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">

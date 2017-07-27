@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { hashHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import { changeForgottenPassword, getUserEmail } from '../../redux/actions/auth'
 import { Field, reduxForm, Form } from 'redux-form'
 import { renderInput } from '../../redux/utils/ReduxForms'
@@ -12,7 +12,7 @@ class ResetPasswordPage extends Component {
         const { dispatch, params } = this.props
         if (data.repassword == data.password) {
             dispatch(changeForgottenPassword(data, params.userId))
-            hashHistory.push('/')
+            browserHistory.push('/')
         }
     }
 
