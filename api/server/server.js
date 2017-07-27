@@ -39,6 +39,7 @@ app.set('view engine', 'pug');
 
 app.use(favicon(__dirname + '/../../web/build/favicon.ico'))
 app.use('/build', express.static(__dirname + '/../../web/build'))
+app.use(express.static(__dirname + '/../../web/build'))
 app.use(cors({origin: '*'}))
 app.use(morgan('dev'))
 app.use(parser.urlencoded({ extended: true}))
