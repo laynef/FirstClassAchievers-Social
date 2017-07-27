@@ -38,10 +38,10 @@ class Header extends Component {
                           <div className="header-inner">
                             <Link to="/">
                               <div className="brand inline">
-                                  <img src="https://first-class-achievers.herokuapp.com/build/theme/assets/img/logo.png" 
+                                  <img src="//theme/assets/img/logo.png" 
                                     alt="logo" 
-                                    data-src="https://first-class-achievers.herokuapp.com/build/theme/assets/img/logo.png" 
-                                    data-src-retina="https://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_2x.png" 
+                                    data-src="//theme/assets/img/logo.png" 
+                                    data-src-retina="//theme/assets/img/logo_2x.png" 
                                     width="93" 
                                     height="25"/>
                                 </div>
