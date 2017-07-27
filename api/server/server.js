@@ -18,6 +18,7 @@ const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 const User = require('../../database/models/user')
+const path = require('path')
 
 
 let users = {}
@@ -33,8 +34,11 @@ server.listen(port, () => {
 
 // Middleware
 // Body Parser, Morgan, and Build Compiled folder
+app.set('views', path.join(__dirname + '/../../web/build'));
+app.set('view engine', 'pug');
+
 app.use(favicon(__dirname + '/../../web/build/favicon.ico'))
-app.use(express.static(__dirname + '/../../web/build'))
+app.use('/build', express.static(__dirname + '/../../web/build'))
 app.use(cors({origin: '*'}))
 app.use(morgan('dev'))
 app.use(parser.urlencoded({ extended: true}))
@@ -52,7 +56,7 @@ app.use('/auth', local) // when you add api routes in routes.js
 
 // Render the index.html
 app.get('/', (req, res) => { 
-    res.sendFile('index.html') 
+    res.render('index') 
 })
 
 app.get('*', (req, res) => {
