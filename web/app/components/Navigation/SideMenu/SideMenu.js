@@ -12,7 +12,7 @@ class SideMenu extends Component {
                 <nav id="sideMenu" className="page-sidebar" data-pages="sidebar">
                   <div id="appMenu" className="sidebar-overlay-slide from-top"></div>
                   <div className="sidebar-header">
-                    <img src="http://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_white.png" className="brand" data-src="http://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_white.png" data-src-retina="http://first-class-achievers.herokuapp.com/build/theme/assets/img/logo_white_2x.png" width="93" height="25"/>
+                    <img src="./theme/assets/img/logo_white.png" className="brand" data-src="./theme/assets/img/logo_white.png" data-src-retina="./theme/assets/img/logo_white_2x.png" width="93" height="25"/>
                     <div className="sidebar-header-controls">
                       <button data-toggle-pin="sidebar" className="btn btn-link visible-lg-inline" type="button">
                         <i className="fa fs-12"></i>
