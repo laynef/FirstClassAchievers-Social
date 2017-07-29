@@ -11,6 +11,7 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const cloudinary = require('cloudinary')
+const store = require('../cache/store')
 
 
 cloudinary.config({
@@ -22,14 +23,19 @@ cloudinary.config({
 module.exports = {
     profile: {
         get: (req, res, next) => {
-            Profile.findAll({
-              where: { user_id: req.params.userId }  
-            })
-            .then(response => {
-                res.status(201).json(response[0])
-            }).catch(err => {
-                res.sendStatus(401)
-            })
+            if (store.profile.all[req.params.userId] == undefined) {
+                Profile.findAll({
+                    where: { user_id: req.params.userId }  
+                })
+                .then(response => {
+                    res.status(201).json(response[0])
+                    store.profile.all[req.params.userId] = response[0]
+                }).catch(err => {
+                    res.sendStatus(401)
+                })
+            } else {
+                res.status(200).send(store.profile.all[req.params.userId])
+            }
         },
         patch: (req, res, next) => {
             Profile.update({
@@ -47,21 +53,31 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                Profile.findAll({
-                    where: { user_id: req.params.userId }
-                })
-                .then(resp => {
-                    res.status(202).send(resp[0])
-                })
+                store.profile.all[req.params.userId].dataValues.firstName = req.body.firstName
+                store.profile.all[req.params.userId].dataValues.lastName = req.body.lastName
+                store.profile.all[req.params.userId].dataValues.city = req.body.city
+                store.profile.all[req.params.userId].dataValues.goals = req.body.goals
+                store.profile.all[req.params.userId].dataValues.position = req.body.position
+                store.profile.all[req.params.userId].dataValues.nickname = req.body.nickname
+                store.profile.all[req.params.userId].dataValues.image = req.body.image
+                store.profile.all[req.params.userId].dataValues.zipCode = req.body.zipCode
+                store.profile.all[req.params.userId].dataValues.state = req.body.state
+                store.profile.all[req.params.userId].dataValues.country = req.body.country
+                res.status(202).send(store.profile.all[req.params.userId])
             })
         }
     },
     testify: {
         get: (req, res, next) => {
-            Testimonial.findAll()
-                .then(response => {
-                    res.status(200).send(response)
+            Testimonial.findAll({
+                offset: _.size(store.testimonials.all)
+            })
+            .then(response => {
+                response.forEach(e => {
+                    store.testimonials.all[e.id] = e
                 })
+                res.status(200).send(Object.values(store.testimonials.all))
+            })
         },
         post: (req, res, next) => {
             Testimonial.create({
@@ -72,21 +88,24 @@ module.exports = {
                 likes: []
             })
             .then(response => {
-                Testimonial.findAll()
-                    .then(resp => {
-                        res.status(200).send(resp)
-                    })
+                res.status(200).send(response)
+                store.testimonials.all[response.dataValues.id] = response
             })
         }
     },
     following: {
         get: (req, res, next) => {
-            Following.findAll({
-                where: { user_id: req.params.userId }
-            })
-            .then(response => {
-                res.status(200).send(response[0])
-            })
+            if (store.followings[req.params.userId] == undefined) {
+                Following.findAll({
+                    where: { user_id: req.params.userId }
+                })
+                .then(response => {
+                    res.status(200).send(response[0])
+                    store.followings[req.params.userId] = response[0]
+                })
+            } else {
+                res.status(200).send(store.followings[req.params.userId])
+            }
         },
         patch: (req, res, next) => {
             Following.update({
@@ -95,36 +114,31 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                    Following.findAll({
-                        where: { user_id: req.params.userId }
-                    })
-                    .then(resp => {
-                        if (resp[0].dataValues.followers.indexOf(Number(req.params.otherId)) != -1) {
-                        Profile.findAll({ where: {user_id: req.params.userId} })
-                            .then(respond => {
-                                Notification.create({
-                                    user_id: req.params.otherId,
-                                    message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} started following you`,
-                                    seen: false,
-                                    image: respond[0].dataValues.image,
-                                    type: 'FOLLOW',
-                                    from: respond[0].dataValues.id
-                                })
-                            })
-                        }
-                        res.status(200).send(resp[0])
-                    })
+                store.followings[req.params.userId].dataValues.followers = req.body.followers
+                Notification.create({
+                    user_id: req.params.otherId,
+                    message: `${store.profile.all[req.params.userId].dataValues.firstName} ${store.profile.all[req.params.userId].dataValues.lastName} started following you`,
+                    seen: false,
+                    image: store.profile.all[req.params.userId].dataValues.image,
+                    type: 'FOLLOW',
+                    from: store.profile.all[req.params.userId].dataValues.id
                 })
+            })
         }
     },
     favorites: {
         get: (req, res, next) => {
-            Favorite.findAll({
-                where: { user_id: req.params.userId }
-            })
-            .then(response => {
-                res.status(200).send(response[0])
-            })
+            if (store.favorites[req.params.userId] == undefined) {
+                Favorite.findAll({
+                    where: { user_id: req.params.userId }
+                })
+                .then(response => {
+                    res.status(200).send(response[0])
+                    store.favorites[req.params.userId] = response[0]
+                })
+            } else {
+                res.status(200).send(store.favorites[req.params.userId])
+            }
         },
         patch: (req, res, next) => {
             Favorite.update({
@@ -133,12 +147,8 @@ module.exports = {
                 where: { user_id: req.params.userId }
             })
             .then(response => {
-                Favorite.findAll({
-                    where: { user_id: req.params.userId }
-                })
-                .then(resp => {
-                    res.status(200).send(resp[0])
-                })
+                store.favorites[req.params.userId].dataValues.entries = req.body.entries
+                res.status(200).send(store.favorites[req.params.userId])
             })
         }
     },
@@ -162,6 +172,9 @@ module.exports = {
                     where: { id: req.params.userId }
                 })
                 .then(response => res.sendStatus(202))
+                store.profile.all[req.params.userId].dataValues.image = imgPath
+                store.testimonials.all[req.params.userId].dataValues.image = imgPath
+                store.user.dataValues.image = imgPath
             })
         }
     },
