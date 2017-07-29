@@ -70,7 +70,7 @@ module.exports = {
     testify: {
         get: (req, res, next) => {
             Testimonial.findAll({
-                offset: _.size(store.testimonials.all)
+                offset: _.size(store.testimonials.all) || 0
             })
             .then(response => {
                 response.forEach(e => {
@@ -265,7 +265,7 @@ module.exports = {
             Notification.findAll({
                 where: { 
                     user_id: req.params.userId,
-                    offset: _.size(store.notifications)
+                    offset: _.size(store.notifications) || 0
                 }
             })
             .then(resp => {
@@ -290,7 +290,7 @@ module.exports = {
     comments: {
         all: (req, res, next) => {
             Comment.findAll({
-                offset: _.size(store.comments)
+                offset: _.size(store.comments) || 0
             })
             .then(resp => {
                 let data = {}
@@ -308,7 +308,7 @@ module.exports = {
             Comment.findAll({
                 where: { 
                     post_id: req.params.entryId,
-                    offset: _.size(store.comments[req.params.entryId])
+                    offset: _.size(store.comments[req.params.entryId]) || 0
                 }
             })
             .then(resp => {
