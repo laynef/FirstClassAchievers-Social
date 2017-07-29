@@ -184,18 +184,18 @@ module.exports = {
             Following.findAll({ where: {user_id: req.params.userId} })
                 .then(response => {
                     response[0].dataValues.followers.forEach((e, i, a) => {
-                        if (store.profile.all[req.params.userId] == undefined) {
+                        if (store.profile.all[e] == undefined) {
                         Profile.findAll({ where: {user_id: e} })
                             .then(resp => {
                                 friends.push(resp[0].dataValues)
-                                if (i + 1 == a.length) {
+                                if (i + 1 == response[0].dataValues.followers.length) {
                                     let array = _.uniq(friends)
                                     res.status(200).send(array)
                                 }
                             })
                         } else {
-                            friends.push(store.profile.all[req.params.userId])
-                            if (i + 1 == a.length) {
+                            friends.push(store.profile.all[e].dataValues)
+                            if (i + 1 == response[0].dataValues.followers.length) {
                                 let array = _.uniq(friends)
                                 res.status(200).send(array)
                             }
