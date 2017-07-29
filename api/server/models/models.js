@@ -263,10 +263,16 @@ module.exports = {
     notify: {
         get: (req, res, body) => {
             Notification.findAll({
-                where: { user_id: req.params.userId }
+                where: { 
+                    user_id: req.params.userId,
+                    offset: _.size(store.notifications)
+                }
             })
             .then(resp => {
-                res.status(200).send(resp)
+                resp.forEach(e => {
+                    store.notifications[e.id] = e
+                })
+                res.status(200).send(Object.values(store.notifications))
             })
         },
         patch: (req, res, body) => {
@@ -276,7 +282,8 @@ module.exports = {
                 where: { id: req.body.note_id }
             })
             .then(response => {
-                
+                store.notifications[req.body.note_id].dataValues.seen = true
+                res.status(202).send(Object.values(store.notifications))
             })
         }
     },
