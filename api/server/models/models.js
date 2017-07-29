@@ -247,18 +247,16 @@ module.exports = {
                     }, {
                         where: { user_id: req.params.userId }
                     })
+                    store.followings[req.params.user_id].dataValues.followers = array
                 }
-                Profile.findAll({ where: {user_id: req.params.userId} })
-                    .then(respond => {
-                        Notification.create({
-                            user_id: req.body.friend,
-                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} invited you to chat`,
-                            seen: false,
-                            image: respond[0].dataValues.image,
-                            type: 'INVITE',
-                            from: respond[0].dataValues.id
-                        })
-                    })
+                Notification.create({
+                    user_id: req.body.friend,
+                    message: `${store.profile.all[req.params.user_id].dataValues.firstName} ${store.profile.all[req.params.user_id].dataValues.lastName} invited you to chat`,
+                    seen: false,
+                    image: store.profile.all[req.params.user_id].dataValues.image,
+                    type: 'INVITE',
+                    from: store.profile.all[req.params.user_id].dataValues.id
+                })
             })
         }
     },
@@ -276,6 +274,9 @@ module.exports = {
                 seen: true
             }, {
                 where: { id: req.body.note_id }
+            })
+            .then(response => {
+                
             })
         }
     },
