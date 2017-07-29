@@ -183,45 +183,35 @@ module.exports = {
             let friends = []
             Following.findAll({ where: {user_id: req.params.userId} })
                 .then(response => {
-                    response[0].dataValues.followers.forEach(e => {
+                    response[0].dataValues.followers.forEach((e, i, a) => {
+                        if (store.profile.all[req.params.userId] == undefined) {
                         Profile.findAll({ where: {user_id: e} })
                             .then(resp => {
                                 friends.push(resp[0].dataValues)
+                                if (i + 1 == a.length) {
+                                    let array = _.uniq(friends)
+                                    res.status(200).send(array)
+                                }
                             })
+                        } else {
+                            friends.push(store.profile.all[req.params.userId])
+                            if (i + 1 == a.length) {
+                                let array = _.uniq(friends)
+                                res.status(200).send(array)
+                            }
+                        }
                     })
                 })
-            let promise = new Promise((resolve) => {
-                setTimeout(() => resolve(), 500)
-            })
-            promise.then(success => { 
-                let array = _.uniq(friends)
-                res.status(200).send(array)
-            })
         }
     },
     messages: {
         get: (req, res, next) => {
-            let array1 = []
-            let array2 = []
             Message.findAll({
-                where: { room_name: `_${req.params.userId}-${req.params.otherId}_` }
+                where: { room_name: [`_${req.params.userId}-${req.params.otherId}_`, `_${req.params.otherId}-${req.params.userId}_`] }
             })
-            .then(resp => {
-                array1 = resp.map(e => e.dataValues)
-                Message.findAll({
-                    where: { room_name: `_${req.params.otherId}-${req.params.userId}_` }
-                })
-                .then(response => {
-                    array2 = response.map(e => e.dataValues)
-                })
-                let promise = new Promise((resolve) => {
-                    setTimeout(() => resolve(), 500)
-                })
-                promise.then(success => { 
-                    let array = _.uniq(array1.concat(array2))
-                        .sort((a, b) => a.id - b.id)
-                    res.status(200).send(array)
-                })
+            .then(response => {
+                response.sort((a, b) => a.id - b.id)
+                res.status(200).send(response)
             })
         },
         post: (req, res, next) => {
@@ -230,18 +220,16 @@ module.exports = {
                 user_id: req.body.user_id,
                 room_name: req.body.roomNameId,
                 to: req.body.to
-            }).then(resp => {
-                Profile.findAll({ where: {user_id: req.body.user_id} })
-                    .then(respond => {
-                        Notification.create({
-                            user_id: req.body.to,
-                            message: `${respond[0].dataValues.firstName} ${respond[0].dataValues.lastName} sent you a message`,
-                            seen: false,
-                            image: respond[0].dataValues.image,
-                            type: 'MESSAGE',
-                            from: respond[0].dataValues.id
-                        })
-                    })
+            })
+            .then(resp => {
+                Notification.create({
+                    user_id: req.body.to,
+                    message: `${store.profile.all[req.body.user_id].dataValues.firstName} ${store.profile.all[req.body.user_id].dataValues.lastName} sent you a message`,
+                    seen: false,
+                    image: store.profile.all[req.body.user_id].dataValues.image,
+                    type: 'MESSAGE',
+                    from: req.body.user_id
+                })
             })
         }
     },
