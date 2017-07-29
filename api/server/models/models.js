@@ -289,24 +289,33 @@ module.exports = {
     },
     comments: {
         all: (req, res, next) => {
-            Comment.findAll({})
-                .then(resp => {
-                    let data = {}
-                    resp.forEach(e => {
-                        data[e.dataValues.post_id] = []
-                    })
-                    resp.forEach(e => {
-                        data[e.dataValues.post_id].push(e)
-                    })
-                    res.status(200).send(data)
+            Comment.findAll({
+                offset: _.size(store.comments)
+            })
+            .then(resp => {
+                let data = {}
+                resp.forEach(e => {
+                    store.comments[e.dataValues.post_id] = store.comments[e.dataValues.post_id] ? store.comments[e.dataValues.post_id] : {}
+                    store.comments[e.dataValues.post_id][e.dataValues.id] = e
                 })
+                _.each(store.comments, (e, i) => {
+                    data[i] = Object.values(e)
+                })
+                res.status(200).send(data)
+            })
         },
         get: (req, res, next) => {
             Comment.findAll({
-                where: {post_id: req.params.entryId}
+                where: { 
+                    post_id: req.params.entryId,
+                    offset: _.size(store.comments[req.params.entryId])
+                }
             })
             .then(resp => {
-                res.status(200).send(resp)
+                resp.forEach(e => {
+                    store.comments[req.params.entryId][e.dataValues.id] = e
+                })
+                res.status(200).send(Object.values(store.comments[req.params.entryId]))
             })
         },
         post: (req, res, next) => {
@@ -328,8 +337,14 @@ module.exports = {
                         type: 'COMMENT',
                         from: req.params.entryId
                     })
+                    .then(response => {
+                        store.notifications[response.dataValues.id] = response
+                        store.comments[req.params.entryId][resp.dataValues.id] = resp
+                        res.status(200).send(store.comments[req.params.entryId][resp.dataValues.id])
+                    })
                 }
-                res.status(200).send(resp)
+                store.comments[req.params.entryId][resp.dataValues.id] = resp
+                res.status(200).send(store.comments[req.params.entryId][resp.dataValues.id])
             })
         }
     },
