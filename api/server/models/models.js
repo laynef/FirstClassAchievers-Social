@@ -265,8 +265,8 @@ module.exports = {
             Notification.findAll({
                 where: { 
                     user_id: req.params.userId,
-                    offset: _.size(store.notifications) || 0
-                }
+                },
+                offset: _.size(store.notifications) || 0
             })
             .then(resp => {
                 resp.forEach(e => {
@@ -283,7 +283,7 @@ module.exports = {
             })
             .then(response => {
                 store.notifications[req.body.note_id].dataValues.seen = true
-                res.status(202).send(Object.values(store.notifications))
+                res.status(202).send(Object.values(store.notifications[req.body.note_id]))
             })
         }
     },
@@ -308,8 +308,8 @@ module.exports = {
             Comment.findAll({
                 where: { 
                     post_id: req.params.entryId,
-                    offset: _.size(store.comments[req.params.entryId]) || 0
-                }
+                },
+                offset: _.size(store.comments[req.params.entryId]) || 0
             })
             .then(resp => {
                 resp.forEach(e => {
