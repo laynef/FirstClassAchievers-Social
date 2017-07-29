@@ -74,7 +74,7 @@ module.exports = {
             })
             .then(response => {
                 response.forEach(e => {
-                    store.testimonials.all[e.id] = e
+                    store.testimonials.all[e.dataValues.id] = e
                 })
                 res.status(200).send(Object.values(store.testimonials.all))
             })
@@ -270,7 +270,7 @@ module.exports = {
             })
             .then(resp => {
                 resp.forEach(e => {
-                    store.notifications[e.id] = e
+                    store.notifications[e.dataValues.id] = e
                 })
                 res.status(200).send(Object.values(store.notifications))
             })
