@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs')
 const nodemailer = require('nodemailer')
 const bunyan = require('bunyan')
 const passport = require('passport')
+const store = require('../cache/store')
 // const config = require('../../config/config')
 
 
@@ -30,8 +31,9 @@ router.post('/local/login', (req, res, next) => {
     }).then(response => {
         bcrypt.compare(req.body.password, response[0].dataValues.password, (err, result) => {
             if (result) {
-                req.cookies.user = response[0].dataValues
-                res.status(201).send(response[0].dataValues)
+                delete response[0].dataValues.password
+                store.user = response[0]
+                res.status(201).send(response[0])
             } else {
                 console.log(`Wrong password`, err)
                 res.sendStatus(401)
@@ -84,7 +86,7 @@ router.post('/local/register', (req, res, next) => {
 })
 
 router.get('/local/logout', (req, res, next) => {
-    req.cookies.user = null
+    store.user = null
     res.sendStatus(200)
 })
 

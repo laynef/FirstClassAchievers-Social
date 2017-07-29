@@ -366,36 +366,43 @@ module.exports = {
                     }, {
                         where: {id: req.params.entryId}
                     })
-                    if (req.body.user_id != req.body.to) {
-                        Notification.create({
-                            user_id: req.body.to,
-                            message: `${req.body.author} like your comment`,
-                            seen: false,
-                            image: req.body.image,
-                            type: 'LIKE',
-                            from: req.params.entryId
-                        })
-                    }
+                    .then(respond => {
+                        if (req.body.user_id != req.body.to) {
+                            Notification.create({
+                                user_id: req.body.to,
+                                message: `${req.body.author} like your comment`,
+                                seen: false,
+                                image: req.body.image,
+                                type: 'LIKE',
+                                from: req.params.entryId
+                            })
+                            .then(response => {
+                                store.notifications[response.dataValues.id] = response
+                                store.comments[resp.dataValues.post_id][req.params.entryId] = response
+                                res.status(202).send(store.comments[resp.dataValues.post_id][req.params.entryId])
+                            })
+                        } else {
+                            store.comments[resp.dataValues.post_id][req.params.entryId] = response
+                            res.status(202).send(store.comments[resp.dataValues.post_id][req.params.entryId])
+                        }
+                    })
                 })
             }
         },
         testify: {
             patch: (req, res, next) => {
-                 Testimonial.findAll({
-                    where: {id: req.params.entryId}  
+                let likes = store.testimonials.all[req.params.entryId].dataValues.likes.slice()
+                if (likes.includes(req.body.user_id)) {
+                    _.pull(likes, req.body.user_id)
+                } else {
+                    likes.push(req.body.user_id)
+                }
+                Testimonial.update({
+                    likes: likes
+                }, {
+                    where: {id: req.params.entryId}
                 })
                 .then(resp => {
-                    let likes = resp[0].dataValues.likes.slice()
-                    if (likes.includes(req.body.user_id)) {
-                        _.pull(likes, req.body.user_id)
-                    } else {
-                        likes.push(req.body.user_id)
-                    }
-                    Testimonial.update({
-                        likes: likes
-                    }, {
-                        where: {id: req.params.entryId}
-                    })
                     if (req.body.user_id != req.body.to) {
                         Notification.create({
                             user_id: req.body.to,
@@ -405,6 +412,14 @@ module.exports = {
                             type: 'LIKE',
                             from: req.params.entryId
                         })
+                        .then(response => {
+                            store.notifications[response.dataValues.id] = response
+                            store.testimonials.all[req.params.entryId].dataValues.likes = likes
+                            res.status(202).send(store.testimonials.all[req.params.entryId])
+                        })
+                    } else {
+                        store.testimonials.all[req.params.entryId].dataValues.likes = likes
+                        res.status(202).send(store.testimonials.all[req.params.entryId])
                     }
                 })
             }
