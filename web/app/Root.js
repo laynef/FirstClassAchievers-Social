@@ -12,13 +12,12 @@ import reducers from './redux/store/combineReducers'
 import routes from './Router'
 
 
-const logger = createLogger()
+// const logger = createLogger()
 const store = createStore(
     reducers,
     applyMiddleware(
         reduxThunk, 
-        ReduxPromise,
-        logger
+        ReduxPromise
     )
 )
 
