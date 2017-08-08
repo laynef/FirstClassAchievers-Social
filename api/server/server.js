@@ -19,6 +19,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 const TwitterStrategy = require('passport-twitter').Strategy
 const User = require('../../database/models/user')
 const path = require('path')
+const compression = require('compression')
 
 
 let users = {}
@@ -31,6 +32,8 @@ let port = process.env.PORT || 3214
 server.listen(port, () => {
     console.log(`Listen to http://localhost:${port}`)
 })
+
+const shouldCompress = (req, res) => req.headers['x-no-compression'] ? false : compression.filter(req, res)
 
 // Middleware
 // Body Parser, Morgan, and Build Compiled folder
@@ -51,6 +54,7 @@ app.use(session({
 }))
 app.use(cookieParser())
 app.use(flash())
+app.use(compression({filter: shouldCompress}))
 
 app.use('/api', routes) // when you add api routes in routes.js
 app.use('/auth', local) // when you add api routes in routes.js

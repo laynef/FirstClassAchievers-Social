@@ -17,6 +17,7 @@
     "bunyan": "^1.8.5",
     "chai": "^3.5.0",
     "cloudinary": "^1.8.0",
+    "compression": "^1.7.0",
     "concurrently": "^3.3.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
