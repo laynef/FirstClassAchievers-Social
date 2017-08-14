@@ -100,8 +100,8 @@ module.exports = {
                     where: { user_id: req.params.userId }
                 })
                 .then(response => {
-                    res.status(200).send(response[0])
                     store.followings[req.params.userId] = response[0]
+                    res.status(200).send(response[0])
                 })
             } else {
                 res.status(200).send(store.followings[req.params.userId])
@@ -123,6 +123,7 @@ module.exports = {
                     type: 'FOLLOW',
                     from: store.profile.all[req.params.userId].dataValues.id
                 })
+                res.status(202).send(store.followings[req.params.userId])
             })
         }
     },

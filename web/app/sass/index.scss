@@ -11,3 +11,10 @@
 @import './components/header';
 @import './components/friendsPage';
 @import './components/resetPasswordPage';
+@import './components/loadingPage';
+
+.wholeApp {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

@@ -4,28 +4,28 @@
         float: right;
         transform: scale(2);
         margin: -55px 150px;
-        z-index: 1000;
+        z-index: 1000 !important;
     }
 
     .like {
         float: right;
         transform: scale(2);
         margin: -55px 50px;
-        z-index: 1000;
+        z-index: 1000 !important;
     }
 
     .likes {
         float: right;
         transform: scale(2);
         margin: -40px 50px;
-        z-index: 1000;
+        z-index: 1000 !important;
     }
 
     .no-likes {
         float: right;
         transform: scale(2);
         margin: -55px 90px;
-        z-index: 1000;
+        z-index: 1000 !important;
     }
     
 }

@@ -12,7 +12,7 @@ class MasterPage extends Component {
     render() {
         const { children } = this.props;
         return (
-            <div>
+            <div className="wholeApp">
                 <SideMenu />
                 <Header />
                 { children } 
