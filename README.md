@@ -2,6 +2,10 @@
 
 This is a Social Web App
 
+Admin Login
+Email: `admin@email.com`
+Password: `pass1234`
+
 ## To Install & Run Web
 
 `npm i`<br>
