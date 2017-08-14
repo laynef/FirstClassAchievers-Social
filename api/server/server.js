@@ -20,6 +20,7 @@ const TwitterStrategy = require('passport-twitter').Strategy
 const User = require('../../database/models/user')
 const path = require('path')
 const compression = require('compression')
+const store = require('../server/cache/store')
 
 
 let users = {}
@@ -42,6 +43,7 @@ app.set('view engine', 'pug');
 
 app.use(favicon(__dirname + '/../../web/build/favicon.ico'))
 app.use('/build', express.static(__dirname + '/../../web/build'))
+app.use('/window', express.static(__dirname + '/window'))
 app.use(express.static(__dirname + '/../../web/build'))
 app.use(cors({origin: '*'}))
 app.use(morgan('dev'))
@@ -61,7 +63,7 @@ app.use('/auth', local) // when you add api routes in routes.js
 
 // Render the index.html
 app.get('/', (req, res) => { 
-    res.render('index') 
+    res.render('index', {storage: 'hello'}) 
 })
 
 app.get('*', (req, res) => {
