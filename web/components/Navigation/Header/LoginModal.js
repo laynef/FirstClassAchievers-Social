@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';
 import { renderInput } from '../../../redux/utils/ReduxForms';
 import { login, forgottenPassword } from '../../../redux/actions/auth';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 @connect(() => ({
