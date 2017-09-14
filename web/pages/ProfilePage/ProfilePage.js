@@ -23,8 +23,7 @@ export default class ProfilePage extends Component {
 	}
 
 	render() {
-		const { profile, user } = this.props;
-		if (!profile) return null;
+		const { user } = this.props;
 		return (
 			<div id="ProfilePage" className="col-md-12">
 				<h1>My Profile</h1>

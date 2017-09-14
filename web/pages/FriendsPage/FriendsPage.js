@@ -27,8 +27,7 @@ export default class FriendsPage extends Component {
 	}
 
 	render() {
-		const { friends, user } = this.props;
-		if (!user) return null;
+		const { friends } = this.props;
 		let people = friends || JSON.parse(localStorage.getItem('friends')) || [];
 		return (
 			<div id="FriendsPage" className="container-fluid padding-25 sm-padding-10">

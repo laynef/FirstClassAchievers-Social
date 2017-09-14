@@ -26,7 +26,6 @@ export default class Notifications extends Component {
 
 	render() {
 		const { notifications, dispatch, user } = this.props;
-		if (!notifications) return null;
 		return (
 			<div id="Notifications">
 				<div className={`dropdown ${this.props.open ? 'open': ''}`}>
@@ -35,13 +34,13 @@ export default class Notifications extends Component {
 							<div className="scroll-wrapper notification-body scrollable" style={{position: 'relative'}}>
 								<div className="notification-body scrollable scroll-content" style={{height: 'auto', marginBottom: '0px', marginRight: '0px', maxHeight: '134px'}}>
 
-									<div className={`notification-item ${notifications.length > 0 && !notifications[0].seen ? 'unread' : ''} clearfix`}>
+									<div className={`notification-item ${notifications && notifications.length > 0 && !notifications[0].seen ? 'unread' : ''} clearfix`}>
 										<div className="option" data-toggle="tooltip" data-placement="left" title="" data-original-title="mark as read">
 											{/*	<a className="mark"></a> */}
 										</div>
 									</div>
 
-									{notifications
+									{notifications && notifications
 										.sort((a,b) => b.id - a.id)
 										.map((e, i) => (
 											<div key={i} className={`notification-item ${!e.seen ? 'unread' : ''} clearfix`} onClick={() => {
@@ -70,13 +69,14 @@ export default class Notifications extends Component {
 											</div>
 										))}
 								</div>
-
-								<div className="notification-footer text-center" onClick={() => dispatch(getNotifications(user.id))}>
-									<a href="#" className="">{notifications.length > 0 ? 'Read all notifications' : 'No Notifications'}</a>
-									<a data-toggle="refresh" className="portlet-refresh text-black pull-right" href="#">
-										<i className="pg-refresh_new"></i>
-									</a>
-								</div>
+								{user && (
+									<div className="notification-footer text-center" onClick={() => dispatch(getNotifications(user.id))}>
+										<a href="#" className="">{notifications && notifications.length > 0 ? 'Read all notifications' : 'No Notifications'}</a>
+										<a data-toggle="refresh" className="portlet-refresh text-black pull-right" href="#">
+											<i className="pg-refresh_new"></i>
+										</a>
+									</div>
+								)}
 
 							</div>
 						</div>

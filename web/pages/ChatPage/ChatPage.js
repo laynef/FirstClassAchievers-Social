@@ -77,6 +77,7 @@ export default class ChatPage extends Component {
 
 	renderConversion() {
 		const { user, profile, messages, params, pending } = this.props;
+		if (!profile || profile.user_id !== params.otherId) return null;
 		let socket = io();
 		let array = messages || [];
 		if (pending && user && profile && array.length === 0) {
@@ -167,8 +168,7 @@ export default class ChatPage extends Component {
 	}
 
 	render() {
-		const { handleSubmit, profile, params } = this.props;
-		if (!profile || profile.user_id !== params.otherId) return null;
+		const { handleSubmit } = this.props;
 		return (
 			<div id="ChatPage">
 				{/* Fill me in */}

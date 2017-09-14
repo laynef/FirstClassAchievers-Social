@@ -4,7 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import { renderInput } from '../../../redux/utils/ReduxForms';
 import { register } from '../../../redux/actions/auth';
 import { validate } from '../../../redux/validators/signup';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 @connect(() => ({

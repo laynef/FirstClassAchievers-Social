@@ -32,12 +32,11 @@ export default class FavoritesPage extends Component {
 
 	render() {
 		const { testimonial, favorites, user } = this.props;
-		if (!testimonial || !favorites || !user) return null;
 		return (
 			<div id="FavoritesPage">
 				<h1>Favorites</h1>
 				<div id="testimonial-background" className="col-sm-12">
-					{testimonial
+					{testimonial && user && favorites && testimonial
 						.filter(e => favorites.entries.includes(e.id))
 						.mainSearch(this.state.searchTerm)
 						.map((entry, i) => (

@@ -57,8 +57,6 @@ export default class ContactListAlphabet extends Component {
 	}
 
 	render() {
-		const { friends, user } = this.props;
-		if (!friends || !user) return null;
 		return (
 			<div id="ContactListAlphabet">
 				<div data-init-list-view="ioslist" className="list-view boreded no-top-border">

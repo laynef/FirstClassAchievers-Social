@@ -41,7 +41,6 @@ export default class TestimonialModal extends Component {
 
 	render() {
 		const { handleSubmit, profile } = this.props;
-		if (!profile) return null;
 		return (
 			<div id="TestimonialModalComponent">
 				<div className="modal fade slide-up disable-scroll in" id="testimonial-modal">
@@ -58,16 +57,16 @@ export default class TestimonialModal extends Component {
 									<p className="p-b-10">Help others get jobs</p>
 									<div className="modal-body">
 										<Form onSubmit={handleSubmit(TestimonialModal.formSubmit.bind(this))}>
-											{profile.firstName ? (
+											{profile && profile.firstName ? (
 												<div className="form-group">
 													<label>First Name</label>
-													<span className="form-control">{profile.firstName}</span>
+													<span className="form-control">{profile && profile.firstName}</span>
 												</div>
 											) : <Field component={renderInput} label="First Name" type="text" name="firstName"/>}
-											{profile.lastName ? (
+											{profile && profile.lastName ? (
 												<div className="form-group">
 													<label>Last Name</label>
-													<span className="form-control">{profile.lastName}</span>
+													<span className="form-control">{profile && profile.lastName}</span>
 												</div>
 											) : <Field component={renderInput} label="Last Name" type="text" name="lastName"/>}
 											<Field component={renderTextArea} label="Message" type="text" name="message"/>
