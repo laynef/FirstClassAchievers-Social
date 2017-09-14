@@ -18,7 +18,9 @@ export default class FriendsPage extends Component {
 
 	componentDidMount() {
 		const { dispatch, user } = this.props;
-		dispatch(getFriends(user.id));
+		if (user) {
+			dispatch(getFriends(user.id));
+		}
 	}
 
 	render() {
