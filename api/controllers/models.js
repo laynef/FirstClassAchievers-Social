@@ -368,14 +368,16 @@ module.exports = {
 	comments: {
 		all: (req, res) => {
 			client.get(`comments_length`, (err, reply) => {
+				reply = JSON.parse(reply);
 				Comment.findAll({
 					offset: reply || 0,
 				})
 					.then(resp => {
+						let respond = resp.map(e => e.dataValues);
 						let data = {};
 						let store = {};
-						let replies = {};
-						resp.forEach(e => {
+						let replies = null;
+						respond.forEach(e => {
 							store[e.post_id] = store[e.post_id] ? store[e.post_id] : {};
 							store[e.post_id][e.id] = e;
 						});
@@ -402,7 +404,8 @@ module.exports = {
 					offset: _.size(replies) || 0,
 				})
 					.then(resp => {
-						resp.forEach(e => {
+						let respond = resp.map(e => e.dataValues);
+						respond.forEach(e => {
 							replies[e.id] = e;
 						});
 						res.status(200).send(Object.values(replies));
@@ -433,12 +436,12 @@ module.exports = {
 							.then(response => {
 								client.get(`notifications`, (err, reply) => {
 									let replies = JSON.parse(reply);
-									replies.push(response);
+									replies.push(response.dataValues);
 									client.set(`notifications`, JSON.stringify(replies));
 								});
 								client.get(`comments_${req.params.entryId}`, (err, reply) => {
 									let replies = JSON.parse(reply);
-									entry[resp.id] = resp;
+									entry[resp.dataValues.id] = resp.dataValues;
 									client.set(`comments_${req.params.entryId}`, JSON.stringify(_.extend(entry, replies)));
 								});
 								res.status(200).send(entry);
@@ -446,7 +449,7 @@ module.exports = {
 					} else {
 						client.get(`comments_${req.params.entryId}`, (err, reply) => {
 							let replies = JSON.parse(reply);
-							entry[resp.id] = resp;
+							entry[resp.dataValues.id] = resp.dataValues;
 							client.set(`comments_${req.params.entryId}`, JSON.stringify(_.extend(entry, replies)));
 						});
 						res.status(200).send(entry);
@@ -461,7 +464,7 @@ module.exports = {
 					where: {id: req.params.entryId},
 				})
 					.then(resp => {
-						let likes = resp[0].likes.slice();
+						let likes = resp[0].dataValues.likes.slice();
 						if (likes.includes(req.body.user_id)) {
 							_.pull(likes, req.body.user_id);
 						} else {
@@ -486,20 +489,20 @@ module.exports = {
 										.then(response => {
 											client.get(`notifications`, (err, reply) => {
 												let replies = JSON.parse(reply);
-												replies.push(response);
+												replies.push(response.dataValues);
 												client.set(`notifications`, JSON.stringify(reply));
 											});
-											client.get(`comments_${resp.post_id}`, (err, reply) => {
+											client.get(`comments_${resp.dataValues.post_id}`, (err, reply) => {
 												let replies = JSON.parse(reply);
-												entry[req.params.entryId] = response;
-												client.set(`comments_${resp.post_id}`, JSON.stringify(_.extend(replies, entry)));
+												entry[req.params.entryId] = response.dataValues;
+												client.set(`comments_${resp.dataValues.post_id}`, JSON.stringify(_.extend(replies, entry)));
 											});
 											res.status(202).send(entry);
 										});
 								} else {
 									client.get(`comments_${resp.post_id}`, (err, reply) => {
 										let replies = JSON.parse(reply);
-										entry[req.params.entryId] = respond;
+										entry[req.params.entryId] = respond.dataValues;
 										client.set(`comments_${resp.post_id}`, JSON.stringify(_.extend(replies, entry)));
 									});
 									res.status(202).send(entry);
@@ -538,7 +541,7 @@ module.exports = {
 								.then(response => {
 									client.get(`notifications`, (err, reply) => {
 										let replies = JSON.parse(reply);
-										replies.push(response);
+										replies.push(response.dataValues);
 										client.set(`notifications`, JSON.stringify(replies));
 									});
 									client.get(`testimonials`, (err, reply) => {
