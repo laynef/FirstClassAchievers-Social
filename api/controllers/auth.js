@@ -109,6 +109,8 @@ module.exports = {
 				email: req.body.email,
 				password: hashed,
 				image: req.body.image,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
 				permissions: 'visitor',
 			})
 				.then((response) => {

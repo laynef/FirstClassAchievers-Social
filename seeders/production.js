@@ -1,4 +1,4 @@
-const Testimonial = require('../../models/index').Testimonial;
+const Testimonial = require('../models/index').Testimonial;
 const axios = require('axios');
 
 
