@@ -1,12 +1,5 @@
-.vscode
-
-**/node_modules
-**/**/node_modules
-web/public/theme/pages
-web/public/theme/assets
-
-api/config
-database/config
-tests/config
-
 node_modules
+assets/dist/*
+webpack-assets.json
+.vscode
+dump.rdb

@@ -2,10 +2,6 @@
 
 This is a Social Web App
 
-Admin Login
-Email: `admin@email.com`
-Password: `pass1234`
-
 ## To Install & Run Web
 
 `npm i`<br>
@@ -27,44 +23,44 @@ For Android<br>
 ### Chat
 #### Direct Messaging with web sockets
 #### Alphabet Contact List
-![alt-tag](./github/chat-list.png)
-![alt-tag](./github/mobile-chat-list.png)
-![alt-tag](./github/chat.png)
+![alt-tag](./docs/photos/chat-list.png)
+![alt-tag](./docs/photos/mobile-chat-list.png)
+![alt-tag](./docs/photos/chat.png)
 ### Notifications
 #### Notified when invite to chat, messaged, and followed
 #### Notifications linked to recent activity
-![alt-tag](./github/unread.png)
-![alt-tag](./github/read.png)
+![alt-tag](./docs/photos/unread.png)
+![alt-tag](./docs/photos/read.png)
 ### Authenication
 ### Unauthenticated View & Authenicated View
-![alt-tag](./github/unauth.png)
-![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-detailed.png)
+![alt-tag](./docs/photos/unauth.png)
+![alt-tag](./docs/photos/detailed.png)
+![alt-tag](./docs/photos/mobile-detailed.png)
 ### Favorites
-![alt-tag](./github/favorites.png)
-![alt-tag](./github/mobile-favorites.png)
+![alt-tag](./docs/photos/favorites.png)
+![alt-tag](./docs/photos/mobile-favorites.png)
 ### Followers
-![alt-tag](./github/following.png)
-![alt-tag](./github/mobile-followers.png)
-![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-detailed.png)
+![alt-tag](./docs/photos/following.png)
+![alt-tag](./docs/photos/mobile-followers.png)
+![alt-tag](./docs/photos/detailed.png)
+![alt-tag](./docs/photos/mobile-detailed.png)
 ### NewsFeed
-![alt-tag](./github/detailed.png)
-![alt-tag](./github/mobile-newsfeed-2.png)
+![alt-tag](./docs/photos/detailed.png)
+![alt-tag](./docs/photos/mobile-newsfeed-2.png)
 ### Posts (Testimonials)
-![alt-tag](./github/posting.png)
-![alt-tag](./github/posts.png)
-![alt-tag](./github/mobile-posts.png)
+![alt-tag](./docs/photos/posting.png)
+![alt-tag](./docs/photos/posts.png)
+![alt-tag](./docs/photos/mobile-posts.png)
 ### Profile
-![alt-tag](./github/profile.png)
+![alt-tag](./docs/photos/profile.png)
 ### Detail Pages
-![alt-tag](./github/unauth.png)
-![alt-tag](./github/post.png)
-![alt-tag](./github/mobile-post-detail.png)
+![alt-tag](./docs/photos/unauth.png)
+![alt-tag](./docs/photos/post.png)
+![alt-tag](./docs/photos/mobile-post-detail.png)
 ### Comments
 ### Likes
 ### Cloud Stored Images
-![alt-tag](./github/photo.png)
+![alt-tag](./docs/photos/photo.png)
 ### Cloud Stored Database
 ### Responsive Layout
 
