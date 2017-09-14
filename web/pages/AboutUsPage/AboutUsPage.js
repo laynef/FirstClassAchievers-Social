@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 
-class AboutUsPage extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'AboutUsPage',
+})
+
+export default class AboutUsPage extends Component {
 
 	constructor(props, context) {
 		super(props, context);
@@ -22,9 +29,3 @@ class AboutUsPage extends Component {
 
 }
 
-AboutUsPage = reduxForm({
-	form: 'AboutUsPage',
-})(AboutUsPage);
-
-export default connect(() => ({
-}))(AboutUsPage);

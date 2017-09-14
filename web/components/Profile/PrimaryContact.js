@@ -6,7 +6,17 @@ import { getProfile, setProfile } from '../../redux/actions/profile';
 import ChangePasswordModal from './ChangePasswordModal';
 
 
-class PrimaryContact extends Component {
+@connect(state => ({
+	profile: state.profile.data,
+	user: state.user.data,
+}))
+
+
+@reduxForm({
+	form: 'PrimaryContact',
+})
+
+export default class PrimaryContact extends Component {
 
 	constructor(props) {
 		super(props);
@@ -111,11 +121,3 @@ class PrimaryContact extends Component {
 
 }
 
-PrimaryContact = reduxForm({
-	form: 'PrimaryContact',
-})(PrimaryContact);
-
-export default connect(state => ({
-	profile: state.profile.data,
-	user: state.user.data,
-}))(PrimaryContact);

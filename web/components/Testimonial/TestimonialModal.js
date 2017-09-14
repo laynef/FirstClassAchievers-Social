@@ -8,7 +8,17 @@ import { validate } from '../../redux/validators/testimonial';
 import $ from 'jquery';
 
 
-class TestimonialModal extends Component {
+@connect(state => ({
+	user: state.user.data,
+	profile: state.profile.data,
+}))
+
+@reduxForm({
+	form: 'TestimonialModal',
+	validate,
+})
+
+export default class TestimonialModal extends Component {
 
 	static formSubmit(data) {
 		const { dispatch, reset, profile } = this.props;
@@ -79,12 +89,3 @@ class TestimonialModal extends Component {
 
 }
 
-TestimonialModal = reduxForm({
-	form: 'TestimonialModal',
-	validate,
-})(TestimonialModal);
-
-export default connect(state => ({
-	user: state.user.data,
-	profile: state.profile.data,
-}))(TestimonialModal);

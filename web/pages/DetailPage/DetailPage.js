@@ -9,7 +9,19 @@ import PostEntry from '../../components/Testimonial/PostEntry';
 import pull from 'lodash/pull';
 
 
-class DetailPage extends Component {
+@connect(state => ({
+	user: state.user.data,
+	profile: state.profile.data,
+	testimonial: state.testimonial.data,
+	following: state.following.data,
+	favorites: state.favorites.data,
+}))
+
+@reduxForm({
+	form: 'DetailPage',
+})
+
+export default class DetailPage extends Component {
 
 	componentWillMount() {
 		const { dispatch, params, user } = this.props;
@@ -116,14 +128,3 @@ class DetailPage extends Component {
 
 }
 
-DetailPage = reduxForm({
-	form: 'DetailPage',
-})(DetailPage);
-
-export default connect(state => ({
-	user: state.user.data,
-	profile: state.profile.data,
-	testimonial: state.testimonial.data,
-	following: state.following.data,
-	favorites: state.favorites.data,
-}))(DetailPage);

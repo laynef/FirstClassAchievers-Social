@@ -5,7 +5,15 @@ import { setImage } from '../../redux/actions/profile';
 import Dropzone from 'react-dropzone';
 
 
-class ProfileImageModal extends Component {
+@connect(state => ({
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'ProfileImageModal',
+})
+
+export default class ProfileImageModal extends Component {
 
 	onDrop(file) {
 		const { dispatch, user } = this.props;
@@ -45,10 +53,3 @@ class ProfileImageModal extends Component {
 
 }
 
-ProfileImageModal = reduxForm({
-	form: 'ProfileImageModal',
-})(ProfileImageModal);
-
-export default connect(state => ({
-	user: state.user.data,
-}))(ProfileImageModal);

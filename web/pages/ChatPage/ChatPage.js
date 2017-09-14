@@ -9,7 +9,20 @@ import io from 'socket.io-client';
 
 let socket = io.connect('https://first-class-achievers.herokuapp.com');
 
-class ChatPage extends Component {
+@connect((state) => {
+	const message = state.messages;
+	return {
+		messages: message.data,
+		pending: message.pending,
+		profile: state.profile.data,
+		user: state.user.data,
+	};})
+
+@reduxForm({
+	form: 'ChatPage',
+})
+
+export default class ChatPage extends Component {
 
 	componentDidMount() {
 		const { dispatch, params } = this.props;
@@ -181,15 +194,3 @@ class ChatPage extends Component {
 
 }
 
-ChatPage = reduxForm({
-	form: 'ChatPage',
-})(ChatPage);
-
-export default connect((state) => {
-	const message = state.messages;
-	return {
-		messages: message.data,
-		pending: message.pending,
-		profile: state.profile.data,
-		user: state.user.data,
-	};})(ChatPage);

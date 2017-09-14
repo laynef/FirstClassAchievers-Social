@@ -7,7 +7,17 @@ import io from 'socket.io-client';
 
 let socket = io('https://first-class-achievers.herokuapp.com');
 
-class CommentEntry extends Component {
+@connect(state => ({
+	comments: state.comments.data,
+	user: state.user.data,
+	profile: state.user.profile,
+}))
+
+@reduxForm({
+	form: 'CommentEntry',
+})
+
+export default class CommentEntry extends Component {
 
 	constructor(props) {
 		super(props);
@@ -101,12 +111,3 @@ class CommentEntry extends Component {
 
 }
 
-CommentEntry = reduxForm({
-	form: 'CommentEntry',
-})(CommentEntry);
-
-export default connect(state => ({
-	comments: state.comments.data,
-	user: state.user.data,
-	profile: state.user.profile,
-}))(CommentEntry);

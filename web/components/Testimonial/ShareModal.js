@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 
-class TestimonialModal extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'TestimonialModal',
+})
+
+export default class TestimonialModal extends Component {
 
 	render() {
 		return (
@@ -36,10 +43,3 @@ class TestimonialModal extends Component {
 	}
 
 }
-
-TestimonialModal = reduxForm({
-	form: 'TestimonialModal',
-})(TestimonialModal);
-
-export default connect(() => ({
-}))(TestimonialModal);

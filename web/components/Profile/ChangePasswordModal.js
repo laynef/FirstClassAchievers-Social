@@ -7,7 +7,15 @@ import { validate } from '../../redux/validators/changePassword';
 import $ from 'jquery';
 
 
-class ChangePasswordModal extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'ChangePasswordModal',
+	validate,
+})
+
+export default class ChangePasswordModal extends Component {
 
 	static formSubmit(data) {
 		const { dispatch, reset } = this.props;
@@ -52,10 +60,3 @@ class ChangePasswordModal extends Component {
 
 }
 
-ChangePasswordModal = reduxForm({
-	form: 'ChangePasswordModal',
-	validate,
-})(ChangePasswordModal);
-
-export default connect(() => ({
-}))(ChangePasswordModal);

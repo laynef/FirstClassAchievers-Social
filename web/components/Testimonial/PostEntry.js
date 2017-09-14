@@ -8,7 +8,16 @@ import pull from 'lodash/pull';
 import CommentEntry from './CommentEntry';
 
 
-class PostEntry extends Component {
+@connect(state => ({
+	user: state.user.data,
+	profile: state.user.profile,
+}))
+
+@reduxForm({
+	form: 'PostEntry',
+})
+
+export default class PostEntry extends Component {
 
 	formSubmit() {
 		const { dispatch, favorites, entryId, userId } = this.props;
@@ -77,11 +86,3 @@ class PostEntry extends Component {
 
 }
 
-PostEntry = reduxForm({
-	form: 'PostEntry',
-})(PostEntry);
-
-export default connect(state => ({
-	user: state.user.data,
-	profile: state.user.profile,
-}))(PostEntry);

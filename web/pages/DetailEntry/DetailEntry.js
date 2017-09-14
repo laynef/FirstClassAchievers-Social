@@ -8,7 +8,19 @@ import pull from 'lodash/pull';
 import CommentEntry from '../../components/Testimonial/CommentEntry';
 
 
-class DetailEntry extends Component {
+@connect(state => ({
+	testimonial: state.testimonial.data,
+	user: state.user.data,
+	favorites: state.favorites.data,
+	profile: state.profile.data,
+	userProfile: state.user.profile,
+}))
+
+@reduxForm({
+	form: 'DetailEntry',
+})
+
+export default class DetailEntry extends Component {
 
 	formSubmit() {
 		const { dispatch, favorites, user, params } = this.props;
@@ -89,14 +101,3 @@ class DetailEntry extends Component {
 
 }
 
-DetailEntry = reduxForm({
-	form: 'DetailEntry',
-})(DetailEntry);
-
-export default connect(state => ({
-	testimonial: state.testimonial.data,
-	user: state.user.data,
-	favorites: state.favorites.data,
-	profile: state.profile.data,
-	userProfile: state.user.profile,
-}))(DetailEntry);

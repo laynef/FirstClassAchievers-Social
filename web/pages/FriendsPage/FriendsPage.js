@@ -5,7 +5,16 @@ import { Link } from 'react-router';
 import { getFriends } from '../../redux/actions/friends';
 
 
-class FriendsPage extends Component {
+@connect(state => ({
+	friends: state.friends.data,
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'FriendsPage',
+})
+
+export default class FriendsPage extends Component {
 
 	componentDidMount() {
 		const { dispatch, user } = this.props;
@@ -59,11 +68,4 @@ class FriendsPage extends Component {
 
 }
 
-FriendsPage = reduxForm({
-	form: 'FriendsPage',
-})(FriendsPage);
 
-export default connect(state => ({
-	friends: state.friends.data,
-	user: state.user.data,
-}))(FriendsPage);

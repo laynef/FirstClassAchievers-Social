@@ -6,7 +6,17 @@ import { getFavorites } from '../../redux/actions/favorite';
 import '../../redux/utils/search';
 
 
-class FavoritesPage extends Component {
+@connect(state => ({
+	testimonial: state.testimonial.data,
+	favorites: state.favorites.data,
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'FavoritesPage',
+})
+
+export default class FavoritesPage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -49,12 +59,3 @@ class FavoritesPage extends Component {
 
 }
 
-FavoritesPage = reduxForm({
-	form: 'FavoritesPage',
-})(FavoritesPage);
-
-export default connect(state => ({
-	testimonial: state.testimonial.data,
-	favorites: state.favorites.data,
-	user: state.user.data,
-}))(FavoritesPage);
