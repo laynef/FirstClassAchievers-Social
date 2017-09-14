@@ -63,6 +63,7 @@ module.exports = {
 			User.create({
 				email: req.body.email,
 				password: hashed,
+				image: req.body.image,
 				permissions: 'visitor',
 			})
 				.then((response) => {
@@ -83,6 +84,7 @@ module.exports = {
 			User.create({
 				email: req.body.email,
 				password: hashed,
+				image: req.body.image,
 				permissions: 'visitor',
 			})
 				.then((response) => {
@@ -103,6 +105,7 @@ module.exports = {
 			User.create({
 				email: req.body.email,
 				password: hashed,
+				image: req.body.image,
 				permissions: 'guest',
 			})
 				.then((response) => {
