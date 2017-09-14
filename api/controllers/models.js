@@ -30,7 +30,7 @@ module.exports = {
 					})
 						.then(response => {
 							client.set(`profile_${req.params.userId}`, JSON.stringify(response[0].dataValues));
-							res.status(201).send(response[0].dataValues);
+							res.status(201).send(response[0].dataValues ? response[0].dataValues : []);
 						}).catch(() => {
 							res.sendStatus(401);
 						});
@@ -121,7 +121,7 @@ module.exports = {
 					})
 						.then(response => {
 							client.set(`followings_${req.params.userId}`, JSON.stringify(response[0].dataValues));
-							res.status(200).send(response[0].dataValues);
+							res.status(200).send(response[0].dataValues ? response[0].dataValues : []);
 						});
 				} else {
 					res.status(200).send(replies);
@@ -161,7 +161,7 @@ module.exports = {
 					})
 						.then(response => {
 							client.set(`favorites_${req.params.userId}`, JSON.stringify(response[0].dataValues));
-							res.status(200).send(response[0].dataValues);
+							res.status(200).send(response[0].dataValues ? response[0].dataValues : []);
 						});
 				} else {
 					res.status(200).send(replies);
@@ -264,7 +264,7 @@ module.exports = {
 				where: { room_name: [`_${req.params.userId}-${req.params.otherId}_`, `_${req.params.otherId}-${req.params.userId}_`] },
 			})
 				.then(response => {
-					response.map(e => e.dataValues).sort((a, b) => a.id - b.id);
+					response.map(e => e.dataValues ? e.dataValues : e).sort((a, b) => a.id - b.id);
 					res.status(200).send(response);
 				});
 		},

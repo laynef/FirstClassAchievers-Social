@@ -21,19 +21,13 @@ export default class FriendsPage extends Component {
 		dispatch(getFriends(user.id));
 	}
 
-	componentWillUnmount() {
-		const { friends } = this.props;
-		localStorage.setItem('friends', JSON.stringify(friends));
-	}
-
 	render() {
 		const { friends } = this.props;
-		let people = friends || JSON.parse(localStorage.getItem('friends')) || [];
 		return (
 			<div id="FriendsPage" className="container-fluid padding-25 sm-padding-10">
 				<h1>Following</h1>
 				<div className="row">
-					{people.map((e, i) => (
+					{friends && friends.map((e, i) => (
 						<Link key={i} to={`profile/${e.user_id}`}>
 							<div className="col-md-3 m-b-10">
 								<div className="ar-1-1 widget-1-wrapper">
