@@ -16,8 +16,10 @@ class MainPage extends Component {
 	}
 
 	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(getTestimonials());
+		const { dispatch, user } = this.props;
+		if (user.id) {
+			dispatch(getTestimonials());
+		}
 	}
 
 	render() {
@@ -26,7 +28,7 @@ class MainPage extends Component {
 			<div id="mainPage">
 				<h1>{user ? 'News Feed' : 'Welcome to First Class'}</h1>
 				<div id="mainContainer">
-					{user && user.id && following && following.followers ? (
+					{user && user.id && testimonial && following && following.followers ? (
 						<div className="col-sm-12">
 							<div className="input-group">
 								<input type="text"
