@@ -8,11 +8,11 @@ module.exports = {
 	cloud_api_key: '331877137159224',
 	cloud_api_secret: '0jT5rFal1-8wXUtizKYjwfyQwwc',
 	development: {
-		url: "postgres://whgqixse:lE7VjxRd52FWmdVTbC_E9J1FtE6k0UoO@stampy.db.elephantsql.com:5432/whgqixse",
+		url: "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
 		dialect: "postgres",
 	},
 	test: {
-		url: "postgres://whgqixse:lE7VjxRd52FWmdVTbC_E9J1FtE6k0UoO@stampy.db.elephantsql.com:5432/whgqixse",
+		url: "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
 		dialect: "postgres",
 	},
 	production: {

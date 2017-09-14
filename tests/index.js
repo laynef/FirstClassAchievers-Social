@@ -1,1 +1,1 @@
-require('./api/auth')
+require('./api/auth');

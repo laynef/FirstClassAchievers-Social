@@ -1,4 +1,7 @@
 const User = require('../../models/index').User;
+const Profile = require('../../models/index').Profile;
+const Following = require('../../models/index').Following;
+const Favorite = require('../../models/index').Favorite;
 const bcrypt = require('bcrypt-nodejs');
 let client = require('../caches/redis');
 
@@ -67,6 +70,27 @@ module.exports = {
 				permissions: 'visitor',
 			})
 				.then((response) => {
+					Following.create({
+						followers: [],
+						user_id: response.dataValues.id,
+					});
+					Favorite.create({
+						user_id: response.dataValues.id,
+						entries: [],
+					});
+					Profile.create({
+						firstName: req.body.firstName|| null,
+						lastName: req.body.lastName || null,
+						city: null,
+						goals: null,
+						position: null,
+						nickname: null,
+						image: req.body.image || null,
+						zipCode: null,
+						state: null,
+						country: null,
+						user_id: response.dataValues.id,
+					});
 					let returns = response.dataValues;
 					client.set(`user_${returns.id}`, JSON.stringify(returns));
 					client.set(`session_${req.session.id}`, JSON.stringify(returns));
@@ -88,6 +112,27 @@ module.exports = {
 				permissions: 'visitor',
 			})
 				.then((response) => {
+					Following.create({
+						followers: [],
+						user_id: response.dataValues.id,
+					});
+					Favorite.create({
+						user_id: response.dataValues.id,
+						entries: [],
+					});
+					Profile.create({
+						firstName: req.body.firstName|| null,
+						lastName: req.body.lastName || null,
+						city: null,
+						goals: null,
+						position: null,
+						nickname: null,
+						image: req.body.image || null,
+						zipCode: null,
+						state: null,
+						country: null,
+						user_id: response.dataValues.id,
+					});
 					let returns = response.dataValues;
 					client.set(`user_${returns.id}`, JSON.stringify(returns));
 					client.set(`session_${req.session.id}`, JSON.stringify(returns));
@@ -109,6 +154,27 @@ module.exports = {
 				permissions: 'guest',
 			})
 				.then((response) => {
+					Following.create({
+						followers: [],
+						user_id: response.dataValues.id,
+					});
+					Favorite.create({
+						user_id: response.dataValues.id,
+						entries: [],
+					});
+					Profile.create({
+						firstName: req.body.firstName|| null,
+						lastName: req.body.lastName || null,
+						city: null,
+						goals: null,
+						position: null,
+						nickname: null,
+						image: req.body.image || null,
+						zipCode: null,
+						state: null,
+						country: null,
+						user_id: response.dataValues.id,
+					});
 					let returns = response.dataValues;
 					client.set(`user_${returns.id}`, JSON.stringify(returns));
 					client.set(`session_${req.session.id}`, JSON.stringify(returns));

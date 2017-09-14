@@ -1,5 +1,4 @@
 const Testimonial = require('../../models/index').Testimonial;
-const User = require('../../models/index').User;
 const axios = require('axios');
 
 
@@ -32,7 +31,7 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -60,13 +59,13 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 	});
 	Testimonial.create({
 		author: 'Monica Saint',
-		message: `"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"`,
+		message: `"Sed ut perspiciatis unde omnis iste natus ()or sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"`,
 		image: resp.data.image,
 		likes: [],
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -99,7 +98,7 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -133,13 +132,13 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 	});
 	Testimonial.create({
 		author: 'Malia Ayers',
-		message: `Nam iaculis, ex at fermentum imperdiet, metus libero mollis orci, nec cursus ligula mauris in ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, tellus in iaculis dapibus, mauris tortor maximus orci, at placerat enim orci eu mauris. Praesent tempor nunc vitae turpis facilisis accumsan. Cras rutrum leo sit amet placerat lacinia. Mauris viverra egestas sem, ac fringilla dolor ullamcorper vitae. Sed finibus sem et lorem sollicitudin, quis porttitor justo pellentesque.`,
+		message: `Nam iaculis, ex at fermentum imperdiet, metus libero mollis orci, nec cursus ligula mauris in ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, tellus in iaculis dapibus, mauris tortor maximus orci, at placerat enim orci eu mauris. Praesent tempor nunc vitae turpis facilisis accumsan. Cras rutrum leo sit amet placerat lacinia. Mauris viv()a egestas sem, ac fringilla dolor ullamcorper vitae. Sed finibus sem et lorem sollicitudin, quis porttitor justo pellentesque.`,
 		image: resp.data.image,
 		likes: [],
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -158,7 +157,7 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -177,7 +176,7 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -190,13 +189,13 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 }).then(resp => {
 	Testimonial.create({
 		author: 'Nicole Rock',
-		message: `Donec ut ullamcorper felis, nec scelerisque arcu. Integer venenatis, arcu id fermentum commodo, massa nisl viverra ipsum, sed vestibulum lacus odio sit amet leo. Quisque pellentesque risus augue, dignissim laoreet sem lobortis vitae. Sed euismod id velit a iaculis. Ut eget eleifend ligula. Donec quis porta quam. Ut sit amet placerat ante. Praesent vel lorem fringilla, bibendum nibh eget, pulvinar mauris. Fusce et neque sed libero convallis vestibulum. Vestibulum eu mauris aliquet sem tristique dictum. Nunc hendrerit at arcu eget aliquet. Maecenas non arcu non dolor rhoncus gravida non vel lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus ac sapien sed odio ultrices fringilla a sed metus. Nam malesuada magna dui, eu egestas enim suscipit nec.`,
+		message: `Donec ut ullamcorper felis, nec scelerisque arcu. Integer venenatis, arcu id fermentum commodo, massa nisl viv()a ipsum, sed vestibulum lacus odio sit amet leo. Quisque pellentesque risus augue, dignissim laoreet sem lobortis vitae. Sed euismod id velit a iaculis. Ut eget eleifend ligula. Donec quis porta quam. Ut sit amet placerat ante. Praesent vel lorem fringilla, bibendum nibh eget, pulvinar mauris. Fusce et neque sed libero convallis vestibulum. Vestibulum eu mauris aliquet sem tristique dictum. Nunc hendrerit at arcu eget aliquet. Maecenas non arcu non dolor rhoncus gravida non vel lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus ac sapien sed odio ultrices fringilla a sed metus. Nam malesuada magna dui, eu egestas enim suscipit nec.`,
 		image: resp.data.image,
 		likes: [],
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});
 
@@ -209,12 +208,12 @@ axios.post(`https://first-class-achievers.herokuapp.com/auth/local/register`, {
 }).then(resp => {
 	Testimonial.create({
 		author: 'Vicki Garcia',
-		message: `Nunc eget pulvinar dolor. Pellentesque dignissim felis nec elit sollicitudin tincidunt. Nulla sed ligula id ex convallis porta a at sem. Praesent sagittis tristique convallis. Nam luctus vulputate turpis eleifend cursus. Cras felis ante, lacinia sit amet molestie nec, vulputate ut mauris. Duis malesuada, augue id porta consectetur, neque lorem luctus lectus, eu condimentum urna ligula vel mauris. Mauris placerat elementum finibus. Vestibulum sit amet porta tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam sagittis turpis aliquam enim suscipit, tincidunt venenatis tellus accumsan. Sed feugiat arcu vel felis porttitor, ut faucibus sem posuere. Curabitur urna tortor, vulputate in suscipit viverra, ultricies quis orci.`,
+		message: `Nunc eget pulvinar dolor. Pellentesque dignissim felis nec elit sollicitudin tincidunt. Nulla sed ligula id ex convallis porta a at sem. Praesent sagittis tristique convallis. Nam luctus vulputate turpis eleifend cursus. Cras felis ante, lacinia sit amet molestie nec, vulputate ut mauris. Duis malesuada, augue id porta consectetur, neque lorem luctus lectus, eu condimentum urna ligula vel mauris. Mauris placerat elementum finibus. Vestibulum sit amet porta tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam sagittis turpis aliquam enim suscipit, tincidunt venenatis tellus accumsan. Sed feugiat arcu vel felis porttitor, ut faucibus sem posuere. Curabitur urna tortor, vulputate in suscipit viv()a, ultricies quis orci.`,
 		image: resp.data.image,
 		likes: [],
 		user_id: resp.data.id,
 	});
 })
-	.catch(err => {
+	.catch(() => {
 
 	});

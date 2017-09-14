@@ -28,7 +28,7 @@ export default class MainPage extends Component {
 
 	componentDidMount() {
 		const { dispatch, user } = this.props;
-		if (user.id) {
+		if (user && user.id) {
 			dispatch(getTestimonials());
 		}
 	}
@@ -37,7 +37,7 @@ export default class MainPage extends Component {
 		const { user, testimonial, following, favorites } = this.props;
 		return (
 			<div id="mainPage">
-				<h1>{user ? 'News Feed' : 'Welcome to First Class'}</h1>
+				<h1>{user && user.id ? 'News Feed' : 'Welcome to First Class'}</h1>
 				<div id="mainContainer">
 					{user && user.id && testimonial && following && following.followers ? (
 						<div className="col-sm-12">
