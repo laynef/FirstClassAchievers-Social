@@ -1,15 +1,15 @@
 // Interact with database on the models functions here
-const Profile = require('../../../database/models/index').Profile;
-const Testimonial = require('../../../database/models/index').Testimonial;
-const Following = require('../../../database/models/index').Following;
-const Favorite = require('../../../database/models/index').Favorite;
-const User = require('../../../database/models/index').User;
-const Message = require('../../../database/models/index').Message;
-const Notification = require('../../../database/models/index').Notification;
-const Comment = require('../../../database/models/index').Comment;
+const Profile = require('../../models/index').Profile;
+const Testimonial = require('../../models/index').Testimonial;
+const Following = require('../../models/index').Following;
+const Favorite = require('../../models/index').Favorite;
+const User = require('../../models/index').User;
+const Message = require('../../models/index').Message;
+const Notification = require('../../models/index').Notification;
+const Comment = require('../../models/index').Comment;
 const _ = require('lodash');
 const cloudinary = require('cloudinary');
-const client = require('../cache/redis');
+const client = require('../caches/redis');
 const config = require('../../config/config');
 
 

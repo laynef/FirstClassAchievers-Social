@@ -75,7 +75,7 @@ module.exports = {
 				loader: "url-loader?limit=10000&mimetype=image/svg+xml",
 			}],
 		},
-      { test: /bootstrap\/dist\/js\/umd\//, use: 'imports-loader?jQuery=jquery' },
+		{ test: /bootstrap\/dist\/js\/umd\//, use: 'imports-loader?jQuery=jquery' },
 		],
 	},
 	resolve: {
@@ -106,10 +106,8 @@ module.exports = {
 			filename: 'bundle.css',
 		}),
 		new webpack.DefinePlugin({
-			global: {
-				__DEVELOPMENT__: true,
-				__CLIENT__: true,
-			},
+			'global.__DEVELOPMENT__' : true,
+			'global.__CLIENT__': true,
 		}),
 		new webpack.ProvidePlugin({
 			'window.Tether': 'tether',

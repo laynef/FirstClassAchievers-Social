@@ -55,10 +55,8 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			global: {
-				__DEVELOPMENT__: false,
-				__CLIENT__: false,
-			},
+			'global.__DEVELOPMENT__': false,
+			'global.__CLIENT__': false,
 			'process.env': {
 				'production': true,
 			},

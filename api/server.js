@@ -5,10 +5,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 const parser = require('body-parser');
 const router = require('./routes/index');
-const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const User = require('../models/index').User;
 const amqp = require('amqp');
 const sess = require('express-session');
 const RedisStore = require('connect-redis')(sess);
@@ -40,57 +36,6 @@ app.use(sess({
 	cookie: {
 		sameSite: true,
 	},
-}));
-
-// Passport
-passport.use(new FacebookStrategy({
-	clientID: config.facebookAppId,
-	clientSecret: config.facebookAppSecret,
-	callbackURL: "http://www.example.com/auth/facebook/callback",
-}, (accessToken, refreshToken, profile, done) => {
-	User.findOrCreate({
-		where: { email: profile.email },
-	})
-		.spread((user, created) => {
-			if (!created) {
-				User.create({
-					firstName: profile.firstName,
-					lastName: profile.lastName,
-					email: profile.email,
-					password: accessToken,
-				})
-					.then((response) => {
-						done(null, response);
-					});
-			} else {
-				done(null, user);
-			}
-		});
-}));
-
-passport.use(new GoogleStrategy({
-	clientID: config.googleClientID,
-	clientSecret: config.googleClientSecret,
-	callbackURL: "http://www.example.com/auth/google/callback",
-}, (token, tokenSecret, profile, done) => {
-	User.findOrCreate({
-		where: { email: profile.email },
-	})
-		.spread((user, created) => {
-			if (!created) {
-				User.create({
-					firstName: profile.firstName,
-					lastName: profile.lastName,
-					email: profile.email,
-					password: token,
-				})
-					.then((response) => {
-						done(null, response);
-					});
-			} else {
-				done(null, user);
-			}
-		});
 }));
 
 app.use('/api/v1', router);

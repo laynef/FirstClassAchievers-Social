@@ -60,10 +60,8 @@ module.exports = {
 				'NODE_ENV': 'development',
 				'PORT': 4000,
 			},
-			global: {
-				__DEVELOPMENT__: true,
-				__CLIENT__: false,
-			},
+			'global.__DEVELOPMENT__': true,
+			'global.__CLIENT__': false,
 		}),
 		new webpack.LoaderOptionsPlugin({
 			options: {
