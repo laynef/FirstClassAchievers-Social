@@ -6,7 +6,14 @@ import { login, forgottenPassword } from '../../../redux/actions/auth';
 import $ from 'jquery';
 
 
-class LoginModal extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'LoginModal',
+})
+
+export default class LoginModal extends Component {
 
 	constructor(props) {
 		super(props);
@@ -89,9 +96,3 @@ class LoginModal extends Component {
 
 }
 
-LoginModal = reduxForm({
-	form: 'LoginModal',
-})(LoginModal);
-
-export default connect(() => ({
-}))(LoginModal);

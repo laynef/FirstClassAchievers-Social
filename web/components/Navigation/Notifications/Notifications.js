@@ -5,7 +5,17 @@ import { setNotifications, getNotifications } from '../../../redux/actions/notif
 import { browserHistory } from 'react-router';
 
 
-class Notifications extends Component {
+@connect(state => ({
+	notifications: state.notifications.data,
+	user: state.user.data,
+}))
+
+
+@reduxForm({
+	form: 'Notifications',
+})
+
+export default class Notifications extends Component {
 
 	constructor(props) {
 		super(props);
@@ -77,12 +87,3 @@ class Notifications extends Component {
 	}
 
 }
-
-Notifications = reduxForm({
-	form: 'Notifications',
-})(Notifications);
-
-export default connect(state => ({
-	notifications: state.notifications.data,
-	user: state.user.data,
-}))(Notifications);

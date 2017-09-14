@@ -4,7 +4,14 @@ import { reduxForm } from 'redux-form';
 import ContactListAlphabet  from '../../Navigation/Chat/ContactListAlphabet';
 
 
-class ChatNotifications extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'ChatNotifications',
+})
+
+export default class ChatNotifications extends Component {
 
 	render() {
 		return (
@@ -40,10 +47,3 @@ class ChatNotifications extends Component {
 	}
 
 }
-
-ChatNotifications = reduxForm({
-	form: 'ChatNotifications',
-})(ChatNotifications);
-
-export default connect(() => ({
-}))(ChatNotifications);

@@ -8,7 +8,12 @@ import ChatNotifications  from './ChatNotifications';
 import Notifications  from '../Notifications/Notifications';
 
 
-class Header extends Component {
+@connect(state => ({
+	user: state.user.data,
+	notifications: state.notifications.data,
+}))
+
+export default class Header extends Component {
 
 	constructor(props) {
 		super(props);
@@ -191,8 +196,3 @@ class Header extends Component {
 	}
 
 }
-
-export default connect(state => ({
-	user: state.user.data,
-	notifications: state.notifications.data,
-}))(Header);

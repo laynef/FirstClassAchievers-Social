@@ -6,7 +6,15 @@ import SignUpModal from '../Header/SignUpModal';
 import { Link } from 'react-router';
 
 
-class MobileMenu extends Component {
+@connect(state => ({
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'MobileMenu',
+})
+
+export default class MobileMenu extends Component {
 
 	render() {
 		const { user } = this.props;
@@ -94,10 +102,3 @@ class MobileMenu extends Component {
 
 }
 
-MobileMenu = reduxForm({
-	form: 'MobileMenu',
-})(MobileMenu);
-
-export default connect(state => ({
-	user: state.user.data,
-}))(MobileMenu);

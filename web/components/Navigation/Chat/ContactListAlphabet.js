@@ -4,7 +4,16 @@ import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
 
-class ContactListAlphabet extends Component {
+@connect(state => ({
+	friends: state.friends.data,
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'ContactListAlphabet',
+})
+
+export default class ContactListAlphabet extends Component {
 
 	renderContactList() {
 		const { friends, user } = this.props;
@@ -74,12 +83,3 @@ class ContactListAlphabet extends Component {
 	}
 
 }
-
-ContactListAlphabet = reduxForm({
-	form: 'ContactListAlphabet',
-})(ContactListAlphabet);
-
-export default connect(state => ({
-	friends: state.friends.data,
-	user: state.user.data,
-}))(ContactListAlphabet);

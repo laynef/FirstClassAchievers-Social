@@ -4,7 +4,14 @@ import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
 
-class SideMenu extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'SideMenuComponent',
+})
+
+export default class SideMenu extends Component {
 
 	render() {
 		return (
@@ -43,9 +50,3 @@ class SideMenu extends Component {
 
 }
 
-SideMenu = reduxForm({
-	form: 'SideMenuComponent',
-})(SideMenu);
-
-export default connect(() => ({
-}))(SideMenu);

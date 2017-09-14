@@ -7,7 +7,15 @@ import { validate } from '../../../redux/validators/signup';
 import $ from 'jquery';
 
 
-class SignUpModal extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'SignUpModal',
+	validate,
+})
+
+export default class SignUpModal extends Component {
 
 	static formSubmit(data) {
 		const { dispatch, reset } = this.props;
@@ -56,11 +64,3 @@ class SignUpModal extends Component {
 	}
 
 }
-
-SignUpModal = reduxForm({
-	form: 'SignUpModal',
-	validate,
-})(SignUpModal);
-
-export default connect(() => ({
-}))(SignUpModal);
