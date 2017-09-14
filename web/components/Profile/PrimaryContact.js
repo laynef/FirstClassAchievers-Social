@@ -55,8 +55,7 @@ export default class PrimaryContact extends Component {
 	}
 
 	render() {
-		const { handleSubmit, profile, user } = this.props;
-		if (!profile || !user) return null;
+		const { handleSubmit, profile } = this.props;
 		return (
 			<div>
 				<Form role="form" onSubmit={handleSubmit(PrimaryContact.formSubmit.bind(this))}>
@@ -71,9 +70,9 @@ export default class PrimaryContact extends Component {
 								<h5>
                                 Traditional Standard Style
 								</h5>
-								<Field component={renderInput} placeholder={profile.firstName} label="First Name" type="text" name="firstName"/>
-								<Field component={renderInput} placeholder={profile.nickname} label="Nick Name" type="text" name="nickname"/>
-								<Field component={renderInput} placeholder={profile.lastName} label="Last Name" type="text" name="lastName"/>
+								<Field component={renderInput} placeholder={profile && profile.firstName ? profile.firstName : ''} label="First Name" type="text" name="firstName"/>
+								<Field component={renderInput} placeholder={profile && profile.nickname ? profile.nickname : ''} label="Nick Name" type="text" name="nickname"/>
+								<Field component={renderInput} placeholder={profile && profile.lastName ? profile.lastName : ''} label="Last Name" type="text" name="lastName"/>
 							</div>
 						</div>
 					</div>
@@ -88,12 +87,12 @@ export default class PrimaryContact extends Component {
 								<h5>
                                 Traditional Standard Style
 								</h5>
-								<Field component={renderInput} placeholder={profile.city} label="City" type="text" name="city"/>
-								<Field component={renderInput} placeholder={profile.state} label="State" type="text" name="state"/>
-								<Field component={renderInput} placeholder={profile.country} label="Country" type="text" name="country"/>
-								<Field component={renderInput} placeholder={profile.zipCode} label="Zip Code" type="text" name="zipCode"/>
-								<Field component={renderInput} placeholder={profile.position} label="Position" type="text" name="position"/>
-								<Field component={renderTextArea} placeholder={profile.goals} label="Goals" type="text" name="goals"/>
+								<Field component={renderInput} placeholder={profile && profile.city ? profile.city : ''} label="City" type="text" name="city"/>
+								<Field component={renderInput} placeholder={profile && profile.state ? profile.state : ''} label="State" type="text" name="state"/>
+								<Field component={renderInput} placeholder={profile && profile.country ? profile.country : ''} label="Country" type="text" name="country"/>
+								<Field component={renderInput} placeholder={profile && profile.zipCode ? profile.zipCode : ''} label="Zip Code" type="text" name="zipCode"/>
+								<Field component={renderInput} placeholder={profile && profile.position ? profile.position : ''} label="Position" type="text" name="position"/>
+								<Field component={renderTextArea} placeholder={profile && profile.goals ? profile.goals : ''} label="Goals" type="text" name="goals"/>
 								<div className="row">
 									<div className="col-sm-12 m-t-10 sm-m-t-10">
 										<button type="submit" className="btn btn-primary btn-block m-t-5">Submit</button>
