@@ -78,7 +78,6 @@ app.use((req, res) => {
 					</Provider>
 				);
 				global.navigator = {userAgent: req.headers['user-agent']};
-				console.log(`REACT`, ReactDOM.renderToStaticMarkup(component));
 				res.status(200).render('index', {
 					reactApp: ReactDOM.renderToStaticMarkup(component),
 					redux: `${serialize(store.getState())}`,

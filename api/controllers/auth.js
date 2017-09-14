@@ -1,6 +1,6 @@
 const User = require('../../models/index').User;
 const bcrypt = require('bcrypt-nodejs');
-const store = require('../caches/store');
+let client = require('../caches/redis');
 
 
 module.exports = {
@@ -14,10 +14,11 @@ module.exports = {
 					if (!result) {
 						res.status(404).send('Wrong Password');
 					} else {
-						store.user = respond;
-						let client = respond;
-						delete client.password;
-						res.status(200).send(client);
+						client.set(`user_${respond.id}`, JSON.stringify(respond));
+						client.set(`session_${req.session.id}`, JSON.stringify(respond));
+						let returns = respond;
+						delete returns.password;
+						res.status(200).send(returns);
 					}
 				});
 			})
@@ -26,22 +27,27 @@ module.exports = {
 			});
 	},
 	logout: (req, res) => {
-		store.user = null;
+		client.set(`session_${req.session.id}`, 'null');
 		res.sendStatus(200);
 	},
 	changePassword: (req, res) => {
-		bcrypt.compare(store.user.password, req.body.newPassword, (error, result) => {
+		let cachedObject = JSON.parse(client.get(`user_${req.params.userId}`));
+		bcrypt.compare(cachedObject.password, req.body.newPassword, (error, result) => {
 			if (!result) {
-				store.user.tries = store.user.tries ? store.user.tries++ : 1;
-				res.status(404).send({ tries: store.user.tries });
+				cachedObject.tries = cachedObject.tries ? cachedObject.tries++ : 1;
+				client.set(`user_${req.params.userId}`, JSON.stringify(cachedObject));
+				res.status(404).send({ tries: cachedObject.tries });
 			} else {
 				bcrypt.hash(req.body.newPassword, (complete) => {
 					User.update({
 						password: complete,
 					}, {
-						where: { id: store.user.id },
+						where: { id: cachedObject.id },
 					})
 						.then(() => {
+							cachedObject.password = complete;
+							client.set(`user_${req.params.userId}`, JSON.stringify(cachedObject));
+							client.set(`session_${req.session.id}`, JSON.stringify(cachedObject));
 							res.sendStatus(200);
 						})
 						.catch((error) => {
@@ -62,10 +68,11 @@ module.exports = {
 				permissions: 'visitor',
 			})
 				.then((response) => {
-					store.user = response.dataValues;
-					let client = response.dataValues;
-					delete client.password;
-					res.status(200).send(client);
+					let returns = response.dataValues;
+					client.set(`user_${returns.id}`, JSON.stringify(returns));
+					client.set(`session_${req.session.id}`, JSON.stringify(returns));
+					delete returns.password;
+					res.status(200).send(returns);
 				})
 				.catch((error) => {
 					res.status(404).send('User was not created ' + error);
@@ -83,10 +90,11 @@ module.exports = {
 				permissions: 'visitor',
 			})
 				.then((response) => {
-					store.user = response.dataValues;
-					let client = response.dataValues;
-					delete client.password;
-					res.status(200).send(client);
+					let returns = response.dataValues;
+					client.set(`user_${returns.id}`, JSON.stringify(returns));
+					client.set(`session_${req.session.id}`, JSON.stringify(returns));
+					delete returns.password;
+					res.status(200).send(returns);
 				})
 				.catch((error) => {
 					res.status(404).send('User was not created ' + error);
@@ -104,14 +112,21 @@ module.exports = {
 				permissions: 'guest',
 			})
 				.then((response) => {
-					store.user = response.dataValues;
-					let client = response.dataValues;
-					delete client.password;
-					res.status(200).send(client);
+					let returns = response.dataValues;
+					client.set(`user_${returns.id}`, JSON.stringify(returns));
+					client.set(`session_${req.session.id}`, JSON.stringify(returns));
+					delete returns.password;
+					res.status(200).send(returns);
 				})
 				.catch((error) => {
 					res.status(404).send('User was not created ' + error);
 				});
+		});
+	},
+	refresh: (req, res) => {
+		console.log(`SESSION ID`, req.sessionID);
+		client.get(`session_${req.session.id}`, (error, reply) => {
+			res.status(200).send(JSON.parse(reply));
 		});
 	},
 };

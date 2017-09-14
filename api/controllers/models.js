@@ -29,8 +29,8 @@ module.exports = {
 						where: { user_id: req.params.userId },
 					})
 						.then(response => {
-							client.set(`profile_${req.params.userId}`, JSON.stringify(response[0]));
-							res.status(201).send(response[0]);
+							client.set(`profile_${req.params.userId}`, JSON.stringify(response[0].dataValues));
+							res.status(201).send(response[0].dataValues);
 						}).catch(() => {
 							res.sendStatus(401);
 						});
@@ -57,16 +57,16 @@ module.exports = {
 				.then(() => {
 					client.get(`profile_${req.params.userId}`, (err, reply) => {
 						let replies = JSON.parse(reply);
-						replies.dataValues.firstName = req.body.firstName;
-						replies.dataValues.lastName = req.body.lastName;
-						replies.dataValues.city = req.body.city;
-						replies.dataValues.goals = req.body.goals;
-						replies.dataValues.position = req.body.position;
-						replies.dataValues.nickname = req.body.nickname;
-						replies.dataValues.image = req.body.image;
-						replies.dataValues.zipCode = req.body.zipCode;
-						replies.dataValues.state = req.body.state;
-						replies.dataValues.country = req.body.country;
+						replies.firstName = req.body.firstName;
+						replies.lastName = req.body.lastName;
+						replies.city = req.body.city;
+						replies.goals = req.body.goals;
+						replies.position = req.body.position;
+						replies.nickname = req.body.nickname;
+						replies.image = req.body.image;
+						replies.zipCode = req.body.zipCode;
+						replies.state = req.body.state;
+						replies.country = req.body.country;
 						client.set(`profile_${req.params.userId}`, JSON.stringify(replies));
 						res.status(202).send(replies);
 					});
@@ -83,7 +83,7 @@ module.exports = {
 					.then(response => {
 						let data = {};
 						response.forEach(e => {
-							data[e.dataValues.id] = e;
+							data[e.id] = e.dataValues;
 						});
 						replies = replies === null ? {} : replies;
 						let all = _.extend(replies, data);
@@ -101,11 +101,11 @@ module.exports = {
 				likes: [],
 			})
 				.then(response => {
-					res.status(200).send(response);
+					res.status(200).send(response.dataValues);
 					client.get(`testimonials`, (err, reply) => {
 						let replies = JSON.parse(reply);
 						let entry = {};
-						entry[response.dataValues.id] = response;
+						entry[response.id] = response.dataValues;
 						client.set(`testimonials`, JSON.stringify(_.extend(replies, entry)));
 					});
 				});
@@ -120,8 +120,8 @@ module.exports = {
 						where: { user_id: req.params.userId },
 					})
 						.then(response => {
-							client.set(`followings_${req.params.userId}`, JSON.stringify(response[0]));
-							res.status(200).send(response[0]);
+							client.set(`followings_${req.params.userId}`, JSON.stringify(response[0].dataValues));
+							res.status(200).send(response[0].dataValues);
 						});
 				} else {
 					res.status(200).send(replies);
@@ -137,14 +137,14 @@ module.exports = {
 					where: { user_id: req.params.userId },
 				})
 					.then(() => {
-						replies.dataValues.followers = req.body.followers;
+						replies.followers = req.body.followers;
 						Notification.create({
 							user_id: req.params.otherId,
-							message: `${replies.dataValues.firstName} ${replies.dataValues.lastName} started following you`,
+							message: `${replies.firstName} ${replies.lastName} started following you`,
 							seen: false,
-							image: replies.dataValues.image,
+							image: replies.image,
 							type: 'FOLLOW',
-							from: replies.dataValues.id,
+							from: replies.id,
 						});
 						client.set(`followings_${req.params.userId}`, JSON.stringify(replies));
 					});
@@ -160,8 +160,8 @@ module.exports = {
 						where: { user_id: req.params.userId },
 					})
 						.then(response => {
-							client.set(`favorites_${req.params.userId}`, JSON.stringify(response[0]));
-							res.status(200).send(response[0]);
+							client.set(`favorites_${req.params.userId}`, JSON.stringify(response[0].dataValues));
+							res.status(200).send(response[0].dataValues);
 						});
 				} else {
 					res.status(200).send(replies);
@@ -177,7 +177,7 @@ module.exports = {
 				})
 					.then(() => {
 						let replies = JSON.parse(reply);
-						replies.dataValues.entries = req.body.entries;
+						replies.entries = req.body.entries;
 						client.set(`favorites_${req.params.userId}`, JSON.stringify(replies));
 						res.status(200).send(replies);
 					});
@@ -205,14 +205,14 @@ module.exports = {
 				});
 				client.get(`profile_${req.params.userId}`, (err, reply) => {
 					let replies = JSON.parse(reply);
-					replies.dataValues.image = imgPath;
+					replies.image = imgPath;
 					client.set(`profile_${req.params.userId}`, JSON.stringify(replies));
 				});
 				client.get(`testimonials`, (err, reply) => {
 					let replies = JSON.parse(reply);
 					replies.map(e => {
-						if (e.dataValues.user_id === req.params.userId) {
-							e.dataValues.image = imgPath;
+						if (e.user_id === req.params.userId) {
+							e.image = imgPath;
 							return e;
 						}
 						return e;
@@ -221,7 +221,7 @@ module.exports = {
 				});
 				client.get(`user`, (err, reply) => {
 					let replies = JSON.parse(reply);
-					replies.dataValues.image = imgPath;
+					replies.image = imgPath;
 					client.set(`user`, JSON.stringify(replies));
 				});
 				res.sendStatus(202);
@@ -233,21 +233,22 @@ module.exports = {
 			let friends = [];
 			Following.findAll({ where: {user_id: req.params.userId} })
 				.then(response => {
-					response[0].dataValues.followers.forEach((e, i, a) => {
+					let respond = response[0].dataValues;
+					respond.followers.forEach((e, i) => {
 						client.get(`profile_${e}`, (err, reply) => {
 							if (reply === null || err) {
 								Profile.findAll({ where: {user_id: e} })
 									.then(resp => {
 										friends.push(resp[0].dataValues);
-										client.set(`profile_${e}`, JSON.stringify(resp[0]));
-										if (i + 1 === response[0].dataValues.followers.length) {
+										client.set(`profile_${e}`, JSON.stringify(resp[0].dataValues));
+										if (i + 1 === respond.followers.length) {
 											let array = _.uniq(friends);
 											res.status(200).send(array);
 										}
 									});
 							} else {
 								friends.push(JSON.parse(reply).dataValues);
-								if (i + 1 === response[0].dataValues.followers.length) {
+								if (i + 1 === respond.followers.length) {
 									let array = _.uniq(friends);
 									res.status(200).send(array);
 								}
@@ -263,11 +264,11 @@ module.exports = {
 				where: { room_name: [`_${req.params.userId}-${req.params.otherId}_`, `_${req.params.otherId}-${req.params.userId}_`] },
 			})
 				.then(response => {
-					response.sort((a, b) => a.id - b.id);
+					response.map(e => e.dataValues).sort((a, b) => a.id - b.id);
 					res.status(200).send(response);
 				});
 		},
-		post: (req, res) => {
+		post: (req) => {
 			Message.create({
 				message: req.body.message,
 				user_id: req.body.user_id,
@@ -279,9 +280,9 @@ module.exports = {
 						let replies = JSON.parse(reply);
 						Notification.create({
 							user_id: req.body.to,
-							message: `${replies.dataValues.firstName} ${replies.dataValues.lastName} sent you a message`,
+							message: `${replies.firstName} ${replies.lastName} sent you a message`,
 							seen: false,
-							image: replies.dataValues.image,
+							image: replies.image,
 							type: 'MESSAGE',
 							from: req.body.user_id,
 						});
@@ -290,7 +291,7 @@ module.exports = {
 		},
 	},
 	invite: {
-		post: (req, res) => {
+		post: (req) => {
 			Following.findAll({
 				where: { user_id: req.params.userId },
 			})
@@ -305,7 +306,7 @@ module.exports = {
 						});
 						client.get(`followings_${req.params.user_id}`, (err, reply) => {
 							let replies = JSON.parse(reply);
-							replies.dataValues.followers = array;
+							replies.followers = array;
 							client.set(`followings_${req.params.user_id}`, JSON.stringify(replies));
 						});
 					}
@@ -313,11 +314,11 @@ module.exports = {
 						let replies = JSON.parse(reply);
 						Notification.create({
 							user_id: req.body.friend,
-							message: `${replies.dataValues.firstName} ${replies.dataValues.lastName} invited you to chat`,
+							message: `${replies.firstName} ${replies.lastName} invited you to chat`,
 							seen: false,
-							image: replies.dataValues.image,
+							image: replies.image,
 							type: 'INVITE',
-							from: replies.dataValues.id,
+							from: replies.id,
 						});
 					});
 				});
@@ -326,6 +327,7 @@ module.exports = {
 	notify: {
 		get: (req, res) => {
 			client.get(`notifications`, (err, reply) => {
+				let replies = JSON.parse(reply);
 				Notification.findAll({
 					where: {
 						user_id: req.params.userId,
@@ -333,8 +335,9 @@ module.exports = {
 					offset: replies.length || 0,
 				})
 					.then(resp => {
+						let notes = resp.map(e => e.dataValues);
 						let array = reply === null ? [] : reply;
-						let all = array.concat(resp);
+						let all = array.concat(notes);
 						res.status(200).send(all);
 						client.set(`notifications`, all);
 					});
@@ -350,8 +353,8 @@ module.exports = {
 				})
 					.then(() => {
 						replies.map(e => {
-							if (e.dataValues.id === req.body.note_id) {
-								e.dataValues.seen = true;
+							if (e.id === req.body.note_id) {
+								e.seen = true;
 								return e;
 							}
 							return e;
@@ -373,14 +376,14 @@ module.exports = {
 						let store = {};
 						let replies = {};
 						resp.forEach(e => {
-							store[e.dataValues.post_id] = store[e.dataValues.post_id] ? store[e.dataValues.post_id] : {};
-							store[e.dataValues.post_id][e.dataValues.id] = e;
+							store[e.post_id] = store[e.post_id] ? store[e.post_id] : {};
+							store[e.post_id][e.id] = e;
 						});
 						_.each(store, (e, i) => {
 							client.get(`comments_${i}`, (err, reply) => {
 								let entry = {};
 								replies = JSON.parse(reply);
-								entry[e.dataValues.id]  = e;
+								entry[e.id]  = e;
 								data[i] = Object.values(e);
 								client.set(`comments_${i}`, JSON.stringify(_.extend(replies, entry)));
 							});
@@ -400,7 +403,7 @@ module.exports = {
 				})
 					.then(resp => {
 						resp.forEach(e => {
-							replies[e.dataValues.id] = e;
+							replies[e.id] = e;
 						});
 						res.status(200).send(Object.values(replies));
 						client.set(`comments_${req.params.entryId}`, JSON.stringify(replies));
@@ -435,7 +438,7 @@ module.exports = {
 								});
 								client.get(`comments_${req.params.entryId}`, (err, reply) => {
 									let replies = JSON.parse(reply);
-									entry[resp.dataValues.id] = resp;
+									entry[resp.id] = resp;
 									client.set(`comments_${req.params.entryId}`, JSON.stringify(_.extend(entry, replies)));
 								});
 								res.status(200).send(entry);
@@ -443,7 +446,7 @@ module.exports = {
 					} else {
 						client.get(`comments_${req.params.entryId}`, (err, reply) => {
 							let replies = JSON.parse(reply);
-							entry[resp.dataValues.id] = resp;
+							entry[resp.id] = resp;
 							client.set(`comments_${req.params.entryId}`, JSON.stringify(_.extend(entry, replies)));
 						});
 						res.status(200).send(entry);
@@ -458,7 +461,7 @@ module.exports = {
 					where: {id: req.params.entryId},
 				})
 					.then(resp => {
-						let likes = resp[0].dataValues.likes.slice();
+						let likes = resp[0].likes.slice();
 						if (likes.includes(req.body.user_id)) {
 							_.pull(likes, req.body.user_id);
 						} else {
@@ -486,18 +489,18 @@ module.exports = {
 												replies.push(response);
 												client.set(`notifications`, JSON.stringify(reply));
 											});
-											client.get(`comments_${resp.dataValues.post_id}`, (err, reply) => {
+											client.get(`comments_${resp.post_id}`, (err, reply) => {
 												let replies = JSON.parse(reply);
 												entry[req.params.entryId] = response;
-												client.set(`comments_${resp.dataValues.post_id}`, JSON.stringify(_.extend(replies, entry)));
+												client.set(`comments_${resp.post_id}`, JSON.stringify(_.extend(replies, entry)));
 											});
 											res.status(202).send(entry);
 										});
 								} else {
-									client.get(`comments_${resp.dataValues.post_id}`, (err, reply) => {
+									client.get(`comments_${resp.post_id}`, (err, reply) => {
 										let replies = JSON.parse(reply);
 										entry[req.params.entryId] = respond;
-										client.set(`comments_${resp.dataValues.post_id}`, JSON.stringify(_.extend(replies, entry)));
+										client.set(`comments_${resp.post_id}`, JSON.stringify(_.extend(replies, entry)));
 									});
 									res.status(202).send(entry);
 								}
@@ -511,7 +514,7 @@ module.exports = {
 				client.get(`testimonials`, (err, reply) => {
 					item = JSON.parse(reply)[req.params.entryId];
 				});
-				let likes = item.dataValues.likes.slice();
+				let likes = item.likes.slice();
 				if (likes.includes(req.body.user_id)) {
 					_.pull(likes, req.body.user_id);
 				} else {
@@ -540,7 +543,7 @@ module.exports = {
 									});
 									client.get(`testimonials`, (err, reply) => {
 										let replies = JSON.parse(reply);
-										replies[req.params.entryId].dataValues.likes = likes;
+										replies[req.params.entryId].likes = likes;
 										client.set(`testimonials`, JSON.stringify(replies));
 										res.status(202).send(replies[req.params.entryId]);
 									});
@@ -548,7 +551,7 @@ module.exports = {
 						} else {
 							client.get(`testimonials`, (err, reply) => {
 								let replies = JSON.parse(reply);
-								replies[req.params.entryId].dataValues.likes = likes;
+								replies[req.params.entryId].likes = likes;
 								client.set(`testimonials`, JSON.stringify(replies));
 								res.status(202).send(replies[req.params.entryId]);
 							});

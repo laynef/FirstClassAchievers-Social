@@ -29,7 +29,7 @@ export default class TestimonialPage extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(getTestimonials());
 		dispatch(getComment());
@@ -37,8 +37,6 @@ export default class TestimonialPage extends Component {
 
 	render() {
 		const { user, testimonial, favorites } = this.props;
-		if (!testimonial) return null;
-		if (user && user.id) { if (!favorites) return null; }
 		return (
 			<div id="TestimonialPage">
 				<h1>Posts</h1>
@@ -63,7 +61,7 @@ export default class TestimonialPage extends Component {
 					</div>
 				</div>
 				<div id="testimonial-background" className="col-sm-12">
-					{testimonial
+					{testimonial && testimonial
 						.mainSearch(this.state.searchTerm)
 						.map((entry, i) => (
 							<PostEntry key={i}
@@ -79,7 +77,7 @@ export default class TestimonialPage extends Component {
 							/>
 						))}
 				</div>
-				{(user && user.id) ? (<TestimonialModal />) : null}
+				{user && user.id ? <TestimonialModal /> : null}
 			</div>
 		);
 	}

@@ -40,9 +40,9 @@ export default class Header extends Component {
 						<div className="header-inner">
 							<Link to="/">
 								<div className="brand inline">
-									<img src="./theme/assets/img/logo.png"
-										data-src="./theme/assets/img/logo.png"
-										data-src-retina="./theme/assets/img/logo_2x.png"
+									<img src="theme/assets/img/logo.png"
+										data-src="theme/assets/img/logo.png"
+										data-src-retina="theme/assets/img/logo_2x.png"
 										width="93"
 										alt=""
 										height="25"/>
