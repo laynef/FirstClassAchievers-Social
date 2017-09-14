@@ -78,7 +78,7 @@ module.exports = {
 			client.get(`testimonials`, (err, reply) => {
 				let replies = JSON.parse(reply);
 				Testimonial.findAll({
-					offset: _.size(replies) || 0,
+					offset: replies !== null ? _.size(replies) : 0,
 				})
 					.then(response => {
 						let data = {};
@@ -332,7 +332,7 @@ module.exports = {
 					where: {
 						user_id: req.params.userId,
 					},
-					offset: replies.length || 0,
+					offset: replies !== null ? _.size(replies) : 0,
 				})
 					.then(resp => {
 						let notes = resp.map(e => e.dataValues);
@@ -370,7 +370,7 @@ module.exports = {
 			client.get(`comments_length`, (err, reply) => {
 				reply = JSON.parse(reply);
 				Comment.findAll({
-					offset: reply || 0,
+					offset: reply !== null ? reply : 0,
 				})
 					.then(resp => {
 						let respond = resp.map(e => e.dataValues);
@@ -401,7 +401,7 @@ module.exports = {
 					where: {
 						post_id: req.params.entryId,
 					},
-					offset: _.size(replies) || 0,
+					offset: replies !== null ? _.size(replies) : 0,
 				})
 					.then(resp => {
 						let respond = resp.map(e => e.dataValues);
