@@ -6,7 +6,14 @@ import { Field, reduxForm, Form } from 'redux-form';
 import { renderInput } from '../../redux/utils/ReduxForms';
 
 
-class ResetPasswordPage extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'ResetPasswordPage',
+})
+
+export default class ResetPasswordPage extends Component {
 
 	static formSubmit(data) {
 		const { dispatch, params } = this.props;
@@ -41,9 +48,4 @@ class ResetPasswordPage extends Component {
 
 }
 
-ResetPasswordPage = reduxForm({
-	form: 'ResetPasswordPage',
-})(ResetPasswordPage);
 
-export default connect(() => ({
-}))(ResetPasswordPage);

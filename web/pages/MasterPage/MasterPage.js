@@ -7,7 +7,21 @@ import SideMenu from '../../components/Navigation/SideMenu/SideMenu';
 import Footer from '../../components/Navigation/Footer/Footer';
 
 
-class MasterPage extends Component {
+@asyncConnect([{
+	promise: () => {
+		const promises = [];
+		return Promise.all(promises);
+	},
+}])
+
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'MasterPage',
+})
+
+export default class MasterPage extends Component {
 
 	render() {
 		const { children } = this.props;
@@ -21,17 +35,3 @@ class MasterPage extends Component {
 		);
 	}
 }
-
-MasterPage = asyncConnect([{
-	promise: () => {
-		const promises = [];
-		return Promise.all(promises);
-	},
-}])(MasterPage);
-
-MasterPage = reduxForm({
-	form: 'MasterPage',
-})(MasterPage);
-
-export default connect(() => ({
-}))(MasterPage);

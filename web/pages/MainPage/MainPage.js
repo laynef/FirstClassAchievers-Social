@@ -6,7 +6,18 @@ import { getTestimonials } from '../../redux/actions/testimonial';
 import '../../redux/utils/search';
 
 
-class MainPage extends Component {
+@connect(state => ({
+	user: state.user.data,
+	testimonial: state.testimonial.data,
+	following: state.following.data,
+	favorites: state.favorites.data,
+}))
+
+@reduxForm({
+	form: 'MainPage',
+})
+
+export default class MainPage extends Component {
 
 	constructor(props, context) {
 		super(props, context);
@@ -65,14 +76,3 @@ class MainPage extends Component {
 		);
 	}
 }
-
-MainPage = reduxForm({
-	form: 'MainPage',
-})(MainPage);
-
-export default connect(state => ({
-	user: state.user.data,
-	testimonial: state.testimonial.data,
-	following: state.following.data,
-	favorites: state.favorites.data,
-}))(MainPage);

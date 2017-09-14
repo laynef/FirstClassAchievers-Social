@@ -6,7 +6,16 @@ import ProfileImageModal  from '../../components/Profile/ProfileImageModal';
 import { getProfile } from '../../redux/actions/profile';
 
 
-class ProfilePage extends Component {
+@connect(state => ({
+	profile: state.profile.data,
+	user: state.user.data,
+}))
+
+@reduxForm({
+	form: 'ProfilePage',
+})
+
+export default class ProfilePage extends Component {
 
 	componentDidMount() {
 		const { dispatch, user } = this.props;
@@ -38,11 +47,5 @@ class ProfilePage extends Component {
 
 }
 
-ProfilePage = reduxForm({
-	form: 'ProfilePage',
-})(ProfilePage);
 
-export default connect(state => ({
-	profile: state.profile.data,
-	user: state.user.data,
-}))(ProfilePage);
+

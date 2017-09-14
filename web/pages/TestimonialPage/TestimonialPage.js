@@ -8,7 +8,19 @@ import PostEntry from '../../components/Testimonial/PostEntry';
 import '../../redux/utils/search';
 
 
-class TestimonialPage extends Component {
+@connect(state => ({
+	user: state.user.data,
+	testimonial: state.testimonial.data,
+	search: state.testimonial.search,
+	favorites: state.favorites.data,
+	profile: state.profile.data,
+}))
+
+@reduxForm({
+	form: 'TestimonialPage',
+})
+
+export default class TestimonialPage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -74,14 +86,3 @@ class TestimonialPage extends Component {
 
 }
 
-TestimonialPage = reduxForm({
-	form: 'TestimonialPage',
-})(TestimonialPage);
-
-export default connect(state => ({
-	user: state.user.data,
-	testimonial: state.testimonial.data,
-	search: state.testimonial.search,
-	favorites: state.favorites.data,
-	profile: state.profile.data,
-}))(TestimonialPage);

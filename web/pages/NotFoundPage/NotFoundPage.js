@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 
-class NotFoundPage extends Component {
+@connect(() => ({
+}))
+
+@reduxForm({
+	form: 'NotFoundPage',
+})
+
+export default class NotFoundPage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -22,10 +29,3 @@ class NotFoundPage extends Component {
 	}
 
 }
-
-NotFoundPage = reduxForm({
-	form: 'NotFoundPage',
-})(NotFoundPage);
-
-export default connect(() => ({
-}))(NotFoundPage);
