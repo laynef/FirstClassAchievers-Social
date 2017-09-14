@@ -61,8 +61,6 @@ module.exports = {
 		let salt = bcrypt.genSaltSync(10);
 		bcrypt.hash(req.body.password, salt, null, (err, hashed) => {
 			User.create({
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
 				email: req.body.email,
 				password: hashed,
 				permissions: 'visitor',
@@ -83,8 +81,6 @@ module.exports = {
 		let salt = bcrypt.genSaltSync(10);
 		bcrypt.hash(req.body.password, salt, null, (error, hashed) => {
 			User.create({
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
 				email: req.body.email,
 				password: hashed,
 				permissions: 'visitor',
@@ -105,8 +101,6 @@ module.exports = {
 		let salt = bcrypt.genSaltSync(10);
 		bcrypt.hash(req.body.password, salt, null, (error, hashed) => {
 			User.create({
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
 				email: req.body.email,
 				password: hashed,
 				permissions: 'guest',
@@ -124,7 +118,6 @@ module.exports = {
 		});
 	},
 	refresh: (req, res) => {
-		console.log(`SESSION ID`, req.sessionID);
 		client.get(`session_${req.session.id}`, (error, reply) => {
 			res.status(200).send(JSON.parse(reply));
 		});
