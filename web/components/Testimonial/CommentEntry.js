@@ -76,7 +76,7 @@ export default class CommentEntry extends Component {
 					</Form>
 				): null}
 				<div style={{maxHeight: '200px', overflow: 'scroll', width: '100%'}}>
-					{comments && comments[entryId] && comments[entryId].map((e, i) => (
+					{comments && entryId && comments[entryId] && comments[entryId].map((e, i) => (
 						<div key={i} className="card share col1" data-social="item" style={{width: '100%'}}>
 							<div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
 							<div className="card-header clearfix">

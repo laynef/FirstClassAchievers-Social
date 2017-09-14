@@ -56,7 +56,7 @@ export default class DetailEntry extends Component {
 		const { testimonial, params, user, favorites, profile } = this.props;
 		return (
 			<div id="DetailEntry">
-				{testimonial
+				{testimonial && params && profile && testimonial
 					.filter(e => e.id === params.entryId)
 					.map((e, i)=> (
 						<div className="PostEntry" key={i}>
@@ -78,7 +78,7 @@ export default class DetailEntry extends Component {
 										</span>
 									</h6>
 								</div>
-								{(favorites && e.user_id !== user.id) ?
+								{(favorites && user && e.user_id !== user.id) ?
 									(favorites.entries.includes(e.id)) ?
 										(<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart"></i></a>)
 										: (<a onClick={() => this.formSubmit()} type="submit" className={`${e.likes && e.likes.length > 0 ? 'fav' : 'no-likes'}`}><i className="fa fa-heart-o"></i></a>)
