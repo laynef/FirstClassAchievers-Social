@@ -24,6 +24,7 @@ export default class DetailEntry extends Component {
 
 	formSubmit() {
 		const { dispatch, favorites, user, params } = this.props;
+		if (!favorites || !user || !params) return null;
 		let body = {};
 		let array = favorites.entries.slice();
 		if (array.includes(params.entryId)) {
@@ -38,6 +39,7 @@ export default class DetailEntry extends Component {
 
 	formLikesSubmit() {
 		const { dispatch, user, profile, userProfile, params } = this.props;
+		if (!userProfile || !user || !params || !profile) return null;
 		let body = {};
 		body.user_id = Number(user.id);
 		body.author = `${userProfile.firstName} ${userProfile.lastName}`;
