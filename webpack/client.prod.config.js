@@ -72,7 +72,6 @@ module.exports = {
 				loader: "url-loader?limit=10000&mimetype=image/svg+xml",
 			}],
 		},
-		{ test: /bootstrap\/dist\/js\/umd\//, use: 'imports-loader?jQuery=jquery' },
 		],
 	},
 	resolve: {
@@ -97,9 +96,6 @@ module.exports = {
 			},
 			'global.__DEVELOPMENT__': false,
 			'global.__CLIENT__': true,
-		}),
-		new webpack.ProvidePlugin({
-			'window.Tether': 'tether',
 		}),
 	],
 };

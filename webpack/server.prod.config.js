@@ -11,9 +11,7 @@ fs.readdirSync(path.resolve(__dirname, '..', 'node_modules'))
 module.exports = {
 	name: 'server',
 	context: path.join(__dirname, '..'),
-	entry: [
-		'./web/server.js',
-	],
+	entry: './web/server.js',
 	target: 'node',
 	node: {
 		dns: true,
@@ -65,9 +63,6 @@ module.exports = {
 			compress: {
 				warnings: false,
 			},
-		}),
-		new webpack.ProvidePlugin({
-			'window.Tether': 'tether',
 		}),
 	],
 };
