@@ -23,7 +23,7 @@ import pull from 'lodash/pull';
 
 export default class DetailPage extends Component {
 
-	componentWillMount() {
+	componentDidMount() {
 		const { dispatch, params, user } = this.props;
 		dispatch(getProfile(params.userId));
 		dispatch(getTestimonials());
@@ -48,17 +48,14 @@ export default class DetailPage extends Component {
 
 	render() {
 		const { profile, params, testimonial, handleSubmit, user, following, favorites } = this.props;
-		if (!profile ) return null;
-		if (user) { if (!following || !favorites) return null; }
-		if (profile.user_id !== params.userId) return null;
 		return (
 			<div id="DetailPage" className="col-sm-12">
-				<h1>{profile.firstName + ' ' + profile.lastName + '\'s Profile'}</h1>
+				<h1>{profile && profile.firstName && profile.lastName  ? profile.firstName + ' ' + profile.lastName + '\'s Profile' : 'Their Profile'}</h1>
 				<span id="profileImage" className="thumbnail-wrapper d32 circular inline m-t-5 s-t-10">
-					<img src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
+					<img src={profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
 						alt=""
-						data-src={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
-						data-src-retina={profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
+						data-src={profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
+						data-src-retina={profile && profile.image ? profile.image : "http://i.imgur.com/sRbuHxN.png"}
 						width="320"
 						height="320"/>
 				</span>
@@ -76,17 +73,17 @@ export default class DetailPage extends Component {
 								</h5>
 								<div className="form-group">
 									<label>First Name</label>
-									<span className="form-control">{profile.firstName}</span>
+									<span className="form-control">{profile ? profile.firstName : ''}</span>
 								</div>
 								<div className="form-group">
 									<label>Nick Name</label>
-									<span className="form-control">{profile.nickname}</span>
+									<span className="form-control">{profile ? profile.nickname : ''}</span>
 								</div>
 								<div className="form-group">
 									<label>Last Name</label>
-									<span className="form-control">{profile.lastName}</span>
+									<span className="form-control">{profile ? profile.lastName : ''}</span>
 								</div>
-								{(user && params.userId !== user.id) ?
+								{(user && profile && following && params.userId !== user.id) ?
 									following.followers.includes(profile.user_id) ? (
 										<div className="row">
 											<div className="col-sm-12 m-t-10 sm-m-t-10">
@@ -106,7 +103,7 @@ export default class DetailPage extends Component {
 					</div>
 				</Form>
 				<div id="SecondaryContact" className="col-md-7  col-sm-12 col-xs-12">
-					{testimonial
+					{testimonial && profile && testimonial
 						.filter(e => e.user_id === profile.user_id)
 						.map((entry, i) => (
 							<PostEntry key={i}
@@ -115,10 +112,10 @@ export default class DetailPage extends Component {
 								image={entry.image}
 								profileId={entry.user_id}
 								entryId={entry.id}
-								userId={user ? user.id : null}
+								userId={user && user.id ? user.id : null}
 								detail={true}
-								favorites={favorites && user && user.id !== entry.user_id ? favorites.entries : null}
-								likes={user && user.id !== entry.user_id ? entry.likes : null}
+								favorites={favorites && entry && user && user.id !== entry.user_id ? favorites.entries : null}
+								likes={user && entry && user.id !== entry.user_id ? entry.likes : null}
 							/>
 						))}
 				</div>

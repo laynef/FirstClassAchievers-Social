@@ -58,6 +58,7 @@ export default class DetailEntry extends Component {
 		const { testimonial, params, user, favorites, profile } = this.props;
 		return (
 			<div id="DetailEntry">
+				<h1>{profile && profile.firstName && profile.lastName ? `${profile.firstName} ${profile.lastName}'s Post` : 'Their Post'}</h1>
 				{testimonial && params && profile && testimonial
 					.filter(e => e.id === params.entryId)
 					.map((e, i)=> (
