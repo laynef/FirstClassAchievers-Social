@@ -24,34 +24,37 @@ export default class DetailEntry extends Component {
 
 	formSubmit() {
 		const { dispatch, favorites, user, params } = this.props;
-		if (!favorites || !user || !params) return null;
-		let body = {};
-		let array = favorites.entries.slice();
-		if (array.includes(params.entryId)) {
-			pull(array, params.entryId);
-		} else {
-			array.push(params.entryId);
+		if (favorites && user && params) {
+			let body = {};
+			let array = favorites.entries.slice();
+			if (array.includes(params.entryId)) {
+				pull(array, params.entryId);
+			} else {
+				array.push(params.entryId);
+			}
+			body.user_id = user.id;
+			body.entries = array;
+			dispatch(setFavorites(body, user.id));
 		}
-		body.user_id = user.id;
-		body.entries = array;
-		dispatch(setFavorites(body, user.id));
 	}
 
 	formLikesSubmit() {
 		const { dispatch, user, profile, userProfile, params } = this.props;
-		if (!userProfile || !user || !params || !profile) return null;
-		let body = {};
-		body.user_id = Number(user.id);
-		body.author = `${userProfile.firstName} ${userProfile.lastName}`;
-		body.image = userProfile.image;
-		body.to = profile.user_id;
-		dispatch(likeTestimonial(body, params.entryId));
-		dispatch(getTestimonials());
+		if (userProfile && user && params && profile) {
+			let body = {};
+			body.user_id = Number(user.id);
+			body.author = `${userProfile.firstName} ${userProfile.lastName}`;
+			body.image = userProfile.image;
+			body.to = profile.user_id;
+			dispatch(likeTestimonial(body, params.entryId));
+			dispatch(getTestimonials());
+		}
 	}
 
 	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(getComment());
+		dispatch(getTestimonials());
 	}
 
 	render() {
@@ -60,10 +63,9 @@ export default class DetailEntry extends Component {
 			<div id="DetailEntry">
 				<h1>{profile && profile.firstName && profile.lastName ? `${profile.firstName} ${profile.lastName}'s Post` : 'Their Post'}</h1>
 				{testimonial && params && profile && testimonial
-					.filter(e => e.id === params.entryId)
+					.filter(e => Number(e.id) === Number(params.entryId))
 					.map((e, i)=> (
 						<div className="PostEntry" key={i}>
-							<h1>{e.author + `'s Post`}</h1>
 							<div className="card bodi share col1" data-social="item" style={{width: '100%'}}>
 								<div className="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label"></div>
 								<div className="card-header clearfix">
