@@ -55,9 +55,6 @@ module.exports = {
 		new webpack.DefinePlugin({
 			'global.__DEVELOPMENT__': false,
 			'global.__CLIENT__': false,
-			'process.env': {
-				'production': true,
-			},
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {

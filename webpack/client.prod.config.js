@@ -91,9 +91,6 @@ module.exports = {
 			},
 		}),
 		new webpack.DefinePlugin({
-			'process.env': {
-				'production': true,
-			},
 			'global.__DEVELOPMENT__': false,
 			'global.__CLIENT__': true,
 		}),
