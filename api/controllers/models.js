@@ -10,13 +10,12 @@ const Comment = require('../../models/index').Comment;
 const _ = require('lodash');
 const cloudinary = require('cloudinary');
 const client = require('../caches/redis');
-const config = require('../../config/config');
 
 
 cloudinary.config({
-	cloud_name: process.env.cloud_name || config.cloud_name,
-	api_key: process.env.cloud_api_key || config.cloud_api_key,
-	api_secret: process.env.cloud_api_secret || config.cloud_api_secret,
+	cloud_name: process.env.cloud_name,
+	api_key: process.env.cloud_api_key,
+	api_secret: process.env.cloud_api_secret,
 });
 
 module.exports = {

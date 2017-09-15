@@ -1,7 +1,6 @@
 import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import config from '../config/config';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import httpProxy from 'http-proxy';
@@ -27,7 +26,7 @@ const server = new http.Server(app);
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
 
-const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
+const targetUrl = `http://localhost:8325`;
 const proxy = httpProxy.createProxyServer({
 	target: targetUrl,
 	ws: true,

@@ -1,5 +1,4 @@
 const Express = require('express');
-const config = require('../config/config');
 const compression = require('compression');
 const morgan = require('morgan');
 const cors = require('cors');
