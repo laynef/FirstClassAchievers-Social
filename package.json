@@ -7,7 +7,7 @@
     "start": "redis-server & node ./app.js",
     "lint": "eslint -c .eslintrc web --fix",
     "test": "karma start",
-    "postinstall": "concurrently \"webpack --config ./webpack/client.prod.config.js -p\" \"webpack --config ./webpack/server.prod.config.js -p\"",
+    "postinstall": "webpack --config ./webpack/client.prod.config.js -p & webpack --config ./webpack/server.prod.config.js -p",
     "dev": "concurrently \"webpack --config ./webpack/client.dev.config.js -w\" \"nodemon app.js\" \"webpack --config ./webpack/server.prod.config.js -w\""
   },
   "engines": {
