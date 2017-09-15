@@ -39,10 +39,7 @@ app.use(sess({
 
 app.use('/api/v1', router);
 
-let runnable = app.listen(process.env.PORT, (err) => {
-	if (err) {
-		console.error(err);
-	}
+let runnable = app.listen(process.env.PROXIMO_URL, () => {
 
 	let usersOnline = {};
 

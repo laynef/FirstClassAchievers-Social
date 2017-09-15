@@ -31,7 +31,3 @@ ReactDOM.render(
 	</Provider>,
 	dest
 );
-
-if (global.__DEVELOPMENT__) {
-	window.React = React; // enable debugger
-}
