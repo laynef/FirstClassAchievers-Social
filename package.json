@@ -14,7 +14,6 @@
     "node": "7.10.0",
     "npm": "4.2.0"
   },
-  "proxy": "http://localhost:8080",
   "keywords": [],
   "author": "",
   "license": "ISC",
