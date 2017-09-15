@@ -69,5 +69,5 @@ app.use((req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-	console.log(`RUNNNING`);
+	console.log(`RUNNNING ON: ${process.env.PORT}`);
 });
