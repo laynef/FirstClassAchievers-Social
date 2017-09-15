@@ -4,18 +4,18 @@ const morgan = require('morgan');
 const cors = require('cors');
 const parser = require('body-parser');
 const router = require('./routes/index');
-const amqp = require('amqp');
+// const amqp = require('amqp');
 const sess = require('express-session');
 const RedisStore = require('connect-redis')(sess);
-const http = require('http');
+// const http = require('http');
 let client = require('./caches/redis');
 
 // Express servers
 const app = new Express();
-const server = http.createServer(app);
-const io = require('socket.io').listen(server);
-io.path('/ws');
-const messager = amqp.createConnection({url: process.env.RABBIT_PORT});
+// const server = http.createServer(app);
+// const io = require('socket.io').listen(server);
+// io.path('/ws');
+// const messager = amqp.createConnection({url: process.env.RABBIT_PORT});
 
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
@@ -39,45 +39,4 @@ app.use(sess({
 
 app.use('/api/v1', router);
 
-app.listen(process.env.PROXIMO_URL, () => {
-
-	// let usersOnline = {};
-
-	// messager.on('ready', () => {
-	// 	messager.queue('simple', { autoDelete: false }, (tail) => {
-	// 		io.sockets.on('connection', (socket) => {
-
-	// 			tail.subscribe((message) => {
-	// 				socket.emit('refreshChat', 'connected', message.data.toString('utf-8'));
-	// 				socket.broadcast.emit('refreshChat', 'connected', message.data.toString('utf-8'));
-	// 			});
-
-	// 			socket.on('loginUser', (username) => {
-	// 				if (usersOnline[username]) {
-	// 					socket.emit('userInUse');
-	// 					return;
-	// 				}
-	// 				socket.username = username;
-	// 				usersOnline[username] = socket.username;
-	// 				socket.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
-	// 				socket.broadcast.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
-	// 				io.sockets.emit("updateUsers", usersOnline);
-	// 			});
-
-	// 			socket.on('addNewMessage', (message) => {
-	// 				socket.emit('refreshChat', 'msg', `Message: ${message}`);
-	// 				socket.broadcast.emit('refreshChat', 'msg', `Message: ${message}`);
-	// 			});
-
-	// 			socket.on('disconnect', () => {
-	// 				if (typeof (socket.username) == 'undefined') return;
-	// 				delete usersOnline[socket.username];
-	// 				io.sockets.emit('updateUsers', usersOnline);
-	// 				socket.broadcast.emit('refreshChat', 'disconnect', `${socket.username} is disconnected`);
-	// 			});
-
-	// 		});
-	// 	});
-	// });
-	// io.listen(runnable);
-});
+app.listen(process.env.PROXIMO_URL);

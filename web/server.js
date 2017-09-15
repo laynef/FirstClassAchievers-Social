@@ -91,8 +91,4 @@ app.use((req, res) => {
 	});
 });
 
-server.listen(process.env.PORT, (err) => {
-	if (err) {
-		console.error(err);
-	}
-});
+server.listen(process.env.PORT);
