@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes';
 export function getNotifications(userId) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_NOTIFICATIONS_PENDING});
-		axios.get(`${process.env.LOCAL_PORT}/api/v1/notify/${userId}/`)
+		axios.get(`https://still-wildwood-47727.herokuapp.com/api/v1/notify/${userId}/`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_NOTIFICATIONS_SUCCESS,
@@ -25,7 +25,7 @@ export function setNotifications(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_NOTIFICATIONS_PENDING});
 		let data = { note_id: id };
-		axios.patch(`${process.env.LOCAL_PORT}/api/v1/notify/`, data)
+		axios.patch(`https://still-wildwood-47727.herokuapp.com/api/v1/notify/`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_NOTIFICATIONS_SUCCESS,

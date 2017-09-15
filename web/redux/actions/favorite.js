@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes';
 export function getFavorites(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FAVORITES_PENDING});
-		axios.get(`${process.env.LOCAL_PORT}/api/v1/favorites/${id}`)
+		axios.get(`https://still-wildwood-47727.herokuapp.com/api/v1/favorites/${id}`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_FAVORITES_SUCCESS,
@@ -24,7 +24,7 @@ export function getFavorites(id) {
 export function setFavorites(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FAVORITES_PENDING});
-		axios.patch(`${process.env.LOCAL_PORT}/api/v1/favorites/${id}`, data)
+		axios.patch(`https://still-wildwood-47727.herokuapp.com/api/v1/favorites/${id}`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_FAVORITES_SUCCESS,
