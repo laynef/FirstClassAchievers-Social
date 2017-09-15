@@ -53,7 +53,6 @@ let runnable = app.listen(process.env.PROXIMO_URL, () => {
 				});
 
 				socket.on('loginUser', (username) => {
-					console.log(`SERVER USERNAME ${username}`);
 					if (usersOnline[username]) {
 						socket.emit('userInUse');
 						return;
@@ -63,13 +62,11 @@ let runnable = app.listen(process.env.PROXIMO_URL, () => {
 					socket.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
 					socket.broadcast.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
 					io.sockets.emit("updateUsers", usersOnline);
-					console.log(`SERVER USERS ${usersOnline}`);
 				});
 
 				socket.on('addNewMessage', (message) => {
 					socket.emit('refreshChat', 'msg', `Message: ${message}`);
 					socket.broadcast.emit('refreshChat', 'msg', `Message: ${message}`);
-					console.log(`SERVER MSG ${message}`);
 				});
 
 				socket.on('disconnect', () => {
@@ -77,7 +74,6 @@ let runnable = app.listen(process.env.PROXIMO_URL, () => {
 					delete usersOnline[socket.username];
 					io.sockets.emit('updateUsers', usersOnline);
 					socket.broadcast.emit('refreshChat', 'disconnect', `${socket.username} is disconnected`);
-					console.log(`SERVER DISCONNECT ${socket.username}`);
 				});
 
 			});
