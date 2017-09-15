@@ -1,0 +1,319 @@
+@media screen and (min-width: 992px) {
+  #mainPage {
+    margin-left: 80px; } }
+
+#mainPage h1 {
+  text-align: center; }
+
+#mainPage #mainContainer {
+  height: 77.5vh; }
+
+#mainPage #testimonial-background {
+  margin: 40px 15px;
+  height: 580px;
+  width: 97.5%;
+  background-color: white;
+  overflow: scroll; }
+
+#SideMenuComponent #sideMenu:hover {
+  transform: translate(210px, 0px); }
+
+#MobileMenu #sideMenu:hover {
+  transform: translate(210px, 0px); }
+
+@media screen and (min-width: 992px) {
+  #TestimonialPage {
+    margin-left: 80px; } }
+
+#TestimonialPage h1 {
+  text-align: center; }
+
+#TestimonialPage #testimonial-background {
+  margin: 40px 15px;
+  height: 580px;
+  width: 97.5%;
+  background-color: white;
+  overflow: scroll; }
+
+@media screen and (min-width: 992px) {
+  #AboutUsPage {
+    margin-left: 80px; } }
+
+#AboutUsPage h1 {
+  text-align: center; }
+
+#AboutUsPage .aboutPanel {
+  height: 375px;
+  margin: 0; }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage {
+    margin-left: 80px; } }
+
+#ProfilePage h1 {
+  text-align: center; }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #profileImage {
+    margin-left: 200px;
+    margin-top: 150px;
+    transform: scale(10); } }
+
+@media (max-width: 500px) {
+  #ProfilePage #profileImage {
+    margin: 50% 50%;
+    transform: scale(12); } }
+
+@media (min-width: 900px) and (max-width: 992px) {
+  #ProfilePage #profileImage {
+    margin: 22% 50%;
+    transform: scale(12); } }
+
+@media (min-width: 500px) and (max-width: 900px) {
+  #ProfilePage #profileImage {
+    margin: 38% 50%;
+    transform: scale(12); } }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #PrimaryContact {
+    margin-left: -230px;
+    margin-top: 350px; } }
+
+@media screen and (min-width: 992px) {
+  #ProfilePage #SecondaryContact {
+    margin-left: 400px;
+    margin-top: -680px; } }
+
+#ProfilePage #SecondaryContact #panelSecondary {
+  height: 700px; }
+
+#ProfilePage #SecondaryContact textarea {
+  height: 100px; }
+
+.PostEntry .fav {
+  float: right;
+  transform: scale(2);
+  margin: -55px 150px;
+  z-index: 1000 !important; }
+
+.PostEntry .like {
+  float: right;
+  transform: scale(2);
+  margin: -55px 50px;
+  z-index: 1000 !important; }
+
+.PostEntry .likes {
+  float: right;
+  transform: scale(2);
+  margin: -40px 50px;
+  z-index: 1000 !important; }
+
+.PostEntry .no-likes {
+  float: right;
+  transform: scale(2);
+  margin: -55px 90px;
+  z-index: 1000 !important; }
+
+#DetailPage {
+  height: 100%; }
+  @media screen and (min-width: 992px) {
+    #DetailPage {
+      margin-left: 80px; } }
+  #DetailPage h1 {
+    text-align: center; }
+  @media screen and (min-width: 992px) {
+    #DetailPage #profileImage {
+      margin-left: 200px;
+      margin-top: 150px;
+      transform: scale(10); } }
+  @media (max-width: 500px) {
+    #DetailPage #profileImage {
+      margin: 50% 50%;
+      transform: scale(12); } }
+  @media (min-width: 900px) and (max-width: 992px) {
+    #DetailPage #profileImage {
+      margin: 22% 50%;
+      transform: scale(12); } }
+  @media (min-width: 500px) and (max-width: 900px) {
+    #DetailPage #profileImage {
+      margin: 38% 50%;
+      transform: scale(12); } }
+  @media screen and (min-width: 992px) {
+    #DetailPage #PrimaryContact {
+      margin-left: -230px;
+      margin-top: 350px; } }
+  #DetailPage #SecondaryContact {
+    height: 700px;
+    background-color: white;
+    overflow: scroll; }
+    @media screen and (min-width: 992px) {
+      #DetailPage #SecondaryContact {
+        margin-left: 400px;
+        margin-top: -680px;
+        margin: 40px;
+        height: 700px; } }
+
+#DetailEntry {
+  height: 65vw; }
+  @media screen and (min-width: 992px) {
+    #DetailEntry {
+      margin-left: 80px; } }
+  #DetailEntry h1 {
+    text-align: center; }
+
+@media screen and (min-width: 992px) {
+  #FavoritesPage {
+    margin-left: 80px; } }
+
+#FavoritesPage h1 {
+  text-align: center; }
+
+#FavoritesPage #testimonial-background {
+  margin: 40px 15px;
+  height: 640px;
+  width: 97.5%;
+  background-color: white;
+  overflow: scroll; }
+
+@media screen and (min-width: 992px) {
+  #ChatPage {
+    margin-left: 80px; } }
+
+#ChatPage h1 {
+  text-align: center; }
+
+#ChatPage .innerChat {
+  margin: 40px 15px;
+  height: 45vw;
+  width: 97.5%;
+  overflow: scroll; }
+
+#HeaderComponent .rightSpacing {
+  width: 130px; }
+
+#HeaderComponent .chatLink {
+  float: right;
+  transform: scale(1.1);
+  margin-top: -30px; }
+
+#HeaderComponent .drops {
+  margin-right: 60px;
+  left: -50px; }
+
+#HeaderComponent .notify {
+  margin-top: 10px;
+  float: left;
+  padding: 0 15px; }
+
+#HeaderComponent .nots {
+  left: -360px;
+  top: 6px; }
+
+#FriendsPage {
+  height: 55vw; }
+  @media screen and (min-width: 992px) {
+    #FriendsPage {
+      margin-left: 80px; } }
+  #FriendsPage h1 {
+    text-align: center; }
+  #FriendsPage .imgs {
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
+
+#ResetPasswordPage {
+  height: 60vw; }
+  @media screen and (min-width: 992px) {
+    #ResetPasswordPage {
+      margin-left: 80px; } }
+  #ResetPasswordPage h1 {
+    text-align: center; }
+
+#loader-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; }
+
+#loader {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 2s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #3498db;
+  -webkit-animation: spin 3s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 3s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #3498db;
+  -webkit-animation: spin 1.5s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  animation: spin 1.5s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */ }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */ }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */ } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */ }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */ } }
