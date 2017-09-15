@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import favicon from 'serve-favicon';
 import compression from 'compression';
-import httpProxy from 'http-proxy';
 import morgan from 'morgan';
 import path from 'path';
 import createStore from './redux/store/create';
@@ -26,12 +25,6 @@ const server = new http.Server(app);
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
 
-const targetUrl = process.env.LOCAL_PORT;
-const proxy = httpProxy.createProxyServer({
-	target: targetUrl,
-	ws: true,
-});
-
 // Middleware
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -42,20 +35,6 @@ app.use(morgan('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 app.use(compression({ filter: shouldCompress }));
-
-// Proxy Api
-app.use('/api', (req, res) => {
-	proxy.web(req, res, { target: targetUrl });
-});
-app.use('/ws', (req, res) => {
-	proxy.web(req, res, { target: `${targetUrl}/ws` });
-});
-proxy.on('error', (error, req, res) => {
-	res.status(500).render('500');
-});
-server.on('upgrade', (req, socket, head) => {
-	proxy.ws(req, socket, head);
-});
 
 // React
 app.use((req, res) => {
