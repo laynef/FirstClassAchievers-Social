@@ -1,5 +1,4 @@
 node_modules
-assets/dist/*
 webpack-assets.json
 .vscode
 dump.rdb
