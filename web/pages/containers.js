@@ -1,6 +1,5 @@
 export MasterPage from './MasterPage/MasterPage';
 export AboutUsPage from './AboutUsPage/AboutUsPage';
-export ChatPage from './ChatPage/ChatPage';
 export DetailEntry from './DetailEntry/DetailEntry';
 export DetailPage from './DetailPage/DetailPage';
 export FavoritesPage from './FavoritesPage/FavoritesPage';
