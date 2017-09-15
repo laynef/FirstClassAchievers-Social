@@ -10,6 +10,10 @@
     "postinstall": "concurrently \"webpack --config ./webpack/client.prod.config.js -p\" \"webpack --config ./webpack/server.prod.config.js -p\"",
     "dev": "concurrently \"webpack --config ./webpack/client.dev.config.js -w\" \"nodemon app.js\" \"webpack --config ./webpack/server.prod.config.js -w\""
   },
+  "engines": {
+    "node": "7.10.0",
+    "npm": "4.2.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
