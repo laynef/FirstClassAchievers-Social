@@ -15,7 +15,7 @@ const app = new Express();
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 io.path('/ws');
-const messager = amqp.createConnection({host: 'localhost', post: 5672});
+const messager = amqp.createConnection({url: process.env.RABBIT_PORT});
 
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
