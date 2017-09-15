@@ -39,45 +39,45 @@ app.use(sess({
 
 app.use('/api/v1', router);
 
-let runnable = app.listen(process.env.PROXIMO_URL, () => {
+app.listen(process.env.PROXIMO_URL, () => {
 
-	let usersOnline = {};
+	// let usersOnline = {};
 
-	messager.on('ready', () => {
-		messager.queue('simple', { autoDelete: false }, (tail) => {
-			io.sockets.on('connection', (socket) => {
+	// messager.on('ready', () => {
+	// 	messager.queue('simple', { autoDelete: false }, (tail) => {
+	// 		io.sockets.on('connection', (socket) => {
 
-				tail.subscribe((message) => {
-					socket.emit('refreshChat', 'connected', message.data.toString('utf-8'));
-					socket.broadcast.emit('refreshChat', 'connected', message.data.toString('utf-8'));
-				});
+	// 			tail.subscribe((message) => {
+	// 				socket.emit('refreshChat', 'connected', message.data.toString('utf-8'));
+	// 				socket.broadcast.emit('refreshChat', 'connected', message.data.toString('utf-8'));
+	// 			});
 
-				socket.on('loginUser', (username) => {
-					if (usersOnline[username]) {
-						socket.emit('userInUse');
-						return;
-					}
-					socket.username = username;
-					usersOnline[username] = socket.username;
-					socket.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
-					socket.broadcast.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
-					io.sockets.emit("updateUsers", usersOnline);
-				});
+	// 			socket.on('loginUser', (username) => {
+	// 				if (usersOnline[username]) {
+	// 					socket.emit('userInUse');
+	// 					return;
+	// 				}
+	// 				socket.username = username;
+	// 				usersOnline[username] = socket.username;
+	// 				socket.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
+	// 				socket.broadcast.emit('refreshChat', 'hello', `Nice, ${socket.username} has been connected`);
+	// 				io.sockets.emit("updateUsers", usersOnline);
+	// 			});
 
-				socket.on('addNewMessage', (message) => {
-					socket.emit('refreshChat', 'msg', `Message: ${message}`);
-					socket.broadcast.emit('refreshChat', 'msg', `Message: ${message}`);
-				});
+	// 			socket.on('addNewMessage', (message) => {
+	// 				socket.emit('refreshChat', 'msg', `Message: ${message}`);
+	// 				socket.broadcast.emit('refreshChat', 'msg', `Message: ${message}`);
+	// 			});
 
-				socket.on('disconnect', () => {
-					if (typeof (socket.username) == 'undefined') return;
-					delete usersOnline[socket.username];
-					io.sockets.emit('updateUsers', usersOnline);
-					socket.broadcast.emit('refreshChat', 'disconnect', `${socket.username} is disconnected`);
-				});
+	// 			socket.on('disconnect', () => {
+	// 				if (typeof (socket.username) == 'undefined') return;
+	// 				delete usersOnline[socket.username];
+	// 				io.sockets.emit('updateUsers', usersOnline);
+	// 				socket.broadcast.emit('refreshChat', 'disconnect', `${socket.username} is disconnected`);
+	// 			});
 
-			});
-		});
-	});
-	io.listen(runnable);
+	// 		});
+	// 	});
+	// });
+	// io.listen(runnable);
 });
