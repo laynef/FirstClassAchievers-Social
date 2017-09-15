@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app.js",
+    "start": "node ./server.js",
     "lint": "eslint -c .eslintrc web --fix",
     "test": "karma start",
     "build": "concurrently \"webpack --config ./webpack/client.prod.config.js -p\" \"webpack --config ./webpack/server.prod.config.js -p\"",
