@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Form } from 'redux-form';
 import { getComment, setComment, likeComment } from '../../redux/actions/comment';
-import io from 'socket.io-client';
-
-
-let socket = io('https://first-class-achievers.herokuapp.com');
 
 @connect(state => ({
 	comments: state.comments.data,
@@ -47,13 +43,6 @@ export default class CommentEntry extends Component {
 			image: profile.image,
 			to: this.props.profileId,
 		}, entryId));
-		socket.emit('comment', {
-			message: this.state.text,
-			user_id: user.id,
-			author: `${profile.firstName} ${profile.lastName}`,
-			image: profile.image,
-			to: this.props.profileId,
-		}, entryId);
 		dispatch(getComment());
 		this.setState({text: ''});
 		return null;
