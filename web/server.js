@@ -7,7 +7,6 @@ import morgan from 'morgan';
 import path from 'path';
 import createStore from './redux/store/create';
 import cors from 'cors';
-import http from 'http';
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
@@ -20,7 +19,6 @@ import serialize from 'serialize-javascript';
 
 // Express servers
 const app = new Express();
-const server = new http.Server(app);
 
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
@@ -70,4 +68,4 @@ app.use((req, res) => {
 	});
 });
 
-server.listen(process.env.PORT);
+app.listen(process.env.PORT);
