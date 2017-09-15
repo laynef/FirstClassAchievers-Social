@@ -2,7 +2,7 @@ const Testimonial = require('../../models/index').Testimonial;
 const axios = require('axios');
 
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `admin@email.com`,
 	password: `pass1234`,
 	firstName: 'Bionica',
@@ -36,7 +36,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 	});
 
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `monica@email.com`,
 	password: `pass1234`,
 	firstName: 'Monica',
@@ -69,7 +69,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `jenny@email.com`,
 	password: `pass1234`,
 	firstName: 'Jenny',
@@ -102,7 +102,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `malia@email.com`,
 	password: `pass1234`,
 	firstName: 'Malia',
@@ -142,7 +142,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `zoey@email.com`,
 	password: `pass1234`,
 	firstName: 'Zoey',
@@ -161,7 +161,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `emily@email.com`,
 	password: `pass1234`,
 	firstName: 'Emily',
@@ -180,7 +180,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `nicole@email.com`,
 	password: `pass1234`,
 	firstName: 'Nicole',
@@ -199,7 +199,7 @@ axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
 
 	});
 
-axios.post(`http://localhost:8325/api/v1/auth/local/register/admin`, {
+axios.post(`${process.env.PROXIMO_URL}/api/v1/auth/local/register/admin`, {
 	email: `vicki@email.com`,
 	password: `pass1234`,
 	firstName: 'Vicki',

@@ -6,7 +6,7 @@ import { getTestimonials } from './testimonial';
 export function setProfile(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_PROFILE_PENDING});
-		axios.patch(`http://localhost:8325/api/v1/profile/${id}`, data)
+		axios.patch(`${process.env.PROXIMO_URL}/api/v1/profile/${id}`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_PROFILE_SUCCESS,
@@ -26,7 +26,7 @@ export function setProfile(data, id) {
 export function getProfile(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_PROFILE_PENDING});
-		axios.get(`http://localhost:8325/api/v1/profile/${id}`)
+		axios.get(`${process.env.PROXIMO_URL}/api/v1/profile/${id}`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_PROFILE_SUCCESS,
@@ -47,7 +47,7 @@ export function setImage(data, id) {
 		let body = new FormData();
 		body.append('image', data);
 		dispatch({type: actionTypes.SET_IMAGE_PENDING});
-		axios.patch(`http://localhost:8325/api/v1/image/${id}`, body)
+		axios.patch(`${process.env.PROXIMO_URL}/api/v1/image/${id}`, body)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_IMAGE_SUCCESS,
