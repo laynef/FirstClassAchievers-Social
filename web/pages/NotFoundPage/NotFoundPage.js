@@ -23,7 +23,6 @@ export default class NotFoundPage extends Component {
 		return (
 			<div id="NotFoundPage">
 				<h1>NotFoundPage</h1>
-				{/* Fill me in */}
 			</div>
 		);
 	}

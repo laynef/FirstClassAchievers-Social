@@ -30,7 +30,7 @@ module.exports = {
 			});
 	},
 	logout: (req, res) => {
-		client.set(`session_${req.session.id}`, 'null');
+		// client.set(`session_${req.session.id}`, 'null');
 		res.sendStatus(200);
 	},
 	changePassword: (req, res) => {

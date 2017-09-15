@@ -25,7 +25,6 @@ export default class Header extends Component {
 
 	render() {
 		const { dispatch, user, notifications } = this.props;
-		if (user && !notifications) return null;
 		return (
 			<div id="HeaderComponent">
 				<div className="header ">
@@ -58,7 +57,7 @@ export default class Header extends Component {
 										<div className="rightSpacing">
 											<div className="dropdown notify">
 												<a onClick={() => this.setState({open: !this.state.open})} id="notification-center" className="icon-set globe-fill" data-toggle="dropdown" aria-expanded="false">
-													<span className={`${notifications.length > 0 && !notifications[0].seen ? 'bubble' : ''}`}></span>
+													<span className={`${notifications && notifications.length > 0 && !notifications[0].seen ? 'bubble' : ''}`}></span>
 												</a>
 											</div>
 											<button className="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

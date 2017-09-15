@@ -34,7 +34,7 @@ export default class FriendsPage extends Component {
 							<div className="col-md-3 m-b-10">
 								<div className="ar-1-1 widget-1-wrapper">
 									<div className="imgs widget-2 panel no-border bg-primary widget widget-loader-circle-lg no-margin"
-										style={{backgroundImage: `url(${e.image})`}}>
+										style={{backgroundImage: `url(${e.image ? e.image : 'http://i.imgur.com/sRbuHxN.png'})`}}>
 										<div className="panel-heading">
 											<div className="panel-controls">
 												<ul>
@@ -48,7 +48,7 @@ export default class FriendsPage extends Component {
 										</div>
 										<div className="panel-body">
 											<div className="pull-bottom bottom-left bottom-right padding-25">
-												<h3 className="text-white">{e.firstName + ' ' + e.lastName}</h3>
+												<h3 className="text-white">{e.firstName && e.lastName ? e.firstName + ' ' + e.lastName : ''}</h3>
 											</div>
 										</div>
 									</div>

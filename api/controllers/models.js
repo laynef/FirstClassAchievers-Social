@@ -233,7 +233,7 @@ module.exports = {
 			let friends = [];
 			Following.findAll({ where: {user_id: req.params.userId} })
 				.then(response => {
-					let respond = response[0].dataValues;
+					let respond = response[0] && response[0].dataValues ? response[0].dataValues : [];
 					respond.followers.forEach((e, i) => {
 						client.get(`profile_${e}`, (err, reply) => {
 							if (reply === null || err) {
@@ -242,14 +242,14 @@ module.exports = {
 										friends.push(resp[0].dataValues);
 										client.set(`profile_${e}`, JSON.stringify(resp[0].dataValues));
 										if (i + 1 === respond.followers.length) {
-											let array = _.uniq(friends);
+											let array = _.uniq(friends).filter(e => _.identity(e));
 											res.status(200).send(array);
 										}
 									});
 							} else {
-								friends.push(JSON.parse(reply).dataValues);
+								friends.push(JSON.parse(reply));
 								if (i + 1 === respond.followers.length) {
-									let array = _.uniq(friends);
+									let array = _.uniq(friends).filter(e => _.identity(e));
 									res.status(200).send(array);
 								}
 							}
