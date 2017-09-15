@@ -1,3 +1,0 @@
-require('./models/user')
-
-
