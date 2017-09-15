@@ -33,4 +33,4 @@ app.use(sess({
 
 app.use('/api/v1', router);
 
-app.listen(process.env.PROXIMO_URL);
+app.listen(8080);

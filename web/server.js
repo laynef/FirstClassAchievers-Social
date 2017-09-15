@@ -26,7 +26,7 @@ const server = new http.Server(app);
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
 
-const targetUrl = process.env.PROXIMO_URL;
+const targetUrl = "http://localhost:8080";
 const proxy = httpProxy.createProxyServer({
 	target: targetUrl,
 	ws: true,
