@@ -4,7 +4,6 @@ import { Field, reduxForm, Form } from 'redux-form';
 import { getMessages, createMessage, inviteFriends } from '../../redux/actions/message';
 import { getProfile } from '../../redux/actions/profile';
 import { renderMessageInput } from '../../redux/utils/ReduxForms';
-import io from 'socket.io-client';
 
 
 let socket = io.connect('https://first-class-achievers.herokuapp.com');
@@ -28,14 +27,6 @@ export default class ChatPage extends Component {
 		const { dispatch, params } = this.props;
 		dispatch(getProfile(Number(params.otherId)));
 		dispatch(getMessages(Number(params.userId), Number(params.otherId)));
-		socket.on('connect', () => {
-			let data = {
-				user: params.userId,
-				room1: `_${params.userId}-${params.otherId}_`,
-				room2: `_${params.otherId}-${params.userId}_`,
-			};
-			socket.emit('enter', data);
-		});
 	}
 
 	static formSubmit(data) {
@@ -47,12 +38,6 @@ export default class ChatPage extends Component {
 			to: Number(params.otherId),
 			roomNameId: `_${params.userId}-${params.otherId}_`,
 		}));
-		socket.emit('updatechat', Number(params.userId), {
-			message: data.message,
-			user_id: Number(params.userId),
-			to: Number(params.otherId),
-			roomNameId: `_${params.userId}-${params.otherId}_`,
-		});
 		dispatch(reset('ChatPage'));
 	}
 
@@ -78,18 +63,12 @@ export default class ChatPage extends Component {
 	renderConversion() {
 		const { user, profile, messages, params, pending } = this.props;
 		if (!profile || profile.user_id !== params.otherId) return null;
-		let socket = io();
 		let array = messages || [];
 		if (pending && user && profile && array.length === 0) {
 			array = localStorage[`to_${params.otherId}`] ? JSON.parse(localStorage.getItem(`to_${params.otherId}`)) : [];
 		} else if (messages) {
 			array = messages;
 		}
-		socket.on('message', (data) => {
-			if (data) {
-				array.push(data);
-			}
-		});
 		return array
 			.map((e, i) => (
 				<div key={i} className="message clearfix">
@@ -132,16 +111,8 @@ export default class ChatPage extends Component {
 	}
 
 	shouldComponentUpdate() {
-		let socket = io();
 		if (!this.props.messages) return true;
 		if (this.props.pending == null) return true;
-		socket.on('sendchat', (data) => {
-			if (data) {
-				this.renderConversion();
-				return true;
-			}
-			return false;
-		});
 		return false;
 	}
 

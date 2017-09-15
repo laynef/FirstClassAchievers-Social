@@ -11,7 +11,6 @@ import {
 	FavoritesPage,
 	ProfilePage,
 	DetailPage,
-	// ChatPage,
 	FriendsPage,
 	ResetPasswordPage,
 } from '../pages/containers';
@@ -27,7 +26,6 @@ export default () => {
 			<Route path="profile" component={ProfilePage} />
 			<Route path="favorites" component={FavoritesPage} />
 			<Route path="profile/:userId" component={DetailPage} />
-			{/* <Route path="chat/:userId/:otherId" component={ChatPage} /> */}
 			<Route path="friends" component={FriendsPage} />
 			<Route path="reset/:userId" component={ResetPasswordPage} />
 			<Route path="*" component={NotFoundPage} />
