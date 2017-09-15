@@ -26,7 +26,7 @@ const server = new http.Server(app);
 // Middleware Functions
 const shouldCompress = (req, res) => (req.headers['x-no-compression'] ? false : compression.filter(req, res));
 
-const targetUrl = `http://localhost:8325`;
+const targetUrl = process.env.PORT;
 const proxy = httpProxy.createProxyServer({
 	target: targetUrl,
 	ws: true,
@@ -91,14 +91,8 @@ app.use((req, res) => {
 	});
 });
 
-if (config.frontendPort) {
-	server.listen(config.frontendPort, (err) => {
-		if (err) {
-			console.error(err);
-		}
-		console.info('----\n==> ✅  Your app is running, talking to API server on %s.', config.apiPort);
-		console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.frontendPort);
-	});
-} else {
-	console.error('==>     ERROR: No PORT environment variable has been specified');
-}
+server.listen(process.env.PORT, (err) => {
+	if (err) {
+		console.error(err);
+	}
+});
