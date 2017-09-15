@@ -1,6 +1,4 @@
 import actionTypes from '../store/actionTypes';
-import io from 'socket.io-client';
-
 
 
 const INITIAL_STATE = {

@@ -34,6 +34,6 @@ app.use(sess({
 app.use('/api/v1', router);
 app.use('/', (req, res) => {
 	res.status(200).send('on');
-})
+});
 
 app.listen(process.env.PORT);
