@@ -8,15 +8,15 @@ module.exports = {
 	cloud_api_key: '331877137159224',
 	cloud_api_secret: '0jT5rFal1-8wXUtizKYjwfyQwwc',
 	development: {
-		url: "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+		url: "postgres://dbadmin:Chang1ng@fca.csy0a8lionis.us-west-2.rds.amazonaws.com:5432/fca",
 		dialect: "postgres",
 	},
 	test: {
-		url: "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+		url: "postgres://dbadmin:Chang1ng@fca.csy0a8lionis.us-west-2.rds.amazonaws.com:5432/fca",
 		dialect: "postgres",
 	},
 	production: {
-		url: "postgres://hakdgpyt:fiMzeTNhXGKoXqKYD_ggQF2FkR1kvlu7@stampy.db.elephantsql.com:5432/hakdgpyt",
+		url: "postgres://dbadmin:Chang1ng@fca.csy0a8lionis.us-west-2.rds.amazonaws.com:5432/fca",
 		dialect: "postgres",
 	},
 	google_client_id: '154261984040-74vff4mdnv0e7apej7f4itlc2ag1ngdv.apps.googleusercontent.com',
