@@ -6,6 +6,7 @@ const parser = require('body-parser');
 const router = require('./routes/index');
 const sess = require('express-session');
 const RedisStore = require('connect-redis')(sess);
+const config = require('../config/config');
 let client = require('./caches/redis');
 
 // Express servers
@@ -22,7 +23,7 @@ app.use(parser.urlencoded({extended: true}));
 app.use(compression({ filter: shouldCompress }));
 app.use(sess({
 	secret: 'secret',
-	store: new RedisStore({ url: process.env.REDIS_PORT, client: client, disableTTL: true }),
+	store: new RedisStore({ url: 'redis://localhost', client: client, disableTTL: true }),
 	saveUninitialized: true,
 	resave: false,
 	name: 'NewProject',
@@ -36,4 +37,4 @@ app.use('/', (req, res) => {
 	res.status(200).send('on');
 });
 
-app.listen(process.env.PORT);
+app.listen(8325);

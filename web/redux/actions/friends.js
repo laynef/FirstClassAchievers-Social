@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes';
 export function getFriends(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FRIENDS_PENDING});
-		axios.get(`${process.env.API_URL}/api/v1/friends/${id}`)
+		axios.get(`http://localhost:8325/api/v1/friends/${id}`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_FRIENDS_SUCCESS,

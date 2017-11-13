@@ -68,5 +68,5 @@ app.use((req, res) => {
 	});
 });
 
-let port = process.env.PORT;
+let port = 4000;
 app.listen(port);

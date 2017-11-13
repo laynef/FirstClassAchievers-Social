@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes';
 export function getTestimonials() {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_TESTIMONIAL_PENDING});
-		axios.get(`${process.env.API_URL}/api/v1/testify`)
+		axios.get(`http://localhost:8325/api/v1/testify`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_TESTIMONIAL_SUCCESS,
@@ -24,7 +24,7 @@ export function getTestimonials() {
 export function createTestimonials(data) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.CREATE_TESTIMONIAL_PENDING});
-		axios.post(`${process.env.API_URL}/api/v1/testify`, data)
+		axios.post(`http://localhost:8325/api/v1/testify`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.CREATE_TESTIMONIAL_SUCCESS,
@@ -43,7 +43,7 @@ export function createTestimonials(data) {
 export function likeTestimonial(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.UPDATE_TESTIMONIAL_PENDING});
-		axios.patch(`${process.env.API_URL}/api/v1/like/testify/${id}`, data)
+		axios.patch(`http://localhost:8325/api/v1/like/testify/${id}`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.UPDATE_TESTIMONIAL_SUCCESS,

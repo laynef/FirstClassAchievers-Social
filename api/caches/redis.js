@@ -1,3 +1,3 @@
 const redis = require('redis');
-const client = redis.createClient(process.env.REDIS_PORT);
+const client = redis.createClient('redis://localhost');
 module.exports = client;

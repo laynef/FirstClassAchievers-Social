@@ -6,7 +6,7 @@ import { getFriends } from './friends';
 export function getFollowers(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FOLLOWERS_PENDING});
-		axios.get(`${process.env.API_URL}/api/v1/following/${id}`)
+		axios.get(`http://localhost:8325/api/v1/following/${id}`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_FOLLOWERS_SUCCESS,
@@ -25,7 +25,7 @@ export function getFollowers(id) {
 export function setFollowers(data, user, other) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FOLLOWERS_PENDING});
-		axios.patch(`${process.env.API_URL}/api/v1/following/${user}/${other}`, data)
+		axios.patch(`http://localhost:8325/api/v1/following/${user}/${other}`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_FOLLOWERS_SUCCESS,

@@ -5,7 +5,7 @@ import actionTypes from '../store/actionTypes';
 export function getFavorites(id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.GET_FAVORITES_PENDING});
-		axios.get(`${process.env.API_URL}/api/v1/favorites/${id}`)
+		axios.get(`http://localhost:8325/api/v1/favorites/${id}`)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.GET_FAVORITES_SUCCESS,
@@ -24,7 +24,7 @@ export function getFavorites(id) {
 export function setFavorites(data, id) {
 	return function(dispatch) {
 		dispatch({type: actionTypes.SET_FAVORITES_PENDING});
-		axios.patch(`${process.env.API_URL}/api/v1/favorites/${id}`, data)
+		axios.patch(`http://localhost:8325/api/v1/favorites/${id}`, data)
 			.then((response) => {
 				dispatch({
 					type: actionTypes.SET_FAVORITES_SUCCESS,
