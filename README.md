@@ -9,7 +9,10 @@ This is a Social Web App
 
 ## To Install & Run Mobile
 
-`cd native`<br>
+### Mobile on branch: newsetup
+`git checkout newsetup`<br>
+
+`cd mobile`<br>
 `npm i`<br>
 
 For iOS<br>
